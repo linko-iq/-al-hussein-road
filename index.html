@@ -121,6 +121,92 @@
   .memorial{grid-template-columns:1fr!important}
 }
 
+
+.side{
+  width:min(520px,92vw)!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  padding:14px!important;
+}
+.side a{
+  border:1px solid rgba(184,148,69,.18)!important;
+  border-bottom:1px solid rgba(184,148,69,.18)!important;
+  background:rgba(184,148,69,.07)!important;
+  text-align:center!important;
+  min-height:54px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1.45!important;
+  font-size:16px!important;
+  font-weight:800!important;
+}
+.side a:hover{
+  background:rgba(184,148,69,.18)!important;
+  transform:translateY(-1px);
+}
+.tools{
+  gap:7px!important;
+}
+.langs{
+  background:rgba(184,148,69,.08);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:4px;
+}
+.langs button{
+  min-width:42px;
+  padding:9px 10px!important;
+  box-shadow:none!important;
+}
+#themeBtn,.tools>.btn:not(.menu-btn){
+  min-width:44px;
+  padding:10px 12px!important;
+}
+.header-inner{
+  gap:10px!important;
+}
+@media(max-width:560px){
+  .header-inner{
+    align-items:flex-start;
+    padding:10px 0;
+  }
+  .tools{
+    justify-content:flex-end;
+    max-width:230px;
+  }
+  .brand{
+    font-size:20px!important;
+  }
+  .side{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    top:92px!important;
+    right:10px!important;
+    width:calc(100vw - 20px)!important;
+    max-height:calc(100vh - 115px)!important;
+  }
+  .side a{
+    min-height:52px!important;
+    font-size:14px!important;
+    padding:9px 7px!important;
+  }
+}
+
+
+#ahlGrid .btn,
+#ahlGrid button{
+  background:var(--accent)!important;
+  color:#fff!important;
+  border-color:var(--accent)!important;
+  font-weight:900!important;
+}
+#ahlGrid .btn:hover,
+#ahlGrid button:hover{
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+}
+
 </style>
 </head>
 <body data-theme="light">
@@ -305,34 +391,41 @@ function copyReader(){
 setLang('ar');
 
 </script>
+
 <script>
-const AHL_DETAILS_EXTRA={
-"الإمام علي":"الإمام علي بن أبي طالب (عليه السلام)، أمير المؤمنين ووصي رسول الله (صلى الله عليه وآله)، عُرف بالعلم والشجاعة والعدل والعبادة ونصرة الحق.",
-"الإمام الحسن":"الإمام الحسن المجتبى (عليه السلام)، سبط رسول الله (صلى الله عليه وآله)، عُرف بالحلم والكرم والإصلاح وحفظ وحدة الأمة.",
-"الإمام الحسين":"الإمام الحسين بن علي (عليه السلام)، سيد الشهداء، نهض لإصلاح الأمة ورفض الظلم، وبقيت كربلاء رمزاً للحق والكرامة.",
-"السيدة فاطمة":"السيدة فاطمة الزهراء (عليها السلام)، بنت رسول الله (صلى الله عليه وآله)، سيدة نساء العالمين، مثال الطهر والعبادة والدفاع عن الحق.",
-"السيدة زينب":"السيدة زينب بنت علي (عليها السلام)، مثال الصبر والثبات، حملت رسالة كربلاء بعد عاشوراء وبيّنت مظلومية الإمام الحسين (عليه السلام).",
-"الإمام السجاد":"الإمام علي بن الحسين زين العابدين (عليه السلام)، عُرف بكثرة العبادة والدعاء، ومن آثاره الصحيفة السجادية ورسالة الحقوق.",
-"الإمام الباقر":"الإمام محمد الباقر (عليه السلام)، نشر علوم أهل البيت (عليهم السلام) وبيّن معارف الدين والفقه والتفسير.",
-"الإمام الصادق":"الإمام جعفر الصادق (عليه السلام)، توسعت في عصره مدرسة أهل البيت العلمية، وتتلمذ على يديه عدد كبير من العلماء.",
-"الإمام الكاظم":"الإمام موسى الكاظم (عليه السلام)، عُرف بالصبر وكظم الغيظ والعبادة، وتحمل السجن والظلم بثبات.",
-"الإمام الرضا":"الإمام علي الرضا (عليه السلام)، عُرف بالعلم والحكمة والحوار، وله مكانة عظيمة عند المؤمنين.",
-"الإمام الجواد":"الإمام محمد الجواد (عليه السلام)، عُرف بالعلم المبكر والكرم والتقوى، وكان مثالاً للشباب المؤمن الواعي.",
-"الإمام الهادي":"الإمام علي الهادي (عليه السلام)، عُرف بالهداية والعلم والثبات في مواجهة التضييق.",
-"الإمام العسكري":"الإمام الحسن العسكري (عليه السلام)، عُرف بالعبادة والعلم والصبر، وهو والد الإمام المهدي (عج).",
-"الإمام المهدي":"الإمام المهدي المنتظر (عجل الله فرجه)، الإمام الثاني عشر من أئمة أهل البيت (عليهم السلام)، يعتقد المؤمنون بأنه قائم آل محمد الذي يملأ الأرض قسطاً وعدلاً."
+const AHL_DETAILS_EXTRA = {
+"الإمام علي": `الإمام علي بن أبي طالب (عليه السلام)، أمير المؤمنين ووصي رسول الله (صلى الله عليه وآله)، وأول الأئمة من أهل البيت (عليهم السلام). عُرف بالعلم والشجاعة والعدل والزهد والعبادة ونصرة المظلوم. كان مثالاً للحاكم العادل والعبد المخلص لله تعالى، ومن كلماته ومواعظه ما جُمع في نهج البلاغة.`,
+"الإمام الحسن": `الإمام الحسن بن علي المجتبى (عليه السلام)، سبط رسول الله (صلى الله عليه وآله) وثاني أئمة أهل البيت (عليهم السلام). عُرف بالحلم والكرم والإصلاح والصبر. سعى لحفظ دماء المسلمين ووحدة الأمة، وكان مثالاً للأخلاق النبوية الرفيعة.`,
+"الإمام الحسين": `الإمام الحسين بن علي (عليه السلام)، سيد الشهداء وثالث أئمة أهل البيت (عليهم السلام). نهض من أجل الإصلاح في أمة جده رسول الله (صلى الله عليه وآله)، ورفض الظلم والانحراف. أصبحت نهضته في كربلاء رمزاً للحق والكرامة والتضحية.`,
+"الإمام السجاد": `الإمام علي بن الحسين زين العابدين (عليه السلام)، رابع أئمة أهل البيت (عليهم السلام)، ومن أبرز الشهود على واقعة كربلاء. عُرف بكثرة العبادة والدعاء والصبر، ومن آثاره الصحيفة السجادية ورسالة الحقوق التي تحمل معاني تربوية وأخلاقية عظيمة.`,
+"الإمام الباقر": `الإمام محمد بن علي الباقر (عليه السلام)، خامس أئمة أهل البيت (عليهم السلام). سُمي بالباقر لأنه بقر العلم ونشره، وقد أسس لمرحلة علمية واسعة في الفقه والتفسير والمعارف الإسلامية، وبيّن علوم أهل البيت للناس.`,
+"الإمام الصادق": `الإمام جعفر بن محمد الصادق (عليه السلام)، سادس أئمة أهل البيت (عليهم السلام). ازدهرت في عصره مدرسة علمية كبيرة، وتتلمذ على يديه عدد واسع من العلماء. عُرف بالعلم والحكمة والعبادة والصدق، وتنسب إليه المدرسة الجعفرية.`,
+"الإمام الكاظم": `الإمام موسى بن جعفر الكاظم (عليه السلام)، سابع أئمة أهل البيت (عليهم السلام). عُرف بكظم الغيظ والصبر والعبادة، وتحمل السجن والتضييق بثبات وإيمان. كان مثالاً للرحمة والتقوى ومساعدة المحتاجين.`,
+"الإمام الرضا": `الإمام علي بن موسى الرضا (عليه السلام)، ثامن أئمة أهل البيت (عليهم السلام). عُرف بالعلم والحوار والحكمة، وكانت له مناظرات علمية مشهورة. مرقده الشريف في خراسان مقصد للمؤمنين ومحبي أهل البيت.`,
+"الإمام الجواد": `الإمام محمد بن علي الجواد (عليه السلام)، تاسع أئمة أهل البيت (عليهم السلام). عُرف بالعلم المبكر والكرم والتقوى، وكان مثالاً للشباب المؤمن الواعي. أظهر من العلم والحكمة ما دل على مقام الإمامة وفضل أهل البيت.`,
+"الإمام الهادي": `الإمام علي بن محمد الهادي (عليه السلام)، عاشر أئمة أهل البيت (عليهم السلام). عُرف بالهداية والعلم والثبات في مواجهة التضييق، وله كلمات وزيارات عظيمة في بيان مقام أهل البيت، ومنها الزيارة الجامعة الكبيرة.`,
+"الإمام العسكري": `الإمام الحسن بن علي العسكري (عليه السلام)، الحادي عشر من أئمة أهل البيت (عليهم السلام). عُرف بالعبادة والعلم والصبر، وعاش في ظروف مراقبة شديدة، وهو والد الإمام المهدي المنتظر (عجل الله فرجه).`,
+"الإمام المهدي": `الإمام محمد بن الحسن المهدي المنتظر (عجل الله فرجه الشريف)، الإمام الثاني عشر من أئمة أهل البيت (عليهم السلام). يؤمن أتباع أهل البيت بأنه الإمام الغائب الذي يظهر بإذن الله ليملأ الأرض قسطاً وعدلاً بعدما مُلئت ظلماً وجوراً.`,
+"السيدة فاطمة": `السيدة فاطمة الزهراء (عليها السلام)، بنت رسول الله محمد (صلى الله عليه وآله) وسيدة نساء العالمين. عُرفت بالطهر والعبادة والعلم والدفاع عن الحق، وهي أم الأئمة من نسل الإمام علي وفاطمة (عليهما السلام).`,
+"السيدة زينب": `السيدة زينب بنت الإمام علي وفاطمة الزهراء (عليهما السلام)، عُرفت بالصبر والشجاعة والثبات. كان لها دور عظيم بعد واقعة كربلاء في إيصال رسالة الإمام الحسين (عليه السلام) وبيان مظلومية أهل البيت.`
 };
 function openAhlExtra(name){
- const key=Object.keys(AHL_DETAILS_EXTRA).find(k=>name&&name.includes(k))||name;
- document.getElementById('readerTitle').textContent=name||"تعرف على أهل البيت (ع)";
- document.getElementById('readerText').textContent=AHL_DETAILS_EXTRA[key]||"سيتم إضافة تفاصيل أكثر لاحقاً.";
- const source=document.getElementById('readerSource'); if(source){source.style.display='block';source.textContent='📚 يمكن إضافة مصادر تفصيلية لهذا القسم مستقبلاً';}
- document.getElementById('reader').classList.add('show');
+  const clean = (name || "").replace(/\s+/g," ").trim();
+  const key = Object.keys(AHL_DETAILS_EXTRA).find(k => clean.includes(k)) || clean;
+  const text = AHL_DETAILS_EXTRA[key] || "سيتم إضافة تفاصيل أكثر لاحقاً.";
+  document.getElementById('readerTitle').textContent = clean || "تعرف على أهل البيت (ع)";
+  document.getElementById('readerText').textContent = text;
+  const source=document.getElementById('readerSource');
+  if(source){source.style.display='block';source.textContent='📚 مصادر مقترحة للتوثيق: القرآن الكريم، نهج البلاغة، الإرشاد للشيخ المفيد، ويكي شيعة';}
+  document.getElementById('reader').classList.add('show');
 }
-document.addEventListener('click',function(e){
- const btn=e.target.closest('#ahlGrid button,#ahlGrid .btn'); if(!btn)return;
- e.preventDefault(); const card=btn.closest('.card'); const title=(card?.querySelector('h3')?.textContent||card?.querySelector('h4')?.textContent||'').trim();
- openAhlExtra(title);
+document.addEventListener('click', function(e){
+  const btn = e.target.closest('#ahlGrid button, #ahlGrid .btn');
+  if(!btn) return;
+  const card = btn.closest('.card');
+  const title = (card?.querySelector('h3')?.textContent || card?.querySelector('h4')?.textContent || card?.textContent?.split('\n')[0] || '').trim();
+  e.preventDefault();
+  openAhlExtra(title);
 });
 </script>
 
