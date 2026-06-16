@@ -310,6 +310,79 @@ html[dir="rtl"] .ahl-card .read-btn{
   #ahlModalText{font-size:19px;line-height:2}
 }
 
+
+#ahlGrid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+.ahl-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  justify-content:space-between;
+}
+.ahl-card h3{
+  color:var(--accent);
+  line-height:1.55;
+}
+.ahl-card p{
+  color:var(--muted);
+  font-size:18px;
+}
+.ahl-open-link{
+  width:fit-content;
+  min-width:130px;
+  text-align:center;
+}
+.ahl-details-list{
+  margin-top:24px;
+}
+.ahl-detail-card{
+  display:none;
+  scroll-margin-top:95px;
+  margin-top:18px;
+  border-color:rgba(184,148,69,.45);
+}
+.ahl-detail-card:target{
+  display:block!important;
+  animation:ahlFade .22s ease;
+}
+.ahl-detail-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:12px;
+  margin-bottom:14px;
+}
+.ahl-detail-head h3{
+  color:var(--accent);
+  line-height:1.55;
+}
+.ahl-detail-text{
+  white-space:pre-wrap;
+  font-size:21px;
+  line-height:2.15;
+  color:var(--text);
+}
+.ahl-detail-source{
+  margin-top:14px;
+  color:var(--muted);
+  border-top:1px solid var(--line);
+  padding-top:10px;
+}
+@keyframes ahlFade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:720px){
+  #ahlGrid{grid-template-columns:1fr!important}
+  .ahl-open-link{width:100%}
+  .ahl-detail-head{flex-direction:column;align-items:stretch}
+  .ahl-detail-head .btn{width:100%;text-align:center}
+  .ahl-detail-text{font-size:19px;line-height:2}
+}
+
 </style>
 </head>
 <body data-theme="light">
@@ -329,73 +402,521 @@ html[dir="rtl"] .ahl-card .read-btn{
 <div class="card ahl-card">
 <h3>النبي محمد (صلى الله عليه وآله)</h3>
 <p>خاتم الأنبياء وأشرف الخلق، والمبلّغ المعصوم للرسالة الإلهية.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="prophet">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-prophet">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>السيدة فاطمة الزهراء (عليها السلام)</h3>
 <p>بنت النبي محمد (ص)، وسيدة نساء العالمين، وأم الأئمة.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="fatima">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-fatima">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام علي بن أبي طالب (عليه السلام)</h3>
 <p>أمير المؤمنين، أول الأئمة، ووصي رسول الله (صلى الله عليه وآله).</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="ali">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-ali">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام الحسن المجتبى (عليه السلام)</h3>
 <p>ثاني الأئمة، وسبط النبي (ص)، وسيد شباب أهل الجنة.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="hasan">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-hasan">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام الحسين بن علي (عليه السلام)</h3>
 <p>سيد الشهداء، وثالث الأئمة، ورمز الفداء والإباء.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="hussain">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-hussain">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام علي زين العابدين (عليه السلام)</h3>
 <p>رابع الأئمة، المعروف بالسجاد وسيد العابدين.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="sajjad">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-sajjad">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام محمد الباقر (عليه السلام)</h3>
 <p>خامس الأئمة، وباقر العلم وناشر معارف أهل البيت.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="baqir">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-baqir">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام جعفر الصادق (عليه السلام)</h3>
 <p>سادس الأئمة، ورئيس المذهب الجعفري وناشر علوم الشريعة.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="sadiq">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-sadiq">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام موسى الكاظم (عليه السلام)</h3>
 <p>سابع الأئمة، المعروف بالعبد الصالح وباب الحوائج.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="kazim">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-kazim">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام علي الرضا (عليه السلام)</h3>
 <p>ثامن الأئمة، وعالم آل محمد وغريب الغرباء.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="ridha">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-ridha">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام محمد الجواد (عليه السلام)</h3>
 <p>تاسع الأئمة، عُرف بسعة العلم والكرم منذ صغره.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="jawad">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-jawad">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام علي الهادي (عليه السلام)</h3>
 <p>عاشر الأئمة، المعروف بالهادي والنقي وصاحب الزيارة الجامعة.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="hadi">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-hadi">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام الحسن العسكري (عليه السلام)</h3>
 <p>الحادي عشر من الأئمة، ووالد الإمام المهدي المنتظر (عج).</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="askari">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-askari">اقرأ المزيد</a>
 </div>
 <div class="card ahl-card">
 <h3>الإمام محمد المهدي (عجل الله فرجه)</h3>
 <p>الإمام الثاني عشر والمنتظر الذي يملأ الأرض قسطاً وعدلاً.</p>
-<button class="btn primary read-btn ahl-read" type="button" data-ahl="mahdi">اقرأ المزيد</button>
+<a class="btn primary ahl-open-link" href="#ahl-detail-mahdi">اقرأ المزيد</a>
 </div>
+</div>
+<div class="ahl-details-list">
+<article class="card ahl-detail-card" id="ahl-detail-prophet">
+<div class="ahl-detail-head">
+<h3>النبي محمد (صلى الله عليه وآله)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">النبي محمد (صلى الله عليه وآله) عند الشيعة هو خاتم الأنبياء وأشرف الخلق، وأول من خلق الله نوره. وهو المُبلّغ المعصوم للرسالة الإلهية، وقائد الأمة ومُبيّن الشريعة. وقد اصطفاه الله ليكون القدوة المطلقة، وشخصية محورية في هداية البشرية.
+
+يُعرف النبي (صلى الله عليه وآله) في المصادر الشيعية (مثل مدرسة أهل البيت وموسوعة ويكي شيعة) عبر الجوانب التالية:
+
+1. النسب والولادة
+
+النسب: هو محمد بن عبد الله بن عبد المطلب بن هاشم (وينتهي نسبه الشريف إلى نبي الله إبراهيم عليه السلام).
+
+الولادة: ولد في مكة المكرمة، والمشهور عند الشيعة أن ولادته كانت في 17 ربيع الأول من عام الفيل (المصادف لسنة 571 ميلادية).
+
+2. العصمة والمقام الروحي
+
+العصمة المطلقة: يعتقد الشيعة بعصمة النبي (صلى الله عليه وآله) عن الخطأ، والنسيان، والذنوب (صغائرها وكبائرها) طيلة حياته، سواء قبل البعثة أو بعدها.
+
+النورانية: تؤكد بعض النصوص العقائدية أن الله خلق نور النبي محمد (صلى الله عليه وآله) قبل خلق الخلائق كلها، وكان هذا النور يتنقل في الأصلاب الطاهرة.
+
+3. الألقاب والصفات
+
+ألقابه: المصطفى، الأمين، خاتم النبيين، المختار، ورحمة للعالمين.
+
+أخلاقه: عُرف بالصدق والأمانة منذ شبابه، وكان مضرب المثل في الحكمة، ورعاية الفقراء، ونصرة المظلومين (مثل حلف الفضول).
+
+4. خصائص النبوة والإمامة
+
+النبوة كأصل من أصول الدين: تُعد النبوة الأصل الثالث من أصول الدين عند الشيعة.
+
+الولاية والتشريع: النبي هو المشرّع بإذن الله، وتُعتبر سنته (أقواله وأفعاله وتقريراته) المصدر الثاني للتشريع بعد القرآن الكريم. كما يُعتقد أن النبي (صلى الله عليه وآله) هو من نصّب الإمام علي بن أبي طالب (عليه السلام) والأئمة من بعده أئمةً وخلفاء للأمة.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-fatima">
+<div class="ahl-detail-head">
+<h3>السيدة فاطمة الزهراء (عليها السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">السيدة فاطمة الزهراء (عليها السلام) هي بنت النبي محمد (ص)، وأمها السيدة خديجة، وزوجها الإمام علي بن أبي طالب. وتُعد في المصادر الشيعية سيدة نساء العالمين، وأحد أصحاب الكساء المعصومين، ومحور "الإمامة" لكونها أم الأئمة.
+
+أبرز ألقابها ومعانيها
+
+الزهراء: لِما كانت تزهو به من النور في العبادة.
+
+البتول: لانقطاعها عن نساء زمانها فضلاً وديناً، ولانقطاعها عن الدنيا إلى الله.
+
+أم أبيها: لكثرة ما أظهرته من الرعاية والحنان للنبي (ص) بعد وفاة أمها.
+
+مكانتها في الفكر الشيعي
+
+العصمة والمقام الروحي: يعتقد الشيعة الإمامية بعصمتها المطلقة، وتعتبر الأحاديث في ويكي شيعة أنها سُميت فاطمة لأن الله فطمها (أبعدها) ومحبيها عن النار.
+
+حديث الكساء والمباهلة: هي المرأة الوحيدة التي اصطحبها النبي (ص) في حادثة "المباهلة" مع نصارى نجران.
+
+مصحف فاطمة: تذكر كتب الحديث الشيعي أن الله ألهمها علماً ومعرفة بعد وفاة أبيها، دُوِّن في كتاب يُعرف بمصحف فاطمة.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-ali">
+<div class="ahl-detail-head">
+<h3>الإمام علي بن أبي طالب (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">اسمه: علي بن ابي طالب (عليه السلام).
+
+أبوه: أبو طالب (عبد مناف) وقيل: (عمران).
+
+أمه: فاطمة بنت أسد بن هاشم.
+
+جده: عبد المطلب بن هاشم.
+
+اخوته: طالب، عقيل، جعفر.
+
+أخواته: أم هاني، جمانة.
+
+ولادته: ولد (عليه السلام) يوم الجمعة في الثالث عشر من شهر رجب في الكعبة المكرمة بعد مولد الرسول الأعظم (صلى الله عليه وآله) بثلاثين سنة.
+
+إسلامه: هو أول من أسلم.
+
+كناه: أبو الحسن، أبو الحسين، أبو السبطين، أبو الريحانتين، أبو تراب (كناه بها رسول الله (صلى الله عليه وآله)).
+
+ألقابه: أمير المؤمنين، المرتضى، الوصي، حيدرة، يعسوب المؤمنين، يعسوب الدين.
+
+خصائصه:
+
+1- ولد في الكعبة ولم يولد بها أحد قبله ولا بعده.
+
+2- آخى رسول الله (صلى الله عليه وآله) بينه وبين علي (عليه السلام) لما آخى بين المسلمين.
+
+3- حامل لواء رسول الله (صلى الله عليه وآله).
+
+4- أمرَّه رسول الله (صلى الله عليه وآله) في بعض سراياه ولم يجعل عليه أميراً.
+
+5- بلغ عن الرسول (صلى الله عليه وآله) سورة البراءة.
+
+بيعته: بويع له بالخلافة في الثامن من ذي الحجة في السنة العاشرة من الهجرة في (غدير خم) بأمر الرسول الأعظم (صلى الله عليه وآله)، واستلم الحكم في ذي الحجة في السنة الخامسة والثلاثين من الهجرة.
+
+عاصمته: الكوفة.
+
+شهادته: ضربه عبد الرحمن بن ملجم المرادي الخارجي (لعنه الله) في ليلة تسع عشرة من شهر رمضان سنة أربعين من الهجرة أثناء اشتغاله بصلاة الفجر في مسجد الكوفة، واستشهد في ليلة إحدى وعشرين من شهر رمضان حيث الفاجعة العظمى.
+
+حروبه: الجمل، صفين، النهروان.
+
+رايته: راية رسول الله (صلى الله عليه وآله).
+
+من آثاره: نهج البلاغة.
+
+قبره: دفنه الإمام الحسن (عليه السلام) في الغري (النجف الأشرف)، وأخفى الإمام قبره مخافة الخوارج ومعاوية، واليوم قبره ينافس السماء سمواً وعلواً، على أعتابه يتكدس الذهب، ويتنافس المسلمون في زيارته من جميع أنحاء العالم الإسلامي.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-hasan">
+<div class="ahl-detail-head">
+<h3>الإمام الحسن المجتبى (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام الحسن (عليه السلام) في المصادر الشيعية هو ثاني أئمة أهل البيت (عليهم السلام)، وأحد أصحاب الكساء، وسبط النبي محمد (ص) وسيد شباب أهل الجنة. وهو ابن الإمام علي بن أبي طالب والسيدة فاطمة الزهراء.
+
+البطاقة التعريفية
+
+الاسم والنسب: الحسن بن علي بن أبي طالب.
+
+ألقابه: الزكي، المجتبى، وكريم أهل البيت.
+
+ولادته: وُلد في المدينة المنورة منتصف شهر رمضان المبارك في السنة الثالثة للهجرة.
+
+وفاته (شهادته): استُشهد في صفر سنة 50 هـ، ودُفن في مقبرة البقيع بالمدينة المنورة.
+
+مدة الإمامة: 10 سنوات (من سنة 40 إلى 50 هـ).
+
+مكانته وسيرته في الفكر الشيعي
+
+النص والإمامة: يعتقد الشيعة أن إمامته ثابتة بنص إلهي وبوصاية من أبيه الإمام علي (عليه السلام).
+
+كريم أهل البيت: عُرف بسخائه وكرمه المطلق، حيث تذكر المصادر أنه قاسم الله أمواله وتصدق بجميع ما يملك في سبيل الله مرتين.
+
+صلح الحسن (معاوية): يُنظر إلى "صلح الحسن" مع معاوية بن أبي سفيان في المصادر الشيعية على أنه "فتح أعظم" وحفظ لدماء المسلمين، وكشف لزيف الطرف الآخر وحقائق الحكم، حيث كان الصلح خياراً إلهياً تقتضيه مصلحة الأمة في ذلك الوقت وتهيئةً لثورة أخيه الإمام الحسين (عليه السلام).</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-hussain">
+<div class="ahl-detail-head">
+<h3>الإمام الحسين بن علي (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام الحسين بن علي عليه السلام في الفكر الشيعي هو ثالث الأئمة الاثني عشر، وسبط النبي محمد، وخامس أصحاب الكساء. جسّد ثورة كربلاء الخالدة ضد الظلم، ويُعتبر في الموروث الشيعي رمزاً للفداء، والإباء، وإماماً مفترض الطاعة بنصّ الرسول.
+
+لخصت المصادر الشيعية المعتمدة سيرته ومقامه وفقاً للتفاصيل الموثقة في ويكي شيعة:
+
+نسبه الشريف
+
+الأب: الإمام علي بن أبي طالب (عليه السلام).
+
+الأم: السيدة فاطمة الزهراء (عليها السلام) ابنة رسول الله محمد (صلى الله عليه وآله).
+
+الأخ: الإمام الحسن المجتبى (عليه السلام).
+
+مكانته ومقامه
+
+أحد المعصومين: يعتقد الشيعة بعصمته المطلقة كونه أحد المعصومين الأربعة عشر.
+
+سيّد شباب أهل الجنة: لُقّب بذلك مع أخيه الحسن بنصّ صريح من النبي محمد.
+
+الإمامة: انتقلت إليه الإمامة بعد استشهاد أخيه الإمام الحسن (عليه السلام) عام 50 للهجرة.
+
+أبرز ألقابه
+
+سيّد الشهداء: لمقامه العظيم وتضحيته الكبرى.
+
+أبو الأحرار: لدوره في النهضة ضد الظلم.
+
+ثار الله: تعبيراً عن قدسية دمه وأنه لا يطلب بثأره إلا الله تعالى أو وليه.
+
+واقعة الطف (استشهادُه)
+
+استُشهد في العاشر من المحرم (عاشوراء) عام 61 للهجرة في معركة كربلاء، بعد رفضه مبايعة يزيد بن معاوية. ويعدّ الشيعة مقتله مصيبة عظمى أحدثت أثراً عميقاً في الوجدان الشيعي، حيث يقيمون مراسم العزاء سنوياً إحياءً لقضيته ومبادئه.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-sajjad">
+<div class="ahl-detail-head">
+<h3>الإمام علي زين العابدين (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام زين العابدين عليه السلام هو علي بن الحسين بن علي بن أبي طالب. رابع أئمة أهل البيت عند الشيعة، والمعروف بـ "السجاد" و"سيد العابدين". تولى الإمامة بعد استشهاد أبيه في واقعة كربلاء عام 61 هـ، وقاد مسيرة الإصلاح العقائدي والأخلاقي في أصعب مراحل التاريخ الإسلامي.
+
+البطاقة الشخصية
+
+الولادة: وُلد في المدينة المنورة عام 38 هـ (وقيل عام 36 هـ).
+
+الألقاب: السجاد، زين العابدين، سيد العابدين، ذو الثفنات (لكثرة سجوده).
+
+الأم: السيدة شاه زنان (شهربانو) بنت يزدجرد آخر ملوك الفرس.
+
+الوفاة: استُشهد في المدينة المنورة مسموماً عام 95 هـ، ودُفن في بقيع الغرقد.
+
+أدواره ومكانته عند الشيعة
+
+يُعد الإمام زين العابدين شخصية محورية في الفكر الشيعي، وقد برز دوره في عدة جوانب:
+
+البقاء في كربلاء: حضر واقعة الطف وعاش مأساة مقتل أبيه وأهل بيته، وكان مريضاً منعه المرض من القتال، مما أبقاه حياً ليحمل راية الإمامة.
+
+النهضة الثقافية والدعاء: واجه طغيان السلطة الأموية باستخدام سلاح "الدعاء" كوسيلة للتربية الروحية والتوعية السياسية. ويُعد كتابه الأشهر الصحيفة السجادية مرجعاً عظيماً في التربية والأخلاق ومعرفة الله.
+
+رسالة الحقوق: يُنسب إليه رسالة الحقوق الشهيرة، وهي وثيقة إسلامية متكاملة تضع دستوراً للتعامل مع الله، النفس، والناس.
+
+رعاية الفقراء والعبيد: عُرف بتفقد الفقراء سراً، وكان يشتري العبيد ويعتقهم في سبيل الله بعد تعليمهم وتربيتهم.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-baqir">
+<div class="ahl-detail-head">
+<h3>الإمام محمد الباقر (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام محمد الباقر عليه السلام هو الإمام الخامس من أئمة أهل البيت (عليهم السلام). وُلد في المدينة المنورة عام 57 هـ، واستُشهد فيها عام 114 هـ. يُعدّ أول هاشمي وعلوي تجتمع له ولادة من أبوين حسنيّ وحسينيّ.
+
+في المصادر الشيعية، تبرز شخصيته ومكانته عبر عدة جوانب أساسية:
+
+1. لقبه ودلالته (باقر العلم)
+
+معناه: لُقّب بـ "الباقر" لأنه بقر العلم بقراً؛ أي شقّه وأظهره ووضّح أصوله وخفاياه.
+
+البشارة: يُشير الموروث الشيعي إلى أن النبي محمد (صلى الله عليه وآله) تنبأ بظهوره ولقّبه بهذا الاسم قبل ولادته بعشرات السنين عبر الصحابي جابر بن عبد الله الأنصاري.
+
+2. عصر الإمام والدور العلمي
+
+التأسيس العلمي: عاش الإمام الباقر (ع) في مرحلة انتقالية شهدت ضعف الدولة الأموية، مما أتاح له الفرصة لتأسيس مدرسة فقهية وعلمية كبرى في الإسلام.
+
+الروايات: نُقلت عنه آلاف الأحاديث في الفقه، التفسير، الأخلاق، وعلم الكلام، واشتهر من تلامذته رواة كبار مثل محمد بن مسلم وجابر بن يزيد الجعفي.
+
+3. نسبه الطاهر
+
+الأب: الإمام علي بن الحسين السجاد (زين العابدين) عليه السلام.
+
+الأم: السيدة فاطمة بنت الإمام الحسن المجتبى عليها السلام.
+
+4. كنيته ومدفنه
+
+كنيته: أبو جعفر (وهي الكنية المشهورة في كتب الحديث).
+
+مكان الدفن: مرقده الشريف موجود في مقبرة البقيع بالمدينة المنورة، والتي تضم أيضاً قبور آبائه وأبنائه الأئمة (عليهم السلام).</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-sadiq">
+<div class="ahl-detail-head">
+<h3>الإمام جعفر الصادق (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام جعفر الصادق (عليه السلام) هو الإمام السادس من أئمة أهل البيت المعصومين، وينسب إليه المذهب الشيعي الجعفري. ويُعرف في المصادر الشيعية بأنه "رئيس المذهب" والناشر الأكبر لعلوم الشريعة الإسلامية والفقه.
+
+إليك التفاصيل الأساسية عنه من منظور المصادر الشيعية:
+
+1. هويته
+
+نسبه: جعفر بن محمد الباقر بن علي السجاد بن الحسين الشهيد بن علي بن أبي طالب (عليهم السلام).
+
+ألقابه: أشهرها "الصادق" لصدقه في مقاله وحديثه. كما يُلقب بـ الطاهر، الفاضل، والصابر.
+
+كنيته: أبو عبد الله.
+
+والدته: أم فروة (فاطمة) بنت القاسم بن محمد بن أبي بكر.
+
+2. ولادته وشهادته
+
+ولادته: وُلد في المدينة المنورة في 17 ربيع الأول عام 83 هـ (ويذكر بعض المؤرخين الشيعة روايات أخرى بأنه وُلد سنة 80 هـ).
+
+شهادته: استُشهد مسموماً في المدينة المنورة في شهر شوال سنة 148 هـ على يد الخليفة العباسي "أبو جعفر المنصور"، ودُفن في مقبرة البقيع.
+
+3. مكانته ودوره في المذهب الشيعي
+
+الإمامة: تقلّد الإمامة بعد أبيه الإمام محمد الباقر (عليه السلام) لمدة 34 عاماً.
+
+المدرسة الجعفرية: استغل الإمام الصادق فترة الضعف والانتقال السياسي بين الدولة الأموية والدولة العباسية لتأسيس أكبر جامعة إسلامية. وتخرّج من مدرسته آلاف المحدثين والفقهاء (مثل أبو حنيفة ومالك بن أنس)، ولذلك يُسمى الفقه الشيعي بـ الفقه الجعفري نسبةً إليه.
+
+النص عليه: ينص المصدر الشيعي على إمامته استناداً إلى الوصية والنصوص النبوية الدالة على عصمة أئمة أهل البيت.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-kazim">
+<div class="ahl-detail-head">
+<h3>الإمام موسى الكاظم (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام موسى الكاظم (عليه السلام) هو سابع أئمة أهل البيت، ومؤسس المدرسة الأخلاقية والمعرفية في عصره. يُعرف في الموروث الشيعي بـ "العبد الصالح" و"باب الحوائج"، لُقب بـ "الكاظم" لكثرة تجاوزه وحلمه، ويمثل شخصية محورية في التاريخ الإسلامي.
+
+إليك التفاصيل والمعلومات البارزة عنه من المصادر الشيعية المعتمدة:
+
+في سطور
+
+الاسم الكامل: موسى بن جعفر بن محمد بن علي بن الحسين بن علي بن أبي طالب.
+
+الألقاب: الكاظم، العبد الصالح، باب الحوائج، زين المجتهدين، والوفي.
+
+الكنى: أبو إبراهيم، وأبو الحسن الأول.
+
+الولادة والوفاة: وُلد في منطقة "الأبواء" (بين مكة والمدينة) عام 128 هـ، واستُشهد مسموماً في سجن السندي بن شاهك ببغداد عام 183 هـ، ودُفن في مقبرة قريش (مدينة الكاظمية حالياً).
+
+فترة الإمامة: امتدت إمامته 35 عاماً، بعد استشهاد أبيه الإمام جعفر الصادق (عليه السلام) عام 148 هـ.
+
+سماته وعبادته
+
+عُرف الإمام الكاظم (عليه السلام) بغزارة العلم، والسخاء، وكثرة العبادة حتى عُرف بـ "زين المجتهدين". عاصر قمة طغيان الدولة العباسية (المنصور، المهدي، الهادي، وهارون الرشيد)، وتعرّض للاضطهاد والسجن عدة مرات بسبب المكانة العلمية والدينية الكبيرة التي كان يحظى بها والتي كانت تقلق السلطة الحاكمة.
+
+المصادر الشيعية والمراجع
+
+أصول الكافي: كتاب الحديث الأبرز الذي ينقل الكثير من توجيهاته، وفقهه، وحكمه في مختلف أبواب الدين.
+
+عيون أخبار الرضا: للشيخ الصدوق، والذي يوثق سيرته والأحاديث المروية عنه.
+
+الإرشاد: للشيخ المفيد، يُعد مرجعاً رئيسياً في إثبات النص على إمامته وسيرته وتاريخ استشهاده.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-ridha">
+<div class="ahl-detail-head">
+<h3>الإمام علي الرضا (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام علي الرضا (عليه السلام) هو الإمام الثامن من أئمة أهل البيت الاثني عشر عند الشيعة الجعفرية. عُرف بغزارة العلم، والتقوى، والمناظرات التي جمعته مع علماء الأديان المختلفة.
+
+إليك أبرز المحطات في سيرته من المصادر الشيعية:
+
+اسمه ونسبه: علي بن موسى بن جعفر بن محمد بن علي بن الحسين بن علي بن أبي طالب.
+
+ألقابه: أشهرها "الرضا" لأنه رضي به الموافق والمخالف، ولقّب أيضاً بـ "عالم آل محمد" و"غريب الغرباء".
+
+ولادته وإمامته: وُلد في المدينة المنورة سنة 148 هـ، وتولى الإمامة بعد استشهاد أبيه الإمام موسى الكاظم (عليه السلام) واستمرت إمامته 20 عاماً.
+
+عهده ووفاته: عاصر الخليفة العباسي المأمون الذي أجبره على الانتقال إلى خراسان وعيّنه ولياً للعهد في محاولة لاحتواء الثورات الشيعية. تُوفي مسموماً في طوس (مشهد حالياً) سنة 203 هـ، ودُفن هناك، ويُعد مرقده وجهة مقدسة لزيارة المسلمين.
+
+إرثه الفكري: اشتهر بمناظراته العلمية مع كبار فقهاء عصره وأصحاب الديانات الأخرى، ولعل أشهر أقواله هو حديث "سلسلة الذهب" في التوحيد وشرطها الأساسي.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-jawad">
+<div class="ahl-detail-head">
+<h3>الإمام محمد الجواد (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام محمد الجواد (عليه السلام) هو الإمام التاسع من أئمة أهل البيت المعصومين لدى الشيعة الإثني عشرية. تولى الإمامة في سن مبكرة، وعُرف بسعة العلم، والمناظرات الناجحة مع كبار علماء عصره، وكثرة الإنفاق.
+
+بطاقة التعريف
+
+الاسم والنسب: محمد بن علي الرضا بن موسى الكاظم (عليهم السلام).
+
+أشهر الألقاب: الجواد، التقي، وباب المراد.
+
+الكنية: أبو جعفر الثاني.
+
+الولادة: 10 رجب 195 هـ في المدينة المنورة.
+
+الشهادة: آخر ذي القعدة 220 هـ في بغداد (عمره الشريف 25 عاماً).
+
+المرقد: مقابر قريش في مدينة الكاظمية، ببغداد.
+
+أبرز محطات حياته في المصادر الشيعية
+
+١. تولي الإمامة في سن مبكرة
+
+تولى الإمامة وعمره نحو سبع سنوات بعد استشهاد أبيه الإمام الرضا (ع). شكل هذا الأمر تحدياً كبيراً أثبت فيه الإمام تفوقاً علمياً، حيث أشار أبوه إليه بأنه الوصي الذي تتوارث الأئمة العلم فيه صغيراً عن كبير.
+
+٢. العصر السياسي والمناظرات
+
+عاصر اثنين من خلفاء الدولة العباسية: المأمون الذي زوّجه ابنته "أم الفضل" لأغراض سياسية، والمعتصم الذي استدعاه إلى بغداد. وقد برز الإمام في مناظراته الشهيرة مع كبار فقهاء عصره مثل "يحيى بن أكثم"، والتي أظهرت تفوقه العلمي واللّدني.
+
+٣. مدرسة أصحاب الإمامة
+
+تخرج من مدرسته نخبة من الرواة والمحدثين والفقهاء الشيعة، مثل "عبد العظيم الحسني"، و"إبراهيم بن هاشم القمي".
+
+٤. وفاته واستشهاده
+
+تُشير أغلب الروايات في المصادر الشيعية إلى أن الإمام الجواد (ع) استُشهد مسموماً بتدبير من الخليفة المعتصم العباسي وزوجته "أم الفضل".</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-hadi">
+<div class="ahl-detail-head">
+<h3>الإمام علي الهادي (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام علي الهادي (عليه السلام) هو الإمام العاشر من أئمة أهل البيت (عليهم السلام) لدى الشيعة الاثني عشرية. امتدت إمامته نحو 34 عاماً، وعُرف بسيرته العطرة وعلمه الغزير، وقضى القسم الأكبر من حياته تحت الإقامة الجبرية.
+
+إليك أبرز المحطات والمعلومات الموثقة عنه من المصادر الشيعية المعتمدة:
+
+1. البطاقة التعريفية
+
+اسمه ونسبه: علي بن محمد بن علي بن موسى بن جعفر بن محمد بن علي بن الحسين بن علي بن أبي طالب (عليهم السلام).
+
+كنيته: أبو الحسن، ويُعرف بـ "أبو الحسن الثالث" تمييزاً له عن الإمام موسى الكاظم (الأول) والإمام علي الرضا (الثاني).
+
+ألقابه: الهادي، النقي، المرتضى، النجيب، والعالم.
+
+ولادته: وُلد في قرية (صريا) قرب المدينة المنورة في النصف من ذي الحجة أو في الثاني من رجب عام 212 هـ.
+
+شهادته: استُشهد في مدينة سامراء في العراق عام 254 هـ، ودُفن في داره التي أضحت اليوم مرقداً مقدساً يقصده الزائرون.
+
+2. إمامته
+
+تولى الإمام الهادي (ع) منصب الإمامة في سن مبكرة، إذ كان يبلغ من العمر حوالي ثماني سنوات فقط إثر استشهاد أبيه الإمام محمد الجواد (ع). وقد عاصر في فترته عدداً من خلفاء بني العباس (منهم المعتصم، الواثق، والمتوكل).
+
+3. محطات من حياته في المصادر الشيعية
+
+الإقامة الجبرية في سامراء: نظراً للمكانة العظيمة للإمام وتزايد أعداد أتباعه ومحبيه، شعرت السلطات العباسية (خاصة الخليفة المتوكل) بالخطر، فأصدرت قراراً بنفيه من المدينة المنورة إلى العاصمة "سامراء" (وكانت تُعرف بـ "سر من رأى") لفرض الإقامة الجبرية عليه ومراقبته بشكل دائم.
+
+المدرسة العلمية وتوسيع الشبكة: رغم التضييق الشديد، استمر الإمام الهادي (ع) في نشر علوم الدين، وترسيخ قواعد "نظام الوكالة" الذي كان حلقة وصل تنظيمية سرية بين الأئمة وشيعتهم في مختلف البلدان، مما مهد الطريق وساهم في تهيئة الأمة لمرحلة الغيبة.
+
+الزيارة الجامعة الكبيرة: تُعد هذه الزيارة التي رواها الإمام الهادي (ع) لأصحابه من أهم النصوص العقائدية والمعرفية عند الشيعة، حيث تتضمن مضامين عالية في وصف مقامات أهل البيت (ع) ودورهم.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-askari">
+<div class="ahl-detail-head">
+<h3>الإمام الحسن العسكري (عليه السلام)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام الحسن العسكري (عليه السلام) هو الإمام الحادي عشر من أئمة أهل البيت الاثني عشر والمعصوم الثالث عشر عند الشيعة الإمامية. عاش في كنف والده الإمام علي الهادي (عليه السلام) وعاصر فترة قمع شديدة انتهت بفرض الإقامة الجبرية عليه في مدينة سامراء لتمهيد ولادة الإمام المهدي (عج).
+
+يمكن تلخيص سيرته في المصادر الشيعية عبر النقاط التالية:
+
+ولادته ونشأته: ولد في المدينة المنورة عام 232 هـ، وتلقى ميراث الإمامة والنبوة بعد أبيه.
+
+سبب التلقيب: لُقّب بـ "العسكري" نظراً لفرض السلطات العباسية الإقامة الجبرية عليه وعلى أبيه في "سامراء" التي كانت تُعرف وقتها بـ "العسكر".
+
+الإمامة: تولى الإمامة الفعلية بعد وفاة أبيه عام 254 هـ واستمرت إمامته قرابة ست سنوات، واجه خلالها ضغوطاً سياسية ومراقبة مشددة.
+
+دوره العقائدي: مهّد الروايات والأحداث التي تؤكد ولادة ابنه وخليفته "الإمام المهدي" (عليه السلام) الذي غاب لحفظه عن بطش السلطة العباسية.
+
+وفاته: استُشهد في الثامن من ربيع الأول عام 260 هـ في سامراء عن عمر ناهز 28 عاماً، ودُفن إلى جوار أبيه، ويُعرف مقامه اليوم بـ العتبة العسكرية المقدسة.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
+<article class="card ahl-detail-card" id="ahl-detail-mahdi">
+<div class="ahl-detail-head">
+<h3>الإمام محمد المهدي (عجل الله فرجه)</h3>
+<a class="btn primary" href="#ahl">العودة للقسم</a>
+</div>
+<div class="ahl-detail-text">الإمام المهدي (عليه السلام) عند الشيعة الإثني عشرية هو محمد بن الحسن العسكري، الإمام الثاني عشر والأخير. وُلد في سامراء عام 255 هـ، وهو "المنتظر" الذي يعتقدون أنه لا يزال حياً، وسيظهر في آخر الزمان ليملأ الأرض قسطاً وعدلاً بعد أن تملأ ظلماً وجورا.
+
+يمكن تلخيص عقيدة الشيعة فيه في النقاط التالية:
+
+النسب: هو محمد بن الحسن العسكري بن علي الهادي بن محمد الجواد بن علي الرضا بن موسى الكاظم بن جعفر الصادق بن محمد الباقر بن علي السجاد بن الحسين بن علي بن أبي طالب عليهم السلام.
+
+الألقاب: يُعرف بألقاب عدة منها: الحجة، القائم، المنتظر، صاحب الزمان، وبقية الله.
+
+الولادة والخلافة: ولد في منتصف شعبان. تسلّم الإمامة بعد وفاة أبيه الإمام الحسن العسكري (ع) عام 260 هـ وهو في سن صغيرة (حوالي خمس سنوات).
+
+الغيبة الصغرى والكبرى:
+
+الغيبة الصغرى: امتدت من سنة 260 هـ إلى 329 هـ، وكان يتواصل فيها مع شيعته عن طريق أربعة سفراء متتالين.
+
+الغيبة الكبرى: بدأت بعد وفاة السفير الرابع، وما زالت مستمرة إلى أن يأذن الله له بالظهور.
+
+الفكرة الإصلاحية: يمثل الإمام المهدي (عج) امتداداً لمشروع الأنبياء، وتتجلى فلسفة ظهوره في تحقيق العدالة الإلهية وإرساء دولة الحق في الأرض.</div>
+<p class="ahl-detail-source">📚 المصدر: حسب النص المعتمد من إدارة مشروع طريق الحسين</p>
+</article>
 </div>
 </div></section>
 <section id="visitor-adab"><div class="container"><div class="section-title"><h2>آداب الزائر الحسيني</h2><p>آداب عملية تساعد الزائر على أداء الزيارة بروح الإيمان والاحترام وحسن الخلق.</p></div><div class="card"><ul class="soft-list"><li>الإخلاص لله تعالى في الزيارة والعمل والخدمة.</li><li>احترام الزائرين، خصوصاً كبار السن والنساء والأطفال.</li><li>المحافظة على النظافة وعدم رمي المخلفات في الطريق.</li><li>الصبر وحسن الخلق عند الزحام أو التعب.</li><li>مساعدة الآخرين قدر المستطاع.</li><li>احترام المواكب الحسينية وخدمة أصحابها.</li><li>المحافظة على الصلاة في أوقاتها.</li><li>التواضع وحسن الكلام والابتعاد عن الجدال.</li><li>عدم إيذاء الآخرين بالتصرفات أو الصوت أو المزاح الثقيل.</li><li>الالتزام بالآداب العامة أثناء الزيارة.</li></ul></div><br><div class="card notice"><p>إن زيارة الإمام الحسين (عليه السلام) فرصة عظيمة لتقوية العلاقة مع الله تعالى وأهل البيت (عليهم السلام)، وينبغي أن تستمر آثار هذه الزيارة المباركة في حياة المؤمن بعد انتهاء محرم وصفر وزيارة الأربعين، من خلال المحافظة على الصلاة، وقراءة القرآن الكريم، والتحلي بالأخلاق الحسنة، وخدمة الناس، والالتزام بتعاليم أهل البيت (عليهم السلام) طوال العام.</p></div></div></section>
@@ -450,217 +971,4 @@ html[dir="rtl"] .ahl-card .read-btn{
 <script id="ahdFullTextData" type="text/plain">2K/Yudin2KEg2KfZhNi52YfYrwoK2KjZkNiz2ZLZhdmQINin2YTZhNmH2ZAg2KfZhNix2ZHZjtit2ZLZhdmO2YbZkCDYp9mE2LHZkdmO2K3ZkNmK2YXZkCA6INin2Y7ZhNmE2ZHZjtmH2Y/ZhdmR2Y4g2LHZjtio2ZHZjiDYp9mE2YbZkdmP2YjYsdmQINin2YTZkti52Y7YuNmQ2YrZhdmQINmI2Y7YsdmO2KjZkdmOINin2YTZktmD2Y/YsdmS2LPZkNmK2ZHZkCDYp9mE2LHZkdmO2YHZkNmK2LnZkCDZiNmO2LHZjtio2ZHZjiDYp9mE2ZLYqNmO2K3Zktix2ZAg2KfZhNmS2YXZjtiz2ZLYrNmP2YjYsdmQINmI2Y7ZhdmP2YbZktiy2ZDZhNmOINin2YTYqtmR2Y7ZiNmS2LHZjtin2KnZkCDZiNmO2KfZhNil2ZDZhtmS2KzZkNmK2YTZkCDZiNmO2KfZhNiy2ZHZjtio2Y/ZiNix2ZAg2YjZjtix2Y7YqNmR2Y4g2KfZhNi42ZHZkNmE2ZHZkCDZiNmO2KfZhNmS2K3Zjtix2Y/ZiNix2ZAg2YjZjtmF2Y/ZhtmS2LLZkNmE2Y4g2KfZhNmS2YLZj9ix2ZLYotmG2ZAg2KfZhNi52Y7YuNmQ2YrZhdmQINmI2Y7YsdmO2KjZkdmOINin2YTZktmF2Y7ZhNin2KbZkNmD2Y7YqdmQINin2YTZktmF2Y/ZgtmO2LHZkdmO2KjZkNmK2YbZjiDZiNmO2KfZhNij2Y7ZhtmS2KjZkNmK2Y7Yp9ih2ZAg2YjZjtin2YTZktmF2Y/YsdmS2LPZjtmE2ZDZitmG2Y4g2Iwg2KfZjtmE2YTZkdmO2YfZj9mF2ZHZjiDYpdmQ2YbZkdmQ2Yog2KPZjtiz2ZLYo9mO2YTZj9mD2Y4g2KjZkNmI2Y7YrNmS2YfZkNmD2Y4g2KfZhNmS2YPZjtix2ZDZitmF2ZAg2YjZjtio2ZDZhtmP2YjYsdmQINmI2Y7YrNmS2YfZkNmD2Y4g2KfZhNmS2YXZj9mG2ZDZitix2ZAg2YjZjtmF2Y/ZhNmS2YPZkNmD2Y4g2KfZhNmC2Y7Yr9mQ2YrZhdmQINiMINmK2Y7YpyDYrdmO2YrZkdmPINmK2Y7YpyDZgtmO2YrZkdmP2YjZhdmPINij2Y7Ys9mS2KPZjtmE2Y/Zg9mOINio2ZDYp9iz2ZLZhdmQ2YPZjiDYp9mE2ZHZjtiw2ZDZiiDYo9mO2LTZktix2Y7ZgtmO2KrZkiDYqNmQ2YfZkCDYp9mE2LPZkdmO2YXZjtin2YjZjtin2KrZjyDZiNmO2KfZhNij2Y7YsdmO2LbZj9mI2YbZjiDZiNmO2KjZkNin2LPZktmF2ZDZg9mOINin2YTZkdmO2LDZkNmKINmK2Y7YtdmS2YTZj9it2Y8g2KjZkNmH2ZAg2KfZhNij2YjZkdmO2YTZj9mI2YbZjiDZiNmO2KfZhNii2K7ZkNix2Y/ZiNmG2Y4g2Iwg2YrZjtinINit2Y7ZitmR2YvYpyDZgtmO2KjZktmE2Y4g2YPZj9mE2ZHZkCDYrdmO2YrZkdmNINmI2Y7ZitmO2Kcg2K3ZjtmK2ZHZi9inINio2Y7YudmS2K/ZjiDZg9mP2YTZkdmQINit2Y7ZitmR2Y0g2YjZjtmK2Y7YpyDYrdmO2YrZkdmL2Kcg2K3ZkNmK2YbZjiDZhNinINit2Y7ZitmR2Y4g2YrZjtinINmF2Y/YrdmS2YrZkNmK2Y4g2KfZhNmS2YXZjtmI2ZLYqtmO2Ykg2YjZjtmF2Y/ZhdmQ2YrYqtmOINin2YTYo9mO2K3ZktmK2Y7Yp9ih2ZAg2YrZjtinINit2Y7ZitmR2Y8g2YTYpyDYpdmQ2YTZjtmH2Y4g2KXZkNmE2ZHZjtinINij2Y7ZhtmS2KrZjiDYjCDYp9mO2YTZhNmR2Y7Zh9mP2YXZkdmOINio2Y7ZhNmR2ZDYutmSINmF2Y7ZiNmS2YTYp9mG2Y7YpyDYp9mE2KXZkNmF2Y7Yp9mF2Y4g2KfZhNmS2YfZjtin2K/ZkNmK2Y4g2KfZhNmS2YXZjtmH2ZLYr9mQ2YrZkdmOINin2YTZktmC2Y7Yp9im2ZDZhdmOINio2ZDYo9mO2YXZktix2ZDZg9mOINmAINi12Y7ZhNmI2Y7Yp9iq2Y8g2KfZhNmE2YfZkCDYudmO2YTZjtmK2ZLZh9mQINmI2Y7YudmO2YTZjtmJINii2KjZjtin2KbZkNmH2ZAg2KfZhNi32ZHZjtin2YfZkNix2ZDZitmG2Y4g2YAg2LnZjtmG2ZIg2KzZjtmF2ZDZiti52ZAg2KfZhNmS2YXZj9ik2ZLZhdmQ2YbZkNmK2YbZjiDZiNmO2KfZhNmS2YXZj9ik2ZLZhdmQ2YbZjtin2KrZkCDZgdmQ2Yog2YXZjti02Y7Yp9ix2ZDZgtmQINin2YTYo9mO2LHZkti22ZAg2YjZjtmF2Y7YutmO2KfYsdmQ2KjZkNmH2Y7YpyDYs9mO2YfZktmE2ZDZh9mO2Kcg2YjZjtis2Y7YqNmO2YTZkNmH2Y7YpyDZiNmO2KjZjtix2ZHZkNmH2Y7YpyDZiNmO2KjZjtit2ZLYsdmQ2YfZjtinINmI2Y7YudmO2YbZkdmQ2Yog2YjZjti52Y7ZhiDZiNmO2ZHYp9mE2ZDYr9mO2YrZkdmOINmF2ZDZhtmOINin2YTYtdmR2Y7ZhNmO2YjZjtin2KrZkCDYstmQ2YbZjtip2Y4g2LnZjtix2ZLYtNmQINin2YTZhNmH2ZAg2YjZjtmF2ZDYr9mO2KfYr9mOINmD2Y7ZhNmQ2YXZjtin2KrZkNmH2ZAg2YjZjtmF2Y7YpyDYo9it2ZLYtdmO2KfZh9mPINi52ZDZhNmS2YXZj9mH2Y8g2YjZjtij2Y7YrdmO2KfYt9mOINio2ZDZh9mQINmD2ZDYqtmO2KfYqNmP2YfZjyDYjCDYp9mO2YTZhNmR2Y7Zh9mP2YXZkdmOINil2ZDZhtmR2ZDZiiDYo9mP2KzZjtiv2ZHZkNiv2Y8g2YTZjtmH2Y8g2YHZkNmKINi12Y7YqNmQ2YrYrdip2ZAg2YrZjtmI2ZLZhdmQ2Yog2YfZjtiw2Y7YpyDZiNmO2YXZjtinINi52ZDYtNmS2KrZjyDZhdmQ2YbZkiDYo9mO2YrZkdmO2KfZhdmQ2Yog2LnZjtmH2ZLYr9in2Ysg2YjZjti52Y7ZgtmS2K/Yp9mLINmI2Y7YqNmO2YrZkti52Y7YqdmLINmE2Y7Zh9mPINmB2ZDZiiDYudmP2YbZj9mC2ZDZiiDZhNinINij2Y7YrdmP2YjZhNmPINi52Y7ZhtmS2YfZjtinINmI2Y7ZhNinINij2Y7YstmP2YjZhNmPINij2Y7YqNmO2K/Yp9mLINiMINin2Y7ZhNmE2ZHZjtmH2Y/ZhdmR2Y4g2KfYrNmS2LnZjtmE2ZLZhtmQ2Yog2YXZkNmG2ZIg2KPZjtmG2ZLYtdmO2KfYsdmQ2YfZkCDZiNmO2KPZjti52ZLZiNmO2KfZhtmQ2YfZkCDZiNmO2KfZhNiw2ZHZjtin2KjZkdmQ2YrZhtmOINi52Y7ZhtmS2YfZjyDZiNmO2KfZhNmS2YXZj9iz2Y7Yp9ix2ZDYudmQ2YrZhtmOINil2ZDZhNmO2YrZktmH2ZAg2YHZkNmKINmC2Y7Yttin2KHZkCDYrdmO2YjZjtin2KbZkNis2ZDZh9mQINmI2Y7Yp9mE2ZLZhdmP2YXZktiq2Y7Yq9mQ2YTZkNmK2YbZjiDZhNmQ2KPZjtmI2Y7Yp9mF2ZDYsdmQ2YfZkCDZiNmO2KfZhNmS2YXZj9it2Y7Yp9mF2ZDZitmG2Y4g2LnZjtmG2ZLZh9mPINmI2Y7Yp9mE2LPZkdmO2KfYqNmQ2YLZkNmK2YbZjiDYpdmQ2YTZjtmJINil2ZDYsdmO2KfYr9mO2KrZkNmH2ZAg2YjZjtin2YTZktmF2Y/Ys9mS2KrZjti02ZLZh9mO2K/ZkNmK2YbZjiDYqNmO2YrZktmG2Y4g2YrZjtiv2Y7ZitmS2YfZkCDYjCDYp9mO2YTZhNmR2Y7Zh9mP2YXZkdmOINil2ZDZhtmSINit2Y7Yp9mE2Y4g2KjZjtmK2ZLZhtmQ2Yog2YjZjtio2Y7ZitmS2YbZjtmH2Y8g2KfZhNmS2YXZjtmI2ZLYqtmPINin2YTZkdmO2LDZkNmKINis2Y7YudmO2YTZktiq2Y7Zh9mPINi52Y7ZhNmO2Ykg2LnZkNio2Y7Yp9iv2ZDZg9mOINit2Y7YqtmS2YXYp9mLINmF2Y7ZgtmS2LbZkNmK2ZHZi9inINmB2Y7Yo9mO2K7Zktix2ZDYrNmS2YbZkNmKINmF2ZDZhtmSINmC2Y7YqNmS2LHZkNmKINmF2Y/YpNmS2KrZjtiy2ZDYsdin2Ysg2YPZjtmB2Y7ZhtmQ2Yog2LTZjtin2YfZkNix2KfZiyDYs9mO2YrZktmB2ZDZiiDZhdmP2KzZjtix2ZHZkNiv2KfZiyDZgtmO2YbZjtin2KrZkNmKINmF2Y/ZhNmO2KjZkdmQ2YrYp9mLINiv2Y7YudmS2YjZjtip2Y4g2KfZhNiv2ZHZjtin2LnZkNmKINmB2ZDZiiDYp9mE2ZLYrdmO2KfYttmQ2LHZkCDZiNmO2KfZhNmS2KjZjtin2K/ZkNmKINiMINin2Y7ZhNmE2ZHZjtmH2Y/ZhdmR2Y4g2KPZjtix2ZDZhtmQ2Yog2KfZhNi32ZHZjtmE2ZLYudmO2KnZjiDYp9mE2LHZkdmO2LTZkNmK2K/Zjtip2Y4g2YjZjtin2YTZkti62Y/YsdmR2Y7YqdmOINin2YTZktit2Y7ZhdmQ2YrYr9mO2KnZjiDZiNmO2KfZg9mS2K3Zj9mE2ZIg2YbYp9i42ZDYsdmQ2Yog2KjZkNmG2Y7YuNmS2LHZjtip2Y0g2YXZkNmR2YbZkdmQ2Yog2KXZkNmE2Y7ZitmS2YfZkCDZiNmO2LnZjtis2ZHZkNmE2ZIg2YHZjtix2Y7YrNmO2YfZjyDZiNmO2LPZjtmH2ZHZkNmE2ZIg2YXZjtiu2ZLYsdmO2KzZjtmH2Y8g2YjZjtij2Y7ZiNmS2LPZkNi52ZIg2YXZjtmG2ZLZh9mO2KzZjtmH2Y8g2YjZjtin2LPZktmE2Y/Zg9mSINio2ZDZiiDZhdmO2K3Zjtis2ZHZjtiq2Y7Zh9mPINmI2Y7Yo9mO2YbZktmB2ZDYsNmSINij2Y7ZhdmS2LHZjtmH2Y8g2YjZjtin2LTZktiv2Y/Yr9mSINij2Y7YstmS2LHZjtmH2Y8g2Iwg2YjZjtin2LnZktmF2Y/YsdmQINmAINin2YTZhNmR2Y7Zh9mP2YXZkdmOINmAINio2ZDZh9mQINio2ZDZhNin2K/ZjtmD2Y4g2YjZjtij2Y7YrdmS2YrZkCDYqNmQ2Ycg2LnZkNio2Y7Yp9iv2Y7Zg9mOINmB2Y7YpdmQ2YbZkdmO2YPZjiDZgtmP2YTZktiq2Y4g2YAg2YjZjtmC2Y7ZiNmS2YTZj9mD2Y4g2KfZhNmS2K3ZjtmC2ZHZjyDZgCA6ICgoINi42Y7Zh9mO2LHZjiDYp9mE2ZLZgdmO2LPZjtin2K/ZjyDZgdmQ2Yog2KfZhNmS2KjZjtix2ZHZkCDZiNmO2KfZhNmS2KjZjtit2ZLYsdmQINio2ZDZhdmO2Kcg2YPZjtiz2Y7YqNmO2KrZkiDYo9mO2YrZktiv2ZDZiiDYp9mE2YbZkdmO2KfYs9mQICkpINiMINmB2Y7Yo9mO2LjZktmH2ZDYsdmQINmAINin2YTZhNmR2Y7Zh9mP2YXZkdmOINmAINmE2Y7ZhtinINmI2Y7ZhNmQ2YrZkdmO2YPZjiDZiNmO2KfYqNmS2YbZjiDYqNmQ2YbZktiq2ZAg2YbZjtio2ZDZitmR2ZDZg9mOINin2YTZktmF2Y/Ys9mO2YXZkdmJINio2ZDYp9iz2ZLZhdmQINix2Y7Ys9mP2YjZhNmQ2YPZjiDYrdmO2KrZkdmO2Ykg2YTYpyDZitmO2LjZktmB2Y7YsdmOINio2ZDYtNmO2YrZktih2Y0g2YXZkNmG2Y4g2KfZhNmS2KjZjtin2LfZkNmE2ZAg2KXZkNmE2ZHZjtinINmF2Y7YstmR2Y7ZgtmO2YfZjyDZiNmO2YrZjtit2ZDZgtmR2Y4g2KfZhNmS2K3ZjtmC2ZHZjiDZiNmO2YrZj9it2Y7ZgtmR2ZDZgtmO2YfZjyDYjCDZiNmO2KfYrNmS2LnZjtmE2ZLZh9mPINmAINin2YTZhNmR2YfZj9mF2ZHZjiDZgCDZhdmO2YHZktiy2Y7Yudin2Ysg2YTZkNmF2Y7YuNmS2YTZj9mI2YXZkCDYudmQ2KjZjtin2K/ZkNmD2Y4g2YjZjtmG2Y7Yp9i12ZDYsdin2Ysg2YTZkNmF2ZLZhiDZhNmR2Y7YpyDZitmO2KzZkNiv2Y8g2YTZjtmH2Y8g2YbYp9i12ZDYsdin2Ysg2LrZjtmK2ZLYsdmO2YPZjiDZiNmO2YXZj9is2Y7Yr9mR2ZDYr9in2Ysg2YTZkNmF2Y7YpyDYudmP2LfZkdmQ2YTZjiDZhdmQ2YbZkiDYo9mO2K3ZktmD2Y7Yp9mF2ZAg2YPZkNiq2Y7Yp9io2ZDZg9mOINmI2Y7ZhdmP2LTZjtmK2ZHZkNiv2KfZiyDZhNmQ2ZHZhdmO2Kcg2YjZjtix2Y7Yr9mOINmF2ZDZhtmSINij2Y7YudmS2YTYp9mF2ZAg2K/ZkNmK2YbZkNmD2Y4g2YjZjtiz2Y/ZhtmO2YbZkCDZhtmO2KjZkNmK2ZHZkNmD2Y4g2YAg2LXZjtmE2ZHZjtmJINin2YTZhNmH2Y8g2LnZjtmE2Y7ZitmS2YfZkCDZiNmO2KLZhNmQ2YfZkCDZgCDYjCDZiNmO2KfYrNmS2LnZjtmE2ZLZh9mPINmAINin2YTZhNmR2Y7Zh9mP2YXZkdmOINmAINmF2ZDZhdmR2Y7ZhtmSINit2Y7YtdmR2Y7ZhtmS2KrZjtmH2Y8g2YXZkNmG2ZIg2KjZjtij2ZLYs9mQINin2YTZktmF2Y/YudmS2KrZjtiv2ZDZitmG2Y4g2Iwg2KfZjtmE2YTZkdmO2YfZj9mF2ZHZjiDZiNmO2LPZj9ix2ZHZjiDZhtmO2KjZkNmK2ZHZjtmD2Y4g2YXZj9it2Y7ZhdmR2Y7Yr9in2Ysg2YAg2LXZjtmE2ZHZjtmJINin2YTZhNmH2Y8g2LnZjtmE2Y7ZitmS2YfZkCDZiNmO2KLZhNmQ2YfZkCDZgCDYqNmQ2LHZj9ik2ZLZitmO2KrZkNmH2ZAg2YjZjtmF2Y7ZhtmSINiq2Y7YqNmQ2LnZjtmH2Y8g2LnZjtmE2Y7ZiSDYr9mO2LnZktmI2Y7YqtmQ2YfZkCDZiNmO2KfYsdmS2K3ZjtmF2ZAg2KfYs9mS2KrZkNmD2KfZhtmO2KrZjtmG2Y7YpyDYqNmO2LnZktiv2Y7Zh9mPINiMINin2Y7ZhNmE2ZHZjtmH2Y/ZhdmR2Y4g2KfZg9mS2LTZkNmB2ZIg2YfZjtiw2ZDZh9mQINin2YTZkti62Y/ZhdmR2Y7YqdmOINi52Y7ZhtmSINmH2Y7YsNmQ2YfZkCDYp9mE2KPZj9mF2ZHZjtip2ZAg2KjZkNit2Y/YttmP2YjYsdmQ2YfZkCDZiNmO2LnZjtis2ZHZkNmEINmE2Y7ZkdmG2Y7YpyDYuNmP2YfZj9mI2LHZjtmH2Y8gKCgg2KXZkNmG2ZHZjtmH2Y/ZhdmSINmK2Y7YsdmO2YjZktmG2Y7Zh9mPINio2Y7YudmQ2YrYr9in2Ysg2YjZjtmG2Y7YsdmO2KfZh9mPINmC2Y7YsdmQ2YrYqNin2YsgKSkg2KjZkNix2Y7YrdmS2YXZjtiq2ZDZg9mOINmK2Y7YpyDYo9mO2LHZktit2Y7ZhdmOINin2YTYsdmR2Y7Yp9it2ZDZhdmQ2YrZhtmOIC4g2KvZhdmRINiq2LbYsdioINi52YTZiSDZgdiu2LDZgyDYp9mE2KPZitmF2YYg2KjZitiv2YMg2KvZhNin2Ksg2YXYsdmR2KfYqiDZiNiq2YLZiNmEINmD2YTZkSDZhdix2ZHYqSA6INin2YTZkti52Y7YrNmO2YTZjiDYp9mE2ZLYudmO2KzZjtmE2Y4g2YrZjtinINmF2Y7ZiNmS2YTYp9mK2Y4g2YrZjtinINi12Y7Yp9it2ZDYqNmOINin2YTYstmR2Y7ZhdmO2KfZhtmQIC4=</script>
 <script id="tawassulFullTextData" type="text/plain">2K/Yudin2KEg2KfZhNiq2YjYs9mECtin2YTZhNmH2YUg2KXZhtmKINij2LPYo9mE2YMg2YjYo9iq2YjYrNmHINil2YTZitmDINio2YbYqNmK2YPZjiDZhtmO2KjZiiDYp9mE2LHYrdmF2Kkg2YXZj9it2YXYr9mNINi12Y7ZhNmJINin2YTZhNmHINi52Y7ZhNmK2YfZkCDZiNmO2KLZhNmQ2YfZkCDYjCDZitinINij2KjYpyDYp9mE2ZLZgtin2LPZhSDZitinINix2Y7Ys9mP2YjZhNmOINin2YTZhNmHINmK2Kcg2KXZhdin2YXZjiDYp9mE2LHYrdmS2YXZjtip2ZAg2Iwg2YrYpyDYs9mO2YrYr9mG2Kcg2YjZjtmF2Y7ZiNmS2YTYp9mG2Y7YpyDYpdmG2Kcg2KrZjtmI2Y7YrNmH2ZLZhtinINmI2Y7Yp9iz2ZLYqtmO2LTZktmB2Y7YudmO2YbZjtinINmI2Y7YqtmO2YjZjtiz2YTZhtinINio2ZDZg9mOINil2YTZiSDYp9mE2YTZhyDZiNmO2YLZjtiv2Y7ZhdmS2YbYp9mDINio2Y7ZitmS2YDZhtmOINmK2Y7Yr9mO2YrZkiDYrdin2KzZjtin2KrZkNmG2Kcg2Iwg2YrYpyDZiyDZiNmO2KzZkNmA2YDZitmH2KfZiyDYudmQ2YbZktivINin2YTZhNmHINin2LTZktmB2Y7YudmSINmE2Y7ZhtmO2Kcg2LnZjtmG2ZLYryDYp9mE2YTZhyDYjAoK2YrYpyDYo9io2Kcg2KfZhNmS2K3Zjtiz2Y7ZhiDZkCDZitinINij2YXZitix2Y4g2KfZhNmF2Y/YpNmF2YbZitmG2Y4g2YrYpyDYudmO2YTZitmOINio2ZLZhiDYo9io2Yog2LfYp9mE2ZDYqCDZitinINit2Y/YrNmO2KnZjiDYp9mE2YTZhyDYudmO2YTZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2YHYp9i32ZDZhdmO2KnZjiDYp9mE2LLZjtmH2ZLYsdin2KEg2YrYpyDYqNmQ2YbZktiq2Y4g2YXZj9it2Y7ZhdmO2K8g2YrYpyDZgtmP2LHZjtip2Y4g2LnZjtmK2YbZkCDYp9mE2LHZjtiz2Y/ZiNmE2ZAg2YrYpyDYs9mO2YrYr9iq2Y7ZhtinINmI2Y7ZhdmO2YjZktmE2KfYqtmO2YbZjtinINil2YbYpyDYqtmO2YjZjtis2YfZktmG2Kcg2YjZjtin2LPZktiq2Y7YtNmS2YHZjti52Y7ZhtmO2Kcg2YjZjtiq2Y7ZiNmO2LPZhNmG2Kcg2KjZkNmD2ZAg2KXZhNmJINin2YTZhNmHINmI2Y7ZgtmO2K/ZjtmF2ZLZhtin2YPZkCDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2YjZjtis2ZDZgNmA2YrZh9ip2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZktmKINmE2Y7ZhtmO2Kcg2LnZjtmG2ZLYryDYp9mE2YTZhyDYjAoK2YrYpyDYo9io2Kcg2YXZj9it2Y7ZhdivINmK2Kcg2K3Zjtiz2Y7ZhtmOINio2ZLZhtmOINi52Y7ZhNmKINij2YrZj9mH2Kcg2KfZhNmS2YXZj9is2ZLYqtmO2KjZjtmJINmK2Y7YpyDYp9io2ZLZhtmOINix2Y7Ys9mP2YjZhCDZkCDYp9mE2YTZhyDZitinINit2Y/YrNip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2KPYqNinINi52Y7YqNmS2K/ZkCDYp9mE2YTZhyDZitinINit2Y/Ys9mO2YrZktmG2Y4g2KjZktmG2Y4g2LnZjtmA2YTZkNmKINij2YrZj9mH2Kcg2KfZhNi02Y7Zh9mQ2YrYr9mPINmK2Kcg2KfYqNmS2YbZjiDYsdmO2LPZj9mI2YQg2ZAg2KfZhNmE2Ycg2YrYpyDYrdmP2KzZjtip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2KPYqNinINin2YTZktit2Y7Ys9mO2YYg2ZAg2YrYpyDYudmO2YTZkNmKINio2ZLZhtmOINin2YTYrdmP2LPZjtmK2ZLZgNmGINmK2Kcg2LLZjtmK2ZLZhtmOINin2YTYudin2KjZkNiv2ZDZitmG2Y4g2YrZjtinINin2KjZktmG2Y4g2LHZjtiz2Y/ZiNmEINmQINin2YTZhNmHINmK2Kcg2K3Zj9is2KnZjiDYp9mE2YTZhyDYudmO2YTZjtmJINiu2Y7ZhNmS2YLZkNmH2ZAg2YrYpyDYs9mO2YrYr9mG2Kcg2YjZjtmF2Y7ZiNmS2YTYp9mG2Y7YpyDYpdmG2Kcg2KrZjtmI2Y7YrNmH2ZLZhtinINmI2Y7Yp9iz2ZLYqtmO2LTZktmB2Y7YudmO2YbZjtinINmI2Y7YqtmO2YjZjtiz2YTZhtinINio2ZDZg9mOINil2YTZiSDYp9mE2YTZhyDZiNmO2YLZjtiv2Y7ZhdmS2YbYp9mDINio2Y7ZitmS2YDZhtmOINmK2Y7Yr9mO2YrZkiDYrdin2KzZjtin2KrZkNmG2Kcg2Iwg2YrYpyDZiyDZiNmO2KzZkNmA2YDZitmH2KfZiyDYudmQ2YbZktivINin2YTZhNmHINin2LTZktmB2Y7YudmSINmE2Y7ZhtmO2Kcg2LnZjtmG2ZLYryDYp9mE2YTZhyDYjAoK2YrYpyDYo9io2Kcg2KzZjti52ZLZgdmO2LEg2YrYpyDZhdmP2K3ZjtmF2K8g2KjZktmG2Y4g2LnZjtmA2YTZkNmKINij2YrZj9mH2Kcg2KfZhNio2KfZgtmQ2LHZjyDZitmO2Kcg2KfYqNmS2YbZjiDYsdmO2LPZj9mI2YQg2ZAg2KfZhNmE2Ycg2YrYpyDYrdmP2KzYqSDZjiDYp9mE2YTZhyDYudmO2YTZjtmJINiu2Y7ZhNmS2YLZkNmH2ZAg2YrYpyDYs9mO2YrYr9mG2Kcg2YjZjtmF2Y7ZiNmS2YTYp9mG2Y7YpyDYpdmG2Kcg2KrZjtmI2Y7YrNmH2ZLZhtinINmI2Y7Yp9iz2ZLYqtmO2LTZktmB2Y7YudmO2YbZjtinINmI2Y7YqtmO2YjZjtiz2YTZhtinINio2ZDZg9mOINil2YTZiSDYp9mE2YTZhyDZiNmO2YLZjtiv2Y7ZhdmS2YbYp9mDINio2Y7ZitmS2YDZhtmOINmK2Y7Yr9mO2YrZkiDYrdin2KzZjtin2KrZkNmG2Kcg2Iwg2YrYpyDZiyDZiNmO2KzZkNmA2YDZitmH2KfZiyDYudmQ2YbZktivINin2YTZhNmHINin2LTZktmB2Y7YudmSINmE2Y7ZhtmO2Kcg2LnZjtmG2ZLYryDYp9mE2YTZhyDYjAoK2YrYpyDYo9io2Y7YpyDYudmO2KjZktiv2ZAg2KfZhNmE2Ycg2YrYpyDYrNmO2LnZktmB2Y7YsdmOINio2ZLZhiDZhdmP2K3ZjtmF2K8g2KPZitmP2YfYpyDYp9mE2LXYp9iv2ZDZgtmPINmK2Y7YpyDYp9io2ZLZhtmOINix2Y7Ys9mP2YjZhCDZkCDYp9mE2YTZhyDZitinINit2Y/YrNip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2KPYqNmO2Kcg2KfZhNit2Y7ZgNiz2Y7ZgNmG2ZAg2YrYpyDZhdmP2YjYs9mO2Ykg2KjZktmG2Y4g2KzZjti52ZLZgdmO2LEg2KPZitmP2YfYpyDYp9mE2YPYp9i42ZDZhdmPINmK2Y7YpyDYp9io2ZLZhtmOINix2Y7Ys9mP2YjZhCDYtCDYp9mE2YTZhyDZitinINit2Y/YrNip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2KPYqNmO2Kcg2KfZhNit2Y7Ys9mO2YbZkCDZitinINi52Y7ZhNmKINio2ZLZhtmOINmF2Y/ZiNiz2Y7ZiSDYo9mK2Y/Zh9inINin2YTYsdi22Y7YpyDZitmO2Kcg2KfYqNmS2YbZjiDYsdmO2LPZj9mI2YQg2ZAg2KfZhNmE2Ycg2YrYpyDYrdmP2KzYqdmOINin2YTZhNmHINi52Y7ZhNmO2Ykg2K7ZjtmE2ZLZgtmQ2YfZkCDZitinINiz2Y7Zitiv2YbYpyDZiNmO2YXZjtmI2ZLZhNin2YbZjtinINil2YbYpyDYqtmO2YjZjtis2YfZktmG2Kcg2YjZjtin2LPZktiq2Y7YtNmS2YHZjti52Y7ZhtmO2Kcg2YjZjtiq2Y7ZiNmO2LPZhNmG2Kcg2KjZkNmD2Y4g2KXZhNmJINin2YTZhNmHINmI2Y7ZgtmO2K/ZjtmF2ZLZhtin2YMg2KjZjtmK2ZLZgNmG2Y4g2YrZjtiv2Y7ZitmSINit2KfYrNmO2KfYqtmQ2YbYpyDYjCDZitinINmLINmI2Y7YrNmQ2YDZgNmK2YfYp9mLINi52ZDZhtmS2K8g2KfZhNmE2Ycg2KfYtNmS2YHZjti52ZIg2YTZjtmG2Y7YpyDYudmO2YbZktivINin2YTZhNmHINiMCgrZitinINij2KjZjtinINis2Y7YudmS2YHZjtixINmK2Kcg2YXZj9it2Y7ZhdivINio2ZLZhtmOINi52Y7ZhNmQ2Yog2KPZitmP2YfYpyDYp9mE2KrZjtmC2ZDZiiDYp9mE2KzZjtmI2KfYr9mPINmK2Y7YpyDYp9io2ZLZhtmOINix2Y7Ys9mP2YjZhCDZkCDYp9mE2YTZhyDZitinINit2Y/YrNip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2KPYqNmO2Kcg2KfZhNit2Y7ZgNiz2Y7ZgNmGINmQINmK2Kcg2LnZjtmE2Yog2KjZktmG2Y4g2YXZj9it2Y7ZhdivINij2YrZj9mH2Kcg2KfZhNmH2KfYr9mQ2Yog2KfZhNiq2Y7ZgtmQ2Yog2YrZjtinINin2KjZktmG2Y4g2LHZjtiz2Y/ZiNmEINmQINin2YTZhNmHINmK2Kcg2K3Zj9is2KnZjiDYp9mE2YTZhyDYudmO2YTZjtmJINiu2Y7ZhNmS2YLZkNmH2ZAg2YrYpyDYs9mO2YrYr9mG2Kcg2YjZjtmF2Y7ZiNmS2YTYp9mG2Y7YpyDYpdmG2Kcg2KrZjtmI2Y7YrNmH2ZLZhtinINmI2Y7Yp9iz2ZLYqtmO2LTZktmB2Y7YudmO2YbZjtinINmI2Y7YqtmO2YjZjtiz2YTZhtinINio2ZDZg9mOINil2YTZiSDYp9mE2YTZhyDZiNmO2YLZjtiv2Y7ZhdmS2YbYp9mDINio2Y7ZitmS2YDZhtmOINmK2Y7Yr9mO2YrZkiDYrdin2KzZjtin2KrZkNmG2Kcg2Iwg2YrYpyDZiyDZiNmO2KzZkNmA2YDZitmH2KfZiyDYudmQ2YbZktivINin2YTZhNmHINin2LTZktmB2Y7YudmSINmE2Y7ZhtmO2Kcg2LnZjtmG2ZLYryDYp9mE2YTZhyDYjAoK2YrYpyDYo9io2Y7YpyDZhdmP2K3ZjtmF2K8g2YrYpyDYrdmO2YDYs9mO2YDZhtmOINio2ZLZhtmOINi52Y7ZhNmQ2Yog2KPZitmP2YfYpyDYp9mE2LLZjtmD2ZDZitmPINin2YTYudmO2LPZktmD2Y7YsdmQ2Yog2YrYpyDYp9io2ZLZhtmOINix2Y7Ys9mP2YjZhCDZkCDYp9mE2YTZhyDZitinINit2Y/YrNip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2K8g2KfZhNmE2Ycg2IwKCtmK2Kcg2YjZjti12ZDZgNmKINin2YTZktit2Y7ZgNiz2Y7ZgNmGINmQINmI2Y7Yp9mE2ZLYrtmO2YTZjtmB2Y4g2KfZhNmS2K3Zj9is2Kkg2Y4g2KPZitmP2YfYpyDYp9mE2YLYp9im2ZDZhdmPINin2YTZhdmP2YDZhtmS2YDYqtmO2YDYuNmO2YDYsdmPINin2YTZhdmO2YfZktiv2ZDZitmPINmK2Y7YpyDYp9io2ZLZhtmOINix2Y7Ys9mP2YjZhCDZkCDYp9mE2YTZhyDZitinINit2Y/YrNip2Y4g2KfZhNmE2Ycg2LnZjtmE2Y7ZiSDYrtmO2YTZktmC2ZDZh9mQINmK2Kcg2LPZjtmK2K/ZhtinINmI2Y7ZhdmO2YjZktmE2KfZhtmO2Kcg2KXZhtinINiq2Y7ZiNmO2KzZh9mS2YbYpyDZiNmO2KfYs9mS2KrZjti02ZLZgdmO2LnZjtmG2Y7YpyDZiNmO2KrZjtmI2Y7Ys9mE2YbYpyDYqNmQ2YPZjiDYpdmE2Ykg2KfZhNmE2Ycg2YjZjtmC2Y7Yr9mO2YXZktmG2KfZgyDYqNmO2YrZktmA2YbZjiDZitmO2K/ZjtmK2ZIg2K3Yp9is2Y7Yp9iq2ZDZhtinINiMINmK2Kcg2Ysg2YjZjtis2ZDZgNmA2YrZh9in2Ysg2LnZkNmG2ZLYryDYp9mE2YTZhyDYp9i02ZLZgdmO2LnZkiDZhNmO2YbZjtinINi52Y7ZhtmS2YDZgNmA2YDZgNivINin2YTZhNmHCgrZitinINiz2KfYr9mO2KrZkNmKINmI2Y7ZhdmO2YjYp9mE2ZDZiiDYpdmG2Yog2KrZjtmI2Y7YrNmO2YfZktiq2Y8g2KjZkNmD2Y/ZhdmSINij2Y7YptmQ2YXZjtiq2ZDZiiDZiNmO2LnZj9iv2Y7YqtmQ2Yog2YTZkNmK2Y7ZiNmS2YXZkCDZgdmO2YLZktix2ZDZiiDZiNmO2K3Zjtin2KzZjtiq2ZDZiiDYpdmE2Y7ZiSDYp9mE2YTZhyDYjCDZiNmO2KrZgNmO2YjZjtiz2Y7ZgNmA2YDZhNmS2KrZjyDYqNmQ2YDZg9mA2Y/ZgNmF2ZIg2KXZhNmO2Ykg2KfZhNmE2Ycg2Iwg2YjZjtin2LPZktiq2Y7YtNmS2YHZjti52ZLYqtmPINio2ZDZgNmA2YPZj9mA2YDZhdmSINil2YTZjtmJINin2YTZhNmHINiMINmB2Y7Yp9i02ZLZgdmO2LnZj9mI2Kcg2YTZkNmKINi52ZDZhtmS2K/ZjiDYp9mE2YTZhyDYjCDZiNmO2KfYs9mS2KrZjtmG2ZLZgtmQ2LDZj9mI2YbZkNmKINmF2ZDZhtmSINiw2Y/ZhtmP2YjYqNmQ2Yog2LnZkNmG2ZLYr9mOINin2YTZhNmHINiMINmB2Y7YpdmG2Y7Zg9mP2YXZkiDZiNmO2LPZkNmK2YTZjtiq2ZDZiiDYpdmE2Y7ZiSDYp9mE2YTZhyDYjCDZiNmO2KjZkNit2Y/YqNmD2Y/ZhdmSINmI2Y7YqNmQ2YLZj9ix2ZLYqNmQ2YPZj9mF2ZIg2KPYsdmS2KzZj9mIINmG2Y7YrNin2Kkg2Y4g2YXZkNmG2Y4g2KfZhNmE2Ycg2Iwg2YHZjtmD2Y/ZgNmI2YbZiNinINi52ZDZhtmS2K/ZjiDYp9mE2YTZhyDYsdmO2KzYp9im2ZDZiiDZitinINiz2Y7Yp9iv2Y7YqtmQ2Yog2YrYpyDYo9mI2ZLZhNmQ2YrYp9ih2Y4g2KfZhNmE2Ycg2Iwg2LXZjtmE2Ykg2KfZhNmE2Ycg2LnZjtmE2Y7ZitmS2YfZkNmF2ZIg2KPYrNmS2YXZjti52ZDZitmG2Y4g2YjZjtmE2Y7YudmO2YbZjiDYp9mE2YTZhyDYo9i52ZLYr9mO2KfYodmOINin2YTZhNmHINi42KfZhNmQ2YXZkNmK2YfZkNmF2ZIg2YXZkNmG2Y4g2KfZhNij2YjZjtmE2ZDZitmG2Y4g2YjZjtin2YTYotiu2ZDZgNix2ZDZitmG2Y4g2KLZhdmQ2YrZhtmOINix2Y7YqNmOINin2YTZkti52KfZhNmO2YXZkNmK2YbZjg==</script>
 <script id="kumaylFullTextData" type="text/plain">2YjYtdmBINiv2LnYp9ihINmD2YXZitmECtiv2LnYp9ihINmD2YXZitmEINmH2Ygg2K/Yudin2KEg2LnYuNmK2YUg2YrZj9mG2LPYqCDYpdmE2Ykg2KfZhNil2YXYp9mFINi52YTZiiDYqNmGINij2KjZiiDYt9in2YTYqCAo2Lkp2Iwg2YjZgtivINi52YTZhdmHINin2YTYpdmF2KfZhSDZhNmD2Y/ZhdmO2YrZktmEINio2YYg2LLZitin2K8g2KfZhNmG2K7YudmKLiDZitiq2YXZitiyINmH2LDYpyDYp9mE2K/Yudin2KEg2KjYudmF2YLZhyDYp9mE2LHZiNit2Yog2YjZgdmI2KfYptiv2Ycg2KfZhNmD2KjZitix2Kkg2YHZiiDYqtmC2YjZitipINin2YTYudmE2KfZgtipINio2YrZhiDYp9mE2KXZhtiz2KfZhiDZiNix2KjZkdmHLgoK2YrZj9iz2KrYrdioINmC2LHYp9ih2Kkg2K/Yudin2KEg2YPZhdmK2YQg2YPZhCDZhNmK2YTYqSDYrNmF2LnYqSDYo9mIINmB2Yog2KPZiiDZiNmC2Kog2YrYtNi52LEg2YHZitmHINin2YTZhdiz2YTZhSDYqNin2YTYrdin2KzYqSDYpdmE2Ykg2KfZhNiq2YLYsdioINmF2YYg2KfZhNmE2YcuCgrZg9mE2YXYp9iqINiv2LnYp9ihINmD2YXZitmECtin2YTZhNmH2Y/ZhdmO2ZEg2KXZhtmR2Yog2KPYs9ij2YTZj9mD2Y4g2KjZkNix2K3ZjtmF2KrZkNmD2Y4g2KfZhNmO2ZHYqtmKINmI2Y7Ys9mQ2LnZjtiqINmD2Y/ZhNmO2ZEg2LTZitih2Y3YjCDZiNmO2KjZkNmC2YjZjtmR2KrZkNmD2Y4g2KfZhNmO2ZHYqtmKINmC2Y7Zh9ix2KrZjiDYqNmQ2YfYpyDZg9mP2YTZjtmRINi02YrYodmN2Iwg2YjZjtiu2LbZjti52Y4g2YTZjtmH2Kcg2YPZj9mE2Y/ZkSDYtNmK2KHZjdiMINmI2Y7YsNmO2YTZjtmRINmE2Y7Zh9inINmD2Y/ZhNmP2ZEg2LTZitih2Y3YjCDZiNmO2KjZkNis2Y7YqNmO2LHZiNiq2ZDZg9mOINin2YTZjtmR2KrZiiDYutmO2YTZjtio2KrZjiDYqNmQ2YfYpyDZg9mP2YTZjtmRINi02YrYodmN2Iwg2YjZjtio2LnZjtiy2Y7Zkdiq2ZDZg9mOINin2YTZjtmR2KrZiiDZhNinINmK2Y7ZgtmI2YXZjyDZhNmO2YfYpyDYtNmK2KHZjNiMINmI2Y7YqNmQ2LnZjti42Y7ZhdmO2KrZkNmD2Y4g2KfZhNmO2ZHYqtmKINmF2Y7ZhNij2Kog2YPZj9mE2Y7ZkSDYtNmK2KHZjdiMINmI2Y7YqNmQ2LPZj9mE2LfYp9mG2ZDZg9mOINin2YTZjtmR2LDZiiDYudmO2YTYpyDZg9mP2YTZjtmRINi02YrYodmN2Iwg2YjZjtio2ZDZiNmO2KzZh9mQ2YPZjiDYp9mE2KjYp9mC2Yog2KjZjti52K/ZjiDZgdmO2YbYp9ih2ZAg2YPZj9mE2ZDZkSDYtNmK2KHZjdiMINmI2Y7YqNmQ2KPYs9mF2KfYptmQ2YPZjiDYp9mE2Y7Zkdiq2Yog2YXZhNij2Kog2KPYsdmD2KfZhtmOINmD2Y/ZhNmQ2ZEg2LTZitih2Y3YjCDZiNmO2KjZkNi52ZDZhNmF2ZDZg9mOINin2YTZjtmR2LDZiiDYo9it2KfYt9mOINio2ZDZg9mP2YTZkNmRINi02YrYodmN2Iwg2YjZjtio2ZDZhtmI2LHZkCDZiNmO2KzZh9mQ2YPZjiDYp9mE2Y7Zkdiw2Yog2KPYttin2KHZjiDZhNmO2YfZjyDZg9mP2YTZj9mRINi02YrYodmN2Iwg2YrYpyDZhtmI2Y/YsdmPINmK2Kcg2YLZj9iv2ZHZiNiz2Y/YjCDZitinINij2YjZjtmR2YTZjiDYp9mE2KPZiNmO2ZHZhNmK2YbZjtiMINmI2Y7ZitinINii2K7ZkNix2Y4g2KfZhNii2K7ZkNix2YrZhtmOLiDYp9mE2YTZh9mP2YXZjtmRINin2LrZgdmQ2LEg2YTZitmOINin2YTYsNmP2ZHZhtmI2KjZjiDYp9mE2Y7Zkdiq2Yog2KrZjtmH2KrZkNmD2Y8g2KfZhNi52ZDYtdmO2YXZjiDYjCDYp9mE2YTZh9mP2YXZjtmRINin2LrZgdmQ2LEg2YTZitmOINin2YTYsNmP2ZHZhtmI2KjZjiDYp9mE2Y7Zkdiq2Yog2KrZj9mG2LLZkNmE2Y8g2KfZhNmG2ZDZkdmC2Y7ZhdmOLiDYp9mE2YTZh9mP2YXZjtmRINin2LrZgdmQ2LEg2YTZitmOINin2YTYsNmP2ZHZhtmI2KjZjiDYp9mE2Y7Zkdiq2Yog2KrZj9i62Y7ZitmQ2ZHYsdmPINin2YTZhtmQ2ZHYudmO2YXZjtiMINin2YTZhNmH2Y/ZhdmO2ZEg2KfYutmB2ZDYsSDZhNmK2Y4g2KfZhNiw2Y/ZkdmG2YjYqNmOINin2YTZjtmR2KrZiiDYqtmO2K3YqNmQ2LPZjyDYp9mE2K/Zj9mR2LnYp9ih2Y4uINin2YTZhNmH2Y/ZhdmO2ZEg2KfYutmB2ZDYsSDZhNmK2Y4g2KfZhNmR2LDZhtmI2KjZjiDYp9mE2ZHYqtmKINiq2Y/Zhtiy2ZDZhNmPINin2YTYqNmO2YTYp9ihLiDYp9mE2YTZh9mP2YXZjtmRINin2LrZgdmQ2LEg2YTZiiDZg9mP2YTZjtmRINiw2Y7Zhtio2Y0g2KPYsNmG2Y7YqNiq2Y/Zh9mP2Iwg2YjZjtmD2Y/ZhNmO2ZEg2K7Zjti32YrYptmO2KnZjSDYo9iu2LfZjtij2KrZj9mH2KcuINin2YTZhNmH2Y/ZhdmO2ZEg2KXZhtmR2Yog2KPYqtmO2YLZjtix2Y7Zkdio2Y8g2KXZhNmO2YrZg9mOINio2ZDYsNmQ2YPYsdmQ2YPZjiDZiNmO2KPYs9iq2Y7YtNmB2ZDYudmPINio2ZDZg9mOINil2YTZiSDZhtmO2YHYs9mQ2YPZjtiMINmI2Y7Yo9iz2KPZhNmP2YPZjiDYqNmQ2KzZiNmP2K/ZkNmD2Y4g2KPZhiDYqtmP2K/ZhtmQ2YrZjtmG2Yog2YXZkNmGINmC2Y/Ysdio2ZDZg9mO2Iwg2YjZjtij2YYg2KrZj9mI2LLZkNi52Y7ZhtmKINi02Y/Zg9ix2Y7Zg9mO2Iwg2YjYo9mGINiq2Y/ZhNmH2ZDZhdmO2YbZiiDYsNmQ2YPYsdmO2YPZji4KCtin2YTZhNmH2Y/ZhdmO2ZEg2KXZhtmR2Yog2KPYs9ij2YTZj9mD2Y4g2LPZj9ik2KfZhNmOINiu2KfYttmQ2LnZjSDZhdmP2KrZjtiw2Y7ZhNmQ2ZHZhNmNINiu2KfYtNmQ2LnZjdiMINij2YYg2KrZj9iz2KfZhdmQ2K3ZjtmG2Yog2YjZjtiq2Y7Ysdit2Y7ZhdmO2YbZitiMINmI2Y7YqtmO2KzYudmO2YTZjtmG2Yog2KjZkNmC2ZDYs9mO2YXZkNmD2Y4g2LHYp9i22YrYp9mLINmC2KfZhtmQ2LnYp9mL2Iwg2YjZjtmB2Yog2KzZjtmF2YrYudmQINin2YTYo9it2YjYp9mE2ZAg2YXZj9iq2Y7ZiNin2LbZkNi52KfZiy4g2KfZhNmE2YfZj9mF2Y7ZkSDZiNmO2KPYs9ij2YTZj9mD2Y4g2LPZj9ik2KfZhNmOINmF2Y7ZhiDYp9i02KrZjtiv2Y7ZkdiqINmB2KfZgtmO2KrZj9mH2Y/YjCDZiNmO2KPZhtiy2Y7ZhNmOINio2ZDZg9mOINi52ZDZhtiv2Y4g2KfZhNi02Y7Zkdiv2KfYptmQ2K/ZkCDYrdin2KzZjtiq2Y7Zh9mP2Iwg2YjZjti52Y7YuNmP2YXZjiDZgdmK2YXYpyDYudmQ2YbYr9mO2YPZjiDYsdmO2LrYqNmO2KrZj9mH2Y8uINin2YTZhNmH2Y/ZhdmO2ZEg2LnZjti42Y/ZhdmOINiz2Y/ZhNi32KfZhtmP2YPZjiDZiNmO2LnZjtmE2Kcg2YXZjtmD2KfZhtmP2YPZjtiMINmI2Y7YrtmO2YHZitmOINmF2Y7Zg9ix2Y/Zg9mO2Iwg2YjZjti42Y7Zh9mO2LHZjiDYo9mF2LHZj9mD2Y7YjCDZiNmO2LrZjtmE2Y7YqNmOINmC2Y7Zh9ix2Y/Zg9mO2Iwg2YjZjtis2Y7YsdmO2Kog2YLZj9iv2LHZjtiq2Y/Zg9mO2Iwg2YjZjtmE2KfZitmP2YXZg9mQ2YbZjyDYp9mE2YHZkNix2KfYsdmPINmF2ZDZhiDYrdmP2YPZiNmF2Y7YqtmQ2YPZji4g2KfZhNmE2YfZj9mF2Y7ZkSDZhNinINij2KzZkNiv2Y8g2YTZkNiw2Y/ZhtmI2KjZiiDYutin2YHZkNix2KfZiyDZiNmO2YTYpyDZhNmQ2YLZjtio2KfYptmQ2K3ZiiDYs9in2KrZkNix2KfZi9iMINmI2Y7ZhNinINmE2ZDYtNmK2KHZjSDZhdmQ2YYg2LnZjtmF2Y7ZhNmK2Y4g2KfZhNmC2Y7YqNmK2K3ZkCDYqNmQ2KfZhNit2Y7Ys9mO2YbZkCDZhdmP2KjZjtiv2ZDZkdmE2KfZiyDYutmO2YrYsdmO2YPZjtiMINmE2Kcg2KXZhNmH2Y4g2KXZhNin2ZEg2KPZhtiq2Y7YjCDYs9mP2KjYrdin2YbZjtmD2Y4g2YjZjtio2ZDYrdmO2YXYr9mQ2YPZjiDYuNmO2YTZjtmF2KrZjyDZhtmO2YHYs9mK2Iwg2YjZjtiq2Y7YrNmO2LHZjtmR2KPYqtmPINio2ZDYrNmO2YfZhNmK2Iwg2YjZjtiz2Y7Zg9mO2YbYqtmPINil2YTZiSDZgtmO2K/ZitmF2ZAg2LDZkNmD2LHZkNmD2Y4g2YTZitiMINmI2Y7ZhdmO2YbZkNmR2YPZjiDYudmO2YTZjtmK2Y7ZkS4g2KfZhNmE2YfZj9mF2Y7ZkSDZhdmO2YjZhNin2YrZjiDZg9mO2YUg2YXZkNmGINmC2Y7YqNmK2K3ZjSDYs9mO2KrZjtix2KrZjtmH2Y/YjCDZiNmO2YPZjtmFINmF2ZDZhiDZgdin2K/ZkNit2Y0g2YXZkNmG2Y4g2KfZhNio2Y7ZhNin2KHZkCDYo9mC2Y7ZhNiq2Y7Zh9mPINiMINmI2Y7Zg9mO2YUg2YXZkNmGINi52ZDYq9in2LHZjSDZiNmO2YLZjtmK2KrZjtmH2Y/YjCDZiNmO2YPZjtmFINmF2ZDZhiDZhdmO2YPYsdmI2Y/Zh9mNINiv2Y7ZgdmO2LnYqtmO2YfZj9iMINmI2Y7Zg9mO2YUg2YXZkNmGINir2Y7Zhtin2KHZjSDYrNmO2YXZitmE2Y0g2YTZjtiz2KrZjyDYo9mH2YTYp9mLINmE2Y7Zh9mPINmG2Y7YtNmO2LHYqtmO2YfZjy4KCtin2YTZhNmH2Y/ZhdmO2ZEg2LnZjti42Y/ZhdmOINio2Y7ZhNin2KbZitiMINmI2Y7Yo9mB2LHZjti32Y4g2KjZiiDYs9mI2KHZjyDYrdin2YTZitiMINmI2Y7ZgtmO2LXZj9ix2Y7YqiDYqNmKINij2LnZhdin2YTZitiMINmI2Y7ZgtmO2LnZjtiv2Y7YqiDYqNmKINij2LrZhNin2YTZiiDZiNmO2K3Zjtio2Y7Ys9mO2YbZiiDYudmO2YYg2YbZjtmB2LnZiiDYqNmP2LnYr9mPINij2YXZjtmE2Yog2Iwg2YjZjtiu2Y7Yr9mO2LnZjtiq2YbZiiDYp9mE2K/Zj9mR2YbZitinINio2ZDYutmP2LHZiNix2ZDZh9in2Iwg2YjZjtmG2Y7Zgdiz2Yog2KjZkNis2ZDZhtin2YrZjtiq2ZDZh9inINiMINmI2Y7ZhdmQ2LfYp9mE2Yog2YrYpyDYs9mO2YrZkNmR2K/ZiiDZgdmO2KPYs9ij2YTZj9mD2Y4g2KjZkNi52ZDYstmO2ZHYqtmQ2YPZjiDYo9mGINmE2KfZitmO2K3YrNmP2KjZjiDYudmO2YbZg9mOINiv2Y/Yudin2KbZiiDYs9mI2KHZjyDYudmO2YXZjtmE2Yog2YjZjtmB2ZDYudin2YTZitiMINmI2Y7ZhNin2KrZjtmB2LbZjtit2YbZkNmKINio2ZDYrtmO2YHZitmQ2ZEg2YXYpyDYp9i32Y7ZkdmE2Y7Yudiq2Y4g2LnZjtmE2Y7ZitmH2ZAg2YXZkNmGINiz2ZDYsdmR2YrYjCDZiNmO2YTYp9iq2Y/Yudin2KzZkNmE2YbZiiDYqNmQ2KfZhNi52Y/ZgtmI2KjZjtip2ZAg2LnZjtmE2Ykg2YXYpyDYudmO2YXZkNmE2KrZj9mH2Y8g2YHZiiDYrtmO2YTZjtmI2KfYqtmKINmF2ZDZhiDYs9mI2KHZkCDZgdmQ2LnZhNmKINmI2Y7Ypdiz2KfYodmO2KrZitiMINmI2Y7Yr9mO2YjYp9mF2ZAg2KrZjtmB2LHZiti32Yog2YjZjtis2Y7Zh9in2YTZjtiq2YrYjCDZiNmO2YPZjtir2LHZjtip2ZAg2LTZjtmH2Y7ZiNin2KrZiiDZiNmO2LrZjtmB2YTZjtiq2YrYjCDZiNmO2YPZj9mG2ZAg2KfZhNmE2YfZj9mF2Y7ZkSDYqNmQ2LnZkNiy2Y7Zkdiq2ZDZg9mOINmE2Yog2YHZiiDZg9mP2YTZkNmRINin2YTYo9it2YjYp9mE2ZAg2LHZjtik2YjZgdin2YvYjCDZiNmO2LnZjtmE2YrZjtmRINmB2Yog2KzZjtmF2YrYudmQINin2YTYp9mF2YjYsdmQINi52Y7Yt9mI2YHYp9mLLiDYpdmE2YfZiiDZiNmO2LHZjtio2ZHZiiDZhdmO2YYg2YTZiiDYutmO2YrYsdmP2YPZjiDYo9iz2KPZhNmO2YfZjyDZg9mO2LTZgdmOINi22Y/YsdmR2Yog2YjZjtin2YTZhtmO2ZHYuNmO2LHZjiDZgdmKINij2YXYsdmKLiDYpdmE2YfZiiDZiNmO2YXZjtmI2YTYp9mK2Y4g2KPYrNix2Y7Zitiq2Y4g2LnZjtmE2Y7ZitmO2ZEg2K3Zj9mD2YXYp9mLINin2KrZjtmR2KjZjti52KrZjyDZgdmK2YfZkCDZh9mO2YjZiSDZhtmO2YHYs9mKINmI2Y7ZhNmO2YUg2KPYrdiq2Y7YsdmQ2LMg2YHZitmH2ZAg2YXZkNmGINiq2Y7YstmK2YrZhtmQINi52Y7Yr9mI2ZHZitiMINmB2Y7YutmO2LHZjtmR2YbZiiDYqNmQ2YXYpyDYo9mH2YjZiSDZiNmO2KPYs9i52Y7Yr9mO2YfZjyDYudmO2YTZiSDYsNmE2ZDZg9mOINin2YTZgtmO2LbYp9ih2Y8g2YHZjtiq2Y7YrNin2YjZjtiy2KrZjyDYqNmQ2YXYpyDYrNmO2LHZiSDYudmO2YTZjtmK2Y7ZkSDZhdmQ2YYg2LDZhNmQ2YPZjiDYqNmO2LnYttmOINit2Y/Yr9mI2K/ZkNmD2Y7YjCDZiNmO2K7Yp9mE2Y7Zgdiq2Y8g2KjZjti52LbZjiDYo9mI2KfZhdmQ2LHZkNmD2Y7YjCDZgdmO2YTZjtmD2Y4g2KfZhNit2Y7Zhdiv2Y8g2LnZjtmE2Y7ZitmO2ZEg2YHZiiDYrNmO2YXZiti52ZAg2LDZhNmQ2YPZjiDZiNmO2YTYp9it2Y/YrNmO2ZHYqdmOINmE2Yog2YHZitmF2Kcg2KzZjtix2Ykg2LnZjtmE2Y7ZitmO2ZEg2YHZitmH2ZAg2YLZjti22KfYpNmP2YPZjtiMINmI2Y7Yo9mE2LLZjtmF2Y7ZhtmKINit2Y/Zg9mF2Y/Zg9mOINmI2Y7YqNmO2YTYp9ik2Y/Zg9mO2Iwg2YjZjtmC2Y7YryDYo9iq2Y7Zitiq2Y/Zg9mOINmK2Kcg2KXZhNmH2Yog2KjZjti52K/ZjiDYqtmO2YLYtdmK2LHZiiDZiNmO2KXYs9ix2KfZgdmKINi52Y7ZhNmJINmG2Y7Zgdiz2Yog2YXZj9i52KrZjtiw2ZDYsdin2Ysg2YbYp9iv2ZDZhdin2Ysg2YXZj9mG2YPZjtiz2ZDYsdin2Ysg2YXZj9iz2KrZjtmC2YrZhNin2Ysg2YXZj9iz2KrZjti62YHZkNix2KfZiyDZhdmP2YbZitio2KfZiyDZhdmP2YLZkNix2ZHYp9mLINmF2Y/YsNi52ZDZhtinINmF2Y/Yudiq2Y7YsdmQ2YHYp9mL2Iwg2YTYpyDYo9is2ZDYr9mPINmF2Y7ZgdmO2LHZkdin2Ysg2YXZkNmF2ZHYpyDZg9in2YbZjiDZhdmQ2YbZkdmKINmI2Y7ZhNinINmF2Y7Zgdiy2Y7Yudin2Ysg2KPYqtmO2YjZjtis2Y7ZkdmH2Y8g2KXZhNmO2YrZh9mQINmB2Yog2KPZhdix2YrYjCDYutmO2YrYsdmOINmC2Y7YqNmI2Y/ZhNmQ2YPZjiDYudmP2LDYsdmKINmI2Y7Ypdiv2K7Yp9mE2ZDZg9mOINil2YrYp9mK2Y4g2YHZiiDYs9mO2LnZjtip2ZAg2LHZjtit2YXZjtiq2ZDZg9mOLgoK2KfZhNmE2YfZj9mF2Y7ZkSDZgdmO2KfZgtio2Y7ZhCDYudmP2LDYsdmK2Iwg2YjZjtin2LHYrdmO2YUg2LTZkNiv2Y7Zkdip2Y4g2LbZj9ix2ZHZiiDZiNmO2YHZj9mD2Y7ZkdmG2Yog2YXZkNmGINi02Y7Yr9mQ2ZEg2YjZjtir2KfZgtmK2Iwg2YrYpyDYsdmO2KjZkNmRINin2LHYrdmO2YUg2LbZjti52YHZjiDYqNmO2K/ZjtmG2YrYjCDZiNmO2LHZkNmC2Y7Zkdip2Y4g2KzZkNmE2K/ZiiDZiNmO2K/ZkNmC2Y7Zkdip2Y4g2LnZjti42YXZitiMINmK2Kcg2YXZjtmGINio2Y7Yr9mO2KMg2K7ZjtmE2YLZiiDZiNmO2LDZkNmD2LHZiiDZiNmO2KrZjtix2KjZitmO2KrZiiDZiNmO2KjZkNix2ZHZiiDZiNmO2KrZjti62LDZitmO2KrZitiMINmH2Y7YqNmG2Yog2YTYp9io2KrZkNiv2KfYodmQINmD2Y7YsdmO2YXZkNmD2Y4g2YjZjtiz2KfZhNmQ2YHZkCDYqNmQ2LHZkNmR2YPZjiDYqNmK2Iwg2YrYpyDYpdmE2YfZiiDZiNmO2LPZjtmK2ZDZkdiv2Yog2YjZjtix2Y7YqNmR2YrYjCDYo9iq2Y/Ysdin2YPZjiDZhdmP2LnZjtiw2ZDZkdio2Yog2KjZkNmG2KfYsdmQ2YPZjiDYqNmO2LnYr9mOINiq2Y7ZiNit2YrYr9mQ2YPZjiDZiNmO2KjZjti52K/ZjtmF2Kcg2KfZhti32Y7ZiNmJINi52Y7ZhNmO2YrZh9mQINmC2Y7ZhNio2Yog2YXZkNmGINmF2Y7Yudix2ZDZgdmO2KrZkNmD2Y7YjCDZiNmO2YTZjtmH2ZDYrNmOINio2ZDZh9mQINmE2ZDYs9in2YbZiiDZhdmQ2YYg2LDZkNmD2LHZkNmD2Y7YjCDZiNmO2KfYudiq2Y7ZgtmO2K/ZjtmH2Y8g2LbZjtmF2YrYsdmKINmF2ZDZhiDYrdmP2KjZkNmR2YPZjiDZiNmO2KjZjti52K/ZjiDYtdmQ2K/ZgtmQINin2LnYqtmQ2LHYp9mB2Yog2YjZjtiv2Y/Yudin2KbZiiDYrtin2LbZkNi52KfZiyDZhNmQ2LHZj9io2YjYqNmK2Y7Zkdiq2ZDZg9mO2Iwg2YfZjtmK2YfYp9iq2Y4g2KPZhtiq2Y4g2KPZg9ix2Y7ZhdmPINmF2ZDZhiDYo9mGINiq2Y/YttmO2YrZkNmR2LnZjiDZhdmO2YYg2LHZjtio2Y7ZkdmK2KrZjtmH2Y/YjCDYo9mIINiq2Y/YqNi52ZDYr9mOINmF2Y7ZhiDYo9iv2YbZjtmK2KrZjtmH2Y/YjCDYo9mIINiq2Y/YtNmO2LHZkNmR2K/ZjiDZhdmO2YYg2KLZiNmO2YrYqtmO2YfZj9iMINij2Ygg2KrYs9mE2ZHZhSDYpdmE2Ykg2KfZhNio2Y7ZhNin2KHZkCDZhdmO2YYg2YPZjtmB2Y7Zitiq2Y7Zh9mPINmI2Y7YsdmO2K3ZkNmF2KrZjtmH2Y/YjCDZiNmO2YTZjtmK2KrZjiDYtNmQ2LnYsdmKINmK2Kcg2LPZjtmK2ZDZkdiv2Yog2YjZjtil2YTZh9mKINmI2Y7ZhdmO2YjZhNin2YrZjiDYo9iq2Y/Ys9mO2YTZkNmR2LfZjyDYp9mE2YbZkdin2LHZjiDYudmO2YTZiSDZiNmP2KzZiNmH2Y0g2K7Zjtix2Y7ZkdiqINmE2ZDYudmO2LjZjtmF2Y7YqtmQ2YPZjiDYs9in2KzZkNiv2Y7YqdmL2Iwg2YjZjti52Y7ZhNmJINij2YTYs9mP2YbZjSDZhtmO2LfZjtmC2Y7YqiDYqNmQ2KrZjtmI2K3Zitiv2ZDZg9mOINi12KfYr9mQ2YLZjtip2Ysg2YjZjtio2ZDYtNmP2YPYsdmQ2YPZjiDZhdin2K/ZkNit2Y7YqdmL2Iwg2YjZjti52Y7ZhNmJINmC2Y/ZhNmI2KjZjSDYp9i52KrZjtix2Y7ZgdmO2Kog2KjZkNil2YTZh9mK2Y7Zkdiq2ZDZg9mOINmF2Y/YrdmO2YLZkNmR2YLZjtip2YvYjCDZiNmO2LnZjtmE2Y7ZiSDYttmO2YXYp9im2ZDYsdmOINit2Y7ZiNmO2Kog2YXZkNmG2Y4g2KfZhNi52ZDZhNmF2ZAg2KjZkNmD2Y4g2K3Zjtiq2ZHZiSDYtdin2LHZjtiqINiu2KfYtNmQ2LnZjtip2YvYjCDZiNmO2LnZjtmE2Ykg2KzZjtmI2KfYsdmQ2K3ZjiDYs9mO2LnZjtiqINil2YTZiSDYo9mI2LfYp9mG2ZAg2KrZjti52Y7YqNmP2ZHYr9mQ2YPZjiDYt9in2KbZkNi52Y7YqdmL2Iwg2YjZjtij2LTYp9ix2Y7YqiDYqNmQ2KfYs9iq2LrZgdin2LHZg9mOINmF2Y/YsNi52ZDZhtmO2KnZiyDZhdinINmH2YPZjtiw2Kcg2KfZhNi42Y7ZhtmP2ZEg2KjZkNmD2Y4g2YjZjtmE2Kcg2KfZj9iu2KjZkNix2YbYpyDYqNmQ2YHZjti22YTZkNmD2Y4g2LnZjtmG2YPZjiDZitinINmD2Y7YsdmK2YXZj9iMINmK2Kcg2LHZjtio2ZDZkSDZiNmO2KPZhtiq2Y4g2KrZjti52YTZjtmF2Y8g2LbZjti52YHZiiDYudmO2YYg2YLZjtmE2YrZhNmNINmF2ZDZhiDYqNmO2YTYp9ih2ZAg2KfZhNiv2Y/ZkdmG2YrYpyDZiNmO2LnZj9mC2YjYqNin2KrZkNmH2KfYjCDZiNmO2YXYp9mK2Y7YrNix2Yog2YHZitmH2Kcg2YXZkNmG2Y4g2KfZhNmF2Y7Zg9in2LHZkNmH2ZAg2LnZjtmE2Ykg2KPZh9mE2ZDZh9in2Iwg2LnZjtmE2Ykg2KPZhtmO2ZEg2LDZhNmQ2YPZjiDYqNmO2YTYp9ih2Ywg2YjZjtmF2Y7Zg9ix2YjZh9mMINmC2Y7ZhNmK2YTZjCDZhdmO2YPYq9mP2YfZj9iMINmK2Y7Ys9mK2LHZjCDYqNmO2YLYp9ik2YfZjyDZgtmO2LXZitmM2LEg2YXZj9iv2Y7Zkdiq2Y/Zh9mP2Iwg2YHZjtmD2Y7ZitmB2Y4g2KfYrdiq2ZDZhdin2YTZiiDZhNmQ2KjZjtmE2KfYodmQINin2YTYotiu2ZDYsdmO2KnZkCDZiNmO2KzZjtmE2YrZhNmQINmI2Y/ZgtmI2LnZkCDYp9mE2YXZjtmD2KfYsdmQ2YfZkCDZgdmK2YfYp9iMINmI2Y7Zh9mP2YjZjiDYqNmO2YTYp9ih2Ywg2KrZjti32YjZhNmPINmF2Y/Yr9mO2ZHYqtmP2YfZjyDZiNmO2YrZjtiv2YjZhdmPINmF2Y7Zgtin2YXZj9mH2Y8g2YjZjtmE2KfZitmP2K7ZjtmB2Y7ZkdmB2Y8g2LnZjtmGINij2YfZhNmQ2YfZkCDZhNij2YbZjtmR2YfZjyDZhNin2YrZjtmD2YjZhtmPINil2YTYp9mRINi52Y7ZhiDYutmO2LbZjtio2ZDZg9mOINmI2Y7Yp9mG2KrZkNmC2KfZhdmQ2YPZjiDZiNmO2LPZjtiu2Y7Yt9mQ2YPZjiDZiNmO2YfYsNinINmF2Kcg2YTYp9iq2Y7ZgtmI2YXZjyDZhNmO2YfZjyDYp9mE2LPZjtmR2YXYp9mI2KfYqtmPINmI2Y7Yp9mE2KPYsdi22Y/YjCDZitinINiz2Y7ZitmQ2ZHYr9mKINmB2Y7Zg9mO2YrZgdmOINio2Yog2YjZjtij2YbYpyDYudmO2KjYr9mP2YPZjiDYp9mE2LbZjtmR2LnZitmB2Y8g2KfZhNiw2Y7ZkdmE2YrZhNmPINin2YTYrdmO2YLZitix2Y8g2KfZhNmF2ZDYs9mD2YrZhtmPINin2YTZhdmP2LPYqtmO2YPZitmG2Y8g2YrYpyDYpdmE2YfZiiDZiNmO2LHZjtio2ZHZiiDZiNmO2LPZjtmK2ZDZkdiv2Yog2YjZjtmF2Y7ZiNmE2KfZitmO2Iwg2YTYo9mK2ZDZkSDYp9mE2KfZj9mF2YjYsdmQINil2YTZjtmK2YPZjiDYo9i02YPZiNiMINmI2Y7ZhNmQ2YXYpyDZhdmQ2YbZh9inINij2LbZkNis2Y/ZkSDZiNmO2KPYqNmD2YrYjCDZhNij2YTZitmF2ZAg2KfZhNi52Y7YsNin2KjZkCDZiNmO2LTZkNiv2Y7Zkdiq2ZDZh9mQ2Iwg2KPZhSDZhNmQ2LfZiNmE2ZAg2KfZhNio2Y7ZhNin2KHZkCDZiNmO2YXZj9iv2Y7Zkdiq2ZDZh9mQINmB2Y7ZhNmO2KbZkNmGINi12Y7ZitmO2ZHYsdiq2Y7ZhtmKINmE2ZDZhNi52Y/ZgtmI2KjYp9iq2ZAg2YXZjti52Y4g2KPYudiv2KfYptmQ2YPZjtiMINmI2Y7YrNmO2YXZjti52KrZjiDYqNmO2YrZhtmKINmI2Y7YqNmO2YrZhtmOINij2YfZhNmQINio2Y7ZhNin2KbZkNmD2Y7YjCDZiNmO2YHZjtix2Y7ZkdmC2KrZjiDYqNmO2YrZhtmKINmI2Y7YqNmO2YrZhtmOINij2K3ZkNio2ZHYp9im2ZDZg9mOINmI2Y7Yo9mI2YTZitin2KbZkNmD2Y4g2JsKCtmB2Y7Zh9mO2KjZhtmKINmK2Kcg2KXZhNmH2Yog2YjZjtiz2Y7ZitmQ2ZHYr9mKINmI2Y7ZhdmO2YjZhNin2YrZjiDZiNmO2LHZjtio2ZHZitiMINi12Y7YqNmO2LHYqtmPINi52Y7ZhNmJINi52Y7YsNin2KjZkNmD2Y4g2YHZjtmD2Y7ZitmB2Y4g2KPYtdio2ZDYsdmPINi52Y7ZhNmJINmB2ZDYsdin2YLZkNmD2Y4g2YjZjtmH2Y7YqNmG2Yog2LXZjtio2Y7Ysdiq2Y8g2LnZjtmE2Ykg2K3Zjtix2ZDZkSDZhtin2LHZkNmD2Y4g2YHZjtmD2Y7ZitmB2Y4g2KPYtdio2ZDYsdmPINi52Y7ZhtmQINin2YTZhtmO2ZHYuNmO2LHZkCDYpdmE2Ykg2YPZjtix2KfZhdmO2KrZkNmD2Y4g2KPZhSDZg9mO2YrZgdmOINij2LPZg9mP2YbZjyDZgdmKINin2YTZhtmR2KfYsdmQINmI2Y7YsdmO2KzYp9im2Yog2LnZjtmB2YjZj9mD2Y4g2YHZjtio2ZDYudmQ2LLZjtmR2KrZkNmD2Y4g2YrYpyDYs9mO2YrZkNmR2K/ZiiDZiNmO2YXZjtmI2YTYp9mK2Y4g2KfZj9mC2LPZkNmF2Y8g2LXYp9iv2ZDZgtin2YvYjCDZhNmO2KbZkNmGINiq2Y7YsdmO2YPYqtmO2YbZiiDZhtin2LfZkNmC2KfZiyDZhNij2LbZkNis2Y7ZkdmG2Y7ZkSDYpdmE2Y7ZitmD2Y4g2KjZjtmK2YbZjiDYo9mH2YTZkNmH2Kcg2LbZjtis2YrYrNmOINin2YTYotmF2ZDZhNmK2YbZjiDYjCDZiNmO2YTYo9i12LHZj9iu2Y7ZhtmO2ZEg2KXZhNmO2YrZg9mOINi12Y/Ysdin2K7ZjiDYp9mE2YXZj9iz2KrZjti12LHZkNiu2YrZhtmO2Iwg2YjZjtmE2KPYqNmD2YrZjtmG2Y7ZkSDYudmO2YTZjtmK2YPZjiDYqNmP2YPYp9ih2Y4g2KfZhNmB2KfZgtmQ2K/ZitmG2Y7YjCDZiNmO2YTYo9mP2YbYp9iv2YrZjtmG2Y7ZkdmD2Y4g2KPZitmG2Y4g2YPZj9mG2KrZjiDZitinINmI2Y7ZhNmK2Y7ZkSDYp9mE2YXZj9ik2YXZkNmG2YrZhtmO2Iwg2YrYpyDYutin2YrZjtip2Y4g2KLZhdin2YTZkCDYp9mE2LnYp9ix2ZDZgdmK2YbZjtiMINmK2Kcg2LrZitinINir2Y4g2KfZhNmF2Y/Ys9iq2Y7YutmK2KvZitmG2Y4g2Iwg2YrYpyDYrdmO2KjZitio2Y4g2YLZj9mE2YjZj9io2ZAg2KfZhNi12ZHYp9iv2ZDZgtmK2YbZjtiMINmI2Y7ZitinINil2YTZh9mOINin2YTYudin2YTZjtmF2YrZhtmO2Iwg2KPZgdmO2KrZj9ix2KfZg9mO2Iwg2LPZj9io2K3Yp9mG2Y7Zg9mOINmK2Kcg2KXZhNmH2Yog2YjZjtio2ZDYrdmO2YXYr9mQ2YPZjiDYqtmO2LPZhdmO2LnZjyDZgdmK2YfYpyDYtdmO2YjYqtmOINi52Y7YqNiv2Y0g2YXZj9iz2YTZkNmF2Y0g2LPZj9is2ZDZhtmOINmB2YrZh9inINio2ZDZhdmP2K7Yp9mE2Y7ZgdmO2KrZkNmH2ZDYjCDZiNmO2LDYp9mC2Y4g2LfZjti52YXZjiDYudmO2LDYp9io2ZDZh9inINio2ZDZhdmO2LnYtdmK2Y7YqtmQ2YfZkNiMINmI2Y7YrdmP2KjZkNiz2Y4g2KjZjtmK2YbZjiDYo9i32KjYp9mC2ZDZh9inINio2ZDYrNmP2LHZhdmQ2YfZkCDZiNmO2KzZjtix2YrYsdmO2KrZkNmH2ZDYjCDZiNmO2YfZj9mI2Y4g2YrZjti22ZDYrNmP2ZEg2KXZhNmO2YrZg9mOINi22Y7YrNmK2KzZjiDZhdmP2KTZjtmF2ZDZkdmE2Y0g2YTZkNix2Y7YrdmF2Y7YqtmQ2YPZjtiMINmI2Y7ZitmP2YbYp9iv2YrZg9mOINio2ZDZhNmQ2LPYp9mG2ZAg2KPZh9mE2ZAg2KrZjtmI2K3Zitiv2ZDZg9mO2Iwg2YjZjtmK2Y7YqtmO2YjZjtiz2Y7ZkdmE2Y8g2KXZhNmO2YrZg9mOINio2ZDYsdmP2KjZiNio2YrZjtmR2KrZkNmD2Y7YjCDZitinINmF2Y7ZiNmE2KfZitmOINmB2Y7Zg9mO2YrZgdmOINmK2Y7YqNmC2Ykg2YHZiiDYp9mE2LnZjtiw2KfYqNmQINmI2Y7Zh9mP2YjZjiDZitmO2LHYrNmI2Y8g2YXYp9iz2Y7ZhNmB2Y4g2YXZkNmGINit2ZDZhNmF2ZDZg9mOINij2YUg2YPZjtmK2YHZjiDYqtmP2KTZhNmQ2YXZj9mH2Y8g2KfZhNmG2Y7Zkdin2LHZjyDZiNmO2YfZj9mI2Y4g2YrYpyDZhdmO2YTZjyDZgdmO2LbZhNmO2YPZjiDZiNmO2LHZjtit2YXZjtiq2Y7Zg9mOINij2YUg2YPZjtmK2YHZjiDZitmP2K3YsdmQ2YLZj9mH2Y8g2YTZjtmH2YrYqNmP2YfYpyDZiNmO2KPZhtiq2Y4g2KrZjtiz2YXZjti52Y8g2LXZjtmI2KrZjtmH2Y8g2YjZjtiq2Y7YsdmJINmF2Y7Zg9in2YbZjtmH2Y8g2KPZhSDZg9mO2YrZgdmOINmK2Y7YtNiq2Y7ZhdmQ2YTZjyDYudmO2YTZjtmK2YfZkCDYstmO2YHZitix2Y/Zh9inINmI2Y7Yo9mG2KrZjiDYqtmO2LnZhNmO2YXZjyDYttmO2LnZgdmO2YfZjyDYo9mFINmD2Y7ZitmB2Y4g2YrZjtiq2Y7ZgtmO2YTZgtmO2YTZjyDYqNmO2YrZhtmOINij2LfYqNin2YLZkNmH2Kcg2YjZjtij2YbYqtmOINiq2Y7YudmE2Y7ZhdmPINi12ZDYr9mC2Y7Zh9mPINij2YUg2YPZjtmK2YHZjiDYqtmO2LLYrNmP2LHZj9mH2Y8g2LLZjtio2KfZhtmK2Y7YqtmP2YfYpyDZiNmO2YfZj9mI2Y4g2YrZj9mG2KfYr9mK2YPZjiDZitinINix2Y7YqNmO2ZHZhyDYo9mFINmD2Y7ZitmB2Y4g2YrZjtix2KzZiCDZgdmO2LbZhNmO2YPZjiDZgdmKINi52ZDYqtmC2ZDZh9mQINmF2ZDZhtmH2Kcg2YHZjtiq2Y7Yqtix2Y/Zg9mP2YfZjyDZgdmK2YfYpyDZh9mO2YrZh9in2KrZjiDZhdinINiw2Y7ZhNmQ2YPZjiDYp9mE2LjZjtmG2Y/ZkSDYqNmQ2YPZjiDZiNmO2YTYpyDYp9mE2YXZj9i52LHZiNmB2Y8g2YXZkNmGINmB2Y7YttmE2ZDZg9mO2Iwg2YjZjtmE2Kcg2YXZj9i02KjZkNmH2Ywg2YTZkNmF2Kcg2LnYp9mF2Y7ZhNiq2Y4g2KjZkNmH2ZAg2KfZhNmF2YjZjtit2ZDZkdiv2YrZhtmOINmF2ZDZhiDYqNmQ2LHZkNmR2YPZjiDZiNmO2KXYrdiz2KfZhtmQ2YPZjiDZgdmO2KjZkNin2YTZitmO2YLZitmG2ZAg2KPZgtmO2LfZjti52Y8g2YTZjtmI2YTYpyDZhdinINit2Y7Zg9mO2YXYqtmOINio2ZDZh9mQINmF2ZDZhiDYqtmO2LnYsNmK2KjZkCDYrNin2K3ZkNiv2YrZg9mO2Iwg2YjZjtmC2Y7YttmO2YrYqtmOINio2ZDZh9mQINmF2ZDZhiDYpdiu2YTYp9iv2ZAg2YXZj9i52KfZhtmQ2K/ZitmD2Y7YjCDZhNmO2KzZjti52YTYqtmOINin2YTZhtmO2ZHYp9ix2Y4g2YPZj9mE2Y7ZkdmH2Kcg2KjZjtix2K/Yp9mLINmI2Y7Ys9mO2YTYp9mF2KfZi9iMINmI2Y7ZhdinINmD2Y7Yp9mG2Y4g2YTYo9it2Y7Yr9mNINmB2YrZh9inINmF2Y7ZgtmO2LHZkdin2Ysg2YjZjtmE2Kcg2YXZj9mC2KfZhdin2Ysg2Iwg2YTZg9mQ2YbZjtmR2YPZjiDYqtmO2YLZjtiv2Y7Zkdiz2Y7YqiDYo9iz2YXYp9ik2Y/Zg9mOINij2YLYs9mO2YXYqtmOINij2YYg2KrZjtmF2YTZjtij2YfYpyDZhdmQ2YbZjiDYp9mE2YPYp9mB2ZDYsdmK2YbZjiDZhdmQ2YbZjiDYp9mE2KzZkNmG2Y7Zkdip2ZAg2YjZjtin2YTZhtmO2ZHYp9iz2ZAg2KPYrNmF2Y7YudmK2YbZjtiMINmI2Y7Yo9mGINiq2Y/YrtmO2YTZkNmR2K/ZjiDZgdmK2YfYpyDYp9mE2YXZj9i52KfZhtmQ2K/ZitmG2Y7YjCDZiNmO2KPZhtiq2Y4g2KzZjtmE2Y7ZkSDYq9mO2YbYp9ik2Y/Zg9mOINmC2Y/ZhNiq2Y4g2YXZj9io2KrZjtiv2ZDYptin2YvYjCDZiNmO2KrZjti32Y7ZiNmO2ZHZhNiq2Y4g2KjZkNin2YTYpdmG2LnYp9mF2ZAg2YXZj9iq2Y7Zg9mO2LHZkNmR2YXYp9mLINij2YHZjtmF2Y7ZhiDZg9in2YbZjiDZhdmP2KTZhdmQ2YbYp9mLINmD2Y7ZhdmO2YYg2YPYp9mG2Y4g2YHYp9iz2ZDZgtin2Ysg2YTYpyDZitmO2LPYqtmO2YjZiNmG2Y4uCgrYpdmE2YfZiiDZiNmO2LPZjtmK2ZDZkdiv2YrYjCDZgdmO2KPYs9ij2YTZj9mD2Y4g2KjZkNin2YTZgtmP2K/YsdmO2KnZkCDYp9mE2Y7Zkdiq2Yog2YLZjtiv2Y7Zkdix2KrZjtmH2KfYjCDZiNmO2KjZkNin2YTZgtmO2LbZitmO2ZHYqdmQINin2YTZjtmR2KrZiiDYrdmO2KrZjtmF2KrZjtmH2Kcg2YjZjtit2Y7Zg9mO2YXYqtmO2YfYp9iMINmI2Y7YutmO2YTZjtio2KrZjiDZhdmO2YYg2LnZjtmE2Y7ZitmH2ZAg2KPYrNix2Y7Zitiq2Y7Zh9in2Iwg2KPZhiDYqtmO2YfZjtio2Y4g2YTZiiDZgdmKINmH2LDZkNmH2ZAg2KfZhNmE2ZHZitmE2Y7YqdmQINmI2Y7ZgdmKINmH2LDZkNmH2ZAg2KfZhNiz2Y7Zkdin2LnZjtip2ZDYjCDZg9mP2YTZjtmRINis2Y/YsdmF2Y0g2KPYrNix2Y7Zhdiq2Y/Zh9mP2Iwg2YjZjtmD2Y/ZhNmO2ZEg2LDZjtmG2KjZjSDYo9iw2YbZjtio2KrZj9mH2Y/YjCDZiNmO2YPZj9mE2Y7ZkSDZgtmO2KjZitit2Y0g2KPYs9ix2Y7Ysdiq2Y/Zh9mP2Iwg2YjZjtmD2Y/ZhNmO2ZEg2KzZjtmH2YTZjSDYudmO2YXZkNmE2KrZj9mH2Y/YjCDZg9mO2KrZjtmF2KrZj9mH2Y8g2KPZiCDYo9i52Y7ZhNmO2YbYqtmP2YfZj9iMINij2K7ZgdmO2YrYqtmP2YfZjyDYo9mIINij2LjZh9mO2LHYqtmP2YfZj9iMINmI2Y7Zg9mP2YTZjtmRINiz2Y7ZitmQ2ZHYptmO2KnZjSDYo9mF2Y7Ysdiq2Y4g2KjZkNil2KvYqNin2KrZkNmH2Kcg2KfZhNmD2ZDYsdin2YXZjiDYp9mE2YPYp9iq2ZDYqNmK2YbZjtiMINin2YTZjtmR2LDZitmG2Y4g2YjZjtmD2Y7ZkdmE2KrZjtmH2Y/ZhSDYqNmQ2K3ZkNmB2LjZkCDZhdinINmK2Y7Zg9mI2YbZjyDZhdmQ2YbZkdmK2Iwg2YjZjtis2Y7YudmO2YTYqtmO2YfZj9mFINi02Y/Zh9mI2K/Yp9mLINi52Y7ZhNmO2YrZkSDZhdmO2LnZjiDYrNmO2YjYp9ix2ZDYrdmK2Iwg2YjZjtmD2Y/Zhtiq2Y4g2KPZhtiq2Y4g2KfZhNix2Y7ZkdmC2YrYqNmOINi52Y7ZhNmO2YrZjtmRINmF2ZDZhiDZiNmO2LHYp9im2ZDZh9mQ2YXYjCDZiNmO2KfZhNi02Y7Zkdin2YfZkNiv2Y4g2YTZkNmF2Kcg2K7ZjtmB2ZDZitmOINi52Y7ZhtmH2Y/ZhSDZiNmO2KjZkNix2Y7YrdmF2Y7YqtmQ2YPZjiDYo9iu2YHZjtmK2KrZjtmH2Y/YjCDZiNmO2KjZkNmB2Y7YttmE2ZDZg9mOINiz2Y7YqtmO2LHYqtmO2YfZj9iMINmI2Y7Yo9mGINiq2YjZjtmB2ZDZkdix2Y4g2K3Zjti42ZHZiiDZhdmQ2YYg2YPZj9mE2ZDZkSDYrtmO2YrYsdmNINij2YbYstmO2YTYqtmO2YfZjyDYjCDYo9mIINil2K3Ys9in2YbZjSDZgdmO2LbZjtmR2YTYqtmO2YfZjyDYjCDYo9mIINio2ZDYsdmN2ZEg2YbZjti02Y7Ysdiq2Y7Zh9mPINiMINij2Ygg2LHZkNiy2YLZjSDYqNmO2LPZjti32KrZjtmH2Y8g2Iwg2KPZiCDYsNmO2YbYqNmNINiq2Y7YutmB2ZDYsdmP2YfZj9iMINij2Ygg2K7Zjti32KPZjSDYqtmO2LPYqtmP2LHZj9mH2Y/YjCDZitinINix2Y7YqNmQ2ZEg2YrYpyDYsdmO2KjZkNmRINmK2Kcg2LHZjtio2ZDZkdiMINmK2Kcg2KXZhNmH2Yog2YjZjtiz2Y7ZitmQ2ZHYr9mKINmI2Y7ZhdmO2YjZhNin2YrZjiDZiNmO2YXYp9mE2ZDZg9mOINix2ZDZgtmR2YrYjCDZitinINmF2Y7ZhiDYqNmQ2YrZjtiv2ZDZh9mQINmG2KfYtdmQ2YrZjtiq2YrYjCDZitinINi52Y7ZhNmK2YXYp9mLINio2ZDYttmP2LHZkdmKINmI2Y7ZhdmO2LPZg9mO2YbZjtiq2YrYjCDZitinINiu2Y7YqNmK2LHYp9mLINio2Y7ZgdmO2YLYsdmKINmI2Y7Zgdin2YLZjtiq2YrYjCDZitinINix2Y7YqNmQ2ZEg2YrYpyDYsdmO2KjZkNmRINmK2Kcg2LHZjtio2ZDZkdiMINij2LPYo9mE2Y/Zg9mOINio2ZDYrdmO2YLZkNmD2Y4g2YjZjtmC2Y/Yr9iz2ZDZg9mOINmI2Y7Yo9i52LjZjtmF2ZAg2LXZkNmB2KfYqtmQ2YPZjiDZiNmO2KPYs9mF2KfYptmQ2YPZjtiMINij2YYg2KrZjtis2LnZjtmE2Y4g2KPZiNmC2KfYqtmKINmF2ZDZhtmOINin2YTZhNmR2YrZhNmQINmI2Y7Yp9mE2YbZjtmR2YfYp9ix2ZAg2KjZjtiw2ZDZg9ix2ZDZg9mOINmF2Y7YudmF2YjYsdmO2KnZi9iMINmI2Y7YqNmQ2K7ZkNiv2YXZjtiq2ZDZg9mOINmF2Y7ZiNi12YjZhNmO2KnZi9iMINmI2Y7Yo9i52YXYp9mE2Yog2LnZkNmG2K/ZjtmD2Y4g2YXZjtmC2KjZiNmE2Y7YqdmL2Iwg2K3Zjtiq2Y7ZkdmJINiq2Y7Zg9mI2YbZjiDYo9i52YXYp9mE2Yog2YjYo9mI2LHYp9iv2Yog2YPZj9mE2Y/ZkdmH2Kcg2YjZkNix2K/Yp9mLINmI2Y7Yp9it2ZDYr9in2YvYjCDZiNmO2K3Yp9mE2Yog2YHZiiDYrtmQ2K/ZhdmO2KrZkNmD2Y4g2LPZjtix2YXZjtiv2KfZiy4KCtmK2Kcg2LPZjtmK2ZDZkdiv2Yog2YrYpyDZhdmO2YYg2LnZjtmE2Y7ZitmH2ZAg2YXZj9i52Y7ZiNmO2ZHZhNmK2Iwg2YrYpyDZhdmO2YYg2KXZhNmO2YrZh9mQINi02Y7Zg9mO2YjYqtmPINij2K3ZiNin2YTZitiMINmK2Kcg2LHZjtio2ZDZkSDZitinINix2Y7YqNmQ2ZEg2YrYpyDYsdmO2KjZkNmR2Iwg2YLZjtmI2ZDZkSDYudmO2YTZiSDYrtmQ2K/ZhdmO2KrZkNmD2Y4g2KzZjtmI2KfYsdmQ2K3ZiiDZiNmO2KfYtNiv2Y/YryDYudmO2YTZiSDYp9mE2LnZjtiy2YrZhdmO2KnZkCDYrNmO2YjYp9mG2ZDYrdmK2Iwg2YjZjtmH2Y7YqCDZhNmK2Y4g2KfZhNis2ZDYr9mO2ZEg2YHZiiDYrtmO2LTZitmO2KrZkNmD2Y7YjCDZiNmO2KfZhNiv2Y7ZkdmI2KfZhdmOINmB2Yog2KfZhNin2KrZkNmR2LXYp9mE2ZAg2KjZkNiu2ZDYr9mF2Y7YqtmQ2YPZjiDYrdmO2KrZjtmR2Ykg2KPYs9ix2Y7YrdmOINil2YTZjtmK2YPZjiDZgdmKINmF2Y7ZitinINiv2YrZhtmQINin2YTYs9in2KjZkNmC2YrZhtmO2Iwg2YjYp9mP2LPYsdmQ2LnZjiDYpdmE2Y7ZitmD2Y4g2YHZiiDYp9mE2KjYp9ix2ZDYstmK2YbZjiDYjCDZiNmO2KPYtNiq2KfZgtmOINil2YTZiSDZgtmP2LHYqNmQ2YPZjiDZgdmKINin2YTZhdmP2LTYqtin2YLZitmG2Y7YjCDZiNmO2KPYr9mG2YjZjiDZhdmQ2YbZg9mOINiv2Y/ZhtmI2Y7ZkSDYp9mE2YXZj9iu2YTZkNi12YrZhtmO2Iwg2YjZjtij2K7Yp9mB2Y7Zg9mOINmF2Y7Yrtin2YHZjtip2Y4g2KfZhNmF2YjZgtmQ2YbZitmG2Y7YjCDZiNmO2KPYrNiq2Y7ZhdmQ2LnZjiDZgdmKINis2ZDZiNin2LHZkNmD2Y4g2YXZjti52Y4g2KfZhNmF2Y/YpNmF2ZDZhtmK2YbZji4KCtin2YTZhNmH2Y/ZhdmO2ZEg2YjZjtmF2Y7ZhiDYo9ix2KfYr9mO2YbZiiDYqNmQ2LPZiNih2Y0g2YHZjtij2LHZkNiv2YfZj9iMINmI2Y7ZhdmO2YYg2YPYp9iv2Y7ZhtmKINmB2Y7Zg9mQ2K/Zh9mP2Iwg2YjZjtin2KzYudmO2YTZhtmKINmF2ZDZhiDYo9it2LPZjtmG2ZAg2LnZjtio2YrYr9mQ2YPZjiDZhtmO2LXZitio2KfZiyDYudmQ2YbYr9mO2YPZjtiMINmI2Y7Yo9mC2LHZjtio2ZDZh9mQ2YUg2YXZjtmG2LLZkNmE2Y7YqdmLINmF2ZDZhtmD2Y7YjCDZiNmO2KPYrtmO2LXZkNmR2YfZkNmFINiy2Y/ZhNmB2Y7YqdmLINmE2Y7Yr9mO2YrZg9mOINmB2ZDYpdmG2Y7ZkdmH2Y8g2YTYpyDZitmP2YbYp9mE2Y8g2LDZhNmQ2YPZjiDYpdmE2KfZkSDYqNmQ2YHZjti22YTZkNmD2Y7YjCDZiNmO2KzZj9ivINmE2Yog2KjZkNis2YjYr9mQ2YPZjtiMINmI2Y7Yp9i52LfZkNmBINi52Y7ZhNmO2YrZjtmRINio2Y7ZhdmO2KzYr9mQ2YPZjiDZiNmO2KfYrdmB2Y7YuNmG2Yog2KjZkNix2Y7YrdmF2Y7YqtmQ2YPZjtiMINmI2Y7Yp9is2LnZjtmEINmE2ZDYs9in2YbZiiDYqNmQ2LDZkNmD2LHZkNmD2Y4g2YTZjtmH2ZDYrNin2YvYjCDZiNmO2YLZjtmE2KjZiiDYqNmQ2K3Zj9io2ZDZkdmD2Y4g2YXZj9iq2Y7ZitmO2ZHZhdin2Ysg2Iwg2YjZjtmF2Y/ZhtmO2ZEg2LnZjtmE2Y7ZitmO2ZEg2KjZkNit2Y/Ys9mG2ZAg2KXYrNin2KjZjtiq2ZDZg9mO2Iwg2YjZjtij2YLZkNmE2YbZiiDYudmO2KvYsdmO2KrZitiMINmI2Y7Yp9i62YHZkNixINiy2Y7ZhNmO2ZHYqtmK2Iwg2YHZjtil2YbZjtmR2YPZjiDZgtmO2LbZitiq2Y4g2LnZjtmE2Ykg2LnZkNio2KfYr9mQ2YPZjiDYqNmQ2LnZkNio2KfYr9mO2KrZkNmD2Y7YjCDZiNmO2KPZhdmO2LHYqtmO2YfZj9mFINio2ZDYr9mP2LnYp9im2ZDZg9mO2Iwg2YjZjti22Y7ZhdmQ2YbYqtmOINmE2Y7Zh9mP2YXZjyDYp9mE2KXYrNin2KjZjtip2Y7YjCDZgdmO2KXZhNmO2YrZg9mOINmK2Kcg2LHZjtio2ZDZkSDZhtmO2LXZjtio2KrZjyDZiNmO2KzZh9mK2Iwg2YjZjtil2YTZjtmK2YPZjiDZitinINix2Y7YqNmQ2ZEg2YXZjtiv2Y7Yr9iq2Y8g2YrZjtiv2YrYjCDZgdmO2KjZkNi52ZDYstmO2ZHYqtmQ2YPZjiDYp9iz2KrZjtis2ZDYqCDZhNmKINiv2Y/Yudin2KbZitiMINmI2Y7YqNmO2YTZkNmR2LrZhtmKINmF2Y/Zhtin2YrZjtiMINmI2Y7ZhNinINiq2Y7Zgti32Y7YuSDZhdmQ2YYg2YHZjti22YTZkNmD2Y4g2LHZjtis2KfYptmK2Iwg2YjZjtin2YPZgdmQ2YbZiiDYtNmO2LHZjtmRINin2YTYrNmQ2YbZkNmRINmI2Y7Yp9mE2KXZhtiz2ZAg2YXZkNmGINij2LnYr9in2KbZii4g2YrYpyDYs9mO2LHZiti52Y4g2KfZhNix2ZDZkdi22Kcg2KfYutmB2ZDYsSDZhNmQ2YXZjtmGINmE2Kcg2YrZjtmF2YTZkNmD2Y8g2KXZhNin2ZEg2KfZhNiv2Y/Zkdi52KfYodmO2Iwg2YHZjtil2YbZjtmR2YPZjiDZgdmO2LnZjtmR2KfZhNmMINmE2ZDZhdinINiq2Y7YtNin2KHZj9iMINmK2Kcg2YXZjtmGINin2LPZhdmP2YfZjyDYr9mO2YjYp9ih2YzYjCDZiNmO2LDZkNmD2LHZj9mH2Y8g2LTZkNmB2KfYodmM2Iwg2YjZjti32KfYudmO2KrZj9mH2Y8g2LrZkNmG2YnZi9iMINin2LHYrdmO2YUg2YXZjtmGINix2Y7Yo9iz2Y8g2YXYp9mE2ZDZh9mQINin2YTYsdmO2ZHYrNin2KHZjyDZiNmO2LPZkNmE2KfYrdmP2YfZjyDYp9mE2KjZj9mD2KfYodmP2Iwg2YrYpyDYs9mO2KfYqNmQ2LrZjiDYp9mE2YbZkNmR2LnZjtmF2ZDYjCDZitinINiv2KfZgdmQ2LnZjiDYp9mE2YbZkNmR2YLZjtmF2ZDYjCDZitinINmG2YjYsdmOINin2YTZhdmP2LPYqtmO2YjYrdmQ2LTZitmG2Y4g2YHZiiDYp9mE2LjZj9mR2YTZjtmF2ZDYjCDZitinINi52KfZhNmQ2YXYp9mLINmE2Kcg2YrZj9i52Y7ZhNmO2ZHZhdmP2Iwg2LXZjtmE2ZDZkSDYudmO2YTZiSDZhdmP2K3ZjtmF2Y7Zkdiv2Y0g2YjZjtii2YTZkCDZhdmP2K3ZjtmF2Y7Zkdiv2Y3YjCDZiNmO2KfZgdi52Y7ZhCDYqNmKINmF2Kcg2KPZhtiq2Y4g2KPZh9mE2Y/Zh9mP2Iwg2YjZjti12Y7ZhNmO2ZHZiSDYp9mE2YTZh9mPINi52Y7ZhNmJINix2Y7Ys9mI2YTZkNmH2ZAg2YjZjtin2YTYo9im2ZDZhdmO2ZHYqdmQINin2YTZhdmO2YrYpyDZhdmK2YbZkCDZhdmQ2YYg2KLZhNmQ2YfZkCDZiNmO2LPZjtmE2Y7ZkdmF2Y4g2KrZjtiz2YTZitmF2KfZiy4KCvCfk5og2KfZhNmF2LXYr9ixIDog2YXZg9iq2KjYqSDYp9mE2KXZhdin2YUg2YXZiNiz2Ykg2KfZhNmD2KfYuNmFINi52YTZitmHINin2YTYs9mE2KfZhQo=</script>
-<script>
-
-const TEXTS={
-ar:{
-menu:"القائمة",siteName:"طريق الحسين",navHome:"الرئيسية",navWho:"من هو الإمام الحسين (ع)",navWhy:"على ماذا قُتل الإمام الحسين (ع)",navKarbala:"ماذا حدث في كربلاء",navWalk:"لماذا يمشي الناس إلى كربلاء",navAshura:"زيارة عاشوراء",navDuas:"الأدعية",navAhl:"تعرف على أهل البيت (عليهم السلام)",navGift:"إهداء الثواب",navSources:"المصادر",
-heroTitle:"طريق الحسين",heroText:"دليل تعريفي عن الإمام الحسين (ع) ونهضته المباركة وزيارة الأربعين.",
-whoTitle:"من هو الإمام الحسين (ع)",whoText:"الإمام الحسين بن علي بن أبي طالب (عليه السلام)، سبط رسول الله محمد (صلى الله عليه وآله)، وثالث أئمة أهل البيت (عليهم السلام). عُرف بموقفه العظيم في نصرة الحق ورفض الظلم، وأصبحت نهضته مدرسة للحرية والكرامة والإصلاح.",
-whyTitle:"على ماذا قُتل الإمام الحسين (ع)",whyText:"قُتل الإمام الحسين (عليه السلام) لأنه رفض مبايعة الظلم والانحراف، وخرج طالباً للإصلاح في أمة جده رسول الله (صلى الله عليه وآله)، آمراً بالمعروف وناهياً عن المنكر، ومؤكداً أن الكرامة والحق لا يُباعان بالخوف أو المصلحة.",
-karbalaTitle:"ماذا حدث في كربلاء",karbalaText:"في أرض كربلاء سنة 61 هـ، واجه الإمام الحسين (عليه السلام) وأهل بيته وأصحابه جيشاً كبيراً بعد أن مُنعوا من الماء وحوصروا. وقدّموا أعظم صور الصبر والإيمان والثبات حتى استشهد الإمام الحسين (ع) وأصحابه، وبقيت كربلاء رمزاً للحق أمام الظلم.",
-walkTitle:"لماذا يمشي الناس إلى كربلاء",walkText:"يمشي المؤمنون إلى كربلاء في زيارة الأربعين تعبيراً عن الولاء للإمام الحسين (عليه السلام)، وتجديداً للعهد مع قيمه في الإصلاح والعدل والرحمة. كما تمثل المسيرة صورة عظيمة للتعاون والخدمة والتواضع بين الناس.",
-ashuraTitle:"زيارة عاشوراء",ashuraIntro:"زيارة مباركة تُقرأ لاستذكار موقف الإمام الحسين (عليه السلام) والتعبير عن الولاء والبراءة من الظلم.",ashuraDesc:"يمكن قراءة نص الزيارة في صفحة مستقلة مع أدوات تكبير وتصغير ونسخ النص.",showAshura:"عرض نص زيارة عاشوراء كاملة",
-duasTitle:"الأدعية",showDua:"عرض الدعاء كاملاً",duaFaraj:"دعاء الفرج",duaFarajDesc:"دعاء للتوسل بتعجيل فرج الإمام المهدي (عج).",duaTawassul:"دعاء التوسل",duaTawassulDesc:"دعاء معروف في التوسل بأهل البيت (عليهم السلام).",duaAhd:"دعاء العهد",duaAhdDesc:"دعاء يجدد العهد مع الإمام المهدي (عج).",duaKumayl:"دعاء كميل",duaKumaylDesc:"دعاء عظيم في المناجاة وطلب الرحمة والمغفرة.",
-ahlTitle:"تعرف على أهل البيت (عليهم السلام)",giftTitle:"إهداء الثواب",photoPending:"",giftText:"يُهدى ثواب هذا العمل المتواضع إلى أرواح المرحومين والشهيد المذكورين، سائلين الله تعالى أن يتغمدهم بواسع رحمته، وأن يجعل هذا العمل ذخراً لهم ولخدمة زوار الإمام الحسين (عليه السلام).",
-sourcesTitle:"المصادر",sourcesText:"قائمة أولية قابلة للإضافة والتعديل مستقبلاً.",footerText:"تم إنشاء هذا العمل خدمةً لزوار الإمام الحسين (عليه السلام) وإهداءً للثواب إلى أرواح المرحومين والشهيد المذكورين في الموقع.",back:"العودة",fontUp:"تكبير الخط",fontDown:"تصغير الخط",copy:"نسخ النص"},
-en:{
-menu:"Menu",siteName:"Path of Hussain",navHome:"Home",navWho:"Who is Imam Hussain (peace be upon him)",navWhy:"Why Imam Hussain was martyred",navKarbala:"What happened in Karbala",navWalk:"Why people walk to Karbala",navAshura:"Ziyarat Ashura",navDuas:"Supplications",navAhl:"Ahl al-Bayt",navGift:"Dedication of reward",navSources:"Sources",
-heroTitle:"Path of Hussain",heroText:"An introductory guide about Imam Hussain, his blessed uprising, and the Arbaeen pilgrimage.",whoTitle:"Who is Imam Hussain (peace be upon him)",whoText:"Imam Hussain ibn Ali, the grandson of Prophet Muhammad and the third Imam of Ahl al-Bayt. His stand became a school of dignity, justice, reform, and resistance against oppression.",
-whyTitle:"Why Imam Hussain was martyred",whyText:"Imam Hussain refused to give legitimacy to oppression and deviation. He rose for reform, enjoining good and forbidding evil, and affirmed that dignity and truth cannot be sold for fear or interest.",karbalaTitle:"What happened in Karbala",karbalaText:"In Karbala in 61 AH, Imam Hussain, his family, and companions faced a large army after being surrounded and denied water. They showed patience, faith, and sacrifice until Imam Hussain and his companions were martyred.",
-walkTitle:"Why people walk to Karbala",walkText:"Believers walk to Karbala during Arbaeen as an expression of loyalty to Imam Hussain and a renewal of commitment to his values of justice, mercy, and reform.",ashuraTitle:"Ziyarat Ashura",ashuraIntro:"A blessed visitation recited to remember Imam Hussain’s stand and express loyalty to truth.",ashuraDesc:"You can read the full text in a separate reader page with font controls and copy option.",showAshura:"Show full Ziyarat Ashura",
-duasTitle:"Supplications",showDua:"Show full supplication",duaFaraj:"Dua al-Faraj",duaFarajDesc:"A supplication for the reappearance of Imam al-Mahdi.",duaTawassul:"Dua al-Tawassul",duaTawassulDesc:"A known supplication of seeking nearness through Ahl al-Bayt.",duaAhd:"Dua al-Ahd",duaAhdDesc:"A supplication renewing the pledge to Imam al-Mahdi.",duaKumayl:"Dua Kumayl",duaKumaylDesc:"A profound supplication of mercy and forgiveness.",
-ahlTitle:"Learn about Ahl al-Bayt",giftTitle:"Dedication of reward",photoPending:"Photo will be added later",giftText:"The reward of this humble work is dedicated to the souls of the deceased mentioned here. May Allah cover them with His vast mercy and make this work a provision for them and a service to the visitors of Imam Hussain.",sourcesTitle:"Sources",sourcesText:"An initial list that can be expanded later.",footerText:"This work was created in service of the visitors of Imam Hussain and dedicated as reward to the souls of the deceased mentioned in this website.",back:"Back",fontUp:"Larger font",fontDown:"Smaller font",copy:"Copy text"},
-fa:{
-menu:"فهرست",siteName:"راه حسین",navHome:"خانه",navWho:"امام حسین (ع) کیست",navWhy:"امام حسین (ع) برای چه شهید شد",navKarbala:"در کربلا چه گذشت",navWalk:"چرا مردم به کربلا پیاده می‌روند",navAshura:"زیارت عاشورا",navDuas:"دعاها",navAhl:"آشنایی با اهل بیت (ع)",navGift:"اهدای ثواب",navSources:"منابع",
-heroTitle:"راه حسین",heroText:"راهنمایی کوتاه درباره امام حسین (ع)، نهضت مبارک ایشان و زیارت اربعین.",whoTitle:"امام حسین (ع) کیست",whoText:"امام حسین بن علی (ع)، نوه پیامبر اسلام (ص) و سومین امام از اهل بیت (ع) است. قیام او مدرسه‌ای برای آزادی، کرامت، اصلاح و ایستادگی در برابر ستم شد.",whyTitle:"امام حسین (ع) برای چه شهید شد",whyText:"امام حسین (ع) به دلیل نپذیرفتن ظلم و انحراف، برای اصلاح امت جدش قیام کرد و نشان داد که حق و کرامت با ترس و مصلحت‌جویی معامله نمی‌شود.",karbalaTitle:"در کربلا چه گذشت",karbalaText:"در کربلا سال ۶۱ هجری، امام حسین (ع)، اهل بیت و یارانش با سپاهی بزرگ روبه‌رو شدند؛ پس از محاصره و منع آب، با صبر و ایمان به شهادت رسیدند و کربلا نماد حق در برابر باطل شد.",walkTitle:"چرا مردم به کربلا پیاده می‌روند",walkText:"مؤمنان در اربعین برای اظهار وفاداری به امام حسین (ع) و تجدید پیمان با ارزش‌های عدالت، رحمت و اصلاح به سوی کربلا پیاده می‌روند.",ashuraTitle:"زیارت عاشورا",ashuraIntro:"زیارتی پربرکت برای یادآوری موضع امام حسین (ع) و اعلام وفاداری به حق.",ashuraDesc:"متن زیارت در صفحه جداگانه با امکان بزرگ‌نمایی، کوچک‌نمایی و کپی متن نمایش داده می‌شود.",showAshura:"نمایش متن کامل زیارت عاشورا",
-duasTitle:"دعاها",showDua:"نمایش کامل دعا",duaFaraj:"دعای فرج",duaFarajDesc:"دعایی برای تعجیل فرج امام مهدی (عج).",duaTawassul:"دعای توسل",duaTawassulDesc:"دعایی مشهور در توسل به اهل بیت (ع).",duaAhd:"دعای عهد",duaAhdDesc:"دعایی برای تجدید عهد با امام مهدی (عج).",duaKumayl:"دعای کمیل",duaKumaylDesc:"دعایی بزرگ برای مناجات، رحمت و آمرزش.",ahlTitle:"آشنایی با اهل بیت (ع)",giftTitle:"اهدای ثواب",photoPending:"عکس بعداً افزوده می‌شود",giftText:"ثواب این کار متواضعانه به ارواح درگذشتگان ذکر شده اهدا می‌شود. از خداوند می‌خواهیم آنان را مشمول رحمت گسترده خود قرار دهد و این کار را ذخیره‌ای برای آنان و خدمتی به زائران امام حسین (ع) قرار دهد.",sourcesTitle:"منابع",sourcesText:"فهرست اولیه قابل افزایش و ویرایش در آینده.",footerText:"این کار برای خدمت به زائران امام حسین (ع) و اهدای ثواب به ارواح درگذشتگان ذکر شده در سایت ایجاد شده است.",back:"بازگشت",fontUp:"بزرگ کردن خط",fontDown:"کوچک کردن خط",copy:"کپی متن"}
-};
-
-
-const AHL={
-ar:[["النبي محمد (ص)","رسول الله وخاتم الأنبياء، أصل الرسالة والرحمة للعالمين."],["السيدة فاطمة الزهراء (ع)","سيدة نساء العالمين وبضعة رسول الله (ص)."],["الإمام علي (ع)","أمير المؤمنين وأول الأئمة من أهل البيت (ع)."],["الإمام الحسن (ع)","سبط النبي وثاني الأئمة، عُرف بالحلم والصلح."],["الإمام الحسين (ع)","سيد الشهداء وصاحب نهضة كربلاء."],["الإمام علي بن الحسين (ع)","زين العابدين، إمام السجود والدعاء."],["الإمام محمد الباقر (ع)","باقر علوم الأولين والآخرين."],["الإمام جعفر الصادق (ع)","ناشر علوم أهل البيت ومؤسس مدرسة علمية كبرى."],["الإمام موسى الكاظم (ع)","عُرف بالصبر وكظم الغيظ والعبادة."],["الإمام علي الرضا (ع)","إمام الرحمة والعلم والمناظرات."],["الإمام محمد الجواد (ع)","إمام الجود والعلم رغم صغر سنه."],["الإمام علي الهادي (ع)","إمام الهدى والثبات."],["الإمام الحسن العسكري (ع)","إمام التقوى والتمهيد للغيبة."],["الإمام المهدي (عج)","الإمام المنتظر الذي يملأ الأرض قسطاً وعدلاً."]],
-en:[["Prophet Muhammad","The Messenger of Allah and the source of mercy and guidance."],["Lady Fatimah al-Zahra","The daughter of the Prophet and the Lady of the women of the worlds."],["Imam Ali","Commander of the Faithful and the first Imam."],["Imam Hasan","The second Imam, known for wisdom and peace."],["Imam Hussain","The Master of Martyrs and the symbol of Karbala."],["Imam Ali Zayn al-Abidin","The Imam of worship and supplication."],["Imam Muhammad al-Baqir","Known for opening the doors of knowledge."],["Imam Ja'far al-Sadiq","A great teacher of Islamic knowledge."],["Imam Musa al-Kadhim","Known for patience and worship."],["Imam Ali al-Ridha","Known for knowledge, mercy, and dialogue."],["Imam Muhammad al-Jawad","Known for generosity and knowledge."],["Imam Ali al-Hadi","Known for guidance and steadfastness."],["Imam Hasan al-Askari","Known for piety and preparation for the occultation."],["Imam al-Mahdi","The awaited Imam who will fill the earth with justice."]],
-fa:[["پیامبر محمد (ص)","فرستاده خدا و سرچشمه رحمت و هدایت."],["حضرت فاطمه زهرا (ع)","دختر پیامبر و بانوی زنان جهان."],["امام علی (ع)","امیرالمؤمنین و نخستین امام."],["امام حسن (ع)","دومین امام، شناخته‌شده به حلم و صلح."],["امام حسین (ع)","سیدالشهدا و نماد کربلا."],["امام سجاد (ع)","امام عبادت و دعا."],["امام محمد باقر (ع)","گشاینده علوم و معارف."],["امام جعفر صادق (ع)","آموزگار بزرگ معارف اهل بیت."],["امام موسی کاظم (ع)","شناخته‌شده به صبر و عبادت."],["امام رضا (ع)","امام علم، رحمت و گفت‌وگو."],["امام محمد جواد (ع)","امام جود و دانش."],["امام علی هادی (ع)","امام هدایت و پایداری."],["امام حسن عسکری (ع)","امام تقوا و زمینه‌ساز غیبت."],["امام مهدی (عج)","امام منتظر که زمین را پر از عدل می‌کند."]]
-};
-
-const READER_TEXTS={ashura:["زيارة عاشوراء",""],faraj:["دعاء الفرج",""],tawassul:["دعاء التوسل",""],ahd:["دعاء العهد",""],kumayl:["دعاء كميل",""]};
-
-
-let currentLang='ar', readerFont=22;
-function setLang(lang){
-  currentLang=lang;
-  document.documentElement.lang=lang;
-  document.documentElement.dir=(lang==='en')?'ltr':'rtl';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key=el.dataset.i18n;
-    if(TEXTS[lang] && TEXTS[lang][key]) el.textContent=TEXTS[lang][key];
-  });
-  document.querySelectorAll('.langs button').forEach(b=>b.classList.remove('active'));
-  const buttons=document.querySelectorAll('.langs button');
-  const idx={ar:0,en:1,fa:2}[lang];
-  if(buttons[idx]) buttons[idx].classList.add('active');
-  renderAhl();
-}
-function renderAhl(){
-  const grid=document.getElementById('ahlGrid');
-  if(!grid) return;
-  grid.innerHTML=AHL[currentLang].map(p=>`
-    <div class="card">
-      <h3>${p[0]}</h3>
-      <p>${p[1]}</p>
-      <button class="btn read-btn">${currentLang==='en'?'Read more':currentLang==='fa'?'بیشتر بخوانید':'اقرأ المزيد'}</button>
-    </div>`).join('');
-}
-function toggleMenu(){document.getElementById('sideMenu').classList.toggle('show')}
-function toggleTheme(){document.body.dataset.theme=document.body.dataset.theme==='dark'?'light':'dark'}
-function decodeB64Utf8(raw){
-  const binary=atob(raw.trim());
-  const bytes=new Uint8Array(binary.length);
-  for(let i=0;i<binary.length;i++){bytes[i]=binary.charCodeAt(i);}
-  return new TextDecoder('utf-8').decode(bytes);
-}
-function openReader(key){
-  const data=READER_TEXTS[key];
-  document.getElementById('readerTitle').textContent=data[0];
-  let readerContent=data[1];
-  if(key==='ashura' && document.getElementById('ashuraFullTextData')){
-    readerContent=decodeB64Utf8(document.getElementById('ashuraFullTextData').textContent);
-  }
-  if(key==='faraj' && document.getElementById('farajFullTextData')){
-    readerContent=decodeB64Utf8(document.getElementById('farajFullTextData').textContent);
-  }
-  if(key==='tawassul' && document.getElementById('tawassulFullTextData')){
-    readerContent=decodeB64Utf8(document.getElementById('tawassulFullTextData').textContent);
-  }
-  if(key==='ahd' && document.getElementById('ahdFullTextData')){
-    readerContent=decodeB64Utf8(document.getElementById('ahdFullTextData').textContent);
-  }
-  if(key==='kumayl' && document.getElementById('kumaylFullTextData')){
-    readerContent=decodeB64Utf8(document.getElementById('kumaylFullTextData').textContent);
-  }
-  document.getElementById('readerText').textContent=readerContent;
-  const source=document.getElementById('readerSource');
-  if(source){
-    if(key==='ashura'){source.style.display='block';source.textContent='📚 المصدر: إذاعة طهران العربية - زيارة عاشوراء'}
-    else if(key==='faraj'){source.style.display='block';source.textContent='📚 المصدر: مركز الدراسات التخصصية في الإمام المهدي'}
-    else if(key==='tawassul'){source.style.display='block';source.textContent='📚 المصدر: إذاعة طهران العربية - دعاء التوسل'}
-    else if(key==='ahd'){source.style.display='block';source.textContent='📚 المصدر: حقيقة المؤمن'}
-    else if(key==='kumayl'){source.style.display='block';source.textContent='📚 المصدر: مكتبة الإمام موسى الكاظم عليه السلام'}
-    else{source.style.display='none';source.textContent=''}
-  }
-  document.getElementById('reader').classList.add('show');
-}
-function closeReader(){document.getElementById('reader').classList.remove('show')}
-function changeFont(delta){
-  readerFont=Math.max(18,Math.min(36,readerFont+delta));
-  document.querySelector('.reader-body').style.setProperty('--reader-font',readerFont+'px');
-}
-function copyReader(){
-  const txt=document.getElementById('readerText').textContent;
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt).then(()=>alert(currentLang==='en'?'Text copied':currentLang==='fa'?'متن کپی شد':'تم نسخ النص'));
-  }else{
-    const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
-    alert(currentLang==='en'?'Text copied':currentLang==='fa'?'متن کپی شد':'تم نسخ النص');
-  }
-}
-setLang('ar');
-
-</script>
-
-
-
-
-
-<div id="ahlModal" aria-hidden="true">
-  <div class="ahl-modal-box" role="dialog" aria-modal="true">
-    <div class="ahl-modal-head">
-      <h2 id="ahlModalTitle">تعرف على أهل البيت</h2>
-      <button class="btn primary" type="button" id="ahlCloseBtn">إغلاق</button>
-    </div>
-    <div id="ahlModalText"></div>
-    <div class="ahl-modal-actions">
-      <button class="btn primary" type="button" id="ahlCopyBtn">نسخ النص</button>
-      <button class="btn" type="button" id="ahlCloseBtn2">العودة</button>
-    </div>
-  </div>
-</div>
-
-<script id="ahlFinalData" type="application/json">{"prophet": {"title": "النبي محمد (صلى الله عليه وآله)", "text": "النبي محمد (صلى الله عليه وآله) عند الشيعة هو خاتم الأنبياء وأشرف الخلق، وأول من خلق الله نوره. وهو المُبلّغ المعصوم للرسالة الإلهية، وقائد الأمة ومُبيّن الشريعة. وقد اصطفاه الله ليكون القدوة المطلقة، وشخصية محورية في هداية البشرية.\n\nيُعرف النبي (صلى الله عليه وآله) في المصادر الشيعية (مثل مدرسة أهل البيت وموسوعة ويكي شيعة) عبر الجوانب التالية:\n\n1. النسب والولادة\n\nالنسب: هو محمد بن عبد الله بن عبد المطلب بن هاشم (وينتهي نسبه الشريف إلى نبي الله إبراهيم عليه السلام).\n\nالولادة: ولد في مكة المكرمة، والمشهور عند الشيعة أن ولادته كانت في 17 ربيع الأول من عام الفيل (المصادف لسنة 571 ميلادية).\n\n2. العصمة والمقام الروحي\n\nالعصمة المطلقة: يعتقد الشيعة بعصمة النبي (صلى الله عليه وآله) عن الخطأ، والنسيان، والذنوب (صغائرها وكبائرها) طيلة حياته، سواء قبل البعثة أو بعدها.\n\nالنورانية: تؤكد بعض النصوص العقائدية أن الله خلق نور النبي محمد (صلى الله عليه وآله) قبل خلق الخلائق كلها، وكان هذا النور يتنقل في الأصلاب الطاهرة.\n\n3. الألقاب والصفات\n\nألقابه: المصطفى، الأمين، خاتم النبيين، المختار، ورحمة للعالمين.\n\nأخلاقه: عُرف بالصدق والأمانة منذ شبابه، وكان مضرب المثل في الحكمة، ورعاية الفقراء، ونصرة المظلومين (مثل حلف الفضول).\n\n4. خصائص النبوة والإمامة\n\nالنبوة كأصل من أصول الدين: تُعد النبوة الأصل الثالث من أصول الدين عند الشيعة.\n\nالولاية والتشريع: النبي هو المشرّع بإذن الله، وتُعتبر سنته (أقواله وأفعاله وتقريراته) المصدر الثاني للتشريع بعد القرآن الكريم. كما يُعتقد أن النبي (صلى الله عليه وآله) هو من نصّب الإمام علي بن أبي طالب (عليه السلام) والأئمة من بعده أئمةً وخلفاء للأمة."}, "fatima": {"title": "السيدة فاطمة الزهراء (عليها السلام)", "text": "السيدة فاطمة الزهراء (عليها السلام) هي بنت النبي محمد (ص)، وأمها السيدة خديجة، وزوجها الإمام علي بن أبي طالب. وتُعد في المصادر الشيعية سيدة نساء العالمين، وأحد أصحاب الكساء المعصومين، ومحور \"الإمامة\" لكونها أم الأئمة.\n\nأبرز ألقابها ومعانيها\n\nالزهراء: لِما كانت تزهو به من النور في العبادة.\n\nالبتول: لانقطاعها عن نساء زمانها فضلاً وديناً، ولانقطاعها عن الدنيا إلى الله.\n\nأم أبيها: لكثرة ما أظهرته من الرعاية والحنان للنبي (ص) بعد وفاة أمها.\n\nمكانتها في الفكر الشيعي\n\nالعصمة والمقام الروحي: يعتقد الشيعة الإمامية بعصمتها المطلقة، وتعتبر الأحاديث في ويكي شيعة أنها سُميت فاطمة لأن الله فطمها (أبعدها) ومحبيها عن النار.\n\nحديث الكساء والمباهلة: هي المرأة الوحيدة التي اصطحبها النبي (ص) في حادثة \"المباهلة\" مع نصارى نجران.\n\nمصحف فاطمة: تذكر كتب الحديث الشيعي أن الله ألهمها علماً ومعرفة بعد وفاة أبيها، دُوِّن في كتاب يُعرف بمصحف فاطمة."}, "ali": {"title": "الإمام علي بن أبي طالب (عليه السلام)", "text": "اسمه: علي بن ابي طالب (عليه السلام).\n\nأبوه: أبو طالب (عبد مناف) وقيل: (عمران).\n\nأمه: فاطمة بنت أسد بن هاشم.\n\nجده: عبد المطلب بن هاشم.\n\nاخوته: طالب، عقيل، جعفر.\n\nأخواته: أم هاني، جمانة.\n\nولادته: ولد (عليه السلام) يوم الجمعة في الثالث عشر من شهر رجب في الكعبة المكرمة بعد مولد الرسول الأعظم (صلى الله عليه وآله) بثلاثين سنة.\n\nإسلامه: هو أول من أسلم.\n\nكناه: أبو الحسن، أبو الحسين، أبو السبطين، أبو الريحانتين، أبو تراب (كناه بها رسول الله (صلى الله عليه وآله)).\n\nألقابه: أمير المؤمنين، المرتضى، الوصي، حيدرة، يعسوب المؤمنين، يعسوب الدين.\n\nخصائصه:\n\n1- ولد في الكعبة ولم يولد بها أحد قبله ولا بعده.\n\n2- آخى رسول الله (صلى الله عليه وآله) بينه وبين علي (عليه السلام) لما آخى بين المسلمين.\n\n3- حامل لواء رسول الله (صلى الله عليه وآله).\n\n4- أمرَّه رسول الله (صلى الله عليه وآله) في بعض سراياه ولم يجعل عليه أميراً.\n\n5- بلغ عن الرسول (صلى الله عليه وآله) سورة البراءة.\n\nبيعته: بويع له بالخلافة في الثامن من ذي الحجة في السنة العاشرة من الهجرة في (غدير خم) بأمر الرسول الأعظم (صلى الله عليه وآله)، واستلم الحكم في ذي الحجة في السنة الخامسة والثلاثين من الهجرة.\n\nعاصمته: الكوفة.\n\nشهادته: ضربه عبد الرحمن بن ملجم المرادي الخارجي (لعنه الله) في ليلة تسع عشرة من شهر رمضان سنة أربعين من الهجرة أثناء اشتغاله بصلاة الفجر في مسجد الكوفة، واستشهد في ليلة إحدى وعشرين من شهر رمضان حيث الفاجعة العظمى.\n\nحروبه: الجمل، صفين، النهروان.\n\nرايته: راية رسول الله (صلى الله عليه وآله).\n\nمن آثاره: نهج البلاغة.\n\nقبره: دفنه الإمام الحسن (عليه السلام) في الغري (النجف الأشرف)، وأخفى الإمام قبره مخافة الخوارج ومعاوية، واليوم قبره ينافس السماء سمواً وعلواً، على أعتابه يتكدس الذهب، ويتنافس المسلمون في زيارته من جميع أنحاء العالم الإسلامي."}, "hasan": {"title": "الإمام الحسن المجتبى (عليه السلام)", "text": "الإمام الحسن (عليه السلام) في المصادر الشيعية هو ثاني أئمة أهل البيت (عليهم السلام)، وأحد أصحاب الكساء، وسبط النبي محمد (ص) وسيد شباب أهل الجنة. وهو ابن الإمام علي بن أبي طالب والسيدة فاطمة الزهراء.\n\nالبطاقة التعريفية\n\nالاسم والنسب: الحسن بن علي بن أبي طالب.\n\nألقابه: الزكي، المجتبى، وكريم أهل البيت.\n\nولادته: وُلد في المدينة المنورة منتصف شهر رمضان المبارك في السنة الثالثة للهجرة.\n\nوفاته (شهادته): استُشهد في صفر سنة 50 هـ، ودُفن في مقبرة البقيع بالمدينة المنورة.\n\nمدة الإمامة: 10 سنوات (من سنة 40 إلى 50 هـ).\n\nمكانته وسيرته في الفكر الشيعي\n\nالنص والإمامة: يعتقد الشيعة أن إمامته ثابتة بنص إلهي وبوصاية من أبيه الإمام علي (عليه السلام).\n\nكريم أهل البيت: عُرف بسخائه وكرمه المطلق، حيث تذكر المصادر أنه قاسم الله أمواله وتصدق بجميع ما يملك في سبيل الله مرتين.\n\nصلح الحسن (معاوية): يُنظر إلى \"صلح الحسن\" مع معاوية بن أبي سفيان في المصادر الشيعية على أنه \"فتح أعظم\" وحفظ لدماء المسلمين، وكشف لزيف الطرف الآخر وحقائق الحكم، حيث كان الصلح خياراً إلهياً تقتضيه مصلحة الأمة في ذلك الوقت وتهيئةً لثورة أخيه الإمام الحسين (عليه السلام)."}, "hussain": {"title": "الإمام الحسين بن علي (عليه السلام)", "text": "الإمام الحسين بن علي عليه السلام في الفكر الشيعي هو ثالث الأئمة الاثني عشر، وسبط النبي محمد، وخامس أصحاب الكساء. جسّد ثورة كربلاء الخالدة ضد الظلم، ويُعتبر في الموروث الشيعي رمزاً للفداء، والإباء، وإماماً مفترض الطاعة بنصّ الرسول.\n\nلخصت المصادر الشيعية المعتمدة سيرته ومقامه وفقاً للتفاصيل الموثقة في ويكي شيعة:\n\nنسبه الشريف\n\nالأب: الإمام علي بن أبي طالب (عليه السلام).\n\nالأم: السيدة فاطمة الزهراء (عليها السلام) ابنة رسول الله محمد (صلى الله عليه وآله).\n\nالأخ: الإمام الحسن المجتبى (عليه السلام).\n\nمكانته ومقامه\n\nأحد المعصومين: يعتقد الشيعة بعصمته المطلقة كونه أحد المعصومين الأربعة عشر.\n\nسيّد شباب أهل الجنة: لُقّب بذلك مع أخيه الحسن بنصّ صريح من النبي محمد.\n\nالإمامة: انتقلت إليه الإمامة بعد استشهاد أخيه الإمام الحسن (عليه السلام) عام 50 للهجرة.\n\nأبرز ألقابه\n\nسيّد الشهداء: لمقامه العظيم وتضحيته الكبرى.\n\nأبو الأحرار: لدوره في النهضة ضد الظلم.\n\nثار الله: تعبيراً عن قدسية دمه وأنه لا يطلب بثأره إلا الله تعالى أو وليه.\n\nواقعة الطف (استشهادُه)\n\nاستُشهد في العاشر من المحرم (عاشوراء) عام 61 للهجرة في معركة كربلاء، بعد رفضه مبايعة يزيد بن معاوية. ويعدّ الشيعة مقتله مصيبة عظمى أحدثت أثراً عميقاً في الوجدان الشيعي، حيث يقيمون مراسم العزاء سنوياً إحياءً لقضيته ومبادئه."}, "sajjad": {"title": "الإمام علي زين العابدين (عليه السلام)", "text": "الإمام زين العابدين عليه السلام هو علي بن الحسين بن علي بن أبي طالب. رابع أئمة أهل البيت عند الشيعة، والمعروف بـ \"السجاد\" و\"سيد العابدين\". تولى الإمامة بعد استشهاد أبيه في واقعة كربلاء عام 61 هـ، وقاد مسيرة الإصلاح العقائدي والأخلاقي في أصعب مراحل التاريخ الإسلامي.\n\nالبطاقة الشخصية\n\nالولادة: وُلد في المدينة المنورة عام 38 هـ (وقيل عام 36 هـ).\n\nالألقاب: السجاد، زين العابدين، سيد العابدين، ذو الثفنات (لكثرة سجوده).\n\nالأم: السيدة شاه زنان (شهربانو) بنت يزدجرد آخر ملوك الفرس.\n\nالوفاة: استُشهد في المدينة المنورة مسموماً عام 95 هـ، ودُفن في بقيع الغرقد.\n\nأدواره ومكانته عند الشيعة\n\nيُعد الإمام زين العابدين شخصية محورية في الفكر الشيعي، وقد برز دوره في عدة جوانب:\n\nالبقاء في كربلاء: حضر واقعة الطف وعاش مأساة مقتل أبيه وأهل بيته، وكان مريضاً منعه المرض من القتال، مما أبقاه حياً ليحمل راية الإمامة.\n\nالنهضة الثقافية والدعاء: واجه طغيان السلطة الأموية باستخدام سلاح \"الدعاء\" كوسيلة للتربية الروحية والتوعية السياسية. ويُعد كتابه الأشهر الصحيفة السجادية مرجعاً عظيماً في التربية والأخلاق ومعرفة الله.\n\nرسالة الحقوق: يُنسب إليه رسالة الحقوق الشهيرة، وهي وثيقة إسلامية متكاملة تضع دستوراً للتعامل مع الله، النفس، والناس.\n\nرعاية الفقراء والعبيد: عُرف بتفقد الفقراء سراً، وكان يشتري العبيد ويعتقهم في سبيل الله بعد تعليمهم وتربيتهم."}, "baqir": {"title": "الإمام محمد الباقر (عليه السلام)", "text": "الإمام محمد الباقر عليه السلام هو الإمام الخامس من أئمة أهل البيت (عليهم السلام). وُلد في المدينة المنورة عام 57 هـ، واستُشهد فيها عام 114 هـ. يُعدّ أول هاشمي وعلوي تجتمع له ولادة من أبوين حسنيّ وحسينيّ.\n\nفي المصادر الشيعية، تبرز شخصيته ومكانته عبر عدة جوانب أساسية:\n\n1. لقبه ودلالته (باقر العلم)\n\nمعناه: لُقّب بـ \"الباقر\" لأنه بقر العلم بقراً؛ أي شقّه وأظهره ووضّح أصوله وخفاياه.\n\nالبشارة: يُشير الموروث الشيعي إلى أن النبي محمد (صلى الله عليه وآله) تنبأ بظهوره ولقّبه بهذا الاسم قبل ولادته بعشرات السنين عبر الصحابي جابر بن عبد الله الأنصاري.\n\n2. عصر الإمام والدور العلمي\n\nالتأسيس العلمي: عاش الإمام الباقر (ع) في مرحلة انتقالية شهدت ضعف الدولة الأموية، مما أتاح له الفرصة لتأسيس مدرسة فقهية وعلمية كبرى في الإسلام.\n\nالروايات: نُقلت عنه آلاف الأحاديث في الفقه، التفسير، الأخلاق، وعلم الكلام، واشتهر من تلامذته رواة كبار مثل محمد بن مسلم وجابر بن يزيد الجعفي.\n\n3. نسبه الطاهر\n\nالأب: الإمام علي بن الحسين السجاد (زين العابدين) عليه السلام.\n\nالأم: السيدة فاطمة بنت الإمام الحسن المجتبى عليها السلام.\n\n4. كنيته ومدفنه\n\nكنيته: أبو جعفر (وهي الكنية المشهورة في كتب الحديث).\n\nمكان الدفن: مرقده الشريف موجود في مقبرة البقيع بالمدينة المنورة، والتي تضم أيضاً قبور آبائه وأبنائه الأئمة (عليهم السلام)."}, "sadiq": {"title": "الإمام جعفر الصادق (عليه السلام)", "text": "الإمام جعفر الصادق (عليه السلام) هو الإمام السادس من أئمة أهل البيت المعصومين، وينسب إليه المذهب الشيعي الجعفري. ويُعرف في المصادر الشيعية بأنه \"رئيس المذهب\" والناشر الأكبر لعلوم الشريعة الإسلامية والفقه.\n\nإليك التفاصيل الأساسية عنه من منظور المصادر الشيعية:\n\n1. هويته\n\nنسبه: جعفر بن محمد الباقر بن علي السجاد بن الحسين الشهيد بن علي بن أبي طالب (عليهم السلام).\n\nألقابه: أشهرها \"الصادق\" لصدقه في مقاله وحديثه. كما يُلقب بـ الطاهر، الفاضل، والصابر.\n\nكنيته: أبو عبد الله.\n\nوالدته: أم فروة (فاطمة) بنت القاسم بن محمد بن أبي بكر.\n\n2. ولادته وشهادته\n\nولادته: وُلد في المدينة المنورة في 17 ربيع الأول عام 83 هـ (ويذكر بعض المؤرخين الشيعة روايات أخرى بأنه وُلد سنة 80 هـ).\n\nشهادته: استُشهد مسموماً في المدينة المنورة في شهر شوال سنة 148 هـ على يد الخليفة العباسي \"أبو جعفر المنصور\"، ودُفن في مقبرة البقيع.\n\n3. مكانته ودوره في المذهب الشيعي\n\nالإمامة: تقلّد الإمامة بعد أبيه الإمام محمد الباقر (عليه السلام) لمدة 34 عاماً.\n\nالمدرسة الجعفرية: استغل الإمام الصادق فترة الضعف والانتقال السياسي بين الدولة الأموية والدولة العباسية لتأسيس أكبر جامعة إسلامية. وتخرّج من مدرسته آلاف المحدثين والفقهاء (مثل أبو حنيفة ومالك بن أنس)، ولذلك يُسمى الفقه الشيعي بـ الفقه الجعفري نسبةً إليه.\n\nالنص عليه: ينص المصدر الشيعي على إمامته استناداً إلى الوصية والنصوص النبوية الدالة على عصمة أئمة أهل البيت."}, "kazim": {"title": "الإمام موسى الكاظم (عليه السلام)", "text": "الإمام موسى الكاظم (عليه السلام) هو سابع أئمة أهل البيت، ومؤسس المدرسة الأخلاقية والمعرفية في عصره. يُعرف في الموروث الشيعي بـ \"العبد الصالح\" و\"باب الحوائج\"، لُقب بـ \"الكاظم\" لكثرة تجاوزه وحلمه، ويمثل شخصية محورية في التاريخ الإسلامي.\n\nإليك التفاصيل والمعلومات البارزة عنه من المصادر الشيعية المعتمدة:\n\nفي سطور\n\nالاسم الكامل: موسى بن جعفر بن محمد بن علي بن الحسين بن علي بن أبي طالب.\n\nالألقاب: الكاظم، العبد الصالح، باب الحوائج، زين المجتهدين، والوفي.\n\nالكنى: أبو إبراهيم، وأبو الحسن الأول.\n\nالولادة والوفاة: وُلد في منطقة \"الأبواء\" (بين مكة والمدينة) عام 128 هـ، واستُشهد مسموماً في سجن السندي بن شاهك ببغداد عام 183 هـ، ودُفن في مقبرة قريش (مدينة الكاظمية حالياً).\n\nفترة الإمامة: امتدت إمامته 35 عاماً، بعد استشهاد أبيه الإمام جعفر الصادق (عليه السلام) عام 148 هـ.\n\nسماته وعبادته\n\nعُرف الإمام الكاظم (عليه السلام) بغزارة العلم، والسخاء، وكثرة العبادة حتى عُرف بـ \"زين المجتهدين\". عاصر قمة طغيان الدولة العباسية (المنصور، المهدي، الهادي، وهارون الرشيد)، وتعرّض للاضطهاد والسجن عدة مرات بسبب المكانة العلمية والدينية الكبيرة التي كان يحظى بها والتي كانت تقلق السلطة الحاكمة.\n\nالمصادر الشيعية والمراجع\n\nأصول الكافي: كتاب الحديث الأبرز الذي ينقل الكثير من توجيهاته، وفقهه، وحكمه في مختلف أبواب الدين.\n\nعيون أخبار الرضا: للشيخ الصدوق، والذي يوثق سيرته والأحاديث المروية عنه.\n\nالإرشاد: للشيخ المفيد، يُعد مرجعاً رئيسياً في إثبات النص على إمامته وسيرته وتاريخ استشهاده."}, "ridha": {"title": "الإمام علي الرضا (عليه السلام)", "text": "الإمام علي الرضا (عليه السلام) هو الإمام الثامن من أئمة أهل البيت الاثني عشر عند الشيعة الجعفرية. عُرف بغزارة العلم، والتقوى، والمناظرات التي جمعته مع علماء الأديان المختلفة.\n\nإليك أبرز المحطات في سيرته من المصادر الشيعية:\n\nاسمه ونسبه: علي بن موسى بن جعفر بن محمد بن علي بن الحسين بن علي بن أبي طالب.\n\nألقابه: أشهرها \"الرضا\" لأنه رضي به الموافق والمخالف، ولقّب أيضاً بـ \"عالم آل محمد\" و\"غريب الغرباء\".\n\nولادته وإمامته: وُلد في المدينة المنورة سنة 148 هـ، وتولى الإمامة بعد استشهاد أبيه الإمام موسى الكاظم (عليه السلام) واستمرت إمامته 20 عاماً.\n\nعهده ووفاته: عاصر الخليفة العباسي المأمون الذي أجبره على الانتقال إلى خراسان وعيّنه ولياً للعهد في محاولة لاحتواء الثورات الشيعية. تُوفي مسموماً في طوس (مشهد حالياً) سنة 203 هـ، ودُفن هناك، ويُعد مرقده وجهة مقدسة لزيارة المسلمين.\n\nإرثه الفكري: اشتهر بمناظراته العلمية مع كبار فقهاء عصره وأصحاب الديانات الأخرى، ولعل أشهر أقواله هو حديث \"سلسلة الذهب\" في التوحيد وشرطها الأساسي."}, "jawad": {"title": "الإمام محمد الجواد (عليه السلام)", "text": "الإمام محمد الجواد (عليه السلام) هو الإمام التاسع من أئمة أهل البيت المعصومين لدى الشيعة الإثني عشرية. تولى الإمامة في سن مبكرة، وعُرف بسعة العلم، والمناظرات الناجحة مع كبار علماء عصره، وكثرة الإنفاق.\n\nبطاقة التعريف\n\nالاسم والنسب: محمد بن علي الرضا بن موسى الكاظم (عليهم السلام).\n\nأشهر الألقاب: الجواد، التقي، وباب المراد.\n\nالكنية: أبو جعفر الثاني.\n\nالولادة: 10 رجب 195 هـ في المدينة المنورة.\n\nالشهادة: آخر ذي القعدة 220 هـ في بغداد (عمره الشريف 25 عاماً).\n\nالمرقد: مقابر قريش في مدينة الكاظمية، ببغداد.\n\nأبرز محطات حياته في المصادر الشيعية\n\n١. تولي الإمامة في سن مبكرة\n\nتولى الإمامة وعمره نحو سبع سنوات بعد استشهاد أبيه الإمام الرضا (ع). شكل هذا الأمر تحدياً كبيراً أثبت فيه الإمام تفوقاً علمياً، حيث أشار أبوه إليه بأنه الوصي الذي تتوارث الأئمة العلم فيه صغيراً عن كبير.\n\n٢. العصر السياسي والمناظرات\n\nعاصر اثنين من خلفاء الدولة العباسية: المأمون الذي زوّجه ابنته \"أم الفضل\" لأغراض سياسية، والمعتصم الذي استدعاه إلى بغداد. وقد برز الإمام في مناظراته الشهيرة مع كبار فقهاء عصره مثل \"يحيى بن أكثم\"، والتي أظهرت تفوقه العلمي واللّدني.\n\n٣. مدرسة أصحاب الإمامة\n\nتخرج من مدرسته نخبة من الرواة والمحدثين والفقهاء الشيعة، مثل \"عبد العظيم الحسني\"، و\"إبراهيم بن هاشم القمي\".\n\n٤. وفاته واستشهاده\n\nتُشير أغلب الروايات في المصادر الشيعية إلى أن الإمام الجواد (ع) استُشهد مسموماً بتدبير من الخليفة المعتصم العباسي وزوجته \"أم الفضل\"."}, "hadi": {"title": "الإمام علي الهادي (عليه السلام)", "text": "الإمام علي الهادي (عليه السلام) هو الإمام العاشر من أئمة أهل البيت (عليهم السلام) لدى الشيعة الاثني عشرية. امتدت إمامته نحو 34 عاماً، وعُرف بسيرته العطرة وعلمه الغزير، وقضى القسم الأكبر من حياته تحت الإقامة الجبرية.\n\nإليك أبرز المحطات والمعلومات الموثقة عنه من المصادر الشيعية المعتمدة:\n\n1. البطاقة التعريفية\n\nاسمه ونسبه: علي بن محمد بن علي بن موسى بن جعفر بن محمد بن علي بن الحسين بن علي بن أبي طالب (عليهم السلام).\n\nكنيته: أبو الحسن، ويُعرف بـ \"أبو الحسن الثالث\" تمييزاً له عن الإمام موسى الكاظم (الأول) والإمام علي الرضا (الثاني).\n\nألقابه: الهادي، النقي، المرتضى، النجيب، والعالم.\n\nولادته: وُلد في قرية (صريا) قرب المدينة المنورة في النصف من ذي الحجة أو في الثاني من رجب عام 212 هـ.\n\nشهادته: استُشهد في مدينة سامراء في العراق عام 254 هـ، ودُفن في داره التي أضحت اليوم مرقداً مقدساً يقصده الزائرون.\n\n2. إمامته\n\nتولى الإمام الهادي (ع) منصب الإمامة في سن مبكرة، إذ كان يبلغ من العمر حوالي ثماني سنوات فقط إثر استشهاد أبيه الإمام محمد الجواد (ع). وقد عاصر في فترته عدداً من خلفاء بني العباس (منهم المعتصم، الواثق، والمتوكل).\n\n3. محطات من حياته في المصادر الشيعية\n\nالإقامة الجبرية في سامراء: نظراً للمكانة العظيمة للإمام وتزايد أعداد أتباعه ومحبيه، شعرت السلطات العباسية (خاصة الخليفة المتوكل) بالخطر، فأصدرت قراراً بنفيه من المدينة المنورة إلى العاصمة \"سامراء\" (وكانت تُعرف بـ \"سر من رأى\") لفرض الإقامة الجبرية عليه ومراقبته بشكل دائم.\n\nالمدرسة العلمية وتوسيع الشبكة: رغم التضييق الشديد، استمر الإمام الهادي (ع) في نشر علوم الدين، وترسيخ قواعد \"نظام الوكالة\" الذي كان حلقة وصل تنظيمية سرية بين الأئمة وشيعتهم في مختلف البلدان، مما مهد الطريق وساهم في تهيئة الأمة لمرحلة الغيبة.\n\nالزيارة الجامعة الكبيرة: تُعد هذه الزيارة التي رواها الإمام الهادي (ع) لأصحابه من أهم النصوص العقائدية والمعرفية عند الشيعة، حيث تتضمن مضامين عالية في وصف مقامات أهل البيت (ع) ودورهم."}, "askari": {"title": "الإمام الحسن العسكري (عليه السلام)", "text": "الإمام الحسن العسكري (عليه السلام) هو الإمام الحادي عشر من أئمة أهل البيت الاثني عشر والمعصوم الثالث عشر عند الشيعة الإمامية. عاش في كنف والده الإمام علي الهادي (عليه السلام) وعاصر فترة قمع شديدة انتهت بفرض الإقامة الجبرية عليه في مدينة سامراء لتمهيد ولادة الإمام المهدي (عج).\n\nيمكن تلخيص سيرته في المصادر الشيعية عبر النقاط التالية:\n\nولادته ونشأته: ولد في المدينة المنورة عام 232 هـ، وتلقى ميراث الإمامة والنبوة بعد أبيه.\n\nسبب التلقيب: لُقّب بـ \"العسكري\" نظراً لفرض السلطات العباسية الإقامة الجبرية عليه وعلى أبيه في \"سامراء\" التي كانت تُعرف وقتها بـ \"العسكر\".\n\nالإمامة: تولى الإمامة الفعلية بعد وفاة أبيه عام 254 هـ واستمرت إمامته قرابة ست سنوات، واجه خلالها ضغوطاً سياسية ومراقبة مشددة.\n\nدوره العقائدي: مهّد الروايات والأحداث التي تؤكد ولادة ابنه وخليفته \"الإمام المهدي\" (عليه السلام) الذي غاب لحفظه عن بطش السلطة العباسية.\n\nوفاته: استُشهد في الثامن من ربيع الأول عام 260 هـ في سامراء عن عمر ناهز 28 عاماً، ودُفن إلى جوار أبيه، ويُعرف مقامه اليوم بـ العتبة العسكرية المقدسة."}, "mahdi": {"title": "الإمام محمد المهدي (عجل الله فرجه)", "text": "الإمام المهدي (عليه السلام) عند الشيعة الإثني عشرية هو محمد بن الحسن العسكري، الإمام الثاني عشر والأخير. وُلد في سامراء عام 255 هـ، وهو \"المنتظر\" الذي يعتقدون أنه لا يزال حياً، وسيظهر في آخر الزمان ليملأ الأرض قسطاً وعدلاً بعد أن تملأ ظلماً وجورا.\n\nيمكن تلخيص عقيدة الشيعة فيه في النقاط التالية:\n\nالنسب: هو محمد بن الحسن العسكري بن علي الهادي بن محمد الجواد بن علي الرضا بن موسى الكاظم بن جعفر الصادق بن محمد الباقر بن علي السجاد بن الحسين بن علي بن أبي طالب عليهم السلام.\n\nالألقاب: يُعرف بألقاب عدة منها: الحجة، القائم، المنتظر، صاحب الزمان، وبقية الله.\n\nالولادة والخلافة: ولد في منتصف شعبان. تسلّم الإمامة بعد وفاة أبيه الإمام الحسن العسكري (ع) عام 260 هـ وهو في سن صغيرة (حوالي خمس سنوات).\n\nالغيبة الصغرى والكبرى:\n\nالغيبة الصغرى: امتدت من سنة 260 هـ إلى 329 هـ، وكان يتواصل فيها مع شيعته عن طريق أربعة سفراء متتالين.\n\nالغيبة الكبرى: بدأت بعد وفاة السفير الرابع، وما زالت مستمرة إلى أن يأذن الله له بالظهور.\n\nالفكرة الإصلاحية: يمثل الإمام المهدي (عج) امتداداً لمشروع الأنبياء، وتتجلى فلسفة ظهوره في تحقيق العدالة الإلهية وإرساء دولة الحق في الأرض."}}</script>
-<script>
-(function(){
-  function getData(){
-    var node=document.getElementById('ahlFinalData');
-    if(!node) return {};
-    try{ return JSON.parse(node.textContent); }catch(e){ console.error(e); return {}; }
-  }
-
-  function openAhlModal(key){
-    var all=getData();
-    var item=all[key];
-    if(!item) return false;
-    var modal=document.getElementById('ahlModal');
-    var title=document.getElementById('ahlModalTitle');
-    var text=document.getElementById('ahlModalText');
-    if(title) title.textContent=item.title || '';
-    if(text) text.textContent=item.text || '';
-    if(modal){
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    }
-    return true;
-  }
-
-  function closeAhlModal(){
-    var modal=document.getElementById('ahlModal');
-    if(modal){
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-    }
-  }
-
-  window.openAhlFinal=openAhlModal;
-
-  document.addEventListener('click', function(e){
-    var btn=e.target.closest('[data-ahl]');
-    if(btn){
-      e.preventDefault();
-      e.stopPropagation();
-      openAhlModal(btn.getAttribute('data-ahl'));
-      return;
-    }
-    if(e.target && (e.target.id==='ahlCloseBtn' || e.target.id==='ahlCloseBtn2')){
-      e.preventDefault();
-      closeAhlModal();
-      return;
-    }
-    if(e.target && e.target.id==='ahlCopyBtn'){
-      e.preventDefault();
-      var text=document.getElementById('ahlModalText');
-      if(text && navigator.clipboard) navigator.clipboard.writeText(text.textContent || '');
-      e.target.textContent='تم النسخ';
-      setTimeout(function(){e.target.textContent='نسخ النص'},1200);
-      return;
-    }
-    if(e.target && e.target.id==='ahlModal'){
-      closeAhlModal();
-    }
-  }, true);
-
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape') closeAhlModal();
-  });
-
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('#ahlGrid .read-btn').forEach(function(btn){
-      btn.classList.add('ahl-read');
-      btn.style.pointerEvents='auto';
-    });
-  });
-})();
-</script>
-
 </body></html>
