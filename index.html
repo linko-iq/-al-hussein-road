@@ -375,6 +375,36 @@ html[dir="ltr"] .marquee-track{
 .install-app.always-show{opacity:1!important;pointer-events:auto!important;transform:translateY(0)!important}
 @media(max-width:620px){.install-help-box{padding:15px;border-radius:18px}.install-help-head{flex-direction:column;align-items:stretch}.install-step{padding:10px}.install-step-icon{min-width:38px;height:38px}}
 
+
+/* تمييز زر إهداء الثواب في القائمة */
+.side a[href="#gift"]{
+  background:linear-gradient(135deg,var(--accent),var(--gold))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  font-weight:900!important;
+  box-shadow:0 10px 28px rgba(139,30,30,.22)!important;
+  margin:6px 0!important;
+  position:relative;
+}
+.side a[href="#gift"]::before{
+  content:"🎁 ";
+}
+.side a[href="#gift"]:hover{
+  filter:brightness(1.06);
+}
+.reader-translation-note{
+  margin-top:22px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(184,148,69,.10);
+  color:var(--text);
+  line-height:2;
+}
+.reader-translation-note b{
+  color:var(--accent);
+}
+
 </style>
 
 
@@ -405,7 +435,7 @@ html[dir="ltr"] .marquee-track{
 </div>
 
 <header class="header"><div class="container header-inner"><button class="btn menu-btn" onclick="toggleMenu()">☰ <span data-i18n="menu">القائمة</span></button><div class="brand" data-i18n="siteName">طريق الحسين</div><div class="tools"><div class="langs"><button class="btn active" onclick="setLang('ar')">عربي</button><button class="btn" onclick="setLang('en')">EN</button><button class="btn" onclick="setLang('fa')">فارسی</button></div><button class="btn" id="themeBtn" onclick="toggleTheme()" title="تبديل الوضع الليلي والنهاري" aria-label="تبديل الوضع الليلي والنهاري">☀️🌙</button></div></div></header>
-<nav class="side" id="sideMenu"><a href="#home" data-i18n="navHome" onclick="toggleMenu()">الرئيسية</a><a href="#who" data-i18n="navWho" onclick="toggleMenu()">من هو الإمام الحسين (ع)</a><a href="#why" data-i18n="navWhy" onclick="toggleMenu()">على ماذا قُتل الإمام الحسين (ع)</a><a href="#karbala" data-i18n="navKarbala" onclick="toggleMenu()">ماذا حدث في كربلاء</a><a href="#walk" data-i18n="navWalk" onclick="toggleMenu()">لماذا يمشي الناس إلى كربلاء</a><a href="#arbaeen-fadl" onclick="toggleMenu()">فضل زيارة الإمام الحسين (ع) في الأربعين</a><a href="#ashura" data-i18n="navAshura" onclick="toggleMenu()">زيارة عاشوراء</a><a href="#duas" data-i18n="navDuas" onclick="toggleMenu()">الأدعية</a><a href="#ahl" data-i18n="navAhl" onclick="toggleMenu()">تعرف على أهل البيت (ع)</a><a href="#visitor-adab" onclick="toggleMenu()">آداب الزائر الحسيني</a><a href="#haramain-map" onclick="toggleMenu()">خريطة الحرمين الشريفين</a><a href="#gift" data-i18n="navGift" onclick="toggleMenu()">إهداء الثواب</a><a href="#sources" data-i18n="navSources" onclick="toggleMenu()">المصادر</a></nav>
+<nav class="side" id="sideMenu"><a href="#home" data-i18n="navHome" onclick="toggleMenu()">الرئيسية</a><a href="#who" data-i18n="navWho" onclick="toggleMenu()">من هو الإمام الحسين (ع)</a><a href="#why" data-i18n="navWhy" onclick="toggleMenu()">على ماذا قُتل الإمام الحسين (ع)</a><a href="#karbala" data-i18n="navKarbala" onclick="toggleMenu()">ماذا حدث في كربلاء</a><a href="#walk" data-i18n="navWalk" onclick="toggleMenu()">لماذا يمشي الناس إلى كربلاء</a><a href="#arbaeen-fadl" data-i18n-extra="navArbaeenFadl" onclick="toggleMenu()">فضل زيارة الإمام الحسين (ع) في الأربعين</a><a href="#ashura" data-i18n="navAshura" onclick="toggleMenu()">زيارة عاشوراء</a><a href="#duas" data-i18n="navDuas" onclick="toggleMenu()">الأدعية</a><a href="#ahl" data-i18n="navAhl" onclick="toggleMenu()">تعرف على أهل البيت (ع)</a><a href="#visitor-adab" data-i18n-extra="navVisitorAdab" onclick="toggleMenu()">آداب الزائر الحسيني</a><a href="#haramain-map" data-i18n-extra="navHaramainMap" onclick="toggleMenu()">خريطة الحرمين الشريفين</a><a href="#gift" data-i18n="navGift" onclick="toggleMenu()">إهداء الثواب</a><a href="#sources" data-i18n="navSources" onclick="toggleMenu()">المصادر</a></nav>
 <main id="home"><section class="hero"><div class="container hero-content"><h1 data-i18n="heroTitle">طريق الحسين</h1><p data-i18n="heroText">دليل تعريفي عن الإمام الحسين (ع) ونهضته المباركة وزيارة الأربعين.</p></div></section>
 
 <div class="section-marquee" aria-label="أقسام الموقع">
@@ -783,6 +813,226 @@ setLang('ar');
   });
   if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});});}
   setInstallState();
+})();
+</script>
+
+
+<script>
+(function(){
+  const EXTRA_TEXTS={
+    ar:{
+      navArbaeenFadl:"فضل زيارة الإمام الحسين (ع) في الأربعين",
+      navVisitorAdab:"آداب الزائر الحسيني",
+      navHaramainMap:"خريطة الحرمين الشريفين",
+      installTitle:"📱 تثبيت تطبيق طريق الحسين",
+      installText:"يمكنك تثبيت الموقع على الشاشة الرئيسية ليعمل بشكل قريب من التطبيقات، مع أيقونة رسمية وفتح سريع.",
+      installBtn:"📱 تثبيت التطبيق",
+      installChecking:"جاري التحقق من حالة التطبيق...",
+      marquee:["الرئيسية","من هو الإمام الحسين (ع)","ماذا حدث في كربلاء","زيارة عاشوراء","الأدعية","تعرف على أهل البيت (عليهم السلام)","آداب الزائر الحسيني","خريطة الحرمين الشريفين","إهداء الثواب","المصادر"]
+    },
+    en:{
+      navArbaeenFadl:"The Virtue of Arbaeen Visitation",
+      navVisitorAdab:"Etiquette of the Hussaini Visitor",
+      navHaramainMap:"Map of the Two Holy Shrines",
+      installTitle:"📱 Install Tareeq Al-Hussain App",
+      installText:"You can add the website to your home screen so it opens like an app, with quick access and an official icon.",
+      installBtn:"📱 Install app",
+      installChecking:"Checking app status...",
+      marquee:["Home","Who is Imam Hussain (A)?","What happened in Karbala","Ziyarat Ashura","Supplications","Ahl al-Bayt (A)","Visitor etiquette","Map of the two shrines","Gift of reward","Sources"]
+    },
+    fa:{
+      navArbaeenFadl:"فضیلت زیارت اربعین امام حسین (ع)",
+      navVisitorAdab:"آداب زائر حسینی",
+      navHaramainMap:"نقشه دو حرم شریف",
+      installTitle:"📱 نصب برنامه طریق الحسین",
+      installText:"می‌توانید سایت را به صفحه اصلی دستگاه اضافه کنید تا مانند یک برنامه باز شود و دسترسی سریع داشته باشد.",
+      installBtn:"📱 نصب برنامه",
+      installChecking:"در حال بررسی وضعیت برنامه...",
+      marquee:["خانه","امام حسین (ع) کیست؟","در کربلا چه گذشت","زیارت عاشورا","دعاها","آشنایی با اهل بیت (ع)","آداب زائر حسینی","نقشه دو حرم","اهدای ثواب","منابع"]
+    }
+  };
+
+  const AHL_TRANSLATIONS={
+    en:[
+      ["Prophet Muhammad (peace be upon him and his family)","The final Prophet, the noblest of creation, and the infallible messenger of the divine revelation.","prophet"],
+      ["Lady Fatimah al-Zahra (peace be upon her)","The daughter of Prophet Muhammad, Lady of the women of the worlds, and mother of the Imams.","fatima"],
+      ["Imam Ali ibn Abi Talib (peace be upon him)","Commander of the Faithful, the first Imam, and the successor of the Messenger of Allah.","ali"],
+      ["Imam Hasan al-Mujtaba (peace be upon him)","The second Imam, grandson of the Prophet, and master of the youth of Paradise.","hasan"],
+      ["Imam Hussain ibn Ali (peace be upon him)","Master of the martyrs, the third Imam, and a symbol of sacrifice and dignity.","hussain"],
+      ["Imam Ali Zayn al-Abidin (peace be upon him)","The fourth Imam, known as al-Sajjad and the master of worshippers.","sajjad"],
+      ["Imam Muhammad al-Baqir (peace be upon him)","The fifth Imam, the opener and spreader of the knowledge of Ahl al-Bayt.","baqir"],
+      ["Imam Ja'far al-Sadiq (peace be upon him)","The sixth Imam and the great teacher of the Ja'fari school of Islamic knowledge.","sadiq"],
+      ["Imam Musa al-Kadhim (peace be upon him)","The seventh Imam, known for patience, worship, and as Bab al-Hawaij.","kazim"],
+      ["Imam Ali al-Ridha (peace be upon him)","The eighth Imam, known as the scholar of the family of Muhammad and the stranger of Khurasan.","ridha"],
+      ["Imam Muhammad al-Jawad (peace be upon him)","The ninth Imam, known for knowledge, generosity, and spiritual authority from a young age.","jawad"],
+      ["Imam Ali al-Hadi (peace be upon him)","The tenth Imam, known as al-Hadi and al-Naqi, and narrator of the Ziyarat al-Jami'ah.","hadi"],
+      ["Imam Hasan al-Askari (peace be upon him)","The eleventh Imam and father of Imam al-Mahdi, peace be upon him.","askari"],
+      ["Imam Muhammad al-Mahdi (may Allah hasten his reappearance)","The twelfth Imam, the awaited guide who will fill the earth with justice.","mahdi"]
+    ],
+    fa:[
+      ["پیامبر محمد (صلی‌الله علیه و آله)","خاتم پیامبران، برترین آفریده، و رساننده معصوم پیام الهی.","prophet"],
+      ["حضرت فاطمه زهرا (سلام‌الله علیها)","دختر پیامبر اسلام، بانوی زنان جهان، و مادر امامان.","fatima"],
+      ["امام علی بن ابی‌طالب (علیه‌السلام)","امیرالمؤمنین، نخستین امام، و وصی رسول خدا.","ali"],
+      ["امام حسن مجتبی (علیه‌السلام)","دومین امام، سبط پیامبر، و سید جوانان بهشت.","hasan"],
+      ["امام حسین بن علی (علیه‌السلام)","سید شهیدان، سومین امام، و نماد فداکاری و عزت.","hussain"],
+      ["امام علی زین‌العابدین (علیه‌السلام)","چهارمین امام، معروف به سجاد و سید عابدان.","sajjad"],
+      ["امام محمد باقر (علیه‌السلام)","پنجمین امام، شکافنده و گسترنده دانش اهل بیت.","baqir"],
+      ["امام جعفر صادق (علیه‌السلام)","ششمین امام و گسترنده بزرگ معارف مکتب جعفری.","sadiq"],
+      ["امام موسی کاظم (علیه‌السلام)","هفتمین امام، مشهور به صبر، عبادت و باب الحوائج.","kazim"],
+      ["امام علی رضا (علیه‌السلام)","هشتمین امام، عالم آل محمد و غریب الغرباء.","ridha"],
+      ["امام محمد جواد (علیه‌السلام)","نهمین امام، مشهور به دانش، بخشندگی و امامت در کودکی.","jawad"],
+      ["امام علی هادی (علیه‌السلام)","دهمین امام، معروف به هادی و نقی و راوی زیارت جامعه.","hadi"],
+      ["امام حسن عسکری (علیه‌السلام)","یازدهمین امام و پدر امام مهدی (علیه‌السلام).","askari"],
+      ["امام محمد مهدی (عجل‌الله فرجه)","دوازدهمین امام و موعود الهی که زمین را پر از عدالت می‌کند.","mahdi"]
+    ]
+  };
+
+  const READER_TRANSLATIONS={
+    en:{
+      ashura:{title:"Ziyarat Ashura",meaning:"This ziyarat expresses loyalty to Imam Hussain (peace be upon him), dissociation from oppression and the killers of Ahl al-Bayt, and a prayer to be granted steadfastness, intercession, and companionship with Imam Hussain in this world and the Hereafter."},
+      faraj:{title:"Dua al-Faraj",meaning:"This supplication asks Allah to hasten relief through Imam al-Mahdi (may Allah hasten his reappearance), protect him, support him, and make us among those who await and serve the path of truth."},
+      tawassul:{title:"Dua al-Tawassul",meaning:"This supplication turns to Allah through Prophet Muhammad and the purified Ahl al-Bayt (peace be upon them), asking them to intercede by Allah’s permission for forgiveness, mercy, and the fulfillment of needs."},
+      ahd:{title:"Dua al-Ahd",meaning:"This supplication renews the covenant with Imam al-Mahdi (may Allah hasten his reappearance), asks Allah for loyalty to him, and prays to be among his supporters when he appears."},
+      kumayl:{title:"Dua Kumayl",meaning:"This profound supplication, taught by Imam Ali to Kumayl ibn Ziyad, is a prayer of repentance, humility, hope in divine mercy, and seeking forgiveness, nearness to Allah, and protection from sin."}
+    },
+    fa:{
+      ashura:{title:"زیارت عاشورا",meaning:"این زیارت بیانگر وفاداری به امام حسین (ع)، بیزاری از ظلم و ستمگران، و دعا برای پایداری، شفاعت و همراهی با امام حسین در دنیا و آخرت است."},
+      faraj:{title:"دعای فرج",meaning:"این دعا از خداوند می‌خواهد فرج امام مهدی (عج) را نزدیک گرداند، او را حفظ و یاری کند و ما را از منتظران و یاران راه حق قرار دهد."},
+      tawassul:{title:"دعای توسل",meaning:"این دعا رو آوردن به خداوند از راه پیامبر اکرم و اهل بیت پاک اوست و درخواست شفاعت به اذن خدا، آمرزش، رحمت و برآورده شدن حاجات را در بر دارد."},
+      ahd:{title:"دعای عهد",meaning:"این دعا تجدید پیمان با امام مهدی (عج) است و از خداوند پایداری در ولایت او و قرار گرفتن در شمار یارانش را درخواست می‌کند."},
+      kumayl:{title:"دعای کمیل",meaning:"این دعای عمیق که امام علی (ع) به کمیل بن زیاد آموخت، دعای توبه، فروتنی، امید به رحمت الهی، طلب آمرزش، قرب الهی و دوری از گناه است."}
+    }
+  };
+
+  const AHL_DETAIL_SUMMARY={
+    en:{
+      prophet:"English meaning: This page introduces Prophet Muhammad as the final Prophet, the infallible messenger of Allah, his noble lineage, birth, spiritual rank, titles, morals, and his role in guiding the community and appointing the path of Ahl al-Bayt.",
+      fatima:"English meaning: This page introduces Lady Fatimah al-Zahra as the daughter of the Prophet, Lady of the women of the worlds, one of the People of the Cloak, and the spiritual link of the Imamate through her blessed descendants.",
+      ali:"English meaning: This page presents Imam Ali as the first Imam, his family lineage, birth in the Kaaba, early faith, titles, virtues, role beside the Prophet, the event of Ghadir, his rule, martyrdom, and his shrine in Najaf.",
+      hasan:"English meaning: This page introduces Imam Hasan al-Mujtaba as the second Imam, grandson of the Prophet, known for generosity, spiritual leadership, and the peace treaty that protected the Muslim community.",
+      hussain:"English meaning: This page introduces Imam Hussain as the third Imam, master of martyrs, grandson of the Prophet, and the leader of Karbala whose sacrifice became a symbol of justice and resistance to tyranny.",
+      sajjad:"English meaning: This page introduces Imam Zayn al-Abidin as the fourth Imam, survivor of Karbala, leader of spiritual reform, author of al-Sahifa al-Sajjadiyya and Risalat al-Huquq.",
+      baqir:"English meaning: This page introduces Imam Muhammad al-Baqir as the fifth Imam, the one who opened the sciences of Ahl al-Bayt and established a major scholarly school in Madinah.",
+      sadiq:"English meaning: This page introduces Imam Ja'far al-Sadiq as the sixth Imam, head of the Ja'fari school, whose teachings shaped Islamic law, theology, ethics, and knowledge.",
+      kazim:"English meaning: This page introduces Imam Musa al-Kadhim as the seventh Imam, known for patience, worship, knowledge, and his suffering under Abbasid oppression.",
+      ridha:"English meaning: This page introduces Imam Ali al-Ridha as the eighth Imam, known for knowledge, debates, the golden chain narration, and his shrine in Mashhad.",
+      jawad:"English meaning: This page introduces Imam Muhammad al-Jawad as the ninth Imam, known for divine knowledge at a young age, generosity, and scholarly debates.",
+      hadi:"English meaning: This page introduces Imam Ali al-Hadi as the tenth Imam, his knowledge, forced residence in Samarra, the agency network, and Ziyarat al-Jami'ah.",
+      askari:"English meaning: This page introduces Imam Hasan al-Askari as the eleventh Imam, his life under Abbasid surveillance, and his role in preparing the community for the occultation of Imam al-Mahdi.",
+      mahdi:"English meaning: This page introduces Imam Muhammad al-Mahdi as the twelfth Imam, the awaited savior, his minor and major occultation, and his promised mission of justice."
+    },
+    fa:{
+      prophet:"معنای فارسی: این صفحه پیامبر محمد (ص) را به عنوان خاتم پیامبران، پیام‌آور معصوم الهی، نسب شریف، ولادت، مقام روحی، القاب، اخلاق و نقش او در هدایت امت و معرفی راه اهل بیت معرفی می‌کند.",
+      fatima:"معنای فارسی: این صفحه حضرت فاطمه زهرا (س) را به عنوان دختر پیامبر، بانوی زنان جهان، از اهل کسا و محور معنوی امامت از نسل پاک او معرفی می‌کند.",
+      ali:"معنای فارسی: این صفحه امام علی (ع) را به عنوان نخستین امام، نسب، ولادت در کعبه، ایمان نخستین، القاب، فضائل، نقش او در کنار پیامبر، غدیر، حکومت، شهادت و مرقد نجف معرفی می‌کند.",
+      hasan:"معنای فارسی: این صفحه امام حسن مجتبی (ع) را به عنوان دومین امام، سبط پیامبر، مشهور به بخشندگی، رهبری معنوی و صلحی که جامعه اسلامی را حفظ کرد معرفی می‌کند.",
+      hussain:"معنای فارسی: این صفحه امام حسین (ع) را به عنوان سومین امام، سید شهیدان و رهبر کربلا معرفی می‌کند که فداکاری او نماد عدالت و ایستادگی در برابر ستم شد.",
+      sajjad:"معنای فارسی: این صفحه امام زین‌العابدین (ع) را به عنوان چهارمین امام، بازمانده کربلا، پیشوای اصلاح معنوی، صاحب صحیفه سجادیه و رساله حقوق معرفی می‌کند.",
+      baqir:"معنای فارسی: این صفحه امام محمد باقر (ع) را به عنوان پنجمین امام و گسترنده علوم اهل بیت و پایه‌گذار مدرسه علمی بزرگ در مدینه معرفی می‌کند.",
+      sadiq:"معنای فارسی: این صفحه امام جعفر صادق (ع) را به عنوان ششمین امام و رئیس مکتب جعفری معرفی می‌کند که آموزه‌های او فقه، عقیده، اخلاق و دانش اسلامی را گسترش داد.",
+      kazim:"معنای فارسی: این صفحه امام موسی کاظم (ع) را به عنوان هفتمین امام، مشهور به صبر، عبادت، دانش و رنج‌های او در برابر ستم عباسی معرفی می‌کند.",
+      ridha:"معنای فارسی: این صفحه امام علی رضا (ع) را به عنوان هشتمین امام، مشهور به دانش، مناظرات، حدیث سلسله‌الذهب و مرقد شریف او در مشهد معرفی می‌کند.",
+      jawad:"معنای فارسی: این صفحه امام محمد جواد (ع) را به عنوان نهمین امام، مشهور به دانش الهی در کودکی، بخشندگی و مناظرات علمی معرفی می‌کند.",
+      hadi:"معنای فارسی: این صفحه امام علی هادی (ع) را به عنوان دهمین امام، دانش او، اقامت اجباری در سامرا، نظام وکالت و زیارت جامعه معرفی می‌کند.",
+      askari:"معنای فارسی: این صفحه امام حسن عسکری (ع) را به عنوان یازدهمین امام، زندگی زیر مراقبت عباسی و نقش او در آماده‌سازی جامعه برای غیبت امام مهدی معرفی می‌کند.",
+      mahdi:"معنای فارسی: این صفحه امام محمد مهدی (عج) را به عنوان دوازدهمین امام، منجی موعود، غیبت صغری و کبری و رسالت وعده داده شده او برای عدالت معرفی می‌کند."
+    }
+  };
+
+  function applyExtraTranslations(lang){
+    const pack=EXTRA_TEXTS[lang]||EXTRA_TEXTS.ar;
+
+    document.querySelectorAll('[data-i18n-extra]').forEach(el=>{
+      const k=el.getAttribute('data-i18n-extra');
+      if(pack[k]) el.textContent=pack[k];
+    });
+
+    const installTitle=document.querySelector('#install-app-section .install-panel h3');
+    const installText=document.querySelector('#install-app-section .install-panel p');
+    const installBtn=document.getElementById('installMainBtn');
+    const installStatus=document.getElementById('installStatus');
+    if(installTitle) installTitle.textContent=pack.installTitle;
+    if(installText) installText.textContent=pack.installText;
+    if(installBtn && !installBtn.textContent.includes('✅')) installBtn.textContent=pack.installBtn;
+    if(installStatus && installStatus.textContent.includes('جاري')) installStatus.textContent=pack.installChecking;
+
+    const marquee=document.querySelector('.marquee-track');
+    if(marquee && pack.marquee){
+      const html=pack.marquee.map(x=>`<span class="marquee-item">✦ ${x}</span>`).join('');
+      marquee.innerHTML=html+html;
+    }
+
+    if(window.AHL && AHL_TRANSLATIONS[lang]){
+      AHL[lang]=AHL_TRANSLATIONS[lang];
+      if(typeof renderAhl==='function') renderAhl();
+    }
+  }
+
+  function buildTranslatedReaderText(key, original){
+    if(currentLang==='ar') return original;
+    const lang=currentLang;
+    let heading=lang==='en'?'Meaning / Translation':'معنا / ترجمه';
+    let originalLabel=lang==='en'?'Original Arabic text':'متن عربی اصلی';
+    let meaning='';
+    if(READER_TRANSLATIONS[lang] && READER_TRANSLATIONS[lang][key]){
+      meaning=READER_TRANSLATIONS[lang][key].meaning;
+    }else if(AHL_DETAIL_SUMMARY[lang] && AHL_DETAIL_SUMMARY[lang][key]){
+      meaning=AHL_DETAIL_SUMMARY[lang][key];
+    }else{
+      meaning=lang==='en'
+        ? 'A translation note is shown here while preserving the original Arabic text because the devotional and historical wording is best kept in its original language.'
+        : 'در اینجا متن عربی اصلی حفظ شده و معنای کلی به زبان انتخابی نمایش داده می‌شود، زیرا متن دعا و زیارت بهتر است با اصل عربی خود باقی بماند.';
+    }
+    return `${originalLabel}:\n\n${original}\n\n------------------------------\n${heading}:\n\n${meaning}`;
+  }
+
+  function translateReaderAfterOpen(key){
+    if(!key || currentLang==='ar') return;
+    const title=document.getElementById('readerTitle');
+    const text=document.getElementById('readerText');
+    if(!title || !text) return;
+    if(READER_TRANSLATIONS[currentLang] && READER_TRANSLATIONS[currentLang][key]){
+      title.textContent=READER_TRANSLATIONS[currentLang][key].title;
+    }
+    text.textContent=buildTranslatedReaderText(key, text.textContent);
+  }
+
+  const oldSetLang=window.setLang;
+  if(typeof oldSetLang==='function' && !oldSetLang.__extraPatch){
+    window.setLang=function(lang){
+      oldSetLang(lang);
+      applyExtraTranslations(lang);
+    };
+    window.setLang.__extraPatch=true;
+  }
+
+  const oldOpenReader=window.openReader;
+  if(typeof oldOpenReader==='function' && !oldOpenReader.__translationPatch){
+    window.openReader=function(key){
+      oldOpenReader(key);
+      translateReaderAfterOpen(key);
+    };
+    window.openReader.__translationPatch=true;
+  }
+
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest('#ahlGrid button[data-ahl]');
+    if(!btn) return;
+    setTimeout(function(){
+      const key=btn.getAttribute('data-ahl');
+      const title=document.getElementById('readerTitle');
+      const text=document.getElementById('readerText');
+      if(currentLang==='ar' || !title || !text) return;
+      const card=(AHL_TRANSLATIONS[currentLang]||[]).find(x=>x[2]===key);
+      if(card) title.textContent=card[0];
+      text.textContent=buildTranslatedReaderText(key, text.textContent);
+    },80);
+  },true);
+
+  document.addEventListener('DOMContentLoaded',function(){
+    applyExtraTranslations(currentLang||'ar');
+  });
+  applyExtraTranslations(window.currentLang||'ar');
 })();
 </script>
 
