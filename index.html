@@ -207,12 +207,186 @@
   transform:translateY(-1px);
 }
 
+
+/* إضافات خفيفة لمشروع طريق الحسين */
+.read-progress{
+  position:fixed;
+  top:0;
+  right:0;
+  height:4px;
+  width:0%;
+  z-index:10000;
+  background:linear-gradient(90deg,var(--accent),var(--gold));
+  box-shadow:0 0 10px rgba(184,148,69,.45);
+  transition:width .08s linear;
+}
+.section-marquee{
+  overflow:hidden;
+  border-block:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(184,148,69,.10),rgba(139,30,30,.06),rgba(15,91,60,.08));
+  padding:10px 0;
+}
+.marquee-track{
+  display:flex;
+  gap:14px;
+  width:max-content;
+  animation:marqueeMove 42s linear infinite;
+  will-change:transform;
+}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  white-space:nowrap;
+  padding:7px 13px;
+  border:1px solid rgba(184,148,69,.22);
+  border-radius:999px;
+  background:var(--card);
+  color:var(--text);
+  font-weight:800;
+  font-size:15px;
+  box-shadow:0 6px 18px rgba(60,40,18,.06);
+}
+@keyframes marqueeMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(50%)}
+}
+html[dir="ltr"] .marquee-track{
+  animation-name:marqueeMoveLtr;
+}
+@keyframes marqueeMoveLtr{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.floating-actions{
+  position:fixed;
+  inset-inline-end:16px;
+  bottom:18px;
+  z-index:120;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:flex-end;
+}
+.back-top,.install-app{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:.22s ease;
+  border-radius:999px;
+  padding:11px 14px;
+}
+.back-top.show,.install-app.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.install-app{
+  background:var(--accent2);
+  color:#fff;
+  border-color:var(--accent2);
+}
+.welcome-screen{
+  position:fixed;
+  inset:0;
+  z-index:20000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(12,11,9,.82);
+  backdrop-filter:blur(8px);
+  padding:20px;
+}
+.welcome-box{
+  width:min(620px,94vw);
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+  padding:24px;
+  text-align:center;
+  animation:welcomeIn .35s ease both;
+}
+.welcome-box h2{
+  color:var(--accent);
+  margin-bottom:10px;
+  font-size:28px;
+}
+.welcome-box p{
+  color:var(--muted);
+  line-height:2;
+}
+.welcome-screen.hide{
+  opacity:0;
+  pointer-events:none;
+  transition:.45s ease;
+}
+@keyframes welcomeIn{
+  from{opacity:0;transform:translateY(14px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+#themeBtn, button[onclick="toggleTheme()"]{
+  background:linear-gradient(135deg,var(--card),rgba(184,148,69,.18))!important;
+  border:2px solid var(--gold)!important;
+  color:var(--text)!important;
+  min-width:54px!important;
+  min-height:45px!important;
+  font-size:0!important;
+  position:relative;
+}
+#themeBtn::before, button[onclick="toggleTheme()"]::before{
+  content:"☀️🌙";
+  font-size:21px;
+  line-height:1;
+}
+.tools{
+  align-items:center;
+}
+@media(max-width:620px){
+  .marquee-item{font-size:13px;padding:6px 10px}
+  .floating-actions{inset-inline-end:12px;bottom:14px}
+  .welcome-box{padding:18px;border-radius:20px}
+  .welcome-box h2{font-size:23px}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none}
+  .welcome-box{animation:none}
+}
+
 </style>
+
+<meta name="theme-color" content="#8b1e1e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="طريق الحسين">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
 </head>
 <body data-theme="light">
-<header class="header"><div class="container header-inner"><button class="btn menu-btn" onclick="toggleMenu()">☰ <span data-i18n="menu">القائمة</span></button><div class="brand" data-i18n="siteName">طريق الحسين</div><div class="tools"><div class="langs"><button class="btn active" onclick="setLang('ar')">عربي</button><button class="btn" onclick="setLang('en')">EN</button><button class="btn" onclick="setLang('fa')">فارسی</button></div><button class="btn" onclick="toggleTheme()">☾</button></div></div></header>
+
+<div class="read-progress" id="readProgress"></div>
+<div class="welcome-screen" id="welcomeScreen">
+  <div class="welcome-box">
+    <h2>السلام عليكم ورحمة الله وبركاته</h2>
+    <p>نرحب بكم في موقع طريق الحسين، نسأل الله أن يجعل هذا العمل صدقة جارية وثواباً يصل إلى أرواح من أُهدي لهم هذا الموقع.</p>
+  </div>
+</div>
+<div class="floating-actions">
+  <button class="btn install-app" id="installAppBtn" type="button">تثبيت التطبيق</button>
+  <button class="btn primary back-top" id="backTopBtn" type="button">↑ أعلى الصفحة</button>
+</div>
+
+<header class="header"><div class="container header-inner"><button class="btn menu-btn" onclick="toggleMenu()">☰ <span data-i18n="menu">القائمة</span></button><div class="brand" data-i18n="siteName">طريق الحسين</div><div class="tools"><div class="langs"><button class="btn active" onclick="setLang('ar')">عربي</button><button class="btn" onclick="setLang('en')">EN</button><button class="btn" onclick="setLang('fa')">فارسی</button></div><button class="btn" id="themeBtn" onclick="toggleTheme()" title="تبديل الوضع الليلي والنهاري" aria-label="تبديل الوضع الليلي والنهاري">☀️🌙</button></div></div></header>
 <nav class="side" id="sideMenu"><a href="#home" data-i18n="navHome" onclick="toggleMenu()">الرئيسية</a><a href="#who" data-i18n="navWho" onclick="toggleMenu()">من هو الإمام الحسين (ع)</a><a href="#why" data-i18n="navWhy" onclick="toggleMenu()">على ماذا قُتل الإمام الحسين (ع)</a><a href="#karbala" data-i18n="navKarbala" onclick="toggleMenu()">ماذا حدث في كربلاء</a><a href="#walk" data-i18n="navWalk" onclick="toggleMenu()">لماذا يمشي الناس إلى كربلاء</a><a href="#arbaeen-fadl" onclick="toggleMenu()">فضل زيارة الإمام الحسين (ع) في الأربعين</a><a href="#ashura" data-i18n="navAshura" onclick="toggleMenu()">زيارة عاشوراء</a><a href="#duas" data-i18n="navDuas" onclick="toggleMenu()">الأدعية</a><a href="#ahl" data-i18n="navAhl" onclick="toggleMenu()">تعرف على أهل البيت (ع)</a><a href="#visitor-adab" onclick="toggleMenu()">آداب الزائر الحسيني</a><a href="#haramain-map" onclick="toggleMenu()">خريطة الحرمين الشريفين</a><a href="#gift" data-i18n="navGift" onclick="toggleMenu()">إهداء الثواب</a><a href="#sources" data-i18n="navSources" onclick="toggleMenu()">المصادر</a></nav>
 <main id="home"><section class="hero"><div class="container hero-content"><h1 data-i18n="heroTitle">طريق الحسين</h1><p data-i18n="heroText">دليل تعريفي عن الإمام الحسين (ع) ونهضته المباركة وزيارة الأربعين.</p></div></section>
+
+<div class="section-marquee" aria-label="أقسام الموقع">
+  <div class="marquee-track"><span class="marquee-item">✦ الرئيسية</span><span class="marquee-item">✦ من هو الإمام الحسين (ع)</span><span class="marquee-item">✦ ماذا حدث في كربلاء</span><span class="marquee-item">✦ زيارة عاشوراء</span><span class="marquee-item">✦ الأدعية</span><span class="marquee-item">✦ تعرف على أهل البيت (عليهم السلام)</span><span class="marquee-item">✦ آداب الزائر الحسيني</span><span class="marquee-item">✦ خريطة الحرمين الشريفين</span><span class="marquee-item">✦ إهداء الثواب</span><span class="marquee-item">✦ المصادر</span><span class="marquee-item">✦ الرئيسية</span><span class="marquee-item">✦ من هو الإمام الحسين (ع)</span><span class="marquee-item">✦ ماذا حدث في كربلاء</span><span class="marquee-item">✦ زيارة عاشوراء</span><span class="marquee-item">✦ الأدعية</span><span class="marquee-item">✦ تعرف على أهل البيت (عليهم السلام)</span><span class="marquee-item">✦ آداب الزائر الحسيني</span><span class="marquee-item">✦ خريطة الحرمين الشريفين</span><span class="marquee-item">✦ إهداء الثواب</span><span class="marquee-item">✦ المصادر</span></div>
+</div>
+
 <section id="who"><div class="container"><div class="section-title"><h2 data-i18n="whoTitle">من هو الإمام الحسين (ع)</h2></div><div class="card"><p data-i18n="whoText">الإمام الحسين بن علي بن أبي طالب (عليه السلام)، سبط رسول الله محمد (صلى الله عليه وآله)، وثالث أئمة أهل البيت (عليهم السلام). عُرف بموقفه العظيم في نصرة الحق ورفض الظلم، وأصبحت نهضته مدرسة للحرية والكرامة والإصلاح.</p></div></div></section>
 <section id="why"><div class="container"><div class="section-title"><h2 data-i18n="whyTitle">على ماذا قُتل الإمام الحسين (ع)</h2></div><div class="card"><p data-i18n="whyText">قُتل الإمام الحسين (عليه السلام) لأنه رفض مبايعة الظلم والانحراف، وخرج طالباً للإصلاح في أمة جده رسول الله (صلى الله عليه وآله)، آمراً بالمعروف وناهياً عن المنكر، ومؤكداً أن الكرامة والحق لا يُباعان بالخوف أو المصلحة.</p></div></div></section>
 <section id="karbala"><div class="container"><div class="section-title"><h2 data-i18n="karbalaTitle">ماذا حدث في كربلاء</h2></div><div class="card"><p data-i18n="karbalaText">في أرض كربلاء سنة 61 هـ، واجه الإمام الحسين (عليه السلام) وأهل بيته وأصحابه جيشاً كبيراً بعد أن مُنعوا من الماء وحوصروا. وقدّموا أعظم صور الصبر والإيمان والثبات حتى استشهد الإمام الحسين (ع) وأصحابه، وبقيت كربلاء رمزاً للحق أمام الظلم.</p></div></div></section>
@@ -413,6 +587,109 @@ setLang('ar');
     e.preventDefault();
     openAhlFromOriginalReader(btn.getAttribute('data-ahl'));
   });
+})();
+</script>
+
+
+<script>
+(function(){
+  const progress=document.getElementById('readProgress');
+  const backTop=document.getElementById('backTopBtn');
+  const installBtn=document.getElementById('installAppBtn');
+  const welcome=document.getElementById('welcomeScreen');
+  let deferredPrompt=null;
+
+  function activeScrollElement(){
+    const reader=document.getElementById('reader');
+    if(reader && reader.classList.contains('show')) return reader;
+    return document.scrollingElement || document.documentElement;
+  }
+  function updateProgress(){
+    const el=activeScrollElement();
+    let top=0, height=1, client=1;
+    if(el===document.scrollingElement || el===document.documentElement){
+      top=window.scrollY || document.documentElement.scrollTop || 0;
+      height=document.documentElement.scrollHeight || 1;
+      client=window.innerHeight || document.documentElement.clientHeight || 1;
+    }else{
+      top=el.scrollTop || 0;
+      height=el.scrollHeight || 1;
+      client=el.clientHeight || 1;
+    }
+    const max=Math.max(1,height-client);
+    const pct=Math.max(0,Math.min(100,(top/max)*100));
+    if(progress) progress.style.width=pct+'%';
+    if(backTop){
+      const shouldShow=(window.scrollY>420) || (el!==document.documentElement && top>260);
+      backTop.classList.toggle('show',shouldShow);
+    }
+  }
+
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  window.addEventListener('resize',updateProgress);
+  document.addEventListener('scroll',function(e){
+    if(e.target && e.target.id==='reader') updateProgress();
+  },true);
+
+  if(backTop){
+    backTop.addEventListener('click',function(){
+      const reader=document.getElementById('reader');
+      if(reader && reader.classList.contains('show')){
+        reader.scrollTo({top:0,behavior:'smooth'});
+      }else{
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+    });
+  }
+
+  if(welcome){
+    setTimeout(function(){ welcome.classList.add('hide'); }, 2100);
+    setTimeout(function(){ if(welcome && welcome.parentNode) welcome.parentNode.removeChild(welcome); }, 2700);
+  }
+
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();
+    deferredPrompt=e;
+    if(installBtn) installBtn.classList.add('show');
+  });
+
+  if(installBtn){
+    installBtn.addEventListener('click',async function(){
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        try{ await deferredPrompt.userChoice; }catch(err){}
+        deferredPrompt=null;
+        installBtn.classList.remove('show');
+      }else{
+        alert('للتثبيت: افتح قائمة المتصفح ثم اختر "إضافة إلى الشاشة الرئيسية".');
+      }
+    });
+  }
+
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
+    });
+  }
+
+  const oldOpenReader=window.openReader;
+  if(typeof oldOpenReader==='function' && !oldOpenReader.__progressPatch){
+    window.openReader=function(key){
+      oldOpenReader(key);
+      setTimeout(updateProgress,80);
+    };
+    window.openReader.__progressPatch=true;
+  }
+  const oldCloseReader=window.closeReader;
+  if(typeof oldCloseReader==='function' && !oldCloseReader.__progressPatch){
+    window.closeReader=function(){
+      oldCloseReader();
+      setTimeout(updateProgress,80);
+    };
+    window.closeReader.__progressPatch=true;
+  }
+
+  updateProgress();
 })();
 </script>
 
