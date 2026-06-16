@@ -355,14 +355,39 @@ html[dir="ltr"] .marquee-track{
   .welcome-box{animation:none}
 }
 
+
+.install-panel{margin-top:18px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(184,148,69,.12),rgba(139,30,30,.06));border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.install-panel h3{color:var(--accent);margin-bottom:8px;line-height:1.5}
+.install-panel p{color:var(--muted);font-size:17px;line-height:1.9}
+.install-panel .install-main-btn{margin-top:12px;width:100%;text-align:center;font-size:18px}
+.install-status{margin-top:10px;color:var(--accent2);font-weight:900;font-size:16px}
+.install-help-modal{position:fixed;inset:0;z-index:25000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.62);padding:18px}
+.install-help-modal.show{display:flex!important}
+.install-help-box{width:min(620px,95vw);max-height:88vh;overflow:auto;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:24px;box-shadow:0 24px 80px rgba(0,0,0,.36);padding:20px}
+.install-help-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+.install-help-head h2{color:var(--accent);line-height:1.5}
+.install-steps{display:grid;gap:12px;margin-top:12px}
+.install-step{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:18px;padding:12px;background:rgba(184,148,69,.08)}
+.install-step-icon{min-width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:22px}
+.install-step strong{display:block;color:var(--text);margin-bottom:3px}
+.install-step span{color:var(--muted);font-size:16px}
+.install-side-btn{display:block!important;margin-top:8px!important;background:var(--accent2)!important;color:#fff!important;border-radius:14px!important;text-align:center;font-weight:900}
+.install-app.always-show{opacity:1!important;pointer-events:auto!important;transform:translateY(0)!important}
+@media(max-width:620px){.install-help-box{padding:15px;border-radius:18px}.install-help-head{flex-direction:column;align-items:stretch}.install-step{padding:10px}.install-step-icon{min-width:38px;height:38px}}
+
 </style>
 
+
 <meta name="theme-color" content="#8b1e1e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="طريق الحسين">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="طريق الحسين">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
 
 </head>
 <body data-theme="light">
@@ -375,7 +400,7 @@ html[dir="ltr"] .marquee-track{
   </div>
 </div>
 <div class="floating-actions">
-  <button class="btn install-app" id="installAppBtn" type="button">تثبيت التطبيق</button>
+  <button class="btn install-app always-show" id="installAppBtn" type="button">تثبيت التطبيق</button>
   <button class="btn primary back-top" id="backTopBtn" type="button">↑ أعلى الصفحة</button>
 </div>
 
@@ -440,6 +465,16 @@ html[dir="ltr"] .marquee-track{
 <li>📚 مكتبة الإمام موسى الكاظم عليه السلام - دعاء كميل</li>
 <li>📚 مصادر زيارة الأربعين وآداب الزيارة قابلة للإضافة والتوثيق مستقبلاً.</li><li>مع إمكانية إضافة مصادر جديدة مستقبلاً.</li>
 </ul></div></div></section></main>
+
+<section id="install-app-section"><div class="container">
+  <div class="install-panel">
+    <h3>📱 تثبيت تطبيق طريق الحسين</h3>
+    <p>يمكنك تثبيت الموقع على الشاشة الرئيسية ليعمل بشكل قريب من التطبيقات، مع أيقونة رسمية وفتح سريع.</p>
+    <button class="btn green install-main-btn" id="installMainBtn" type="button">📱 تثبيت التطبيق</button>
+    <div class="install-status" id="installStatus">جاري التحقق من حالة التطبيق...</div>
+  </div>
+</div></section>
+
 <footer class="footer"><p data-i18n="footerText">تم إنشاء هذا العمل خدمةً لزوار الإمام الحسين (عليه السلام) وإهداءً للثواب إلى أرواح المرحومين والشهيد المذكورين في الموقع.</p><p>تطوير تقني: <b>شركة LINKO</b></p><p class="company-warning">رجاءً اخذ الحذر من الحسابات الي تتعامل بأسم الشركة</p></footer>
 <div class="reader" id="reader"><div class="reader-head"><button class="btn" onclick="closeReader()" data-i18n="back">العودة</button><button class="btn" onclick="changeFont(2)" data-i18n="fontUp">تكبير الخط</button><button class="btn" onclick="changeFont(-2)" data-i18n="fontDown">تصغير الخط</button><button class="btn green" onclick="copyReader()" data-i18n="copy">نسخ النص</button></div><div class="reader-body"><h2 id="readerTitle"></h2><div class="reader-text" id="readerText"></div><div class="reader-source" id="readerSource"></div></div></div>
 <script id="ashuraFullTextData" type="text/plain">2KfZhNiz2ZHZjtmE2KfZhdmPINi52Y7ZhNmO2YrZktmD2Y4g2YrYpyDYo9mO2KjYpyDYudmO2KjZktiv2ZAg2KfZhNmE2YfZkNiMINin2YTYs9mR2Y7ZhNin2YXZjyDYudmO2YTZjtmK2ZLZg9mOINmK2KfYqNmS2YbZjiDYsdmO2LPZj9mI2YTZkCDYp9mE2YTZh9iMINin2YTYs9mR2Y7ZhNin2YXZjyDYudmO2YTZjtmK2ZLZg9mOINmK2KfYqNmS2YbZjiDYo9mO2YXZkNmK2LHZkCDYp9mE2YXZj9ik2ZLZhdmQ2YbZkNmK2YbZjiDZiNmO2KfYqNmS2YbZjiDYs9mO2YrZkdmQ2K/ZkCDYp9mE2YjZjti12ZDZitmR2ZDZitmG2Y7YjCDYp9mE2LPZkdmO2YTYp9mF2Y8g2LnZjtmE2Y7ZitmS2YPZjiDZitin2KjZktmG2Y4g2YHYp9i32ZDZhdmO2KnZjiDYs9mO2YrZkdmQ2K/Zjtip2ZAg2YbZkNiz2KfYodmQINin2YTYudin2YTZjtmF2ZDZitmG2Y7YjCDYp9mE2LPZkdmO2YTYp9mF2Y8g2LnZjtmE2Y7ZitmS2YPZjiDZitin2KvYp9ix2Y4g2KfZhNmE2Ycg2YjZjtin2KjZktmG2Y4g2KvYp9ix2ZDZh9mQINmI2Y7Yp9mE2YjZkNiq2ZLYsdmOINin2YTZhdmO2YjYqtmP2YjYsdmO2Iwg2KfZhNiz2ZHZjtmE2KfZhdmPINi52Y7ZhNmO2YrZktmD2Y4g2YjZjti52Y7ZhNmJINin2YTYp9mO2LHZktmI2KfYrdmQINin2YTZkdmO2KrZkNmKINit2Y7ZhNmR2Y7YqtmSINio2ZDZgdmQ2YbYp9im2ZDZg9mOINi52Y7ZhNmO2YrZktmD2Y/ZhdmSINmF2ZDZhtmR2ZDZiiDYrNmO2YXZiti52KfZiyDYs9mO2YTYp9mF2Y8g2KfZhNmE2Ycg2KPZjtio2Y7Yr9in2Ysg2YXYp9io2Y7ZgtmQ2YrYqtmPINmI2Y7YqNmO2YLZkNmK2Y4g2KfZhNmE2Y7ZitmS2YTZjyDZiNmO2KfZhNmG2ZHZjtmH2KfYsdmPLgoK2YrYpyDYo9mO2KjYpyDYudmO2KjZktiv2ZAg2KfZhNmE2Ycg2YTZjtmC2Y7Yr9mSINi52Y7YuNmP2YXZjtiq2ZAg2KfZhNix2ZHZjtiy2ZDZitmR2Y7YqdmPINmI2Y7YrNmO2YTZkdiq2ZIg2YjZjti52Y7YuNmP2YXZjtiq2ZAg2KfZhNmF2Y/YtdmQ2YrYqNmO2KnZjyDYqNmQ2YPZjiDYudmO2YTZjtmK2ZLZhtinINmI2Y7YudmO2YTZiSDYrNmO2YXZkNmK2LnZkCDYo9mO2YfZktmE2ZAg2KfZhNil2LPZktmE2KfZhdmQ2Iwg2YjZjtis2Y7ZhNmR2Y7YqtmSINmI2Y7YudmO2LjZj9mF2Y7YqtmSINmF2Y/YtdmQ2YrYqNmO2KrZj9mD2Y4g2YHZkNmKINin2YTYs9mR2Y7Zhdin2YjYp9iq2ZAg2LnZjtmE2Ykg2KzZjtmF2ZDZiti52ZAg2KPZjtmH2ZLZhNmQINin2YTYs9mR2Y7Zhdin2YjYp9iq2ZDYjCDZgdmO2YTZjti52Y7ZhtmOINin2YTZhNmHINin2Y/ZhdmR2Y7YqdmLINij2Y7Ys9mR2Y7Ys9mO2KrZkiDYo9mO2LPYp9iz2Y4g2KfZhNi42ZHZj9mE2ZLZhdmQINmI2Y7Yp9mE2KzZjtmI2ZLYsdmQINi52Y7ZhNmO2YrZktmD2Y/ZhdmSINij2Y7Zh9mS2YTZjiDYp9mE2KjZjtmK2ZLYqtmQ2Iwg2YjZjtmE2Y7YudmO2YbZjiDYp9mE2YTZhyDYp9mP2YXZkdmO2KnZiyDYr9mO2YHZjti52Y7YqtmS2YPZj9mF2ZIg2LnZjtmG2ZIg2YXZjtmC2KfZhdmQ2YPZj9mF2ZIg2YjZjtij2Y7Ystin2YTZjtiq2ZLZg9mP2YXZkiDYudmO2YbZkiDZhdmO2LHYp9iq2ZDYqNmD2Y/ZhdmPINin2YTZkdmO2KrZkNmKINix2Y7YqtmR2Y7YqNmO2YPZj9mF2Y8g2KfZhNmE2Ycg2YHZkNmK2YfYp9iMINmI2Y7ZhNmO2LnZjtmG2Y4g2KfZhNmE2Ycg2KfZj9mF2ZHZjtip2Ysg2YLZjtiq2Y7ZhNmO2KrZktmD2Y/ZhdmSINmI2Y7ZhNmO2LnZjtmG2Y4g2KfZhNmE2Ycg2KfZhNmF2Y/ZhdmO2YfZkdmQ2K/ZkNmK2YbZjiDZhNmO2YfZj9mF2ZIg2KjZkNin2YTYqtmR2Y7ZhdmS2YPZkNmK2YbZkCDZhdmQ2YbZkiDZgtmQ2KrYp9mE2ZDZg9mP2YXZktiMINio2Y7YsdmQ2KbZktiq2Y8g2KXZkNmE2Ykg2KfZhNmE2Ycg2YjZjtil2ZDZhNmO2YrZktmD2Y/ZhdmSINmF2ZDZhtmS2YfZj9mF2ZIg2YjZjtmF2ZDZhtmSINij2Y7YtNmS2YrYp9i52ZDZh9mQ2YXZkiDZiNmO2KPZjtiq2ZLYqNin2LnZkNmH2ZDZhdmSINmI2Y7Yo9mO2YjZktmE2ZDZitin2KbZkNmH2ZDZhdmSLiDZitinINij2Y7YqNinINi52Y7YqNmS2K/ZkCDYp9mE2YTZhyDYpdmQ2YbZkdmQ2Yog2LPZkNmE2ZLZhdmMINmE2ZDZhdmO2YbZkiDYs9in2YTZjtmF2Y7Zg9mP2YXZkiDZiNmO2K3Zjtix2ZLYqNmMINmE2ZDZhdmO2YbZkiDYrdin2LHZjtio2Y7Zg9mP2YXZkiDYpdmQ2YTZiSDZitmO2YjZktmF2ZAg2KfZhNmC2ZDZitin2YXZjtip2ZDYjCDZiNmO2YTZjti52Y7ZhtmOINin2YTZhNmHINii2YTZjiDYstmQ2YrYp9iv2Y0g2YjZjtii2YTZjiDZhdix2Y7ZiNmS2KfZhtmNINmI2Y7ZhNmO2LnZjtmG2Y4g2KfZhNmE2Ycg2KjZjtmG2ZDZiiDYp9mP2YXZjtmK2ZHZjtip2Y4g2YLYp9i32ZDYqNmO2KnZiyDZiNmO2YTZjti52Y7ZhtmOINin2YTZhNmHINin2KjZktmG2Y4g2YXZjtix2ZLYrNin2YbZjtip2Y4g2YjZjtmE2Y7YudmO2YbZjiDYp9mE2YTZhyDYudmP2YXZjtix2Y4g2KjZktmG2Y4g2LPZjti52ZLYr9mNINmI2Y7ZhNmO2LnZjtmG2Y4g2KfZhNmE2Ycg2LTZkNmF2ZLYsdin2YvYjCDZiNmO2YTZjti52Y7ZhtmOINin2YTZhNmHINin2Y/ZhdmR2Y7YqdmLINij2Y7Ys9mS2LHZjtis2Y7YqtmSINmI2Y7Yo9mO2YTYrNmO2YXZjtiq2ZIg2YjZjtiq2Y7ZhtmO2YLZkdmO2KjZjtiq2ZIg2YTZkNmC2ZDYqtin2YTZkNmD2Y7YjCDYqNmQ2KPZjtio2ZDZiiDYo9mO2YbZktiq2Y4g2YjZjtin2Y/ZhdmR2ZDZiiDZhNmO2YLZjtiv2ZIg2LnZjti42Y/ZhdmOINmF2Y/Ytdin2KjZkNmKINio2ZDZg9mOINmB2Y7Yo9mO2LPZktij2Y7ZhNmPINin2YTZhNmHINin2YTZkdmO2LDZkNmKINij2Y7Zg9mS2LHZjtmF2Y4g2YXZjtmC2KfZhdmO2YPZjiDZiNmO2KPZjtmD2ZLYsdmO2YXZjtmG2ZDZiiDYqNmDINij2Y7ZhtmSINmK2Y7YsdmS2LLZj9mC2Y7ZhtmQ2Yog2LfZjtmE2Y7YqNmOINir2KfYsdmQ2YPZjiDZhdmO2LnZjiDYpdmQ2YXYp9mF2Y0g2YXZjtmG2ZLYtdmP2YjYsdmNINmF2ZDZhtmSINij2Y7Zh9mS2YTZkCDYqNmO2YrZktiq2ZAg2YXZj9it2Y7ZhdmR2Y7Yr9mNINi12Y7ZhNmR2Ykg2KfZhNmE2Ycg2LnZjtmE2Y7ZitmS2YfZkCDZiNmO2KLZhNmQ2YfZkC4g2KfZhNmE2ZHZh9mP2YXZkdmOINin2KzZkti52Y7ZhNmS2YbZkNmKINi52ZDZhtmS2K/ZjtmD2Y4g2YjZjtis2ZDZitmH2Kcg2KjZkNin2YTYrdmP2LPZjtmK2ZLZhtmQINi52Y7ZhNmO2YrZktmH2ZAg2KfZhNiz2ZHZjtmE2KfZhdmPINmB2ZDZiiDYp9mE2K/ZkdmP2YbZktmK2Kcg2YjZjtin2YTYotiu2ZDYsdip2ZDYjCDZitin2KPZjtio2Kcg2LnZjtio2ZLYr9mQINin2YTZhNmHINil2ZDZhtmR2ZDZiiDYo9mO2KrZjtmC2Y7YsdmR2Y7YqNmPINil2ZDZhNmJINin2YTZhNmHINmI2Y7YpdmQ2YTZiSDYsdmO2LPZj9mI2YTZkNmH2ZAg2YjZjtil2ZDZhNmJINij2Y7ZhdmQ2YrYsdmQINin2YTZhdmP2KTZktmF2ZDZhtmQ2YrZhtmOINmI2Y7YpdmQ2YTZiSDZgdin2LfZkNmF2Y7YqdmOINmI2Y7YpdmQ2YTZiSDYp9mE2K3Zjtiz2Y7ZhtmQINmI2Y7YpdmQ2YTZjtmK2ZLZg9mOINio2ZDZhdmP2YjYp9mE2KfYqtmQ2YPZjiDZiNmO2KjZkNin2YTYqNmO2LHYp9im2KnZkCDZhdmQ2YXZkdmO2YbZkiDZgtin2KrZjtmE2Y7Zg9mOINmI2Y7ZhtmO2LXZjtio2Y4g2YTZjtmD2Y4g2KfZhNit2Y7YsdmS2KjZjiDZiNmO2KjZkNin2YTYqNmO2LHYp9im2KnZkCDZhdmQ2YXZkdmO2YbZkiDYo9mO2LPZkdmO2LPZjiDYo9mO2LPYp9iz2Y4g2KfZhNi42ZHZj9mE2ZLZhdmQINmI2Y7Yp9mE2KzZjtmI2ZLYsdmQINi52Y7ZhNmO2YrZktmD2Y/ZhdmS2Iwg2YjZjtij2Y7YqNmS2LHZjtij2Y8g2KXZkNmE2Ykg2KfZhNmE2Ycg2YjZjtil2ZDZhNmJINix2Y7Ys9mP2YjZhNmQ2YfZkCDZhdmQ2YXZkdmO2YbZkiDYo9mO2LPZkdmO2LPZjiDYo9mO2LPYp9iz2Y4g2LDZhNmQ2YPZjiDZiNmO2KjZjtmG2Ykg2LnZjtmE2Y7ZitmH2ZAg2KjZj9mG2ZLZitin2YbZjtmH2Y8g2YjZjtis2Y7YsdmJINmB2ZDZiiDYuNmP2YTZktmF2ZDZh9mQINmI2Y7YrNmO2YjZktix2ZDZh9mQINi52Y7ZhNmO2YrZktmD2Y/ZhdmSINmI2Y7YudmO2YTZiSDYo9mO2LTZktmK2KfYudmQ2YPZj9mF2ZLYjCDYqNmO2LHZkNim2ZLYqtmPINil2ZDZhNmJINin2YTZhNmHINmI2Y7YpdmQ2YTZjtmK2ZLZg9mP2YXZkiDZhdmQ2YbZktmH2Y/ZhdmSINmI2Y7Yo9mO2KrZjtmC2Y7YsdmR2Y7YqNmPINil2ZDZhNmJINin2YTZhNmHINir2Y/ZhdmR2Y4g2KXZkNmE2Y7ZitmS2YPZj9mF2ZIg2KjZkNmF2Y/ZiNin2YTYp9iq2ZDZg9mP2YXZkiDZiNmO2YXZj9mI2KfZhNin2KnZkCDZiNmO2YTZkNmK2ZHZkNmD2Y/ZhdmSINmI2Y7Yp9mE2KjZjtix2KfYptip2ZAg2YXZkNmG2ZIg2KPZjti52ZLYr9in2KbZkNmD2Y/ZhdmSINmI2Y7Yp9mE2YbZkdmO2KfYtdmQ2KjZkNmK2YbZjiDZhNmO2YPZj9mF2ZIg2KfZhNit2Y7YsdmS2KjZjiDZiNmO2KjZkNin2YTYqNmO2LHYp9im2KnZkCDZhdmQ2YbZkiDYo9mO2LTZktmK2KfYudmQ2YfZkNmF2ZIg2YjZjtij2Y7YqtmS2KjYp9i52ZDZh9mQ2YXZki4KCtil2ZDZhtmR2ZDZiiDYs9mQ2YTZktmF2Ywg2YTZkNmF2Y7ZhtmSINiz2KfZhNmO2YXZjtmD2Y/ZhdmSINmI2Y7YrdmO2LHZktio2Ywg2YTZkNmF2Y7ZhtmSINit2KfYsdmO2KjZjtmD2Y/ZhdmSINmI2Y7ZiNmO2YTZkNmK2ZHZjyDZhNmQ2YXZjtmG2ZIg2YjZjtin2YTYp9mD2Y/ZhdmSINmI2Y7YudmO2K/Zj9mI2Ywg2YTZkNmF2Y7ZhtmSINi52KfYr9in2YPZj9mF2ZLYjCDZgdmO2KPZjtiz2ZLYo9mO2YTZjyDYp9mE2YTZhyDYp9mE2ZHZjtiw2ZDZiiDYo9mO2YPZktix2Y7ZhdmO2YbZkNmKINio2ZDZhdmO2LnZktix2ZDZgdmO2KrZkNmD2Y/ZhdmSINmI2Y7ZhdmO2LnZktix2ZDZgdmO2KnZkCDYo9mO2YjZktmE2ZDZitin2KbZkNmD2Y/ZhdmSINmI2Y7YsdmO2LLZjtmC2Y7ZhtmQ2Yog2KfZhNio2Y7Ysdin2KbYqdmQINmF2ZDZhtmSINij2Y7YudmS2K/Yp9im2ZDZg9mP2YXZkiDYo9mO2YbZkiDZitmO2KzZkti52Y7ZhNmO2YbZkNmKINmF2Y7YudmO2YPZj9mF2ZIg2YHZkNmKINin2YTYr9mR2Y/ZhtmS2YrYpyDZiNmO2KfZhNii2K7ZkNix2KnZkCDZiNmO2KPZjtmG2ZIg2YrZj9ir2Y7YqNmR2ZDYqtmOINmE2ZDZiiDYudmQ2YbZktiv2Y7Zg9mP2YXZkiDZgtmO2K/ZjtmF2Y4g2LXZkNiv2ZLZgtmNINmB2ZDZiiDYp9mE2K/ZkdmP2YbZktmK2Kcg2YjZjtin2YTYotiu2ZDYsdmO2KnZkNiMINmI2Y7Yo9mO2LPZktij2Y7ZhNmP2YfZjyDYo9mO2YbZkiDZitmP2KjZjtmE2ZHZkNi62Y7ZhtmQ2Yog2KfZhNmF2Y7Zgtin2YXZjiDYp9mE2YXZjtit2ZLZhdmP2YjYr9mOINmE2Y7Zg9mP2YXZkiDYudmQ2YbZktiv2Y4g2KfZhNmE2Ycg2YjZjtij2Y7ZhtmSINmK2Y7YsdmS2LLZj9mC2Y7ZhtmQ2Yog2LfZjtmE2Y7YqNmOINir2KfYsdmQ2Yog2YXZjti52Y4g2KXZkNmF2KfZhdmQINmH2Y/Yr9mJ2Ysg2LjYp9mH2ZDYsdmNINmG2KfYt9mQ2YLZjSDYqNmQ2KfZhNit2Y7ZgtmR2ZAg2YXZkNmG2ZLZg9mP2YXZktiMINmI2Y7Yo9mO2LPZktij2Y7ZhNmPINin2YTZhNmHINio2ZDYrdmO2YLZkdmQ2YPZj9mF2ZIg2YjZjtio2ZDYp9mE2ZHZjti02ZLYo9mG2ZAg2KfZhNmR2Y7YsNmQ2Yog2YTZjtmD2Y/ZhdmSINi52ZDZhtmS2K/ZjtmH2Y8g2KPZjtmG2ZIg2YrZj9i52ZLYt9mQ2YrZjtmG2ZDZiiDYqNmQ2YXZj9i12KfYqNmQ2Yog2KjZkNmD2Y/ZhdmSINij2Y7ZgdmS2LbZjtmE2Y4g2YXYp9mK2Y/YudmS2LfZkNmKINmF2Y/Ytdin2KjYp9mLINio2ZDZhdmP2LXZkNmK2KjZjtiq2ZDZh9mQ2Iwg2YXZj9i12ZDZitio2Y7YqdmLINmF2KfYo9mO2LnZkti42Y7ZhdmO2YfYpyDZiNmO2KPZjti52ZLYuNmO2YXZjiDYsdmO2LLZkNmK2ZHZjtiq2Y7Zh9inINmB2ZDZiiDYp9mE2KXYs9mS2YTYp9mF2ZAg2YjZjtmB2ZDZiiDYrNmO2YXZkNmK2LnZkCDYp9mE2LPZkdmO2YXYp9mI2KfYqtmQINmI2Y7Yp9mE2KPZjtix2ZLYttmQISDYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KfYrNmS2LnZjtmE2ZLZhtmQ2Yog2YHZkNmKINmF2Y7Zgtin2YXZkNmKINmH2LDYpyDZhdmQ2YXZkdmO2YbZkiDYqtmO2YbYp9mE2Y7Zh9mPINmF2ZDZhtmS2YPZjiDYtdmO2YTZjtmI2KfYqtmMINmI2Y7YsdmO2K3ZktmF2Y7YqdmMINmI2Y7ZhdmO2LrZktmB2ZDYsdmO2YfZjNiMINin2YTZhNmR2YfZj9mF2ZHZjiDYp9is2ZLYudmO2YTZkiDZhdmO2K3ZktmK2KfZitmOINmF2Y7YrdmS2YrYpyDZhdmP2K3ZjtmF2ZHZjtiv2Y0g2YjZjtii2YTZkCDZhdmP2K3ZjtmF2ZHZjtiv2Y0g2YjZjtmF2Y7Zhdin2KrZkNmKINmF2Y7Zhdin2KrZjiDZhdmP2K3ZjtmF2ZHZjtiv2Y0g2YjZjtii2YTZkCDZhdmP2K3ZjtmF2ZHZjtiv2Y3YjCDYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KXZkNmG2ZHZjiDZh9iw2Kcg2YrZjtmI2ZLZhdmMINiq2Y7YqNmO2LHZkdmO2YPZjtiq2ZIg2KjZkNmH2ZAg2KjZjtmG2Y/ZiCDYp9mP2YXZjtmK2ZHZjtip2Y4g2YjZjtin2KjZktmG2Y8g2KLZg9mQ2YTZjtip2ZAg2KfZhNin2Y7Zg9mS2KjYp9iv2ZAg2KfZhNmE2ZHZjti52ZDZitmG2Y8g2KfYqNmS2YbZjyDYp9mE2YTZkdmO2LnZkNmK2YbZkCDYudmO2YTZiSDZhNmQ2LPYp9mG2ZDZg9mOINmI2Y7ZhNmQ2LPYp9mG2ZAg2YbZjtio2ZDZitmR2ZDZg9mOINi12Y7ZhNmR2Ykg2KfZhNmE2Ycg2LnZjtmE2Y7ZitmH2ZAg2YjZjtii2YTZkNmH2ZAg2YHZkNmKINmD2Y/ZhNmR2ZAg2YXZjtmI2ZLYt9mQ2YbZjSDZiNmO2YXZjtmI2ZLZgtmQ2YHZjSDZiNmO2YLZjtmB2Y4g2YHZkNmK2YfZkCDZhtmO2KjZkNmK2ZHZj9mD2Y4g2LXZjtmE2ZHZiSDYp9mE2YTZhyDYudmO2YTZjtmK2YfZkCDZiNmO2KLZhNmQ2YfZkNibCgrYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KfZhNi52Y7ZhtmSINij2Y7YqNinINiz2Y/ZgdmK2KfZhtmOINmI2Y7ZhdmP2LnYp9mI2ZDZitmO2KnZjiDZiNmO2YrZjtiy2ZDZitiv2Y4g2KjZktmG2Y4g2YXZj9i52KfZiNmQ2YrZjtip2Y4g2LnZjtmE2Y7ZitmS2YfZkNmF2ZIg2YXZkNmG2ZLZg9mOINin2YTZhNmR2Y7YudmS2YbZjtip2Y8g2KPZjtio2Y7Yr9mOINin2YTYp9io2ZDYr9mQ2YrZhtmO2Iwg2YjZjtmH2LDYpyDZitmO2YjZktmF2Ywg2YHZjtix2ZDYrdmO2KrZkiDYqNmQ2YfZkCDYotmE2Y8g2LLZkNmK2KfYr9mNINmI2Y7YotmE2Y8g2YXZjtix2ZLZiNin2YbZjiDYqNmQ2YLZjtiq2ZLZhNmQ2YfZkNmF2Y8g2KfZhNit2Y/Ys9mO2YrZktmG2Y4g2LXZjtmE2Y7ZiNin2KrZjyDYp9mE2YTZhyDYudmO2YTZjtmK2ZLZh9mQ2Iwg2KfZhNmE2ZHZh9mP2YXZkdmOINmB2Y7Yttin2LnZkNmB2ZIg2LnZjtmE2Y7ZitmS2YfZkNmF2ZIg2KfZhNmE2ZHZjti52ZLZhtmOINmF2ZDZhtmS2YPZjiDZiNmO2KfZhNi52Y7YsNin2KjZjiDYp9mE2KfZhNmK2YXYjCDYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KXZkNmG2ZHZkNmKINij2Y7YqtmO2YLZjtix2ZHZjtio2Y8g2KXZkNmE2Y7ZitmS2YPZjiDZgdmQ2Yog2YfYsNinINin2YTZitmO2YjZktmF2ZAg2YjZjtmB2ZDZiiDZhdmO2YjZktmC2ZDZgdmQ2Yog2YfYsNinINmI2Y7Yo9mO2YrYp9mF2ZAg2K3ZjtmK2KfYqtmQ2Yog2KjZkNin2YTYqNmO2LHYp9im2Y7YqdmQINmF2ZDZhtmS2YfZj9mF2ZIg2YjZjtin2YTZhNmR2Y7YudmS2YbZjtip2ZAg2LnZjtmE2Y7ZitmS2YfZkNmF2ZIg2YjZjtio2ZDYp9mE2YXZj9mI2KfZhNin2KnZkCDZhNmQ2YbZjtio2ZDZitmR2ZDZg9mOINmI2Y7YotmE2ZAg2YbZjtio2ZDZitmR2ZDZg9mOINi52Y7ZhNmO2YrZh9mQINmI2Y7YudmE2Y7ZitmS2YfZkNmF2Y8g2KfZhNiz2ZHZjtmE2KfZhS4KCtir2YUg2KrZgtmI2YQgItmF2KfYptipINmF2LHYqSI6CgrYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KfZhNi52Y7ZhtmSINij2Y7ZiNmR2Y7ZhNmOINi42KfZhNmQ2YXZjSDYuNmO2YTZjtmF2Y4g2K3ZjtmC2ZHZjiDZhdmP2K3ZjtmF2ZHZjtiv2Y0g2YjZjtii2YTZkCDZhdmP2K3ZjtmF2ZHZjtiv2Y0g2YjZjtii2K7ZkNix2Y4g2KrYp9io2ZDYudmNINmE2Y7Zh9mPINi52Y7ZhNmJINiw2YTZkNmD2Y7YjCDYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KfZhNi52Y7ZhtmSINin2YTYudmQ2LXYp9io2Y7YqdmOINin2YTZkdmO2KrZkNmKINis2KfZh9mO2K/Zjtiq2ZAg2KfZhNit2Y/Ys9mO2YrZktmG2Y4g2YjZjti02KfZitmO2LnZjtiq2ZIg2YjZjtio2KfZitmO2LnZjtiq2ZIg2YjZjtiq2KfYqNmO2LnZjtiq2ZIg2LnZjtmE2Ykg2YLZjtiq2ZLZhNmQ2YfZkCDYp9mE2YTZkdmH2Y/ZhdmR2Y4g2KfZhNi52Y7ZhtmS2YfZj9mF2ZIg2KzZjtmF2YrYudin2YsuCgrYq9mFINiq2YLZiNmEICLZhdin2KbYqSDZhdix2KkiOgoK2KfZhNiz2ZHZjtmE2KfZhdmPINi52Y7ZhNmO2YrZktmD2Y4g2YrYpyDYo9mO2KjYpyDYudmO2KjZktiv2ZAg2KfZhNmE2Ycg2YjZjti52Y7ZhNmJINin2YTYo9mO2LHZiNin2K3ZkCDYp9mE2ZHZjtiq2ZDZiiDYrdmO2YTZkdmO2KrZkiDYqNmQ2YHZkNmG2KfYptmQ2YPZjtiMINi52Y7ZhNmO2YrZktmD2Y4g2YXZkNmG2ZHZkNmKINiz2Y7ZhNin2YXZjyDYp9mE2YTZh9mQINij2Y7YqNmO2K/Yp9mLINmF2KfYqNmO2YLZkNmK2KrZjyDZiNmO2KjZjtmC2ZDZitmOINin2YTZhNmO2YrZktmE2Y8g2YjZjtin2YTZhtmR2Y7Zh9in2LHZjyDZiNmO2YTYpyDYrNmO2LnZjtmE2Y7Zh9mPINin2YTZhNmHINii2K7ZkNix2Y4g2KfZhNi52Y7Zh9mS2K/ZkCDZhdmQ2YbZkdmQ2Yog2YTZkNiy2ZDZitin2LHZjtiq2ZDZg9mP2YXZki4g2KfZhNiz2ZHZjtmE2KfZhdmPINi52Y7ZhNmJINin2YTYrdmP2LPZjtmK2ZLZhtmQINmI2Y7YudmO2YTZiSDYudmO2YTZkNmK2ZHZkCDYqNmS2YbZkCDYp9mE2K3Zj9iz2Y7ZitmS2YbZkCDZiNmO2LnZjtmE2Ykg2KPZjtmI2ZLZhNin2K/ZkCDYp9mE2K3Zj9iz2Y7ZitmS2YbZkCDZiNmO2LnZjtmE2Ykg2KPZjti12ZLYrdin2KjZkCDYp9mE2K3Zj9iz2Y7ZitmS2YbZkC4KCtir2YUg2KrZgtmI2YQ6IAoK2KfZhNmE2ZHZh9mP2YXZkdmOINiu2Y/YtdmR2Y4g2KPZjtmG2ZLYqtmOINij2Y7ZiNmR2Y7ZhNmOINi42KfZhNmQ2YXZjSDYqNmQ2KfZhNmE2ZHZjti52ZLZhtmQINmF2ZDZhtmR2ZDZiiDZiNmO2KPZjtio2ZLYr9ij2ZIg2KjZkNmH2ZAg2KPZjtmI2ZHZjtmE2KfZiyDYq9mP2YXZkdmOINin2YTYq9mR2Y7Yp9mG2ZDZiiDZiNmO2KfZhNir2ZHZjtin2YTZkNir2Y4g2YjZjtin2YTYsdmR2Y7Yp9io2ZDYudmO2Iwg2KfZhNmE2ZHZh9mP2YXZkdmOINin2YTZkti52Y7ZhtmSINmK2Y7YstmQ2YrYr9mOINiu2KfZhdmQ2LPYp9mLINmI2Y7Yp9mE2LnZjtmG2ZIg2LnZj9io2Y7ZitmS2K/ZjiDYp9mE2YTZhyDYqNmS2YbZjiDYstmQ2YrYp9iv2Y0g2YjZjtin2KjZktmG2Y4g2YXZjtix2ZLYrNin2YbZjtip2Y4g2YjZjti52Y/ZhdmO2LHZjiDYqNmS2YbZjiDYs9mO2LnZktiv2Y0g2YjZjti02ZDZhdmS2LHYp9mLINmI2Y7YotmE2Y4g2KPZjtio2ZDZiiDYs9mP2YHZktmK2KfZhtmOINmI2Y7YotmE2Y4g2LLZkNmK2KfYr9mNINmI2Y7YotmE2Y4g2YXZjtix2ZLZiNin2YbZjiDYpdmE2Ykg2YrZjtmI2ZLZhdmQINin2YTZgtmQ2YrYp9mF2Y7YqdmQLgoK2KvZhSDYqtiz2KzYryDZiNiq2YLZiNmEIDog2KfZhNmE2ZHZh9mP2YXZkdmOINmE2Y7Zg9mOINin2YTYrdmO2YXZktiv2Y8g2K3ZjtmF2ZLYr9mOINin2YTYtNmR2Y7Yp9mD2ZDYsdmQ2YrZhtmOINmE2Y7Zg9mOINi52Y7ZhNmJINmF2Y/Ytdin2KjZkNmH2ZDZhdmS2Iwg2KfZhNit2Y7ZhdmS2K/ZjyDZhNmE2YfZkCDYudmO2YTZiSDYudmO2LjZkNmK2YXZkCDYsdmO2LLZkNmK2ZHZjtiq2ZDZitiMINin2YTZhNmR2YfZj9mF2ZHZjiDYp9ix2ZLYstmP2YLZktmG2ZDZiiDYtNmO2YHYp9i52Y7YqdmOINin2YTYrdmP2LPZjtmK2ZLZhtmQINmK2Y7ZiNmS2YXZjiDYp9mE2YjZj9ix2Y/ZiNiv2ZAg2YjZjtir2Y7YqNmR2ZDYqtmSINmE2ZDZiiDZgtmO2K/ZjtmF2Y4g2LXZkNiv2ZLZgtmNINi52ZDZhtmS2K/ZjtmD2Y4g2YXZjti52Y4g2KfZhNit2Y/Ys9mO2YrZktmG2ZAg2YjZjtij2Y7YtdmS2K3Yp9io2ZAg2KfZhNit2Y/Ys9mO2YrZktmG2ZAg2KfZhNmR2Y7YsNmQ2YrZhtmOINio2Y7YsNmO2YTZj9mI2Kcg2YXZj9mH2Y7YrNmO2YfZj9mF2ZIg2K/Zj9mI2YbZjiDYp9mE2K3Zj9iz2Y7ZitmS2YbZkCDYudmO2YTZjtmK2YfZkCDYp9mE2LPZkdmO2YTYp9mF2Y8u</script>
@@ -690,6 +725,64 @@ setLang('ar');
   }
 
   updateProgress();
+})();
+</script>
+
+
+<div class="install-help-modal" id="installHelpModal" aria-hidden="true">
+  <div class="install-help-box" role="dialog" aria-modal="true">
+    <div class="install-help-head">
+      <h2>📱 تثبيت تطبيق طريق الحسين</h2>
+      <button class="btn primary" type="button" id="installHelpClose">إغلاق</button>
+    </div>
+    <p id="installHelpIntro">اتبع الخطوات المناسبة لجهازك لتثبيت التطبيق على الشاشة الرئيسية.</p>
+    <div class="install-steps" id="iosInstallSteps">
+      <div class="install-step"><div class="install-step-icon">↗️</div><div><strong>1. اضغط زر المشاركة</strong><span>في أسفل Safari أو أعلى المتصفح حسب الجهاز.</span></div></div>
+      <div class="install-step"><div class="install-step-icon">➕</div><div><strong>2. اختر “إضافة إلى الشاشة الرئيسية”</strong><span>Add to Home Screen.</span></div></div>
+      <div class="install-step"><div class="install-step-icon">✅</div><div><strong>3. اضغط “إضافة”</strong><span>ستظهر أيقونة طريق الحسين على شاشة الجهاز.</span></div></div>
+    </div>
+    <div class="install-steps" id="genericInstallSteps">
+      <div class="install-step"><div class="install-step-icon">⋮</div><div><strong>افتح قائمة المتصفح</strong><span>ثم اختر تثبيت التطبيق أو إضافة إلى الشاشة الرئيسية.</span></div></div>
+      <div class="install-step"><div class="install-step-icon">📱</div><div><strong>بعد التثبيت</strong><span>سيُفتح الموقع بشكل يشبه التطبيقات مع الأيقونة الرسمية.</span></div></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  let deferredPrompt=null;
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  function el(id){return document.getElementById(id)}
+  function installed(){return window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true}
+  function setInstallState(){
+    const ok=installed();
+    const txt=ok?'✅ التطبيق مثبت على الجهاز':'📱 تثبيت التطبيق';
+    ['installAppBtn','installMainBtn','installSideBtn'].forEach(id=>{const b=el(id);if(b)b.textContent=txt;});
+    const s=el('installStatus'); if(s)s.textContent=ok?'✅ التطبيق مثبت على الجهاز':'التطبيق غير مثبت بعد';
+  }
+  function showHelp(){
+    const ios=el('iosInstallSteps'), gen=el('genericInstallSteps'), intro=el('installHelpIntro'), modal=el('installHelpModal');
+    if(ios&&gen){ios.style.display=isIOS?'grid':'none';gen.style.display=isIOS?'none':'grid';}
+    if(intro)intro.textContent=isIOS?'على iPhone أو iPad يتم التثبيت من زر المشاركة داخل Safari.':'إذا لم يظهر التثبيت المباشر، استخدم قائمة المتصفح ثم اختر تثبيت التطبيق أو إضافة إلى الشاشة الرئيسية.';
+    if(modal){modal.classList.add('show');modal.setAttribute('aria-hidden','false');}
+  }
+  async function installApp(){
+    if(installed()){alert('✅ التطبيق مثبت على الجهاز');setInstallState();return;}
+    if(deferredPrompt&&!isIOS){deferredPrompt.prompt();try{await deferredPrompt.userChoice;}catch(e){}deferredPrompt=null;setInstallState();return;}
+    showHelp();
+  }
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;setInstallState();});
+  window.addEventListener('appinstalled',()=>{deferredPrompt=null;setInstallState();});
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('#installAppBtn,#installMainBtn,#installSideBtn');
+    if(b){e.preventDefault();installApp();return;}
+    if(e.target&&(e.target.id==='installHelpClose'||e.target.id==='installHelpModal')){
+      const m=el('installHelpModal'); if(m){m.classList.remove('show');m.setAttribute('aria-hidden','true');}
+    }
+  });
+  if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});});}
+  setInstallState();
 })();
 </script>
 
