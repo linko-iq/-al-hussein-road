@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>طريق الحسين</title>
 <meta name="description" content="دليل تعريفي عن الإمام الحسين عليه السلام ونهضته المباركة وزيارة الأربعين.">
 <style>
@@ -424,6 +424,118 @@ html[dir="ltr"] .marquee-track{
 }
 .side a[href="#gift"]{background:linear-gradient(135deg,var(--accent),var(--gold))!important;color:#fff!important;border:1px solid rgba(255,255,255,.22)!important;font-weight:900!important;box-shadow:0 10px 28px rgba(139,30,30,.22)!important;margin:6px 0!important}
 .side a[href="#gift"]:hover{filter:brightness(1.06)}
+
+
+/* تثبيت الموقع ومنع الميلان يمين/يسار والتقريب */
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+  touch-action:pan-y;
+  overscroll-behavior-x:none;
+}
+body{position:relative}
+img,video,canvas,svg{max-width:100%}
+.container,section,main,.header,.footer{max-width:100%}
+
+/* تصغير وترتيب صور إهداء الثواب */
+.memorial-final{
+  max-width:760px;
+  margin:18px auto 0!important;
+}
+.memorial-feature{
+  max-width:360px!important;
+}
+.memorial-feature .photo{
+  aspect-ratio:1/1!important;
+  max-height:340px;
+}
+.memorial-pairs{
+  max-width:720px;
+  margin:0 auto;
+}
+.memorial-final .person{padding:10px!important}
+.memorial-final .photo{border-radius:16px!important}
+.memorial-final h3{font-size:17px!important}
+@media(max-width:560px){
+  .memorial-final{max-width:100%;gap:11px}
+  .memorial-feature{max-width:230px!important}
+  .memorial-feature .photo{max-height:230px}
+  .memorial-pairs{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .memorial-final .person{padding:7px!important}
+  .memorial-final h3{font-size:12px!important;line-height:1.45!important}
+}
+
+/* قسم أهل البيت - سحب عرضي أنيق */
+.ahl-scroll-wrap{
+  position:relative;
+  max-width:100%;
+  overflow:hidden;
+}
+.ahl-swipe-hint{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  color:var(--muted);
+  font-weight:900;
+  font-size:15px;
+  margin:-4px 0 14px;
+  opacity:.9;
+}
+.ahl-swipe-hint .arrow{
+  display:inline-grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  border-radius:999px;
+  background:rgba(184,148,69,.14);
+  color:var(--accent);
+  border:1px solid var(--line);
+}
+#ahlGrid.ahl-horizontal{
+  display:grid!important;
+  grid-auto-flow:column;
+  grid-auto-columns:minmax(285px,72%);
+  gap:14px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:4px 18px 16px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  overscroll-behavior-x:contain;
+}
+#ahlGrid.ahl-horizontal .card{
+  scroll-snap-align:center;
+  min-height:220px;
+  transform:scale(.94);
+  opacity:.56;
+  filter:saturate(.85);
+  transition:transform .25s ease,opacity .25s ease,filter .25s ease;
+}
+#ahlGrid.ahl-horizontal .card.is-active{
+  transform:scale(1);
+  opacity:1;
+  filter:none;
+}
+#ahlGrid.ahl-horizontal::after{
+  content:"";
+  width:12px;
+}
+html[dir="rtl"] #ahlGrid.ahl-horizontal{direction:rtl}
+html[dir="ltr"] #ahlGrid.ahl-horizontal{direction:ltr}
+@media(min-width:820px){
+  #ahlGrid.ahl-horizontal{grid-auto-columns:minmax(320px,36%)}
+}
+@media(max-width:520px){
+  #ahlGrid.ahl-horizontal{
+    grid-auto-columns:78%;
+    gap:10px;
+    padding-inline:10px;
+  }
+  .ahl-swipe-hint{font-size:13px}
+}
 
 </style>
 
@@ -1242,6 +1354,92 @@ setLang('ar');
   }
   document.addEventListener('DOMContentLoaded',()=>translateFinal(window.currentLang||'ar'));
   setTimeout(()=>translateFinal(window.currentLang||'ar'),100);
+})();
+</script>
+
+
+<script id="ahlHorizontalFinalPatch">
+(function(){
+  const hintText={
+    ar:'اسحب لعرض باقي أهل البيت (ع)',
+    en:'Swipe to view the rest of Ahl al-Bayt (A)',
+    fa:'برای دیدن بقیه اهل بیت (ع) بکشید'
+  };
+
+  function setupAhlCarousel(){
+    const grid=document.getElementById('ahlGrid');
+    if(!grid) return;
+    grid.classList.add('ahl-horizontal');
+
+    if(!grid.parentElement || !grid.parentElement.classList.contains('ahl-scroll-wrap')){
+      const wrap=document.createElement('div');
+      wrap.className='ahl-scroll-wrap';
+      const hint=document.createElement('div');
+      hint.className='ahl-swipe-hint';
+      hint.innerHTML='<span class="arrow">⇄</span><span data-ahl-hint>اسحب لعرض باقي أهل البيت (ع)</span>';
+      grid.parentElement.insertBefore(wrap,grid);
+      wrap.appendChild(hint);
+      wrap.appendChild(grid);
+    }
+
+    const lang=window.currentLang||document.documentElement.lang||'ar';
+    const hint=document.querySelector('[data-ahl-hint]');
+    if(hint) hint.textContent=hintText[lang]||hintText.ar;
+
+    const cards=[...grid.querySelectorAll('.card')];
+    if(!cards.length) return;
+
+    function updateActive(){
+      const rect=grid.getBoundingClientRect();
+      const center=rect.left+rect.width/2;
+      let best=null,dist=Infinity;
+      cards.forEach(card=>{
+        const r=card.getBoundingClientRect();
+        const c=r.left+r.width/2;
+        const d=Math.abs(c-center);
+        if(d<dist){dist=d;best=card;}
+      });
+      cards.forEach(card=>card.classList.toggle('is-active',card===best));
+    }
+    if(grid.__ahlUpdate) grid.removeEventListener('scroll',grid.__ahlUpdate);
+    grid.__ahlUpdate=()=>requestAnimationFrame(updateActive);
+    grid.addEventListener('scroll',grid.__ahlUpdate,{passive:true});
+    setTimeout(updateActive,60);
+    setTimeout(updateActive,300);
+  }
+
+  const oldRender=window.renderAhl;
+  if(typeof oldRender==='function' && !oldRender.__horizontalFinal){
+    window.renderAhl=function(){
+      oldRender();
+      setupAhlCarousel();
+    };
+    window.renderAhl.__horizontalFinal=true;
+  }
+
+  const oldSet=window.setLang;
+  if(typeof oldSet==='function' && !oldSet.__ahlHintFinal){
+    window.setLang=function(lang){
+      oldSet(lang);
+      setTimeout(setupAhlCarousel,100);
+      setTimeout(setupAhlCarousel,350);
+    };
+    window.setLang.__ahlHintFinal=true;
+  }
+
+  document.addEventListener('DOMContentLoaded',setupAhlCarousel);
+  setTimeout(setupAhlCarousel,100);
+  setTimeout(setupAhlCarousel,500);
+})();
+</script>
+
+
+<script id="pageLockFinalPatch">
+(function(){
+  function lockX(){
+    if(window.scrollX!==0) window.scrollTo(0,window.scrollY);
+  }
+  window.addEventListener('scroll',lockX,{passive:true});
 })();
 </script>
 
