@@ -537,6 +537,107 @@ html[dir="ltr"] #ahlGrid.ahl-horizontal{direction:ltr}
   .ahl-swipe-hint{font-size:13px}
 }
 
+
+/* إصلاح نهائي لسحب أهل البيت: حجم طبيعي وبدون بطاقات طويلة */
+#ahl .container{
+  overflow:hidden;
+}
+.ahl-scroll-wrap{
+  width:100%;
+  overflow:hidden!important;
+  position:relative;
+}
+#ahlGrid.ahl-horizontal{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:14px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:6px 10px 18px!important;
+  scroll-snap-type:x mandatory!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-width:thin;
+  overscroll-behavior-x:contain;
+  align-items:stretch!important;
+}
+#ahlGrid.ahl-horizontal .card{
+  flex:0 0 min(82%, 360px)!important;
+  width:min(82%, 360px)!important;
+  max-width:360px!important;
+  min-width:250px!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:270px!important;
+  overflow:hidden!important;
+  scroll-snap-align:center!important;
+  transform:scale(.94);
+  opacity:.42;
+  filter:saturate(.75);
+  transition:transform .25s ease,opacity .25s ease,filter .25s ease;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+#ahlGrid.ahl-horizontal .card.is-active{
+  transform:scale(1);
+  opacity:1;
+  filter:none;
+}
+#ahlGrid.ahl-horizontal .card h3{
+  font-size:22px!important;
+  line-height:1.65!important;
+  margin-bottom:8px!important;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+#ahlGrid.ahl-horizontal .card p{
+  font-size:18px!important;
+  line-height:1.9!important;
+  margin-bottom:12px!important;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+#ahlGrid.ahl-horizontal .card .btn{
+  align-self:center;
+  padding:9px 16px!important;
+  border-radius:16px!important;
+  font-size:15px!important;
+}
+.ahl-swipe-hint{
+  margin:0 0 10px!important;
+  font-size:14px!important;
+}
+@media(max-width:560px){
+  #ahlGrid.ahl-horizontal{
+    gap:10px!important;
+    padding-inline:10px!important;
+  }
+  #ahlGrid.ahl-horizontal .card{
+    flex-basis:78%!important;
+    width:78%!important;
+    min-width:245px!important;
+    max-height:235px!important;
+    padding:18px 14px!important;
+  }
+  #ahlGrid.ahl-horizontal .card h3{
+    font-size:20px!important;
+    line-height:1.55!important;
+  }
+  #ahlGrid.ahl-horizontal .card p{
+    font-size:16px!important;
+    line-height:1.75!important;
+    -webkit-line-clamp:3;
+  }
+  #ahlGrid.ahl-horizontal .card .btn{
+    font-size:14px!important;
+    padding:8px 14px!important;
+  }
+}
+
 </style>
 
 
@@ -1440,6 +1541,75 @@ setLang('ar');
     if(window.scrollX!==0) window.scrollTo(0,window.scrollY);
   }
   window.addEventListener('scroll',lockX,{passive:true});
+})();
+</script>
+
+
+<script id="ahlSliderSizeOrderFix">
+(function(){
+  function fixAhlOrderAndSize(){
+    const grid=document.getElementById('ahlGrid');
+    if(!grid) return;
+    grid.classList.add('ahl-horizontal');
+
+    const cards=[...grid.querySelectorAll('.card')];
+    if(!cards.length) return;
+
+    // خلي النبي محمد يظهر أول بطاقة عند فتح القسم
+    const lang=window.currentLang||document.documentElement.lang||'ar';
+    const isRTL=(document.documentElement.dir||'rtl')==='rtl';
+    setTimeout(function(){
+      if(isRTL){
+        grid.scrollLeft = grid.scrollWidth;
+      }else{
+        grid.scrollLeft = 0;
+      }
+      updateActive();
+    },80);
+
+    function updateActive(){
+      const rect=grid.getBoundingClientRect();
+      const center=rect.left+rect.width/2;
+      let best=null, dist=Infinity;
+      cards.forEach(card=>{
+        const r=card.getBoundingClientRect();
+        const c=r.left+r.width/2;
+        const d=Math.abs(c-center);
+        if(d<dist){dist=d;best=card;}
+      });
+      cards.forEach(card=>card.classList.toggle('is-active',card===best));
+    }
+
+    if(grid.__sizeOrderFix) grid.removeEventListener('scroll',grid.__sizeOrderFix);
+    grid.__sizeOrderFix=()=>requestAnimationFrame(updateActive);
+    grid.addEventListener('scroll',grid.__sizeOrderFix,{passive:true});
+    setTimeout(updateActive,150);
+    setTimeout(updateActive,500);
+  }
+
+  const oldRender=window.renderAhl;
+  if(typeof oldRender==='function' && !oldRender.__sizeOrderFix){
+    window.renderAhl=function(){
+      oldRender();
+      fixAhlOrderAndSize();
+    };
+    window.renderAhl.__sizeOrderFix=true;
+  }
+
+  const oldSet=window.setLang;
+  if(typeof oldSet==='function' && !oldSet.__sizeOrderFix){
+    window.setLang=function(lang){
+      oldSet(lang);
+      setTimeout(fixAhlOrderAndSize,120);
+      setTimeout(fixAhlOrderAndSize,450);
+    };
+    window.setLang.__sizeOrderFix=true;
+  }
+
+  document.addEventListener('DOMContentLoaded',fixAhlOrderAndSize);
+  window.addEventListener('load',fixAhlOrderAndSize);
+  setTimeout(fixAhlOrderAndSize,200);
+  setTimeout(fixAhlOrderAndSize,700);
 })();
 </script>
 
