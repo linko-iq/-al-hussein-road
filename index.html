@@ -700,6 +700,137 @@ main > section:not(.hero)::before{
 .side a[href="#support-section"]{background:rgba(15,91,60,.10);border:1px solid rgba(15,91,60,.22);font-weight:900;color:var(--accent2)}
 .support-section{padding-top:0!important}.support-card{text-align:center;max-width:780px;margin:0 auto}.support-card h2{color:var(--accent);font-size:28px;margin-bottom:8px}.support-card p{color:var(--muted);margin-bottom:16px}
 
+
+/* إصلاح نهائي لقسم الصور والسحب العرضي */
+.swipe-hint,
+.ahl-swipe-hint,
+.dua-swipe-hint,
+.memorial-swipe-hint{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  margin:0 0 12px!important;
+  color:var(--muted)!important;
+  font-weight:900!important;
+  font-size:14px!important;
+}
+.swipe-hint .arrow,
+.ahl-swipe-hint .arrow,
+.dua-swipe-hint .arrow,
+.memorial-swipe-hint .arrow{
+  display:inline-grid!important;
+  place-items:center!important;
+  width:30px!important;
+  height:30px!important;
+  border-radius:999px!important;
+  background:rgba(184,148,69,.14)!important;
+  color:var(--accent)!important;
+  border:1px solid var(--line)!important;
+}
+.memorial-final,
+.memorial-pairs,
+.memorial-slider,
+#memorialSlider{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:14px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scroll-snap-type:x mandatory!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:6px 10px 18px!important;
+  max-width:100%!important;
+  margin:0!important;
+}
+.memorial-feature{max-width:none!important;margin:0!important}
+.memorial-pairs{display:contents!important}
+.memorial-final .person,
+#memorialSlider .person,
+.memorial-slider .person{
+  flex:0 0 min(78%, 330px)!important;
+  width:min(78%,330px)!important;
+  min-width:245px!important;
+  max-width:330px!important;
+  scroll-snap-align:center!important;
+  padding:11px!important;
+  text-align:center!important;
+  overflow:visible!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  min-height:0!important;
+  height:auto!important;
+}
+.memorial-final .photo,
+#memorialSlider .photo,
+.memorial-slider .photo{
+  width:100%!important;
+  aspect-ratio:3/4!important;
+  height:auto!important;
+  max-height:360px!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  background:#111!important;
+  border:1px solid var(--line)!important;
+}
+.memorial-final .photo img,
+#memorialSlider .photo img,
+.memorial-slider .photo img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  display:block!important;
+  background:#111!important;
+}
+.memorial-final h3,
+#memorialSlider h3,
+.memorial-slider h3{
+  font-size:16px!important;
+  line-height:1.55!important;
+  margin:9px 0 2px!important;
+  color:var(--accent)!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  display:block!important;
+  -webkit-line-clamp:unset!important;
+}
+.memorial-date{
+  font-size:13px!important;
+  line-height:1.5!important;
+  color:var(--muted)!important;
+  font-weight:800!important;
+  margin-top:2px!important;
+}
+@media(max-width:560px){
+  .memorial-final .person,
+  #memorialSlider .person,
+  .memorial-slider .person{
+    flex-basis:76%!important;
+    width:76%!important;
+    min-width:235px!important;
+    max-width:285px!important;
+  }
+  .memorial-final .photo,
+  #memorialSlider .photo,
+  .memorial-slider .photo{
+    max-height:330px!important;
+  }
+  .memorial-final h3,
+  #memorialSlider h3,
+  .memorial-slider h3{
+    font-size:14px!important;
+  }
+  .memorial-date{font-size:12px!important}
+}
+
+/* علامة السحب لقسم الأدعية */
+#duas .grid,
+#duasGrid{
+  position:relative;
+}
+
 </style>
 
 
@@ -1853,6 +1984,102 @@ setLang('ar');
   document.addEventListener('DOMContentLoaded',runAll);
   window.addEventListener('load',runAll);
   setTimeout(runAll,150); setTimeout(runAll,700);
+})();
+</script>
+
+
+<script id="finalMemorialDuaFix">
+(function(){
+  const memorialDates = {
+    'الشهيد حسن علي صمد':'22 / 9 / 2021',
+    'المرحوم حسن علي صمد':'22 / 9 / 2021',
+    'المرحوم صمد علوان':'',
+    'المرحومة فاطمة طاهر':'',
+    'المرحوم عبدالحسين صمد علوان':'',
+    'الشهيد حسين رزوقي شندي':'',
+    'المرحوم حميد عبد العباس عبد الخضر (أبو مجيد)':'27 / 8 / 2021',
+    'حميد عبد العباس عبد الخضر(ابو مجيد)':'27 / 8 / 2021',
+    'حميد عبد العباس عبد الخضر (ابو مجيد)':'27 / 8 / 2021'
+  };
+
+  function cleanName(name){
+    return String(name||'').replace(/\s+/g,' ').trim();
+  }
+
+  function addHintBefore(target, cls, text){
+    if(!target || !target.parentElement) return;
+    if(target.parentElement.querySelector('.'+cls)) return;
+    const hint=document.createElement('div');
+    hint.className=cls+' swipe-hint';
+    hint.innerHTML='<span class="arrow">⇄</span><span>'+text+'</span>';
+    target.parentElement.insertBefore(hint,target);
+  }
+
+  function fixMemorial(){
+    let memorial=document.querySelector('.memorial-final') || document.querySelector('.memorial-slider') || document.getElementById('memorialSlider') || document.querySelector('#gift .memorial');
+    if(!memorial) return;
+
+    memorial.classList.add('memorial-final');
+    memorial.id = memorial.id || 'memorialSlider';
+
+    addHintBefore(memorial,'memorial-swipe-hint','اسحب لعرض باقي صور المرحومين');
+
+    // If old layout has .memorial-pairs, CSS display:contents makes all cards in one horizontal row.
+    const persons=[...memorial.querySelectorAll('.person')];
+    persons.forEach(card=>{
+      const img=card.querySelector('img');
+      if(img){
+        img.style.objectFit='contain';
+        img.style.objectPosition='center';
+      }
+      let h=card.querySelector('h3');
+      if(!h) return;
+      let name=cleanName(h.textContent);
+
+      // Normalize the new person name if it is missing/short.
+      if(name.includes('حميد') || card.textContent.includes('27') || (img && img.alt && img.alt.includes('حميد'))){
+        name='المرحوم حميد عبد العباس عبد الخضر (أبو مجيد)';
+        h.textContent=name;
+        if(img) img.alt=name;
+      }
+
+      let date=card.querySelector('.memorial-date');
+      if(!date){
+        date=document.createElement('div');
+        date.className='memorial-date';
+        h.insertAdjacentElement('afterend',date);
+      }
+      const d=memorialDates[name] || '';
+      date.textContent = d ? ('تاريخ الوفاة: '+d) : 'تاريخ الوفاة: غير مضاف حالياً';
+    });
+  }
+
+  function fixDuas(){
+    const grid=document.getElementById('duasGrid') || document.querySelector('#duas .grid');
+    if(!grid) return;
+    grid.classList.add('ahl-horizontal');
+    addHintBefore(grid,'dua-swipe-hint','اسحب لعرض باقي الأدعية');
+  }
+
+  function run(){
+    fixDuas();
+    fixMemorial();
+  }
+
+  const oldSet=window.setLang;
+  if(typeof oldSet==='function' && !oldSet.__finalMemorialDuaFix){
+    window.setLang=function(lang){
+      oldSet(lang);
+      setTimeout(run,120);
+      setTimeout(run,400);
+    };
+    window.setLang.__finalMemorialDuaFix=true;
+  }
+
+  document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',run);
+  setTimeout(run,120);
+  setTimeout(run,600);
 })();
 </script>
 
