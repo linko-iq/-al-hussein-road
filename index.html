@@ -831,6 +831,46 @@ main > section:not(.hero)::before{
   position:relative;
 }
 
+
+/* إصلاح نهائي لأسماء وتواريخ صور المرحومين */
+.memorial-final .person,
+#memorialSlider .person,
+.memorial-slider .person{
+  overflow:visible!important;
+  padding-bottom:14px!important;
+}
+.memorial-final h3,
+#memorialSlider h3,
+.memorial-slider h3,
+.memorial-name{
+  display:block!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:unset!important;
+  -webkit-line-clamp:unset!important;
+  color:var(--accent)!important;
+  font-weight:900!important;
+  text-align:center!important;
+  margin:10px 0 4px!important;
+}
+.memorial-date{
+  display:block!important;
+  text-align:center!important;
+  font-weight:800!important;
+  color:var(--muted)!important;
+  font-size:13px!important;
+  line-height:1.6!important;
+  min-height:20px!important;
+}
+.memorial-date:empty{display:none!important}
+@media(max-width:560px){
+  .memorial-final h3,
+  #memorialSlider h3,
+  .memorial-slider h3,
+  .memorial-name{font-size:14px!important;line-height:1.5!important}
+  .memorial-date{font-size:12px!important}
+}
+
 </style>
 
 
@@ -1988,22 +2028,54 @@ setLang('ar');
 </script>
 
 
-<script id="finalMemorialDuaFix">
+
+<script id="finalMemorialWhatsAppFix">
 (function(){
-  const memorialDates = {
-    'الشهيد حسن علي صمد':'22 / 9 / 2021',
-    'المرحوم حسن علي صمد':'22 / 9 / 2021',
-    'المرحوم صمد علوان':'',
-    'المرحومة فاطمة طاهر':'',
-    'المرحوم عبدالحسين صمد علوان':'',
-    'الشهيد حسين رزوقي شندي':'',
-    'المرحوم حميد عبد العباس عبد الخضر (أبو مجيد)':'27 / 8 / 2021',
-    'حميد عبد العباس عبد الخضر(ابو مجيد)':'27 / 8 / 2021',
-    'حميد عبد العباس عبد الخضر (ابو مجيد)':'27 / 8 / 2021'
+  const supportPhone='9647747248826';
+  const supportMsg='السلام عليكم، لدي مشكلة أو اقتراح لتطوير موقع طريق الحسين.';
+  const supportUrl='https://wa.me/'+supportPhone+'?text='+encodeURIComponent(supportMsg);
+
+  const knownDates = {
+    'حسن':'22 / 9 / 2021',
+    'مجيد':'27 / 8 / 2021',
+    'حميد':'27 / 8 / 2021'
   };
 
-  function cleanName(name){
-    return String(name||'').replace(/\s+/g,' ').trim();
+  function norm(s){
+    return String(s||'').replace(/\s+/g,' ').trim();
+  }
+
+  function detectName(card){
+    const txt=norm(card.textContent);
+    const img=card.querySelector('img');
+    const alt=img ? norm(img.getAttribute('alt')) : '';
+    const all=(txt+' '+alt);
+
+    if(all.includes('حميد') || all.includes('أبو مجيد') || all.includes('ابو مجيد')){
+      return 'المرحوم حميد عبد العباس عبد الخضر (أبو مجيد)';
+    }
+    if(all.includes('حسن علي صمد')){
+      return 'الشهيد حسن علي صمد';
+    }
+    if(all.includes('صمد علوان') && !all.includes('عبدالحسين') && !all.includes('عبد الحسين')){
+      return 'المرحوم صمد علوان';
+    }
+    if(all.includes('فاطمة طاهر')){
+      return 'المرحومة فاطمة طاهر';
+    }
+    if(all.includes('عبدالحسين') || all.includes('عبد الحسين')){
+      return 'المرحوم عبدالحسين صمد علوان';
+    }
+    if(all.includes('حسين رزوقي')){
+      return 'الشهيد حسين رزوقي شندي';
+    }
+    return txt || alt || '';
+  }
+
+  function dateFor(name){
+    if(name.includes('حسن علي صمد')) return knownDates['حسن'];
+    if(name.includes('حميد') || name.includes('مجيد')) return knownDates['مجيد'];
+    return '';
   }
 
   function addHintBefore(target, cls, text){
@@ -2015,70 +2087,82 @@ setLang('ar');
     target.parentElement.insertBefore(hint,target);
   }
 
-  function fixMemorial(){
-    let memorial=document.querySelector('.memorial-final') || document.querySelector('.memorial-slider') || document.getElementById('memorialSlider') || document.querySelector('#gift .memorial');
+  function fixMemorialCards(){
+    const memorial=document.querySelector('.memorial-final') || document.querySelector('.memorial-slider') || document.getElementById('memorialSlider') || document.querySelector('#gift .memorial');
     if(!memorial) return;
 
     memorial.classList.add('memorial-final');
-    memorial.id = memorial.id || 'memorialSlider';
-
+    if(!memorial.id) memorial.id='memorialSlider';
     addHintBefore(memorial,'memorial-swipe-hint','اسحب لعرض باقي صور المرحومين');
 
-    // If old layout has .memorial-pairs, CSS display:contents makes all cards in one horizontal row.
-    const persons=[...memorial.querySelectorAll('.person')];
-    persons.forEach(card=>{
+    const cards=[...memorial.querySelectorAll('.person')];
+    cards.forEach(card=>{
       const img=card.querySelector('img');
       if(img){
         img.style.objectFit='contain';
         img.style.objectPosition='center';
       }
-      let h=card.querySelector('h3');
-      if(!h) return;
-      let name=cleanName(h.textContent);
 
-      // Normalize the new person name if it is missing/short.
-      if(name.includes('حميد') || card.textContent.includes('27') || (img && img.alt && img.alt.includes('حميد'))){
-        name='المرحوم حميد عبد العباس عبد الخضر (أبو مجيد)';
+      let h=card.querySelector('h3');
+      if(!h){
+        h=document.createElement('h3');
+        card.appendChild(h);
+      }
+
+      const name=detectName(card);
+      if(name){
         h.textContent=name;
+        h.classList.add('memorial-name');
         if(img) img.alt=name;
       }
 
-      let date=card.querySelector('.memorial-date');
-      if(!date){
-        date=document.createElement('div');
-        date.className='memorial-date';
-        h.insertAdjacentElement('afterend',date);
+      let dateEl=card.querySelector('.memorial-date');
+      if(!dateEl){
+        dateEl=document.createElement('div');
+        dateEl.className='memorial-date';
+        h.insertAdjacentElement('afterend',dateEl);
       }
-      const d=memorialDates[name] || '';
-      date.textContent = d ? ('تاريخ الوفاة: '+d) : 'تاريخ الوفاة: غير مضاف حالياً';
+
+      const d=dateFor(name);
+      dateEl.textContent = d ? ('تاريخ الوفاة: '+d) : '';
     });
   }
 
-  function fixDuas(){
-    const grid=document.getElementById('duasGrid') || document.querySelector('#duas .grid');
-    if(!grid) return;
-    grid.classList.add('ahl-horizontal');
-    addHintBefore(grid,'dua-swipe-hint','اسحب لعرض باقي الأدعية');
+  function fixSupportButtons(){
+    const candidates=[...document.querySelectorAll('a,button')];
+    candidates.forEach(el=>{
+      const t=norm(el.textContent);
+      const href=el.getAttribute && (el.getAttribute('href')||'');
+      if(t.includes('الدعم') || t.includes('تواصل') || href.includes('wa.me') || href.includes('whatsapp')){
+        if(el.tagName.toLowerCase()==='a'){
+          el.setAttribute('href',supportUrl);
+          el.setAttribute('target','_blank');
+          el.setAttribute('rel','noopener');
+        }else{
+          el.onclick=function(){ window.open(supportUrl,'_blank'); };
+        }
+      }
+    });
   }
 
   function run(){
-    fixDuas();
-    fixMemorial();
+    fixMemorialCards();
+    fixSupportButtons();
   }
 
   const oldSet=window.setLang;
-  if(typeof oldSet==='function' && !oldSet.__finalMemorialDuaFix){
+  if(typeof oldSet==='function' && !oldSet.__finalMemorialWhatsAppFix){
     window.setLang=function(lang){
       oldSet(lang);
       setTimeout(run,120);
       setTimeout(run,400);
     };
-    window.setLang.__finalMemorialDuaFix=true;
+    window.setLang.__finalMemorialWhatsAppFix=true;
   }
 
   document.addEventListener('DOMContentLoaded',run);
   window.addEventListener('load',run);
-  setTimeout(run,120);
+  setTimeout(run,100);
   setTimeout(run,600);
 })();
 </script>
