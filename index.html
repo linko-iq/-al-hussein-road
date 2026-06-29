@@ -871,6 +871,82 @@ main > section:not(.hero)::before{
   .memorial-date{font-size:12px!important}
 }
 
+
+/* إصلاح نهائي: حسن وباقي الصور داخل نفس السحب */
+.memorial-final,
+#memorialSlider,
+.memorial-slider{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  gap:14px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scroll-snap-type:x mandatory!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:6px 12px 18px!important;
+  max-width:100%!important;
+  width:100%!important;
+  margin:0!important;
+  align-items:stretch!important;
+}
+.memorial-final .memorial-pairs,
+#memorialSlider .memorial-pairs,
+.memorial-slider .memorial-pairs{
+  display:contents!important;
+}
+.memorial-final .person,
+#memorialSlider .person,
+.memorial-slider .person,
+.memorial-final .memorial-feature,
+#memorialSlider .memorial-feature,
+.memorial-slider .memorial-feature{
+  flex:0 0 min(76%, 310px)!important;
+  width:min(76%,310px)!important;
+  min-width:235px!important;
+  max-width:310px!important;
+  scroll-snap-align:center!important;
+  transform:none!important;
+  margin:0!important;
+}
+.memorial-final .photo,
+#memorialSlider .photo,
+.memorial-slider .photo{
+  aspect-ratio:3/4!important;
+  max-height:330px!important;
+}
+.memorial-final .photo img,
+#memorialSlider .photo img,
+.memorial-slider .photo img{
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.memorial-final .person.is-active,
+#memorialSlider .person.is-active,
+.memorial-slider .person.is-active{
+  opacity:1!important;
+  filter:none!important;
+}
+.memorial-final .person:not(.is-active),
+#memorialSlider .person:not(.is-active),
+.memorial-slider .person:not(.is-active){
+  opacity:.52!important;
+  filter:saturate(.82)!important;
+}
+@media(max-width:560px){
+  .memorial-final .person,
+  #memorialSlider .person,
+  .memorial-slider .person,
+  .memorial-final .memorial-feature,
+  #memorialSlider .memorial-feature,
+  .memorial-slider .memorial-feature{
+    flex-basis:76%!important;
+    width:76%!important;
+    min-width:230px!important;
+    max-width:285px!important;
+  }
+}
+
 </style>
 
 
@@ -2164,6 +2240,75 @@ setLang('ar');
   window.addEventListener('load',run);
   setTimeout(run,100);
   setTimeout(run,600);
+})();
+</script>
+
+
+<script id="finalMemorialFlattenFix">
+(function(){
+  function fixMemorial(){
+    const memorial=document.querySelector('#memorialSlider') || document.querySelector('.memorial-final') || document.querySelector('#gift .memorial');
+    if(!memorial) return;
+
+    memorial.classList.add('memorial-final');
+    memorial.id = memorial.id || 'memorialSlider';
+
+    const persons=[...memorial.querySelectorAll('.person')];
+    persons.forEach(card=>{
+      card.classList.remove('memorial-feature');
+      if(card.parentElement !== memorial){
+        memorial.appendChild(card);
+      }
+
+      const dates=[...card.querySelectorAll('.memorial-date')];
+      if(dates.length > 1){
+        dates.slice(1).forEach(d=>d.remove());
+      }
+
+      const img=card.querySelector('img');
+      if(img){
+        img.style.objectFit='contain';
+        img.style.objectPosition='center';
+      }
+    });
+
+    [...memorial.querySelectorAll('.memorial-pairs')].forEach(w=>{
+      if(!w.querySelector('.person')) w.remove();
+    });
+
+    const cards=[...memorial.querySelectorAll('.person')];
+    function updateActive(){
+      const rect=memorial.getBoundingClientRect();
+      const center=rect.left+rect.width/2;
+      let best=null, dist=Infinity;
+      cards.forEach(card=>{
+        const r=card.getBoundingClientRect();
+        const d=Math.abs((r.left+r.width/2)-center);
+        if(d<dist){dist=d;best=card;}
+      });
+      cards.forEach(c=>c.classList.toggle('is-active',c===best));
+    }
+    if(memorial.__flattenScroll) memorial.removeEventListener('scroll',memorial.__flattenScroll);
+    memorial.__flattenScroll=()=>requestAnimationFrame(updateActive);
+    memorial.addEventListener('scroll',memorial.__flattenScroll,{passive:true});
+    setTimeout(updateActive,80);
+    setTimeout(updateActive,400);
+  }
+
+  document.addEventListener('DOMContentLoaded',fixMemorial);
+  window.addEventListener('load',fixMemorial);
+  setTimeout(fixMemorial,100);
+  setTimeout(fixMemorial,700);
+
+  const oldSet=window.setLang;
+  if(typeof oldSet==='function' && !oldSet.__memorialFlattenFix){
+    window.setLang=function(lang){
+      oldSet(lang);
+      setTimeout(fixMemorial,120);
+      setTimeout(fixMemorial,450);
+    };
+    window.setLang.__memorialFlattenFix=true;
+  }
 })();
 </script>
 
