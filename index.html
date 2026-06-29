@@ -947,6 +947,41 @@ main > section:not(.hero)::before{
   }
 }
 
+
+/* أزرار مشاركة ونسخ رابط الموقع */
+.share-tools-final{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  margin:22px auto 10px;
+}
+.share-tools-final .btn{
+  min-width:150px;
+}
+.copy-toast-final{
+  position:fixed;
+  left:50%;
+  bottom:92px;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--accent2);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:999px;
+  font-size:15px;
+  font-weight:900;
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  box-shadow:var(--shadow);
+  transition:.25s ease;
+}
+.copy-toast-final.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
 </style>
 
 
@@ -1149,6 +1184,13 @@ main > section:not(.hero)::before{
     <div class="install-status" id="installStatus">جاري التحقق من حالة التطبيق...</div>
   </div>
 </div></section>
+
+
+<div class="share-tools-final" id="shareToolsFinal">
+  <button class="btn green" type="button" id="shareSiteBtn">📤 مشاركة الموقع</button>
+  <button class="btn" type="button" id="copySiteBtn">🔗 نسخ الرابط</button>
+</div>
+<div class="copy-toast-final" id="copyToastFinal">✅ تم نسخ رابط الموقع</div>
 
 <footer class="footer"><p data-i18n="footerText">تم إنشاء هذا العمل خدمةً لزوار الإمام الحسين (عليه السلام) وإهداءً للثواب إلى أرواح المرحومين والشهيد المذكورين في الموقع.</p><p>تطوير تقني: <b>شركة LINKO</b></p><p class="company-warning">رجاءً اخذ الحذر من الحسابات الي تتعامل بأسم الشركة</p></footer>
 <div class="reader" id="reader"><div class="reader-head"><button class="btn" onclick="closeReader()" data-i18n="back">العودة</button><button class="btn" onclick="changeFont(2)" data-i18n="fontUp">تكبير الخط</button><button class="btn" onclick="changeFont(-2)" data-i18n="fontDown">تصغير الخط</button><button class="btn green" onclick="copyReader()" data-i18n="copy">نسخ النص</button></div><div class="reader-body"><h2 id="readerTitle"></h2><div class="reader-text" id="readerText"></div><div class="reader-source" id="readerSource"></div></div></div>
@@ -2309,6 +2351,83 @@ setLang('ar');
     };
     window.setLang.__memorialFlattenFix=true;
   }
+})();
+</script>
+
+
+<script id="shareCopyFinalPatch">
+(function(){
+  const SITE_URL='https://linko-iq.github.io/-al-hussein-road/';
+  const SITE_TITLE='طريق الحسين';
+  const SITE_TEXT='دليل تعريفي عن الإمام الحسين (عليه السلام) ونهضته المباركة وزيارة الأربعين.';
+
+  function toast(msg){
+    const t=document.getElementById('copyToastFinal');
+    if(!t) return;
+    t.textContent=msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),1800);
+  }
+
+  async function copyLink(){
+    try{
+      if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(SITE_URL);
+      }else{
+        const ta=document.createElement('textarea');
+        ta.value=SITE_URL;
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      toast('✅ تم نسخ رابط الموقع');
+    }catch(e){
+      toast('انسخ الرابط: '+SITE_URL);
+    }
+  }
+
+  async function shareSite(){
+    try{
+      if(navigator.share){
+        await navigator.share({title:SITE_TITLE,text:SITE_TEXT,url:SITE_URL});
+      }else{
+        await copyLink();
+      }
+    }catch(e){}
+  }
+
+  function bind(){
+    const s=document.getElementById('shareSiteBtn');
+    const c=document.getElementById('copySiteBtn');
+    if(s && !s.__bound){s.addEventListener('click',shareSite);s.__bound=true;}
+    if(c && !c.__bound){c.addEventListener('click',copyLink);c.__bound=true;}
+
+    // Add to side menu if not added
+    const side=document.querySelector('.side');
+    if(side && !document.getElementById('sideShareLinkFinal')){
+      const a=document.createElement('a');
+      a.href='javascript:void(0)';
+      a.id='sideShareLinkFinal';
+      a.textContent='📤 مشاركة الموقع';
+      a.addEventListener('click',shareSite);
+      side.appendChild(a);
+
+      const b=document.createElement('a');
+      b.href='javascript:void(0)';
+      b.id='sideCopyLinkFinal';
+      b.textContent='🔗 نسخ رابط الموقع';
+      b.addEventListener('click',copyLink);
+      side.appendChild(b);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',bind);
+  window.addEventListener('load',bind);
+  setTimeout(bind,300);
 })();
 </script>
 
