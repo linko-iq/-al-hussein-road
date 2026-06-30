@@ -1003,6 +1003,20 @@ main > section:not(.hero)::before{
 @keyframes teachPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(184,148,69,.35)}50%{transform:scale(1.08);box-shadow:0 0 0 8px rgba(184,148,69,0)}}
 @media(max-width:560px){.assistant-cloud.in-chat button{max-width:225px;font-size:14px}.assistant-options-head{font-size:14px}}
 
+
+/* LINKO Stage 5: stable chat height + typing + auto-clean */
+.chat-box.stage2{height:min(760px,78vh);min-height:620px;max-height:780px}
+.chat-box.stage2 .chat-messages{flex:1 1 auto;min-height:260px;max-height:none;overflow-y:auto;scroll-behavior:smooth;overscroll-behavior:contain}
+.msg.system-clean{align-self:center;max-width:92%;text-align:center;background:rgba(184,148,69,.10);border:1px dashed rgba(184,148,69,.45);color:var(--muted);font-size:14px;border-radius:999px;padding:8px 14px}
+.msg.typing{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:800}
+.typing-dots{display:inline-flex;gap:4px;align-items:center;direction:ltr}
+.typing-dots i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:block;animation:linkoTypingDot 1s ease-in-out infinite}
+.typing-dots i:nth-child(2){animation-delay:.16s}.typing-dots i:nth-child(3){animation-delay:.32s}
+@keyframes linkoTypingDot{0%,80%,100%{transform:translateY(0);opacity:.45}40%{transform:translateY(-5px);opacity:1}}
+.assistant-options-dock{flex:0 0 auto}.assistant-chat-tools{flex:0 0 auto}
+@media(max-width:860px){.chat-box.stage2{height:72vh;min-height:560px;max-height:720px}.chat-box.stage2 .chat-messages{min-height:230px}}
+@media(max-width:430px){.chat-box.stage2{height:74vh;min-height:540px}.msg.system-clean{font-size:12.5px;padding:7px 10px}}
+
 </style>
 
 
@@ -2668,10 +2682,15 @@ setLang('ar');
     }
     renderQuestions();
   }
-  function addMsg(text,type){const box=$('chatMessages');if(!box)return;const div=document.createElement('div');div.className='msg '+(type||'bot');div.innerHTML=String(text).replace(/\n/g,'<br>');box.appendChild(div);box.scrollTop=box.scrollHeight}
+  function addMsg(text,type){const box=$('chatMessages');if(!box)return null;const div=document.createElement('div');div.className='msg '+(type||'bot');div.innerHTML=String(text).replace(/\n/g,'<br>');box.appendChild(div);box.scrollTop=box.scrollHeight;return div}
+  function chatPhrase(key){const l=lang();const map={typing:{ar:'جاري تجهيز الجواب',en:'Preparing the answer',fa:'در حال آماده‌سازی پاسخ'},cleared:{ar:'تم ترتيب المحادثة وحذف السؤالين السابقين حتى تبقى الشاشة خفيفة.',en:'The previous two questions were cleared to keep the chat light.',fa:'دو پرسش قبلی پاک شد تا صفحه گفتگو سبک بماند.'}};return (map[key]&&map[key][l])||(map[key]&&map[key].ar)||''}
+  function addTyping(){return addMsg('<span class="typing-dots"><i></i><i></i><i></i></span><span>'+chatPhrase('typing')+'</span>','bot typing')}
+  function softVibrate(){try{if(navigator.vibrate)navigator.vibrate([90,45,140])}catch(e){}}
+  function keepAssistantLight(){const box=$('chatMessages');if(!box)return;const normal=[...box.querySelectorAll('.msg.user,.msg.bot:not(.typing)')].filter(el=>el.id!=='assistantWelcome'&&!el.classList.contains('system-clean'));const exchanges=Math.floor(normal.length/2);if(exchanges>=2){normal.forEach(el=>el.remove());box.querySelectorAll('.msg.system-clean').forEach(el=>el.remove());addMsg('✓ '+chatPhrase('cleared'),'system-clean')}}
   function filtered(){const s=($('assistantSearch')?.value||'').trim().toLowerCase();return qa.filter(x=>{const lx=locItem(x);const hay=(x.q+' '+x.a+' '+x.cat+' '+lx.q+' '+lx.a+' '+lx.cat).toLowerCase();return !s||hay.includes(s)}).slice(0,30)}
   function renderQuestions(){const chat=$('chatMessages');const tools=document.querySelector('.assistant-chat-tools');if(!chat||!tools)return;let dock=$('assistantOptionsDock');if(!dock){dock=document.createElement('div');dock.id='assistantOptionsDock';dock.className='assistant-options-dock';tools.parentNode.insertBefore(dock,tools)}const data=filtered();dock.innerHTML='<div class="assistant-options-head"><span class="assistant-teach-mark">✦</span><span>'+t('choose')+'</span></div><div class="assistant-cloud in-chat three-visible" id="questionCloudInline"></div>';const cloud=dock.querySelector('#questionCloudInline');if(!data.length){cloud.innerHTML='<div class="empty">'+t('noResults')+'</div>'}else{data.forEach(item=>{const li=locItem(item);const b=document.createElement('button');b.type='button';b.textContent=li.q;b.title=li.q;b.onclick=()=>answer(item);cloud.appendChild(b)})}}
-  function answer(item){const li=locItem(item);addMsg(li.q,'user');setTimeout(()=>{addMsg('<strong>'+li.cat+'</strong><br>'+li.a,'bot');setTimeout(renderQuestions,80)},120)}
+  let assistantBusy=false;
+  function answer(item){if(assistantBusy)return;assistantBusy=true;keepAssistantLight();const li=locItem(item);addMsg(li.q,'user');const typing=addTyping();setTimeout(()=>{if(typing)typing.remove();addMsg('<strong>'+li.cat+'</strong><br>'+li.a,'bot');softVibrate();assistantBusy=false;setTimeout(renderQuestions,80)},2000)}
   function quick(){renderQuestions()}
   function sendNote(e){e.preventDefault();const name=($('noteName')?.value||t('anon')).trim()||t('anon');const type=$('noteType')?.value||t('noteType');const body=($('noteText')?.value||'').trim();if(!body){alert(t('emptyNote'));return}const l=lang();const msg=(l==='en'?('Peace be upon you\n\nMessage from Tareeq Al-Hussain website\n\nName: '+name+'\nType: '+type+'\n\nNote:\n'+body):(l==='fa'?('سلام علیکم\n\nپیام از سایت راه حسین\n\nنام: '+name+'\nنوع پیام: '+type+'\n\nمتن پیام:\n'+body):('السلام عليكم\n\nرسالة من موقع طريق الحسين\n\nالاسم: '+name+'\nنوع الرسالة: '+type+'\n\nالملاحظة:\n'+body)));window.open('https://wa.me/9647747248826?text='+encodeURIComponent(msg),'_blank','noopener')}
   function reveal(){document.querySelectorAll('.reveal-soft').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight-80)el.classList.add('show')})}
