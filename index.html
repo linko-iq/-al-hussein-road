@@ -1326,6 +1326,32 @@ html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 #assistantOptionsDock .assistant-cloud button{position:relative}
 #assistantOptionsDock .assistant-cloud button::after{content:"✓";display:inline-grid;place-items:center;width:16px;height:16px;margin-inline-start:6px;border-radius:50%;background:var(--accent2);color:#fff;font-size:10px}
 .assistant-source-note{display:block;margin-top:11px;padding:8px 10px;border-radius:11px;background:rgba(15,91,60,.09);color:var(--accent2);font-size:11px;line-height:1.65}
+</style><style id="tareeqAssistantQuestionsVisibleStyle">
+#assistantQuestionsHost{
+  margin:12px 0 14px;padding:13px;background:var(--card);
+  border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)
+}
+#assistantQuestionsHost .assistant-options-head{
+  display:flex;align-items:center;gap:7px;margin-bottom:10px;
+  color:var(--accent);font-weight:900
+}
+.assistant-question-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;max-height:310px;overflow:auto;padding:2px;scrollbar-width:thin
+}
+.assistant-question-grid button{
+  border:1px solid var(--line);background:var(--bg);color:var(--text);
+  border-radius:15px;padding:11px 10px;min-height:58px;text-align:start;
+  line-height:1.55;font-weight:800;cursor:pointer
+}
+.assistant-question-grid button:active{transform:scale(.98);background:rgba(184,148,69,.14)}
+.assistant-question-grid .empty{grid-column:1/-1;text-align:center;padding:20px;color:var(--muted)}
+#assistantAppPage .chat-box{min-height:0!important;height:auto!important}
+#assistantAppPage #chatMessages{min-height:220px!important;max-height:42vh!important;overflow-y:auto!important}
+#assistantAppPage .tareeq-page-content{padding-bottom:120px!important}
+@media(max-width:520px){
+  .assistant-question-grid{grid-template-columns:1fr;max-height:280px}
+}
 </style></head>
 <body data-theme="light">
 <div class="read-progress" id="readProgress"></div>
@@ -1492,7 +1518,13 @@ html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 <button data-assistant-filter="أهل البيت" data-pro-i18n="assistant.cat.ahlbayt" type="button">أهل البيت</button>
 <button data-assistant-filter="الأخلاق" data-pro-i18n="assistant.cat.ethics" type="button">الأخلاق</button>
 </div>
-</div><div class="chat-head"><strong id="assistantHead">مساعد طريق الحسين</strong><span class="linko-soft-note" id="assistantOffline">Offline 100%</span></div><div class="chat-messages" id="chatMessages"><div class="msg bot" id="assistantWelcome">السلام عليكم ورحمة الله 🌿<br/>اكتب كلمة في البحث أو اختر سؤالاً من الغيوم بالأسفل، وستظهر الإجابة مباشرة هنا.</div></div><div class="assistant-chat-tools"><div class="assistant-search-row"><input class="assistant-search" id="assistantSearch" placeholder="ابحث داخل المحادثة: الحسين، الأربعين، الصلاة..." type="search"/><button class="btn primary" id="assistantSearchBtn" type="button">🔎 بحث</button></div></div><div class="assistant-cloud-title" id="assistantCloudTitle">اختر سؤالاً:</div><div class="assistant-cloud" id="questionList"></div><div class="quick-questions" id="quickQuestions" style="display:none"></div><div class="assistant-cats" id="assistantCats" style="display:none"></div></div></div></div></section>
+</div><section class="assistant-questions-host" id="assistantQuestionsHost">
+<div class="assistant-options-head">
+<span class="assistant-teach-mark">✦</span>
+<span id="assistantQuestionsTitle">اختر سؤالاً موثقاً:</span>
+</div>
+<div class="assistant-question-grid" id="assistantQuestionGrid"></div>
+</section><div class="chat-head"><strong id="assistantHead">مساعد طريق الحسين</strong><span class="linko-soft-note" id="assistantOffline">Offline 100%</span></div><div class="chat-messages" id="chatMessages"><div class="msg bot" id="assistantWelcome">السلام عليكم ورحمة الله 🌿<br/>اكتب كلمة في البحث أو اختر سؤالاً من الغيوم بالأسفل، وستظهر الإجابة مباشرة هنا.</div></div><div class="assistant-chat-tools"><div class="assistant-search-row"><input class="assistant-search" id="assistantSearch" placeholder="ابحث داخل المحادثة: الحسين، الأربعين، الصلاة..." type="search"/><button class="btn primary" id="assistantSearchBtn" type="button">🔎 بحث</button></div></div><div class="assistant-cloud-title" id="assistantCloudTitle">اختر سؤالاً:</div><div class="assistant-cloud" id="questionList"></div><div class="quick-questions" id="quickQuestions" style="display:none"></div><div class="assistant-cats" id="assistantCats" style="display:none"></div></div></div></div></section>
 <section class="linko-app-section reveal-soft" id="send-note"><div class="container"><div class="section-title"><h2 id="noteTitle">📝 أرسل ملاحظة</h2><p id="noteDesc">لديك اقتراح، تصحيح، دعاء، أو ملاحظة؟ أرسلها مباشرة عبر واتساب.</p></div><div class="linko-grid"><div class="linko-panel"><form class="notes-form" id="notesForm"><div class="notes-row"><input id="noteName" placeholder="الاسم (اختياري)" type="text"/><select id="noteType"><option value="اقتراح">اقتراح</option><option value="ملاحظة">ملاحظة</option><option value="تصحيح معلومة">تصحيح معلومة</option><option value="دعاء">دعاء</option></select></div><textarea id="noteText" placeholder="اكتب رسالتك هنا..."></textarea><button class="btn green" id="noteSendBtn" type="submit">📲 إرسال عبر واتساب</button><p class="linko-soft-note" id="noteOfflineHint">الموقع يعمل بدون إنترنت، لكن إرسال واتساب يحتاج اتصال عند الضغط على زر الإرسال.</p></form></div><div class="linko-panel"><h3 id="appExperienceTitle">📱 تجربة تطبيق ديني متكامل</h3><p class="linko-soft-note" id="appExperienceText">تمت إضافة ميزات تجعل الموقع أقرب لتطبيق ديني خفيف: معلومات، أدعية، بوصلة قبلة، مساعد ديني، ملاحظات، مشاركة ونسخ رابط.</p><div class="app-features"><div class="app-feature" id="featInfo">📖 معلومات</div><div class="app-feature" id="featQibla">🧭 قبلة</div><div class="app-feature" id="featDua">🤲 أدعية</div><div class="app-feature" id="featAssistant">💬 مساعد</div><div class="app-feature" id="featNotes">📝 ملاحظات</div><div class="app-feature" id="featShare">📤 مشاركة</div></div></div></div></div></section>
 <section id="sources"><div class="container"><div class="section-title"><h2 data-i18n="sourcesTitle">المصادر</h2><p data-i18n="sourcesText">قائمة أولية قابلة للإضافة والتعديل مستقبلاً.</p></div><div class="card"><ul class="source-list">
 <li>📚 القرآن الكريم</li>
@@ -3538,7 +3570,6 @@ setLang('ar');
   new MutationObserver(applyI18n).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
 })();
 </script>
-
 <script id="tareeqAssistantRebuildV3">
 (function(){
 'use strict';
@@ -3634,18 +3665,22 @@ function results(){
 }
 
 function renderQuestions(){
-  const old=$('assistantOptionsDock'); if(old) old.remove();
-  const tools=document.querySelector('.assistant-chat-tools');
-  if(!tools) return;
-  const dock=document.createElement('div'); dock.id='assistantOptionsDock'; dock.className='assistant-options-dock';
-  dock.innerHTML='<div class="assistant-options-head"><span class="assistant-teach-mark">✦</span><span>'+esc(u().choose)+'</span></div><div class="assistant-cloud in-chat three-visible" id="questionCloudInline"></div>';
-  tools.parentNode.insertBefore(dock,tools);
-  const cloud=$('questionCloudInline');
+  const grid=$('assistantQuestionGrid');
+  const title=$('assistantQuestionsTitle');
+  if(!grid) return;
+  if(title) title.textContent=u().choose;
+  grid.innerHTML='';
   const data=results();
-  if(!data.length){cloud.innerHTML='<div class="empty">'+esc(u().no)+'</div>';return}
+  if(!data.length){
+    grid.innerHTML='<div class="empty">'+esc(u().no)+'</div>';
+    return;
+  }
   data.forEach(it=>{
-    const b=document.createElement('button'); b.type='button'; b.textContent=itemText(it).q;
-    b.onclick=()=>answer(it); cloud.appendChild(b);
+    const b=document.createElement('button');
+    b.type='button';
+    b.textContent=itemText(it).q;
+    b.onclick=()=>answer(it);
+    grid.appendChild(b);
   });
 }
 
@@ -3717,4 +3752,31 @@ if(typeof previous==='function'&&!previous.__assistantV3){
 new MutationObserver(()=>setTimeout(init,30)).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
 })();
 </script>
-</body></html>
+<script id="assistantQuestionsRuntimeGuard">
+(function(){
+  function lang(){
+    const l=(document.documentElement.lang||'ar').toLowerCase();
+    return l.startsWith('en')?'en':l.startsWith('fa')?'fa':'ar';
+  }
+  const titles={
+    ar:'اختر سؤالاً موثقاً:',
+    en:'Choose a verified question:',
+    fa:'یک پرسش معتبر انتخاب کنید:'
+  };
+  function ensureVisible(){
+    const host=document.getElementById('assistantQuestionsHost');
+    const intro=document.getElementById('assistantProIntro');
+    if(host&&intro&&host.previousElementSibling!==intro){
+      intro.insertAdjacentElement('afterend',host);
+    }
+    const title=document.getElementById('assistantQuestionsTitle');
+    if(title) title.textContent=titles[lang()];
+    if(host) host.style.display='block';
+  }
+  document.addEventListener('DOMContentLoaded',ensureVisible);
+  window.addEventListener('load',ensureVisible);
+  setTimeout(ensureVisible,250);
+  setTimeout(ensureVisible,1000);
+  new MutationObserver(ensureVisible).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+})();
+</script></body></html>
