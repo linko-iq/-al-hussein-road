@@ -4095,53 +4095,108 @@ new MutationObserver(()=>setTimeout(init,30)).observe(document.documentElement,{
   setTimeout(arrange,200);
   setTimeout(arrange,1000);
 })();
-</script><script id="tareeqTranslationFinalGuardV7">
+</script><script id="tareeqLoadingAndTranslationFixV8">
 (function(){
   "use strict";
-  const T={"ar": {"assistant_title": "المساعد الديني", "back": "رجوع", "home": "الرئيسية", "worship": "العبادة", "assistant": "المساعد", "qibla": "القبلة", "more": "المزيد", "all": "الكل", "hussain": "الإمام الحسين", "ashura": "عاشوراء وكربلاء", "arbaeen": "الأربعين والزيارة", "ahlbayt": "أهل البيت", "quran": "القرآن والعقيدة", "duas": "الدعاء", "ethics": "الأخلاق والخدمة", "fiqh": "الفقه والعبادات", "choose": "اختر سؤالاً موثقاً:"}, "en": {"assistant_title": "Religious Assistant", "back": "Back", "home": "Home", "worship": "Worship", "assistant": "Assistant", "qibla": "Qibla", "more": "More", "all": "All", "hussain": "Imam Hussain", "ashura": "Ashura & Karbala", "arbaeen": "Arbaeen & Ziyarat", "ahlbayt": "Ahl al-Bayt", "quran": "Qur’an & Belief", "duas": "Supplication", "ethics": "Ethics & Service", "fiqh": "Fiqh & Worship", "choose": "Choose a verified question:"}, "fa": {"assistant_title": "دستیار دینی", "back": "بازگشت", "home": "خانه", "worship": "عبادت", "assistant": "دستیار", "qibla": "قبله", "more": "بیشتر", "all": "همه", "hussain": "امام حسین", "ashura": "عاشورا و کربلا", "arbaeen": "اربعین و زیارت", "ahlbayt": "اهل‌بیت", "quran": "قرآن و عقاید", "duas": "دعا", "ethics": "اخلاق و خدمت", "fiqh": "فقه و عبادات", "choose": "یک پرسش معتبر انتخاب کنید:"}};
-  let applying=false;
-  function lang(){
-    const l=(document.documentElement.lang||"ar").toLowerCase();
-    return l.startsWith("en")?"en":l.startsWith("fa")?"fa":"ar";
-  }
-  function setText(sel,text){
-    const el=document.querySelector(sel);
-    if(el && text) el.textContent=text;
-  }
-  function apply(){
-    if(applying) return;
-    applying=true;
-    const x=T[lang()]||T.ar;
-    try{
-      if(typeof window.applyTareeqProI18n==="function") window.applyTareeqProI18n();
-    }catch(e){}
 
-    const navKeys=["home","worship","assistant","qibla","more"];
-    document.querySelectorAll("#tareeqBottomNav > button").forEach((b,i)=>{
+  const T = {
+    ar:{
+      assistant_title:"المساعد الديني", back:"رجوع",
+      nav:["الرئيسية","العبادة","المساعد","القبلة","المزيد"],
+      cats:["الكل","الإمام الحسين","عاشوراء وكربلاء","الأربعين والزيارة","أهل البيت","القرآن والعقيدة","الدعاء","الأخلاق والخدمة","الفقه والعبادات"],
+      choose:"اختر سؤالاً موثقاً:"
+    },
+    en:{
+      assistant_title:"Religious Assistant", back:"Back",
+      nav:["Home","Worship","Assistant","Qibla","More"],
+      cats:["All","Imam Hussain","Ashura & Karbala","Arbaeen & Ziyarat","Ahl al-Bayt","Qur’an & Belief","Supplication","Ethics & Service","Fiqh & Worship"],
+      choose:"Choose a verified question:"
+    },
+    fa:{
+      assistant_title:"دستیار دینی", back:"بازگشت",
+      nav:["خانه","عبادت","دستیار","قبله","بیشتر"],
+      cats:["همه","امام حسین","عاشورا و کربلا","اربعین و زیارت","اهل‌بیت","قرآن و عقاید","دعا","اخلاق و خدمت","فقه و عبادات"],
+      choose:"یک پرسش معتبر انتخاب کنید:"
+    }
+  };
+
+  let lastLang = null;
+  let scheduled = false;
+
+  function getLang(){
+    const l=(document.documentElement.lang||"ar").toLowerCase();
+    return l.startsWith("en") ? "en" : l.startsWith("fa") ? "fa" : "ar";
+  }
+
+  function applySafeTranslation(){
+    scheduled=false;
+    const lang=getLang();
+    const x=T[lang]||T.ar;
+
+    // Call the existing translator only once per real language change.
+    if(lastLang!==lang && typeof window.applyTareeqProI18n==="function"){
+      try{ window.applyTareeqProI18n(); }catch(e){}
+    }
+    lastLang=lang;
+
+    const navButtons=[...document.querySelectorAll("#tareeqBottomNav > button")];
+    navButtons.forEach((b,i)=>{
       const label=b.querySelector("b");
-      if(label && x[navKeys[i]]) label.textContent=x[navKeys[i]];
+      if(label && x.nav[i]) label.textContent=x.nav[i];
     });
 
-    setText("#assistantAppPage .tareeq-page-head h2",x.assistant_title);
+    const pageTitle=document.querySelector("#assistantAppPage .tareeq-page-head h2");
+    if(pageTitle) pageTitle.textContent=x.assistant_title;
+
     document.querySelectorAll("#assistantAppPage [data-page-back],#assistantAppPage [data-pro-back] span")
       .forEach(el=>el.textContent=x.back);
-    setText("#assistantQuestionsTitle",x.choose);
 
-    const cats=["all","hussain","ashura","arbaeen","ahlbayt","quran","duas","ethics","fiqh"];
+    const questionTitle=document.getElementById("assistantQuestionsTitle");
+    if(questionTitle) questionTitle.textContent=x.choose;
+
     document.querySelectorAll("#assistantCategoryChips button").forEach((b,i)=>{
-      if(x[cats[i]]) b.textContent=x[cats[i]];
+      if(x.cats[i]) b.textContent=x.cats[i];
     });
 
-    document.documentElement.dir=lang()==="en"?"ltr":"rtl";
-    applying=false;
+    const wantedDir = lang==="en" ? "ltr" : "rtl";
+    if(document.documentElement.dir!==wantedDir){
+      document.documentElement.dir=wantedDir;
+    }
   }
 
-  document.addEventListener("DOMContentLoaded",apply);
-  window.addEventListener("load",apply);
-  window.addEventListener("tareeq-language-updated",apply);
-  new MutationObserver(()=>setTimeout(apply,20))
+  function scheduleTranslation(){
+    if(scheduled) return;
+    scheduled=true;
+    requestAnimationFrame(applySafeTranslation);
+  }
+
+  // Observe only LANG changes, not DIR, to prevent recursive loops.
+  new MutationObserver(scheduleTranslation)
     .observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
-  setTimeout(apply,250);
-  setTimeout(apply,1000);
+
+  // Guaranteed welcome-screen close even if another script fails.
+  function closeWelcome(){
+    const screen=document.getElementById("welcomeScreen");
+    if(!screen) return;
+    screen.classList.add("hide");
+    screen.style.opacity="0";
+    screen.style.visibility="hidden";
+    screen.style.pointerEvents="none";
+    setTimeout(()=>{ screen.style.display="none"; },350);
+    document.body.style.overflow="";
+  }
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    scheduleTranslation();
+    setTimeout(closeWelcome,3500);
+  });
+
+  window.addEventListener("load",()=>{
+    scheduleTranslation();
+    setTimeout(closeWelcome,900);
+  });
+
+  // Absolute fallback for slower phones and GitHub Pages.
+  setTimeout(closeWelcome,5000);
 })();
 </script></body></html>
