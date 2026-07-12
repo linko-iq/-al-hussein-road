@@ -1216,7 +1216,6 @@ input,select,textarea,button{max-width:100%}
   .tareeq-bottom-nav button span{font-size:17px}
 }
 </style>
-
 <style id="tareeqProFeaturesStyle">
 /* Professional five-button navigation */
 .tareeq-bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr))!important}
@@ -1299,6 +1298,28 @@ input,select,textarea,button{max-width:100%}
   .tasbeeh-card{padding:14px}.tasbeeh-actions{grid-template-columns:1fr}.tasbeeh-main-btn{width:min(230px,72vw)}
   .global-search-box{grid-template-columns:1fr}.global-search-box button{width:100%}
 }
+
+/* v2: inline vector icons instead of emoji stickers */
+.pro-icon,.feature-svg,.title-icon,.assistant-shield-icon{
+  display:inline-grid;place-items:center;flex:0 0 auto;color:currentColor
+}
+.pro-icon{width:24px;height:24px}
+.feature-svg{width:38px;height:38px;color:var(--accent)}
+.title-icon{width:27px;height:27px;color:var(--accent)}
+.assistant-shield-icon{width:24px;height:24px;color:var(--accent2)}
+.pro-icon svg,.feature-svg svg,.title-icon svg,.assistant-shield-icon svg,.assistant-avatar svg{
+  width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round
+}
+.tareeq-bottom-nav button>span.pro-icon{font-size:0!important}
+.pro-feature-card>span.feature-svg{font-size:0!important}
+.tareeq-page-head h2{display:flex;align-items:center;gap:8px}
+.assistant-avatar{color:#fff}
+.assistant-avatar svg{width:27px;height:27px}
+.assistant-chat-icon{animation:assistantVectorFloat 1.5s ease-in-out infinite}
+@keyframes assistantVectorFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.tasbeeh-main-btn.haptic-fallback{animation:hapticPulse .16s ease}
+@keyframes hapticPulse{0%{transform:scale(1)}50%{transform:scale(.965)}100%{transform:scale(1)}}
+html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 </style>
 </head>
 <body data-theme="light">
@@ -1448,23 +1469,23 @@ input,select,textarea,button{max-width:100%}
 <section class="linko-app-section reveal-soft" id="qibla"><div class="container"><div class="section-title"><h2 id="qiblaTitle">🧭 اتجاه القبلة</h2><p id="qiblaDesc">بوصلة ذكية تساعدك على تحديد اتجاه القبلة باستخدام موقعك وحساسات جهازك.</p></div><div class="linko-panel qibla-wrap"><div aria-label="بوصلة القبلة" class="qibla-compass" id="qiblaCompass"><div class="qibla-ring"></div><span class="qibla-mark qibla-n">N</span><span class="qibla-mark qibla-e">E</span><span class="qibla-mark qibla-s">S</span><span class="qibla-mark qibla-w">W</span><div class="qibla-arrow" id="qiblaArrow"></div><div class="qibla-center"><span id="qiblaCenterText">الكعبة<br/>المشرفة</span></div></div><div class="qibla-info"><div class="qibla-metric"><span id="qiblaBearingLabel">اتجاه القبلة</span><strong id="qiblaBearing">--°</strong></div><div class="qibla-metric"><span id="deviceHeadingLabel">اتجاه الهاتف</span><strong id="deviceHeading">--°</strong></div><div class="qibla-metric"><span id="qiblaAccuracyLabel">الدقة التقريبية</span><strong id="qiblaAccuracy">بانتظار الموقع</strong></div><p class="qibla-status" id="qiblaStatus">اضغط زر تحديد موقعي، ثم وافق على صلاحيات الموقع والحساسات إذا ظهرت.</p><div class="qibla-actions"><button class="btn primary" id="startQiblaBtn" type="button"><span class="qibla-start-inner"><span class="qibla-btn-cue">➤</span><span id="startQiblaText">تحديد موقعي واتجاه القبلة</span></span></button><button class="btn" id="resetQiblaBtn" type="button">↻ إعادة ضبط</button></div><p class="linko-soft-note" id="qiblaHint">ملاحظة: حرك الهاتف بشكل رقم 8 لتحسين دقة البوصلة، وابتعد عن المعادن أو السماعات القريبة.</p><p class="qibla-hint-mini" id="qiblaAccuracyHint">لأفضل دقة: افتح الموقع خارج المباني، وخل الهاتف مستوياً، واسمح للموقع والحساسات.</p></div></div></div></section>
 <section class="linko-app-section reveal-soft" id="religious-assistant"><div class="container"><div class="section-title"><h2 id="assistantTitle">💬 المساعد الديني</h2><p id="assistantDesc">محادثة دينية تفاعلية تعمل بالكامل بدون إنترنت، تعتمد على أسئلة وأجوبة محفوظة داخل الموقع.</p></div><div class="linko-panel assistant-shell stage2"><div class="chat-box stage2"><div class="assistant-pro-intro" id="assistantProIntro">
 <div class="assistant-pro-title">
-<span class="assistant-avatar">💬</span>
-<div><strong>مساعد طريق الحسين</strong><small>إجابات محفوظة تعمل بدون إنترنت</small></div>
+<span class="assistant-avatar"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"></path><path d="M8 9h8M8 12h5"></path></svg></span>
+<div><strong data-pro-i18n="assistant.name">مساعد طريق الحسين</strong><small data-pro-i18n="assistant.offline">إجابات محفوظة تعمل بدون إنترنت</small></div>
 </div>
 <div class="assistant-safety">
-<span>🛡️</span>
-<p>المعلومات للتثقيف العام. المسائل الفقهية تُراجع وفق فتاوى سماحة السيد السيستاني، وإذا لم يتوفر جواب موثّق فلن يتم التخمين.</p>
+<span class="assistant-shield-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z"></path><path d="m9 12 2 2 4-5"></path></svg></span>
+<p data-pro-i18n="assistant.safety">المعلومات للتثقيف العام. المسائل الفقهية تُراجع وفق فتاوى سماحة السيد السيستاني، وإذا لم يتوفر جواب موثّق فلن يتم التخمين.</p>
 </div>
 <div class="assistant-category-chips" id="assistantCategoryChips">
-<button data-assistant-filter="" type="button">الكل</button>
-<button data-assistant-filter="الحسين" type="button">الإمام الحسين</button>
-<button data-assistant-filter="عاشوراء" type="button">عاشوراء</button>
-<button data-assistant-filter="الأربعين" type="button">الأربعين</button>
-<button data-assistant-filter="الصلاة" type="button">الصلاة</button>
-<button data-assistant-filter="الوضوء" type="button">الطهارة</button>
-<button data-assistant-filter="الدعاء" type="button">الأدعية</button>
-<button data-assistant-filter="أهل البيت" type="button">أهل البيت</button>
-<button data-assistant-filter="الأخلاق" type="button">الأخلاق</button>
+<button data-assistant-filter="" data-pro-i18n="assistant.cat.all" type="button">الكل</button>
+<button data-assistant-filter="الحسين" data-pro-i18n="assistant.cat.hussain" type="button">الإمام الحسين</button>
+<button data-assistant-filter="عاشوراء" data-pro-i18n="assistant.cat.ashura" type="button">عاشوراء</button>
+<button data-assistant-filter="الأربعين" data-pro-i18n="assistant.cat.arbaeen" type="button">الأربعين</button>
+<button data-assistant-filter="الصلاة" data-pro-i18n="assistant.cat.prayer" type="button">الصلاة</button>
+<button data-assistant-filter="الوضوء" data-pro-i18n="assistant.cat.purity" type="button">الطهارة</button>
+<button data-assistant-filter="الدعاء" data-pro-i18n="assistant.cat.duas" type="button">الأدعية</button>
+<button data-assistant-filter="أهل البيت" data-pro-i18n="assistant.cat.ahlbayt" type="button">أهل البيت</button>
+<button data-assistant-filter="الأخلاق" data-pro-i18n="assistant.cat.ethics" type="button">الأخلاق</button>
 </div>
 </div><div class="chat-head"><strong id="assistantHead">مساعد طريق الحسين</strong><span class="linko-soft-note" id="assistantOffline">Offline 100%</span></div><div class="chat-messages" id="chatMessages"><div class="msg bot" id="assistantWelcome">السلام عليكم ورحمة الله 🌿<br/>اكتب كلمة في البحث أو اختر سؤالاً من الغيوم بالأسفل، وستظهر الإجابة مباشرة هنا.</div></div><div class="assistant-chat-tools"><div class="assistant-search-row"><input class="assistant-search" id="assistantSearch" placeholder="ابحث داخل المحادثة: الحسين، الأربعين، الصلاة..." type="search"/><button class="btn primary" id="assistantSearchBtn" type="button">🔎 بحث</button></div></div><div class="assistant-cloud-title" id="assistantCloudTitle">اختر سؤالاً:</div><div class="assistant-cloud" id="questionList"></div><div class="quick-questions" id="quickQuestions" style="display:none"></div><div class="assistant-cats" id="assistantCats" style="display:none"></div></div></div></div></section>
 <section class="linko-app-section reveal-soft" id="send-note"><div class="container"><div class="section-title"><h2 id="noteTitle">📝 أرسل ملاحظة</h2><p id="noteDesc">لديك اقتراح، تصحيح، دعاء، أو ملاحظة؟ أرسلها مباشرة عبر واتساب.</p></div><div class="linko-grid"><div class="linko-panel"><form class="notes-form" id="notesForm"><div class="notes-row"><input id="noteName" placeholder="الاسم (اختياري)" type="text"/><select id="noteType"><option value="اقتراح">اقتراح</option><option value="ملاحظة">ملاحظة</option><option value="تصحيح معلومة">تصحيح معلومة</option><option value="دعاء">دعاء</option></select></div><textarea id="noteText" placeholder="اكتب رسالتك هنا..."></textarea><button class="btn green" id="noteSendBtn" type="submit">📲 إرسال عبر واتساب</button><p class="linko-soft-note" id="noteOfflineHint">الموقع يعمل بدون إنترنت، لكن إرسال واتساب يحتاج اتصال عند الضغط على زر الإرسال.</p></form></div><div class="linko-panel"><h3 id="appExperienceTitle">📱 تجربة تطبيق ديني متكامل</h3><p class="linko-soft-note" id="appExperienceText">تمت إضافة ميزات تجعل الموقع أقرب لتطبيق ديني خفيف: معلومات، أدعية، بوصلة قبلة، مساعد ديني، ملاحظات، مشاركة ونسخ رابط.</p><div class="app-features"><div class="app-feature" id="featInfo">📖 معلومات</div><div class="app-feature" id="featQibla">🧭 قبلة</div><div class="app-feature" id="featDua">🤲 أدعية</div><div class="app-feature" id="featAssistant">💬 مساعد</div><div class="app-feature" id="featNotes">📝 ملاحظات</div><div class="app-feature" id="featShare">📤 مشاركة</div></div></div></div></div></section>
@@ -2914,9 +2935,9 @@ setLang('ar');
   document.addEventListener('DOMContentLoaded',bindLinkoAdditions);window.addEventListener('load',bindLinkoAdditions);window.addEventListener('scroll',reveal,{passive:true});
 })();
 </script>
-<nav aria-label="أدوات الموقع" class="tareeq-bottom-nav" id="tareeqBottomNav"><button data-pro-action="home" type="button"><span>🏠</span><b>الرئيسية</b></button><button data-pro-action="worship" type="button"><span>🕌</span><b>العبادة</b></button><button class="assistant-nav-btn pro-assistant-main" data-pro-action="assistant" type="button">
-<span aria-hidden="true" class="assistant-chat-icon">💬</span><b>المساعد</b>
-</button><button data-pro-action="qibla" type="button"><span>🧭</span><b>القبلة</b></button><button data-pro-action="more" type="button"><span>☰</span><b>المزيد</b></button></nav>
+<nav aria-label="أدوات الموقع" class="tareeq-bottom-nav" id="tareeqBottomNav"><button data-pro-action="home" type="button"><span class="pro-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5z"></path></svg></span><b data-pro-i18n="nav.home">الرئيسية</b></button><button data-pro-action="worship" type="button"><span class="pro-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 21V9l7-5 7 5v12h-5v-6h-4v6z"></path><path d="M9 8h6M12 4V2"></path></svg></span><b data-pro-i18n="nav.worship">العبادة</b></button><button class="assistant-nav-btn pro-assistant-main" data-pro-action="assistant" type="button">
+<span class="pro-icon assistant-chat-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"></path><path d="M8 9h8M8 12h5"></path></svg></span><b data-pro-i18n="nav.assistant">المساعد</b>
+</button><button data-pro-action="qibla" type="button"><span class="pro-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"></path></svg></span><b data-pro-i18n="nav.qibla">القبلة</b></button><button data-pro-action="more" type="button"><span class="pro-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span><b data-pro-i18n="nav.more">المزيد</b></button></nav>
 <section aria-hidden="true" class="tareeq-app-page" id="qiblaAppPage">
 <div class="tareeq-page-head">
 <button class="tareeq-back-btn" data-close-app-page="" type="button">← <span data-page-back="">رجوع</span></button>
@@ -3144,84 +3165,74 @@ setLang('ar');
 </script>
 <section aria-hidden="true" class="tareeq-app-page pro-page" id="worshipAppPage">
 <div class="tareeq-page-head">
-<button class="tareeq-back-btn" data-pro-back="" type="button">← رجوع</button>
-<h2>🕌 العبادة</h2>
+<button class="tareeq-back-btn" data-pro-back="" type="button"><span class="pro-icon back-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg></span><span data-pro-i18n="common.back">رجوع</span></button>
+<h2><span class="pro-icon title-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 21V9l7-5 7 5v12h-5v-6h-4v6z"></path><path d="M9 8h6M12 4V2"></path></svg></span><span data-pro-i18n="page.worship"></span></h2>
 </div>
 <div class="tareeq-page-content">
-<div class="pro-feature-grid">
-<button class="pro-feature-card" data-pro-open="tasbeehAppPage" type="button"><span>📿</span><strong>عداد التسبيح</strong><small>عداد ذكي يحفظ تقدمك تلقائياً</small></button>
-<button class="pro-feature-card" data-pro-open="favoritesAppPage" type="button"><span>⭐</span><strong>المفضلة</strong><small>النصوص والأسئلة التي حفظتها</small></button>
-<button class="pro-feature-card" data-pro-action="duas" type="button"><span>🤲</span><strong>الأدعية والزيارات</strong><small>انتقال سريع إلى قسم الأدعية</small></button>
-</div>
+<div class="pro-feature-grid"><button class="pro-feature-card" data-pro-open="tasbeehAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="8" cy="6" r="2"></circle><circle cx="14" cy="5" r="2"></circle><circle cx="18" cy="9" r="2"></circle><circle cx="17" cy="15" r="2"></circle><circle cx="11" cy="18" r="2"></circle><circle cx="6" cy="14" r="2"></circle><path d="M11 20v2M9 22h4"></path></svg></span><strong data-pro-i18n="worship.tasbeeh.title"></strong><small data-pro-i18n="worship.tasbeeh.desc"></small></button><button class="pro-feature-card" data-pro-open="favoritesAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"></path></svg></span><strong data-pro-i18n="worship.favorites.title"></strong><small data-pro-i18n="worship.favorites.desc"></small></button><button class="pro-feature-card" data-pro-action="duas" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7 21v-7l-2-3a2 2 0 0 1 3-2l2 3V5a2 2 0 0 1 4 0v7l2-3a2 2 0 0 1 3 2l-2 3v7z"></path></svg></span><strong data-pro-i18n="worship.duas.title"></strong><small data-pro-i18n="worship.duas.desc"></small></button></div>
 </div>
 </section><section aria-hidden="true" class="tareeq-app-page pro-page" id="moreAppPage">
 <div class="tareeq-page-head">
-<button class="tareeq-back-btn" data-pro-back="" type="button">← رجوع</button>
-<h2>☰ المزيد</h2>
+<button class="tareeq-back-btn" data-pro-back="" type="button"><span class="pro-icon back-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg></span><span data-pro-i18n="common.back">رجوع</span></button>
+<h2><span class="pro-icon title-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></span><span data-pro-i18n="page.more"></span></h2>
 </div>
 <div class="tareeq-page-content">
-<div class="pro-feature-grid">
-<button class="pro-feature-card" data-pro-open="globalSearchAppPage" type="button"><span>🔎</span><strong>البحث الشامل</strong><small>ابحث في جميع أقسام الموقع</small></button>
-<button class="pro-feature-card" data-pro-action="note" type="button"><span>📝</span><strong>إرسال ملاحظة</strong><small>اقتراح أو تصحيح عبر واتساب</small></button>
-<button class="pro-feature-card" data-pro-action="install" type="button"><span>📲</span><strong>تثبيت التطبيق</strong><small>أضف الموقع إلى الشاشة الرئيسية</small></button>
-<button class="pro-feature-card" data-pro-action="about" type="button"><span>ℹ️</span><strong>عن الموقع</strong><small>تعريف المبادرة ورسالتها</small></button>
-<button class="pro-feature-card" data-pro-action="top" type="button"><span>⬆️</span><strong>أعلى الصفحة</strong><small>العودة إلى بداية الموقع</small></button>
-</div>
+<div class="pro-feature-grid"><button class="pro-feature-card" data-pro-open="globalSearchAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></span><strong data-pro-i18n="more.search.title"></strong><small data-pro-i18n="more.search.desc"></small></button><button class="pro-feature-card" data-pro-action="note" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 3h14v18H5z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg></span><strong data-pro-i18n="more.note.title"></strong><small data-pro-i18n="more.note.desc"></small></button><button class="pro-feature-card" data-pro-action="install" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4"></path><path d="M5 18v3h14v-3"></path></svg></span><strong data-pro-i18n="more.install.title"></strong><small data-pro-i18n="more.install.desc"></small></button><button class="pro-feature-card" data-pro-action="about" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 10v7M12 7h.01"></path></svg></span><strong data-pro-i18n="more.about.title"></strong><small data-pro-i18n="more.about.desc"></small></button><button class="pro-feature-card" data-pro-action="top" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6"></path><path d="M12 8v10"></path></svg></span><strong data-pro-i18n="more.top.title"></strong><small data-pro-i18n="more.top.desc"></small></button></div>
 </div>
 </section><section aria-hidden="true" class="tareeq-app-page pro-page" id="tasbeehAppPage">
 <div class="tareeq-page-head">
-<button class="tareeq-back-btn" data-pro-back="" type="button">← رجوع</button>
-<h2>📿 عداد التسبيح</h2>
+<button class="tareeq-back-btn" data-pro-back="" type="button"><span class="pro-icon back-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg></span><span data-pro-i18n="common.back">رجوع</span></button>
+<h2><span class="pro-icon title-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="8" cy="6" r="2"></circle><circle cx="14" cy="5" r="2"></circle><circle cx="18" cy="9" r="2"></circle><circle cx="17" cy="15" r="2"></circle><circle cx="11" cy="18" r="2"></circle><circle cx="6" cy="14" r="2"></circle><path d="M11 20v2M9 22h4"></path></svg></span><span data-pro-i18n="page.tasbeeh"></span></h2>
 </div>
 <div class="tareeq-page-content">
 <div class="tasbeeh-card">
-<label class="tasbeeh-label" for="tasbeehDhikr">اختر الذكر</label>
+<label class="tasbeeh-label" data-pro-i18n="tasbeeh.choose" for="tasbeehDhikr">اختر الذكر</label>
 <select class="tasbeeh-select" id="tasbeehDhikr">
-<option value="zahra">تسبيح الزهراء عليها السلام</option>
-<option value="subhan">سبحان الله — 33</option>
-<option value="hamd">الحمد لله — 33</option>
-<option value="akbar">الله أكبر — 34</option>
-<option value="salawat">اللهم صلِّ على محمد وآل محمد — مفتوح</option>
-<option value="istighfar">أستغفر الله وأتوب إليه — 100</option>
-<option value="yahussain">يا حسين — مفتوح</option>
-<option value="custom">هدف مخصص</option>
+<option data-pro-i18n="tasbeeh.opt.zahra" value="zahra">تسبيح الزهراء عليها السلام</option>
+<option data-pro-i18n="tasbeeh.opt.subhan" value="subhan">سبحان الله — 33</option>
+<option data-pro-i18n="tasbeeh.opt.hamd" value="hamd">الحمد لله — 33</option>
+<option data-pro-i18n="tasbeeh.opt.akbar" value="akbar">الله أكبر — 34</option>
+<option data-pro-i18n="tasbeeh.opt.salawat" value="salawat">اللهم صلِّ على محمد وآل محمد — مفتوح</option>
+<option data-pro-i18n="tasbeeh.opt.istighfar" value="istighfar">أستغفر الله وأتوب إليه — 100</option>
+<option data-pro-i18n="tasbeeh.opt.yahussain" value="yahussain">يا حسين — مفتوح</option>
+<option data-pro-i18n="tasbeeh.opt.custom" value="custom">هدف مخصص</option>
 </select>
 <div class="tasbeeh-current" id="tasbeehCurrentDhikr">الله أكبر</div>
 <div class="tasbeeh-progress-text"><span id="tasbeehCount">0</span><span id="tasbeehTargetText">من 34</span></div>
 <div class="tasbeeh-progress"><i id="tasbeehProgressBar"></i></div>
 <button aria-label="زيادة العداد" class="tasbeeh-main-btn" id="tasbeehTapBtn" type="button">
-<span>اضغط للتسبيح</span>
+<span data-pro-i18n="tasbeeh.tap">اضغط للتسبيح</span>
 <strong id="tasbeehBigCount">0</strong>
 </button>
 <div class="tasbeeh-actions">
-<button id="tasbeehUndoBtn" type="button">↩ تراجع</button>
-<button id="tasbeehResetBtn" type="button">↻ إعادة</button>
+<button data-pro-i18n="tasbeeh.undo" id="tasbeehUndoBtn" type="button">↩ تراجع</button>
+<button data-pro-i18n="tasbeeh.reset" id="tasbeehResetBtn" type="button">↻ إعادة</button>
 <button id="tasbeehVibrateBtn" type="button">📳 الاهتزاز: يعمل</button>
 </div>
 <div class="tasbeeh-stats">
-<div><small>اليوم</small><strong id="tasbeehToday">0</strong></div>
-<div><small>الإجمالي</small><strong id="tasbeehTotal">0</strong></div>
+<div><small data-pro-i18n="tasbeeh.today">اليوم</small><strong id="tasbeehToday">0</strong></div>
+<div><small data-pro-i18n="tasbeeh.total">الإجمالي</small><strong id="tasbeehTotal">0</strong></div>
 </div>
-<p class="tasbeeh-note">يُحفظ العدد تلقائياً على هذا الجهاز ويعمل بدون إنترنت.</p>
+<p class="tasbeeh-note" data-pro-i18n="tasbeeh.note">يُحفظ العدد تلقائياً على هذا الجهاز ويعمل بدون إنترنت.</p>
 </div>
 </div>
 </section><section aria-hidden="true" class="tareeq-app-page pro-page" id="favoritesAppPage">
 <div class="tareeq-page-head">
-<button class="tareeq-back-btn" data-pro-back="" type="button">← رجوع</button>
-<h2>⭐ المفضلة</h2>
+<button class="tareeq-back-btn" data-pro-back="" type="button"><span class="pro-icon back-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg></span><span data-pro-i18n="common.back">رجوع</span></button>
+<h2><span class="pro-icon title-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"></path></svg></span><span data-pro-i18n="page.favorites"></span></h2>
 </div>
 <div class="tareeq-page-content">
 <div class="favorites-list" id="favoritesList"></div>
 </div>
 </section><section aria-hidden="true" class="tareeq-app-page pro-page" id="globalSearchAppPage">
 <div class="tareeq-page-head">
-<button class="tareeq-back-btn" data-pro-back="" type="button">← رجوع</button>
-<h2>🔎 البحث الشامل</h2>
+<button class="tareeq-back-btn" data-pro-back="" type="button"><span class="pro-icon back-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg></span><span data-pro-i18n="common.back">رجوع</span></button>
+<h2><span class="pro-icon title-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></span><span data-pro-i18n="page.search"></span></h2>
 </div>
 <div class="tareeq-page-content">
 <div class="global-search-box">
-<input id="globalSearchInput" placeholder="اكتب كلمة: الحسين، الأربعين، الدعاء، الصلاة..." type="search"/>
-<button id="globalSearchBtn" type="button">بحث</button>
+<input data-pro-i18n-placeholder="search.placeholder" id="globalSearchInput" placeholder="اكتب كلمة: الحسين، الأربعين، الدعاء، الصلاة..." type="search"/>
+<button data-pro-i18n="search.button" id="globalSearchBtn" type="button">بحث</button>
 </div>
 <div class="global-search-count" id="globalSearchCount"></div>
 <div class="global-search-results" id="globalSearchResults"></div>
@@ -3238,6 +3249,7 @@ setLang('ar');
   function writeJSON(key,val){try{localStorage.setItem(key,JSON.stringify(val))}catch(e){}}
   function toast(msg){let t=$('tareeqProToast');if(!t){t=document.createElement('div');t.id='tareeqProToast';t.style.cssText='position:fixed;z-index:30000;left:50%;bottom:100px;transform:translateX(-50%);background:#17130f;color:#fff;padding:10px 15px;border-radius:999px;font:700 13px Tahoma;box-shadow:0 10px 30px #0005;opacity:0;transition:.2s;pointer-events:none';document.body.appendChild(t)}t.textContent=msg;t.style.opacity='1';clearTimeout(t._x);t._x=setTimeout(()=>t.style.opacity='0',1700)}
 
+  window.toast=toast;
   function closeAllProPages(){
     document.querySelectorAll('.tareeq-app-page.show').forEach(p=>{p.classList.remove('show');p.setAttribute('aria-hidden','true')});
     document.body.style.overflow='';
@@ -3332,6 +3344,17 @@ setLang('ar');
     yahussain:{sequence:[['يا حسين',0]]},
     custom:{sequence:[['ذكر مخصص',33]]}
   };
+
+  function currentLangName(key){
+    const l=((document.documentElement.lang||'ar').toLowerCase().startsWith('en'))?'en':((document.documentElement.lang||'ar').toLowerCase().startsWith('fa'))?'fa':'ar';
+    const names={
+      ar:{akbar:'الله أكبر',hamd:'الحمد لله',subhan:'سبحان الله',salawat:'اللهم صلِّ على محمد وآل محمد',istighfar:'أستغفر الله وأتوب إليه',yahussain:'يا حسين',custom:'ذكر مخصص'},
+      en:{akbar:'Allahu Akbar',hamd:'Alhamdulillah',subhan:'Subhan Allah',salawat:'Allahumma salli ala Muhammad wa Aal Muhammad',istighfar:'Astaghfirullah wa atubu ilayh',yahussain:'Ya Hussain',custom:'Custom dhikr'},
+      fa:{akbar:'الله‌اکبر',hamd:'الحمدلله',subhan:'سبحان‌الله',salawat:'اللهم صل علی محمد و آل محمد',istighfar:'استغفرالله و اتوب الیه',yahussain:'یا حسین',custom:'ذکر دلخواه'}
+    };
+    return names[l][key]||names.ar[key];
+  }
+
   function todayKey(){const d=new Date();return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`}
   function tasState(){
     const s=readJSON(TAS_KEY,{preset:'zahra',stage:0,count:0,total:0,today:0,todayKey:todayKey(),vibrate:true,customTarget:33});
@@ -3348,22 +3371,33 @@ setLang('ar');
     const s=tasState();const seq=seqFor(s);if(s.stage>=seq.length)s.stage=0;
     const [name,target]=seq[s.stage];
     if($('tasbeehDhikr'))$('tasbeehDhikr').value=s.preset;
-    if($('tasbeehCurrentDhikr'))$('tasbeehCurrentDhikr').textContent=name;
+    if($('tasbeehCurrentDhikr')){
+      const nameMap={
+        'الله أكبر': currentLangName('akbar'),
+        'الحمد لله': currentLangName('hamd'),
+        'سبحان الله': currentLangName('subhan'),
+        'اللهم صلِّ على محمد وآل محمد': currentLangName('salawat'),
+        'أستغفر الله وأتوب إليه': currentLangName('istighfar'),
+        'يا حسين': currentLangName('yahussain'),
+        'ذكر مخصص': currentLangName('custom')
+      };
+      $('tasbeehCurrentDhikr').textContent=nameMap[name]||name;
+    }
     if($('tasbeehCount'))$('tasbeehCount').textContent=s.count;
     if($('tasbeehBigCount'))$('tasbeehBigCount').textContent=s.count;
-    if($('tasbeehTargetText'))$('tasbeehTargetText').textContent=target?`من ${target}`:'عدد مفتوح';
+    if($('tasbeehTargetText'))$('tasbeehTargetText').textContent=target?(window.tareeqTr?window.tareeqTr('tasbeeh.target',{n:target}):`من ${target}`):(window.tareeqTr?window.tareeqTr('tasbeeh.open'):'عدد مفتوح');
     if($('tasbeehProgressBar'))$('tasbeehProgressBar').style.width=target?Math.min(100,(s.count/target)*100)+'%':'0%';
     if($('tasbeehToday'))$('tasbeehToday').textContent=s.today;
     if($('tasbeehTotal'))$('tasbeehTotal').textContent=s.total;
-    if($('tasbeehVibrateBtn'))$('tasbeehVibrateBtn').textContent=`📳 الاهتزاز: ${s.vibrate?'يعمل':'متوقف'}`;
+    if($('tasbeehVibrateBtn'))$('tasbeehVibrateBtn').textContent=window.tareeqTr?window.tareeqTr(s.vibrate?'tasbeeh.vibrate.on':'tasbeeh.vibrate.off'):`الاهتزاز: ${s.vibrate?'يعمل':'متوقف'}`;
   }
   function tapTasbeeh(){
     const s=tasState();const seq=seqFor(s);const target=seq[s.stage][1];
     s.count++;s.today++;s.total++;
-    if(s.vibrate&&navigator.vibrate)try{navigator.vibrate(35)}catch(e){}
+    if(s.vibrate&&window.tareeqHaptic)window.tareeqHaptic(35)
     if(target&&s.count>=target){
-      if(s.preset==='zahra'&&s.stage<seq.length-1){s.stage++;s.count=0;toast('أحسنت، انتقلنا إلى الذكر التالي 🌿');if(s.vibrate&&navigator.vibrate)navigator.vibrate([80,50,120])}
-      else{toast('أتممت الذكر، تقبّل الله منك 🤲');if(s.vibrate&&navigator.vibrate)navigator.vibrate([100,60,180]);s.count=0;if(s.preset==='zahra')s.stage=0}
+      if(s.preset==='zahra'&&s.stage<seq.length-1){s.stage++;s.count=0;toast('أحسنت، انتقلنا إلى الذكر التالي 🌿');if(s.vibrate&&window.tareeqHaptic)window.tareeqHaptic([80,50,120])}
+      else{toast('أتممت الذكر، تقبّل الله منك 🤲');if(s.vibrate&&window.tareeqHaptic)window.tareeqHaptic([100,60,180]);s.count=0;if(s.preset==='zahra')s.stage=0}
     }
     saveTas(s);renderTasbeeh()
   }
@@ -3421,7 +3455,83 @@ setLang('ar');
     $('tasbeehVibrateBtn')&&($('tasbeehVibrateBtn').onclick=()=>{const s=tasState();s.vibrate=!s.vibrate;saveTas(s);renderTasbeeh()});
     $('tasbeehDhikr')&&($('tasbeehDhikr').onchange=e=>{const s=tasState();s.preset=e.target.value;s.stage=0;s.count=0;if(s.preset==='custom'){const v=prompt('اكتب الهدف المطلوب:',s.customTarget||33);if(v)s.customTarget=Math.max(1,parseInt(v)||33)}saveTas(s);renderTasbeeh()});
     renderTasbeeh();
+    window.addEventListener('tareeq-language-updated',()=>{renderTasbeeh();renderFavorites();});
   });
+})();
+</script>
+
+<script id="tareeqV2MultilangPatch">
+(function(){
+  "use strict";
+  const I18N={"ar": {"nav.home": "الرئيسية", "nav.worship": "العبادة", "nav.assistant": "المساعد", "nav.qibla": "القبلة", "nav.more": "المزيد", "common.back": "رجوع", "page.worship": "العبادة", "page.more": "المزيد", "page.tasbeeh": "عداد التسبيح", "page.favorites": "المفضلة", "page.search": "البحث الشامل", "worship.tasbeeh.title": "عداد التسبيح", "worship.tasbeeh.desc": "عداد ذكي يحفظ تقدمك تلقائياً", "worship.favorites.title": "المفضلة", "worship.favorites.desc": "النصوص والأسئلة التي حفظتها", "worship.duas.title": "الأدعية والزيارات", "worship.duas.desc": "انتقال سريع إلى قسم الأدعية", "more.search.title": "البحث الشامل", "more.search.desc": "ابحث في جميع أقسام الموقع", "more.note.title": "إرسال ملاحظة", "more.note.desc": "اقتراح أو تصحيح عبر واتساب", "more.install.title": "تثبيت التطبيق", "more.install.desc": "أضف الموقع إلى الشاشة الرئيسية", "more.about.title": "عن الموقع", "more.about.desc": "تعريف المبادرة ورسالتها", "more.top.title": "أعلى الصفحة", "more.top.desc": "العودة إلى بداية الموقع", "tasbeeh.choose": "اختر الذكر", "tasbeeh.tap": "اضغط للتسبيح", "tasbeeh.undo": "↩ تراجع", "tasbeeh.reset": "↻ إعادة", "tasbeeh.today": "اليوم", "tasbeeh.total": "الإجمالي", "tasbeeh.note": "يُحفظ العدد تلقائياً على هذا الجهاز ويعمل بدون إنترنت.", "tasbeeh.vibrate.on": "الاهتزاز: يعمل", "tasbeeh.vibrate.off": "الاهتزاز: متوقف", "tasbeeh.target": "من {n}", "tasbeeh.open": "عدد مفتوح", "tasbeeh.opt.zahra": "تسبيح الزهراء عليها السلام", "tasbeeh.opt.subhan": "سبحان الله — 33", "tasbeeh.opt.hamd": "الحمد لله — 33", "tasbeeh.opt.akbar": "الله أكبر — 34", "tasbeeh.opt.salawat": "اللهم صلِّ على محمد وآل محمد — مفتوح", "tasbeeh.opt.istighfar": "أستغفر الله وأتوب إليه — 100", "tasbeeh.opt.yahussain": "يا حسين — مفتوح", "tasbeeh.opt.custom": "هدف مخصص", "search.button": "بحث", "search.placeholder": "اكتب كلمة: الحسين، الأربعين، الدعاء، الصلاة...", "assistant.name": "مساعد طريق الحسين", "assistant.offline": "إجابات محفوظة تعمل بدون إنترنت", "assistant.safety": "المعلومات للتثقيف العام. المسائل الفقهية تُراجع وفق فتاوى سماحة السيد السيستاني، وإذا لم يتوفر جواب موثّق فلن يتم التخمين.", "assistant.cat.all": "الكل", "assistant.cat.hussain": "الإمام الحسين", "assistant.cat.ashura": "عاشوراء", "assistant.cat.arbaeen": "الأربعين", "assistant.cat.prayer": "الصلاة", "assistant.cat.purity": "الطهارة", "assistant.cat.duas": "الأدعية", "assistant.cat.ahlbayt": "أهل البيت", "assistant.cat.ethics": "الأخلاق", "fav.empty": "لا توجد عناصر محفوظة بعد.", "search.min": "اكتب حرفين على الأقل للبحث.", "search.none": "لم يتم العثور على نتيجة. جرّب كلمة أقصر أو مختلفة.", "search.found": "تم العثور على {n} نتيجة", "action.open": "فتح", "action.delete": "حذف", "action.save": "حفظ", "action.copy": "نسخ", "action.share": "مشاركة", "msg.saved": "تم الحفظ في المفضلة", "msg.duplicate": "محفوظ مسبقاً", "msg.deleted": "تم الحذف", "msg.copied": "تم نسخ الجواب", "haptic.ios": "ملاحظة: متصفح iPhone لا يسمح باهتزاز المواقع؛ تم تفعيل نبضة مرئية وصوت خفيف بدلاً منه."}, "en": {"nav.home": "Home", "nav.worship": "Worship", "nav.assistant": "Assistant", "nav.qibla": "Qibla", "nav.more": "More", "common.back": "Back", "page.worship": "Worship", "page.more": "More", "page.tasbeeh": "Tasbeeh Counter", "page.favorites": "Favorites", "page.search": "Global Search", "worship.tasbeeh.title": "Tasbeeh Counter", "worship.tasbeeh.desc": "A smart counter that saves your progress", "worship.favorites.title": "Favorites", "worship.favorites.desc": "Your saved texts and questions", "worship.duas.title": "Duas & Ziyarat", "worship.duas.desc": "Quick access to prayers and visits", "more.search.title": "Global Search", "more.search.desc": "Search all website sections", "more.note.title": "Send a Note", "more.note.desc": "Send a suggestion or correction via WhatsApp", "more.install.title": "Install App", "more.install.desc": "Add the website to your Home Screen", "more.about.title": "About", "more.about.desc": "Learn about the initiative and its message", "more.top.title": "Back to Top", "more.top.desc": "Return to the beginning of the website", "tasbeeh.choose": "Choose a dhikr", "tasbeeh.tap": "Tap to count", "tasbeeh.undo": "↩ Undo", "tasbeeh.reset": "↻ Reset", "tasbeeh.today": "Today", "tasbeeh.total": "Total", "tasbeeh.note": "Your count is saved automatically on this device and works offline.", "tasbeeh.vibrate.on": "Vibration: On", "tasbeeh.vibrate.off": "Vibration: Off", "tasbeeh.target": "of {n}", "tasbeeh.open": "Open count", "tasbeeh.opt.zahra": "Tasbeeh of Fatimah al-Zahra", "tasbeeh.opt.subhan": "Subhan Allah — 33", "tasbeeh.opt.hamd": "Alhamdulillah — 33", "tasbeeh.opt.akbar": "Allahu Akbar — 34", "tasbeeh.opt.salawat": "Allahumma salli ala Muhammad wa Aal Muhammad — Open", "tasbeeh.opt.istighfar": "Astaghfirullah wa atubu ilayh — 100", "tasbeeh.opt.yahussain": "Ya Hussain — Open", "tasbeeh.opt.custom": "Custom target", "search.button": "Search", "search.placeholder": "Type a word: Hussain, Arbaeen, dua, prayer...", "assistant.name": "Tareeq Al-Hussain Assistant", "assistant.offline": "Saved answers that work offline", "assistant.safety": "This information is for general education. Jurisprudential matters should be checked against the rulings of Sayyid al-Sistani. The assistant will not guess when a verified answer is unavailable.", "assistant.cat.all": "All", "assistant.cat.hussain": "Imam Hussain", "assistant.cat.ashura": "Ashura", "assistant.cat.arbaeen": "Arbaeen", "assistant.cat.prayer": "Prayer", "assistant.cat.purity": "Purity", "assistant.cat.duas": "Duas", "assistant.cat.ahlbayt": "Ahl al-Bayt", "assistant.cat.ethics": "Ethics", "fav.empty": "No saved items yet.", "search.min": "Type at least two characters.", "search.none": "No results found. Try a shorter or different word.", "search.found": "Found {n} results", "action.open": "Open", "action.delete": "Delete", "action.save": "Save", "action.copy": "Copy", "action.share": "Share", "msg.saved": "Saved to favorites", "msg.duplicate": "Already saved", "msg.deleted": "Deleted", "msg.copied": "Answer copied", "haptic.ios": "Note: iPhone browsers do not allow website vibration. A visual pulse and a soft click are used instead."}, "fa": {"nav.home": "خانه", "nav.worship": "عبادت", "nav.assistant": "دستیار", "nav.qibla": "قبله", "nav.more": "بیشتر", "common.back": "بازگشت", "page.worship": "عبادت", "page.more": "بیشتر", "page.tasbeeh": "شمارنده ذکر", "page.favorites": "علاقه‌مندی‌ها", "page.search": "جستجوی کامل", "worship.tasbeeh.title": "شمارنده ذکر", "worship.tasbeeh.desc": "شمارنده هوشمند با ذخیره خودکار", "worship.favorites.title": "علاقه‌مندی‌ها", "worship.favorites.desc": "متن‌ها و پرسش‌های ذخیره‌شده", "worship.duas.title": "دعاها و زیارت‌ها", "worship.duas.desc": "دسترسی سریع به بخش دعاها", "more.search.title": "جستجوی کامل", "more.search.desc": "جستجو در همه بخش‌های سایت", "more.note.title": "ارسال پیام", "more.note.desc": "پیشنهاد یا اصلاح از طریق واتساپ", "more.install.title": "نصب برنامه", "more.install.desc": "افزودن سایت به صفحه اصلی", "more.about.title": "درباره سایت", "more.about.desc": "معرفی ابتکار و پیام آن", "more.top.title": "بالای صفحه", "more.top.desc": "بازگشت به ابتدای سایت", "tasbeeh.choose": "ذکر را انتخاب کنید", "tasbeeh.tap": "برای شمارش لمس کنید", "tasbeeh.undo": "↩ بازگشت", "tasbeeh.reset": "↻ شروع دوباره", "tasbeeh.today": "امروز", "tasbeeh.total": "مجموع", "tasbeeh.note": "تعداد به‌صورت خودکار در این دستگاه ذخیره می‌شود و بدون اینترنت کار می‌کند.", "tasbeeh.vibrate.on": "لرزش: روشن", "tasbeeh.vibrate.off": "لرزش: خاموش", "tasbeeh.target": "از {n}", "tasbeeh.open": "شمارش آزاد", "tasbeeh.opt.zahra": "تسبیحات حضرت زهرا سلام‌الله‌علیها", "tasbeeh.opt.subhan": "سبحان‌الله — ۳۳", "tasbeeh.opt.hamd": "الحمدلله — ۳۳", "tasbeeh.opt.akbar": "الله‌اکبر — ۳۴", "tasbeeh.opt.salawat": "اللهم صل علی محمد و آل محمد — آزاد", "tasbeeh.opt.istighfar": "استغفرالله و اتوب الیه — ۱۰۰", "tasbeeh.opt.yahussain": "یا حسین — آزاد", "tasbeeh.opt.custom": "هدف دلخواه", "search.button": "جستجو", "search.placeholder": "یک واژه بنویسید: حسین، اربعین، دعا، نماز...", "assistant.name": "دستیار طریق الحسین", "assistant.offline": "پاسخ‌های ذخیره‌شده و آفلاین", "assistant.safety": "این اطلاعات برای آموزش عمومی است. مسائل فقهی باید طبق فتاوای آیت‌الله سیستانی بررسی شود و در صورت نبود پاسخ معتبر، حدس زده نمی‌شود.", "assistant.cat.all": "همه", "assistant.cat.hussain": "امام حسین", "assistant.cat.ashura": "عاشورا", "assistant.cat.arbaeen": "اربعین", "assistant.cat.prayer": "نماز", "assistant.cat.purity": "طهارت", "assistant.cat.duas": "دعاها", "assistant.cat.ahlbayt": "اهل‌بیت", "assistant.cat.ethics": "اخلاق", "fav.empty": "هنوز موردی ذخیره نشده است.", "search.min": "حداقل دو نویسه وارد کنید.", "search.none": "نتیجه‌ای پیدا نشد. واژه کوتاه‌تر یا متفاوتی امتحان کنید.", "search.found": "{n} نتیجه پیدا شد", "action.open": "باز کردن", "action.delete": "حذف", "action.save": "ذخیره", "action.copy": "کپی", "action.share": "اشتراک", "msg.saved": "در علاقه‌مندی‌ها ذخیره شد", "msg.duplicate": "قبلاً ذخیره شده", "msg.deleted": "حذف شد", "msg.copied": "پاسخ کپی شد", "haptic.ios": "نکته: مرورگرهای آیفون اجازه لرزش سایت را نمی‌دهند؛ به‌جای آن ضربان دیداری و صدای ملایم فعال است."}};
+  function currentLang(){
+    const l=(document.documentElement.lang||"ar").toLowerCase();
+    return l.startsWith("en")?"en":l.startsWith("fa")?"fa":"ar";
+  }
+  function tr(key,vars){
+    let s=(I18N[currentLang()]&&I18N[currentLang()][key])||I18N.ar[key]||key;
+    if(vars) Object.keys(vars).forEach(k=>s=s.replace("{"+k+"}",vars[k]));
+    return s;
+  }
+  window.tareeqTr=tr;
+
+  function applyI18n(){
+    document.querySelectorAll("[data-pro-i18n]").forEach(el=>{
+      const key=el.getAttribute("data-pro-i18n");
+      el.textContent=tr(key);
+    });
+    document.querySelectorAll("[data-pro-i18n-placeholder]").forEach(el=>{
+      el.setAttribute("placeholder",tr(el.getAttribute("data-pro-i18n-placeholder")));
+    });
+    // Re-render dynamic tasbeeh text after language change.
+    try{ window.dispatchEvent(new CustomEvent("tareeq-language-updated")); }catch(e){}
+  }
+  window.applyTareeqProI18n=applyI18n;
+
+  // Best possible haptics: real vibration where supported, visual/audio fallback on iPhone.
+  let audioCtx=null;
+  function softClick(){
+    try{
+      audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+      const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+      o.type="sine";o.frequency.value=165;g.gain.value=0.025;
+      o.connect(g);g.connect(audioCtx.destination);o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.045);
+      o.stop(audioCtx.currentTime+0.05);
+    }catch(e){}
+  }
+  window.tareeqHaptic=function(pattern){
+    let worked=false;
+    try{
+      if("vibrate" in navigator){
+        worked=navigator.vibrate(pattern||35)!==false;
+      }
+    }catch(e){}
+    if(!worked){
+      const b=document.getElementById("tasbeehTapBtn");
+      if(b){
+        b.classList.remove("haptic-fallback");
+        void b.offsetWidth;
+        b.classList.add("haptic-fallback");
+      }
+      softClick();
+    }
+    return worked;
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    applyI18n();
+    // iPhone notice only once.
+    const isiOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+    if(isiOS&&!localStorage.getItem("tareeq_ios_haptic_note")){
+      setTimeout(()=>{
+        if(typeof window.toast==="function") window.toast(tr("haptic.ios"));
+      },1600);
+      localStorage.setItem("tareeq_ios_haptic_note","1");
+    }
+  });
+
+  new MutationObserver(applyI18n).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
 })();
 </script>
 </body></html>
