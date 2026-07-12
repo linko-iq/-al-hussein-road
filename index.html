@@ -1321,7 +1321,12 @@ input,select,textarea,button{max-width:100%}
 @keyframes hapticPulse{0%{transform:scale(1)}50%{transform:scale(.965)}100%{transform:scale(1)}}
 html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 </style>
-</head>
+<style id="tareeqAssistantV3Style">
+#assistantOptionsDock .assistant-options-head{display:flex;align-items:center;gap:7px}
+#assistantOptionsDock .assistant-cloud button{position:relative}
+#assistantOptionsDock .assistant-cloud button::after{content:"✓";display:inline-grid;place-items:center;width:16px;height:16px;margin-inline-start:6px;border-radius:50%;background:var(--accent2);color:#fff;font-size:10px}
+.assistant-source-note{display:block;margin-top:11px;padding:8px 10px;border-radius:11px;background:rgba(15,91,60,.09);color:var(--accent2);font-size:11px;line-height:1.65}
+</style></head>
 <body data-theme="light">
 <div class="read-progress" id="readProgress"></div>
 <div class="welcome-screen" id="welcomeScreen">
@@ -3459,7 +3464,6 @@ setLang('ar');
   });
 })();
 </script>
-
 <script id="tareeqV2MultilangPatch">
 (function(){
   "use strict";
@@ -3532,6 +3536,185 @@ setLang('ar');
   });
 
   new MutationObserver(applyI18n).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
+})();
+</script>
+
+<script id="tareeqAssistantRebuildV3">
+(function(){
+'use strict';
+const DB=[{"id": "hussain_who", "cat": "hussain", "ar": {"q": "من هو الإمام الحسين عليه السلام؟", "a": "الإمام الحسين بن علي بن أبي طالب وفاطمة الزهراء عليهم السلام، سبط النبي محمد صلى الله عليه وآله، وثالث أئمة أهل البيت عند الإمامية. عُرف بثباته على الحق وتضحيته في كربلاء سنة 61 هـ.", "s": "المصدر: القرآن الكريم 33:33، وكتب السيرة والتاريخ الإسلامي."}, "en": {"q": "Who is Imam Hussain?", "a": "Imam Hussain ibn Ali was the grandson of Prophet Muhammad, the son of Imam Ali and Lady Fatimah, and the third Imam in the Twelver Shia tradition. He is remembered for standing for truth and his sacrifice at Karbala in 61 AH.", "s": "Source: Qur’an 33:33 and recognized works of Islamic history."}, "fa": {"q": "امام حسین علیه‌السلام کیست؟", "a": "امام حسین فرزند امام علی و حضرت فاطمه و نوه پیامبر اسلام صلی‌الله‌علیه‌وآله است و در مکتب شیعه دوازده‌امامی سومین امام به شمار می‌آید. ایشان به پایداری در راه حق و فداکاری در کربلا در سال ۶۱ هجری شناخته می‌شود.", "s": "منبع: قرآن کریم، آیه ۳۳ سوره احزاب و منابع معتبر تاریخ اسلام."}}, {"id": "hussain_lineage", "cat": "hussain", "ar": {"q": "ما نسب الإمام الحسين؟", "a": "هو الحسين بن علي بن أبي طالب، وأمه فاطمة الزهراء بنت رسول الله محمد صلى الله عليه وآله، وأخوه الإمام الحسن المجتبى عليه السلام.", "s": "المصدر: كتب السيرة والأنساب الإسلامية."}, "en": {"q": "What is Imam Hussain’s lineage?", "a": "He is Hussain ibn Ali ibn Abi Talib. His mother is Fatimah al-Zahra, daughter of Prophet Muhammad, and his brother is Imam Hasan.", "s": "Source: recognized Islamic biographies and genealogical works."}, "fa": {"q": "نَسَب امام حسین چیست؟", "a": "ایشان حسین بن علی بن ابی‌طالب است. مادرش حضرت فاطمه زهرا، دختر پیامبر اسلام، و برادرش امام حسن مجتبی علیهماالسلام است.", "s": "منبع: منابع معتبر سیره و انساب اسلامی."}}, {"id": "hussain_love", "cat": "hussain", "ar": {"q": "لماذا نحب الإمام الحسين؟", "a": "نحبه لقربه من رسول الله، ولإيمانه وأخلاقه وثباته أمام الظلم، ولأن نهضته تذكّر المسلمين بالعدل والكرامة والإصلاح.", "s": "المصدر: السيرة النبوية وتاريخ واقعة كربلاء."}, "en": {"q": "Why do we love Imam Hussain?", "a": "We love him for his closeness to the Prophet, his faith and character, his stand against oppression, and because his movement reminds people of justice, dignity, and reform.", "s": "Source: Prophetic biography and the history of Karbala."}, "fa": {"q": "چرا امام حسین را دوست داریم؟", "a": "به دلیل نزدیکی ایشان به پیامبر، ایمان و اخلاق والا، ایستادگی در برابر ظلم و پیام عدالت، کرامت و اصلاح نهضت ایشان.", "s": "منبع: سیره پیامبر و منابع تاریخی واقعه کربلا."}}, {"id": "hussain_lessons", "cat": "hussain", "ar": {"q": "ماذا نتعلم من الإمام الحسين؟", "a": "نتعلم الصدق، والشجاعة، ورفض الظلم، وحفظ الكرامة، ونصرة المظلوم، وأن الإصلاح يبدأ من الالتزام بالحق والأخلاق.", "s": "المصدر: كلمات الإمام الحسين وسيرته في نهضته."}, "en": {"q": "What do we learn from Imam Hussain?", "a": "We learn honesty, courage, rejection of oppression, preservation of dignity, support for the oppressed, and that reform begins with truth and good character.", "s": "Source: Imam Hussain’s teachings and biography."}, "fa": {"q": "از امام حسین چه می‌آموزیم؟", "a": "راستی، شجاعت، نپذیرفتن ظلم، حفظ کرامت، یاری مظلوم و این‌که اصلاح با پایبندی به حق و اخلاق آغاز می‌شود.", "s": "منبع: سخنان و سیره امام حسین در نهضت عاشورا."}}, {"id": "karbala_reason", "cat": "ashura", "ar": {"q": "لماذا خرج الإمام الحسين؟", "a": "رفض الإمام الحسين مبايعة حكمٍ رآه منحرفاً عن قيم الإسلام، وأعلن أن هدفه الإصلاح والأمر بالمعروف والنهي عن المنكر والسير بسيرة جده وأبيه.", "s": "المصدر: وصية الإمام الحسين لأخيه محمد بن الحنفية، كما نقلتها المصادر التاريخية."}, "en": {"q": "Why did Imam Hussain rise?", "a": "He refused to legitimize a rule he regarded as departing from Islamic values. He stated that his goal was reform, promoting good, preventing wrong, and following the path of his grandfather and father.", "s": "Source: Imam Hussain’s testament to Muhammad ibn al-Hanafiyyah in historical reports."}, "fa": {"q": "چرا امام حسین قیام کرد؟", "a": "امام حسین از تأیید حکومتی که آن را منحرف از ارزش‌های اسلام می‌دانست خودداری کرد و هدف خود را اصلاح، امر به معروف، نهی از منکر و پیروی از سیره پیامبر و امام علی بیان نمود.", "s": "منبع: وصیت امام حسین به محمد بن حنفیه در گزارش‌های تاریخی."}}, {"id": "ashura_when", "cat": "ashura", "ar": {"q": "متى وقعت واقعة عاشوراء؟", "a": "وقعت في العاشر من شهر محرم سنة 61 للهجرة في أرض كربلاء.", "s": "المصدر: المصادر التاريخية المبكرة لواقعة كربلاء."}, "en": {"q": "When did Ashura take place?", "a": "The event occurred on the tenth of Muharram in 61 AH at Karbala.", "s": "Source: early historical accounts of Karbala."}, "fa": {"q": "واقعه عاشورا چه زمانی رخ داد؟", "a": "در دهم محرم سال ۶۱ هجری در سرزمین کربلا رخ داد.", "s": "منبع: گزارش‌های تاریخی معتبر واقعه کربلا."}}, {"id": "ashura_meaning", "cat": "ashura", "ar": {"q": "ما أهم رسالة لعاشوراء؟", "a": "من أهم رسائلها أن الإنسان لا يبيع ضميره خوفاً أو طمعاً، وأن الدفاع عن الحق والكرامة يحتاج إلى وعي وصبر ومسؤولية.", "s": "المصدر: سيرة الإمام الحسين وأصحابه في كربلاء."}, "en": {"q": "What is a central message of Ashura?", "a": "A central message is that a person should not trade conscience for fear or gain, and that defending truth and dignity requires awareness, patience, and responsibility.", "s": "Source: the conduct of Imam Hussain and his companions at Karbala."}, "fa": {"q": "مهم‌ترین پیام عاشورا چیست؟", "a": "این‌که انسان نباید وجدان خود را از ترس یا طمع بفروشد و دفاع از حق و کرامت به آگاهی، صبر و مسئولیت‌پذیری نیاز دارد.", "s": "منبع: سیره امام حسین و یارانش در کربلا."}}, {"id": "ashura_commemorate", "cat": "ashura", "ar": {"q": "لماذا نحيي ذكرى عاشوراء؟", "a": "لاستذكار تضحيات الإمام الحسين وأهل بيته وأصحابه، وفهم أهداف نهضته، وتجديد الالتزام بالعدل والرحمة وخدمة الناس، بعيداً عن الإساءة والفوضى.", "s": "المصدر: السيرة الحسينية والممارسة الدينية المتوارثة."}, "en": {"q": "Why is Ashura commemorated?", "a": "To remember the sacrifices of Imam Hussain, his family, and companions; understand the aims of his movement; and renew commitment to justice, compassion, and service without harm or disorder.", "s": "Source: Hussaini biography and inherited religious practice."}, "fa": {"q": "چرا یاد عاشورا را زنده نگه می‌داریم؟", "a": "برای یادکرد فداکاری امام حسین، خاندان و یارانش، شناخت اهداف نهضت و تجدید پیمان با عدالت، رحمت و خدمت به مردم، بدون آسیب و بی‌نظمی.", "s": "منبع: سیره حسینی و سنت دینی پیروان اهل‌بیت."}}, {"id": "zainab_role", "cat": "ahlbayt", "ar": {"q": "ما دور السيدة زينب بعد كربلاء؟", "a": "حفظت رسالة كربلاء، ورعت العائلة والأطفال في ظروف الأسر، وواجهت السلطات بخطب كشفت الظلم وبيّنت موقف الإمام الحسين.", "s": "المصدر: المصادر التاريخية لسبي أهل البيت وخطب الكوفة والشام."}, "en": {"q": "What was Lady Zainab’s role after Karbala?", "a": "She preserved Karbala’s message, cared for the family and children during captivity, and delivered speeches that exposed oppression and explained Imam Hussain’s stand.", "s": "Source: historical accounts of the captives and the sermons in Kufa and Damascus."}, "fa": {"q": "نقش حضرت زینب پس از کربلا چه بود؟", "a": "پیام کربلا را حفظ کرد، در دوران اسارت از خانواده و کودکان مراقبت نمود و با خطبه‌های خود ظلم را آشکار و موضع امام حسین را تبیین کرد.", "s": "منبع: گزارش‌های تاریخی اسارت اهل‌بیت و خطبه‌های کوفه و شام."}}, {"id": "sajjad_who", "cat": "ahlbayt", "ar": {"q": "من هو الإمام علي بن الحسين السجاد؟", "a": "هو ابن الإمام الحسين وأحد الناجين من كربلاء، والإمام الرابع عند الإمامية. عُرف بالعبادة والعلم، ونُسبت إليه أدعية الصحيفة السجادية.", "s": "المصدر: كتب السيرة والتراجم، والصحيفة السجادية."}, "en": {"q": "Who is Imam Ali ibn al-Hussain al-Sajjad?", "a": "He is the son of Imam Hussain, a survivor of Karbala, and the fourth Imam in the Twelver Shia tradition. He was known for worship and knowledge, and al-Sahifa al-Sajjadiyya is attributed to him.", "s": "Source: biographical works and al-Sahifa al-Sajjadiyya."}, "fa": {"q": "امام علی بن الحسین سجاد کیست؟", "a": "فرزند امام حسین، از بازماندگان کربلا و چهارمین امام در مکتب شیعه دوازده‌امامی است. به عبادت و دانش شناخته می‌شود و صحیفه سجادیه به ایشان منسوب است.", "s": "منبع: منابع سیره و تراجم و صحیفه سجادیه."}}, {"id": "arbaeen_meaning", "cat": "arbaeen", "ar": {"q": "ما معنى زيارة الأربعين؟", "a": "هي زيارة الإمام الحسين في اليوم الأربعين من شهادته، أي العشرين من صفر. تجمع بين إحياء الذكرى وتجديد العهد بقيمه من الإيمان والعدل والإصلاح.", "s": "المصدر: كتب الزيارات والروايات المعتمدة عند مدرسة أهل البيت."}, "en": {"q": "What is Ziyarat al-Arbaeen?", "a": "It is the visitation of Imam Hussain on the fortieth day after his martyrdom, the twentieth of Safar. It renews remembrance and commitment to faith, justice, and reform.", "s": "Source: recognized Shia works of ziyarat and narrations."}, "fa": {"q": "زیارت اربعین چیست؟", "a": "زیارت امام حسین در چهلمین روز شهادت ایشان، یعنی بیستم صفر است و یاد آن حضرت و پیمان با ارزش‌های ایمان، عدالت و اصلاح را زنده می‌کند.", "s": "منبع: منابع معتبر زیارات و روایات در مکتب اهل‌بیت."}}, {"id": "walk_reason", "cat": "arbaeen", "ar": {"q": "لماذا يمشي الزائرون إلى كربلاء؟", "a": "تعبيراً عن المحبة والولاء واستذكاراً لطريق التضحية، وللتقرب إلى الله بخدمة الزائرين والصبر والتواضع. المشي وسيلة، والأهم صدق النية وحسن الخلق.", "s": "المصدر: آداب الزيارة والسيرة الدينية المتوارثة."}, "en": {"q": "Why do pilgrims walk to Karbala?", "a": "As an expression of love and loyalty, remembrance of sacrifice, and seeking closeness to God through service, patience, and humility. Walking is a means; sincerity and good character are the core.", "s": "Source: ziyarat etiquette and inherited religious practice."}, "fa": {"q": "چرا زائران پیاده به کربلا می‌روند؟", "a": "برای ابراز محبت و وفاداری، یادآوری راه فداکاری و تقرب به خدا با خدمت، صبر و فروتنی. پیاده‌روی وسیله است و اصل، نیت خالص و اخلاق نیکوست.", "s": "منبع: آداب زیارت و سنت دینی پیروان اهل‌بیت."}}, {"id": "walk_etiquette", "cat": "arbaeen", "ar": {"q": "ما آداب المشي للزيارة؟", "a": "إخلاص النية، المحافظة على الصلاة، احترام الطريق والناس، عدم إيذاء الآخرين، النظافة، الاقتصاد في الطعام والماء، ومساعدة المحتاج مع مراعاة الصحة والسلامة.", "s": "المصدر: الآداب الإسلامية العامة وآداب الزيارة."}, "en": {"q": "What are the etiquettes of the pilgrimage walk?", "a": "Sincere intention, maintaining prayer, respecting people and the road, avoiding harm, cleanliness, avoiding waste, helping those in need, and observing health and safety.", "s": "Source: general Islamic ethics and ziyarat etiquette."}, "fa": {"q": "آداب پیاده‌روی زیارت چیست؟", "a": "نیت خالص، توجه به نماز، احترام به مردم و مسیر، پرهیز از آزار، پاکیزگی، دوری از اسراف، کمک به نیازمند و رعایت سلامت و ایمنی.", "s": "منبع: اخلاق عمومی اسلام و آداب زیارت."}}, {"id": "service_visitors", "cat": "ethics", "ar": {"q": "كيف أخدم الزائرين بصورة صحيحة؟", "a": "اخدم باحترام وهدوء، لا تمنّ على أحد، قدّم المحتاج وكبير السن، حافظ على النظافة وسلامة الطعام، ولا تزاحم أو تعرض الناس للخطر.", "s": "المصدر: الأخلاق الإسلامية وقواعد حفظ النفس والكرامة."}, "en": {"q": "How should I serve pilgrims properly?", "a": "Serve respectfully and calmly, do not boast about your service, prioritize those in need and the elderly, protect food hygiene, and never create crowding or danger.", "s": "Source: Islamic ethics and the duty to protect life and dignity."}, "fa": {"q": "چگونه به‌درستی به زائران خدمت کنم؟", "a": "با احترام و آرامش خدمت کنید، منت نگذارید، نیازمند و سالمند را مقدم بدارید، به پاکیزگی غذا توجه کنید و باعث ازدحام یا خطر نشوید.", "s": "منبع: اخلاق اسلامی و اصل حفظ جان و کرامت انسان."}}, {"id": "anger", "cat": "ethics", "ar": {"q": "كيف أتعامل مع الغضب؟", "a": "توقف عن الرد لحظات، استعذ بالله، غيّر وضعك أو مكانك، توضأ إن أمكن، ولا تتخذ قراراً وأنت غاضب. بعد الهدوء ناقش المشكلة بكلام واضح بلا إهانة.", "s": "المصدر: الآداب الإسلامية العامة وروايات الحث على كظم الغيظ."}, "en": {"q": "How should I deal with anger?", "a": "Pause before responding, seek refuge in God, change your position or place, perform wudu if possible, and avoid decisions while angry. Discuss the issue calmly without insult.", "s": "Source: general Islamic ethics and teachings on restraining anger."}, "fa": {"q": "چگونه با خشم برخورد کنم؟", "a": "پیش از پاسخ مکث کنید، به خدا پناه ببرید، حالت یا مکان خود را تغییر دهید، در صورت امکان وضو بگیرید و هنگام خشم تصمیم نگیرید. پس از آرامش بدون توهین گفت‌وگو کنید.", "s": "منبع: اخلاق اسلامی و آموزه‌های کنترل خشم."}}, {"id": "good_company", "cat": "ethics", "ar": {"q": "كيف أختار الصحبة الصالحة؟", "a": "اختر من يذكّرك بالله، يصدق معك، يحترم أهلك وحدودك، يعينك على الدراسة والعمل والطاعة، ولا يدفعك إلى الكذب أو الإدمان أو إيذاء الناس.", "s": "المصدر: القرآن الكريم 9:119، والآداب الإسلامية."}, "en": {"q": "How do I choose good friends?", "a": "Choose people who remind you of God, are honest, respect your family and boundaries, support study, work, and worship, and do not lead you toward lying, addiction, or harming others.", "s": "Source: Qur’an 9:119 and Islamic ethics."}, "fa": {"q": "چگونه دوست خوب انتخاب کنم؟", "a": "کسی را برگزینید که شما را به یاد خدا بیندازد، راستگو باشد، به خانواده و مرزهای شما احترام بگذارد، در درس، کار و عبادت یاری کند و به دروغ، اعتیاد یا آزار دیگران نکشاند.", "s": "منبع: قرآن کریم، توبه ۱۱۹ و اخلاق اسلامی."}}, {"id": "quran_daily", "cat": "quran", "ar": {"q": "كيف أقرأ القرآن يومياً؟", "a": "ابدأ بمقدار ثابت ولو صفحة واحدة، اختر وقتاً هادئاً، اقرأ الترجمة أو التفسير الموثوق، وسجّل آية واحدة تعمل بها خلال يومك. الاستمرار أهم من الكثرة المنقطعة.", "s": "المصدر: القرآن الكريم 73:20، والآداب العامة للتلاوة."}, "en": {"q": "How can I read the Qur’an daily?", "a": "Begin with a fixed amount, even one page. Choose a quiet time, use a reliable translation or commentary, and select one verse to apply. Consistency matters more than occasional quantity.", "s": "Source: Qur’an 73:20 and general recitation etiquette."}, "fa": {"q": "چگونه هر روز قرآن بخوانم؟", "a": "با مقدار ثابتی، حتی یک صفحه، آغاز کنید. زمان آرامی انتخاب کنید، ترجمه یا تفسیر معتبر بخوانید و یک آیه را در زندگی روزانه به کار ببندید. استمرار مهم‌تر از مقدار زیاد و مقطعی است.", "s": "منبع: قرآن کریم، مزمل ۲۰ و آداب تلاوت."}}, {"id": "taqwa", "cat": "quran", "ar": {"q": "ما معنى التقوى؟", "a": "التقوى أن يراقب الإنسان الله في اختياراته، فيؤدي الواجب ويترك الحرام ويحفظ حقوق الناس. ليست خوفاً سلبياً، بل وعيٌ يحمي السلوك من الظلم والفساد.", "s": "المصدر: القرآن الكريم، منها 2:197 و49:13."}, "en": {"q": "What does taqwa mean?", "a": "Taqwa means remaining conscious of God in one’s choices: fulfilling duties, avoiding what is forbidden, and protecting people’s rights. It is moral awareness that guards behavior from injustice and corruption.", "s": "Source: Qur’an 2:197 and 49:13."}, "fa": {"q": "تقوا یعنی چه؟", "a": "تقوا یعنی انسان در انتخاب‌های خود خدا را حاضر بداند، واجب را انجام دهد، حرام را ترک کند و حقوق مردم را حفظ نماید. تقوا آگاهی اخلاقی برای دوری از ظلم و فساد است.", "s": "منبع: قرآن کریم، بقره ۱۹۷ و حجرات ۱۳."}}, {"id": "tawakkul", "cat": "quran", "ar": {"q": "ما معنى التوكل؟", "a": "التوكل هو الاعتماد على الله مع الأخذ بالأسباب، لا ترك العمل. يخطط الإنسان ويستشير ويبذل جهده، ثم يرضى بما يقدره الله دون يأس أو غرور.", "s": "المصدر: القرآن الكريم 3:159 و65:3."}, "en": {"q": "What does reliance on God mean?", "a": "Tawakkul means relying on God while taking practical means, not abandoning effort. A person plans, consults, works, and then accepts God’s decree without despair or arrogance.", "s": "Source: Qur’an 3:159 and 65:3."}, "fa": {"q": "توکل یعنی چه؟", "a": "توکل یعنی اعتماد به خدا همراه با استفاده از اسباب، نه ترک تلاش. انسان برنامه‌ریزی و مشورت می‌کند و می‌کوشد، سپس بدون ناامیدی یا غرور به تقدیر الهی رضایت می‌دهد.", "s": "منبع: قرآن کریم، آل‌عمران ۱۵۹ و طلاق ۳."}}, {"id": "dua_acceptance", "cat": "duas", "ar": {"q": "كيف أدعو الله؟", "a": "ابدأ بحمد الله والصلاة على محمد وآل محمد، اطلب بخضوع ووضوح، واعترف بالتقصير، وادعُ للآخرين. اجمع بين الدعاء والعمل، ولا تجعل تأخر الإجابة سبباً لليأس.", "s": "المصدر: القرآن الكريم 2:186 و40:60، وآداب الدعاء."}, "en": {"q": "How should I pray to God?", "a": "Begin by praising God and sending blessings upon Muhammad and his family. Ask humbly and clearly, acknowledge shortcomings, and pray for others. Combine prayer with action and do not despair if the answer is delayed.", "s": "Source: Qur’an 2:186, 40:60, and supplication etiquette."}, "fa": {"q": "چگونه دعا کنم؟", "a": "با حمد خدا و صلوات بر محمد و آل محمد آغاز کنید، با فروتنی و روشنی بخواهید، به کوتاهی‌های خود اعتراف کنید و برای دیگران نیز دعا نمایید. دعا را با عمل همراه کنید و از تأخیر اجابت ناامید نشوید.", "s": "منبع: قرآن کریم، بقره ۱۸۶ و غافر ۶۰ و آداب دعا."}}, {"id": "salawat", "cat": "duas", "ar": {"q": "ما معنى الصلاة على محمد وآل محمد؟", "a": "هي دعاء لله أن يفيض رحمته وكرامته على النبي محمد وآله الطاهرين. وتُقال بصيغة: اللهم صلِّ على محمد وآل محمد.", "s": "المصدر: القرآن الكريم 33:56، والروايات الإسلامية في كيفية الصلاة على النبي."}, "en": {"q": "What does sending blessings upon Muhammad and his family mean?", "a": "It is a prayer asking God to bestow mercy and honor upon Prophet Muhammad and his purified family. A common form is: O God, bless Muhammad and the family of Muhammad.", "s": "Source: Qur’an 33:56 and Islamic narrations on salawat."}, "fa": {"q": "صلوات بر محمد و آل محمد یعنی چه؟", "a": "دعایی است از خداوند برای فرستادن رحمت و کرامت بر پیامبر محمد و خاندان پاک او. صورت مشهور آن: اللهم صل علی محمد و آل محمد.", "s": "منبع: قرآن کریم، احزاب ۵۶ و روایات اسلامی درباره صلوات."}}, {"id": "wudu_parts", "cat": "fiqh", "ar": {"q": "ما الأجزاء الأساسية للوضوء وفق فتاوى السيد السيستاني؟", "a": "يتكوّن الوضوء من غسل الوجه، ثم غسل اليد اليمنى، ثم اليسرى، ثم مسح مقدّم الرأس، ثم مسح ظاهر القدمين برطوبة الوضوء. للتفاصيل الدقيقة في الحدود والترتيب والموانع تُراجع الرسالة العملية.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، كتاب الطهارة، أجزاء الوضوء."}, "en": {"q": "What are the basic parts of wudu according to Sayyid al-Sistani?", "a": "Wudu consists of washing the face, then the right arm, then the left arm, followed by wiping the front of the head and the tops of the feet with the remaining moisture. Consult the legal manual for exact boundaries and conditions.", "s": "Fiqh source: Sayyid al-Sistani’s official website, Book of Purity, Parts of Wudu."}, "fa": {"q": "اجزای اصلی وضو طبق فتوای آیت‌الله سیستانی چیست؟", "a": "وضو شامل شستن صورت، سپس دست راست و دست چپ، بعد مسح جلوی سر و روی پاها با رطوبت وضو است. برای حدود دقیق، ترتیب و موانع باید به رساله عملیه مراجعه شود.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، کتاب طهارت، اجزای وضو."}}, {"id": "wudu_barrier", "cat": "fiqh", "ar": {"q": "هل يجب إزالة ما يمنع وصول الماء في الوضوء؟", "a": "نعم، يجب أن يصل الماء إلى البشرة في مواضع الغَسل، لذلك يُزال ما يمنع وصوله مثل الطلاء أو المادة العازلة، إلا في أحكام الجبيرة الخاصة.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، الوجيز في أحكام العبادات، أحكام الوضوء."}, "en": {"q": "Must barriers that block water be removed for wudu?", "a": "Yes. Water must reach the skin in the washed areas, so a barrier such as impermeable paint must be removed, except where the special rules of a bandage apply.", "s": "Fiqh source: Sayyid al-Sistani’s official website, concise rulings on wudu."}, "fa": {"q": "آیا مانع رسیدن آب در وضو باید برطرف شود؟", "a": "بله، آب باید در محل شستن به پوست برسد؛ بنابراین موادی مانند رنگ یا پوشش عایق باید برطرف شود، مگر در مواردی که احکام جبیره جاری است.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، احکام وضو."}}, {"id": "qibla_prayer", "cat": "fiqh", "ar": {"q": "هل استقبال القبلة واجب في الصلاة؟", "a": "يجب استقبال القبلة مع الإمكان في الصلوات الواجبة. والقبلة هي جهة الكعبة المشرفة، وتكفي المحاذاة العرفية لمن كان بعيداً عنها.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، أحكام الصلاة، مقدمات الصلاة، مسألة استقبال القبلة."}, "en": {"q": "Is facing the Qibla required in prayer?", "a": "Facing the Qibla is required, when possible, in obligatory prayers. The Qibla is the direction of the Kaaba, and ordinary directional alignment is sufficient for someone far away.", "s": "Fiqh source: Sayyid al-Sistani’s official website, Prayer, prerequisites, Qibla."}, "fa": {"q": "آیا رو به قبله بودن در نماز واجب است؟", "a": "در نمازهای واجب، در صورت امکان، رو به قبله بودن لازم است. قبله جهت کعبه است و برای کسی که دور است، محاذات عرفی کافی است.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، احکام نماز، مقدمات و قبله."}}, {"id": "missed_prayer", "cat": "fiqh", "ar": {"q": "ماذا أفعل إذا فاتتني صلاة واجبة؟", "a": "إذا خرج وقت الصلاة الواجبة ولم تُؤدَّ أو أُديت بصورة باطلة، يجب قضاؤها، مع وجود استثناءات مذكورة في الرسالة العملية. ومن تعمد الترك فعليه التوبة أيضاً.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، أحكام الصلاة، قضاء الصلاة."}, "en": {"q": "What should I do if I miss an obligatory prayer?", "a": "If the time of an obligatory prayer ends without a valid performance, it must generally be made up, subject to exceptions in the legal manual. Deliberate neglect also requires repentance.", "s": "Fiqh source: Sayyid al-Sistani’s official website, Prayer, missed prayers."}, "fa": {"q": "اگر نماز واجبم قضا شد چه کنم؟", "a": "اگر وقت نماز واجب پایان یابد و نماز به‌طور صحیح انجام نشده باشد، معمولاً قضای آن واجب است؛ با استثناهایی که در رساله آمده است. ترک عمدی نیاز به توبه نیز دارد.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، احکام نماز قضا."}}, {"id": "fast_forget", "cat": "fiqh", "ar": {"q": "هل يبطل الصوم إذا أكل الصائم ناسياً؟", "a": "وفق فتوى السيد السيستاني، لا يبطل الصوم بالأكل أو الشرب سهواً ونسياناً، ويجب التوقف عند التذكّر وإكمال الصوم.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، أحكام الصوم، المفطرات."}, "en": {"q": "Is fasting invalidated by eating forgetfully?", "a": "According to Sayyid al-Sistani, eating or drinking forgetfully does not invalidate the fast. Once remembered, the person stops and continues fasting.", "s": "Fiqh source: Sayyid al-Sistani’s official website, Fasting, invalidators."}, "fa": {"q": "آیا خوردن از روی فراموشی روزه را باطل می‌کند؟", "a": "طبق فتوای آیت‌الله سیستانی، خوردن یا آشامیدن از روی فراموشی روزه را باطل نمی‌کند. پس از یادآوری باید متوقف شد و روزه را ادامه داد.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، احکام روزه و مبطلات."}}, {"id": "fast_perfume", "cat": "fiqh", "ar": {"q": "هل العطر أو كريم الوجه يبطل الصوم؟", "a": "وفق فتاوى السيد السيستاني، استعمال العطر والكحل وكريمات الوجه ومزيلات العرق لا يبطل الصوم بذاته.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، استفتاءات الصوم وحكم العطر والكحل."}, "en": {"q": "Do perfume or face creams invalidate fasting?", "a": "According to Sayyid al-Sistani, perfume, kohl, face creams, and deodorants do not by themselves invalidate the fast.", "s": "Fiqh source: Sayyid al-Sistani’s official website, fasting rulings on perfume and cosmetics."}, "fa": {"q": "آیا عطر یا کرم صورت روزه را باطل می‌کند؟", "a": "طبق فتوای آیت‌الله سیستانی، استفاده از عطر، سرمه، کرم صورت و مواد ضدتعریق به‌خودی‌خود روزه را باطل نمی‌کند.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، استفتائات روزه و عطر و سرمه."}}, {"id": "tayammum_how", "cat": "fiqh", "ar": {"q": "كيف يكون التيمم بصورة مختصرة؟", "a": "عند تحقق سبب التيمم: تُضرب أو توضع باطن الكفين على ما يصح التيمم به، ثم تُمسح الجبهة، ثم يُمسح ظاهر اليد اليمنى بباطن اليسرى، وظاهر اليسرى بباطن اليمنى، مع مراعاة التفاصيل الفقهية.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، أحكام الطهارة، كيفية التيمم."}, "en": {"q": "How is tayammum performed briefly?", "a": "When tayammum is valid: place or strike both palms on a valid surface, wipe the forehead, then wipe the back of the right hand with the left palm and the back of the left hand with the right palm, observing the detailed legal conditions.", "s": "Fiqh source: Sayyid al-Sistani’s official website, Purity, method of tayammum."}, "fa": {"q": "تیمم به‌طور خلاصه چگونه انجام می‌شود؟", "a": "در صورت وجود مجوز تیمم، کف دو دست بر چیزی که تیمم بر آن صحیح است زده یا گذاشته می‌شود، سپس پیشانی و بعد پشت دست راست با کف چپ و پشت دست چپ با کف راست مسح می‌گردد، با رعایت جزئیات فقهی.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، احکام طهارت و کیفیت تیمم."}}, {"id": "ashura_fast", "cat": "fiqh", "ar": {"q": "ما حكم صوم يوم عاشوراء عند السيد السيستاني؟", "a": "لا يحرم صومه، ولكنه مكروه بمعنى أن ثوابه أقل من الإمساك حزناً إلى ما بعد صلاة العصر ثم الإفطار بشربة ماء، كما ورد في جواب مكتب السيد السيستاني.", "s": "المصدر الفقهي: موقع مكتب السيد السيستاني، استفتاءات صوم يوم عاشوراء."}, "en": {"q": "What is the ruling on fasting on Ashura according to Sayyid al-Sistani?", "a": "It is not forbidden, but it is considered makruh in the sense that refraining from food in mourning until after the afternoon prayer and then drinking water is more rewarding, according to his office’s answer.", "s": "Fiqh source: Sayyid al-Sistani’s official website, Q&A on fasting on Ashura."}, "fa": {"q": "حکم روزه روز عاشورا نزد آیت‌الله سیستانی چیست؟", "a": "روزه آن حرام نیست، ولی مکروه است؛ یعنی امساک از روی اندوه تا پس از نماز عصر و سپس افطار با آب، ثواب بیشتری دارد؛ مطابق پاسخ دفتر ایشان.", "s": "منبع فقهی: سایت رسمی آیت‌الله سیستانی، استفتائات روزه روز عاشورا."}}];
+const UI={"ar": {"title": "المساعد الديني", "head": "مساعد طريق الحسين", "offline": "يعمل بدون إنترنت", "welcome": "السلام عليكم ورحمة الله 🌿<br>اختر سؤالاً موثقاً أو ابحث بكلمة، وستظهر إجابة خاصة بالسؤال مع مصدرها.", "placeholder": "ابحث: الحسين، عاشوراء، الوضوء، الصلاة...", "search": "بحث", "choose": "اختر سؤالاً موثقاً:", "no": "لا توجد نتائج مطابقة. جرّب كلمة أخرى.", "typing": "جاري تجهيز الجواب", "all": "الكل", "cats": {"hussain": "الإمام الحسين", "ashura": "عاشوراء وكربلاء", "arbaeen": "الأربعين والزيارة", "ahlbayt": "أهل البيت", "quran": "القرآن والعقيدة", "duas": "الدعاء", "ethics": "الأخلاق والخدمة", "fiqh": "الفقه والعبادات"}, "copy": "نسخ", "share": "مشاركة", "save": "حفظ", "copied": "تم نسخ الجواب", "saved": "تم حفظ الجواب", "unknown": "هذا السؤال غير موجود في قاعدة الأجوبة الموثقة حالياً؛ لذلك لن أعطي جواباً تخمينياً."}, "en": {"title": "Religious Assistant", "head": "Tareeq Al-Hussain Assistant", "offline": "Works offline", "welcome": "Peace be upon you 🌿<br>Select a verified question or search by a keyword. A specific answer and its source will appear.", "placeholder": "Search: Hussain, Ashura, wudu, prayer...", "search": "Search", "choose": "Choose a verified question:", "no": "No matching results. Try another word.", "typing": "Preparing the answer", "all": "All", "cats": {"hussain": "Imam Hussain", "ashura": "Ashura & Karbala", "arbaeen": "Arbaeen & Ziyarat", "ahlbayt": "Ahl al-Bayt", "quran": "Qur’an & Belief", "duas": "Supplication", "ethics": "Ethics & Service", "fiqh": "Fiqh & Worship"}, "copy": "Copy", "share": "Share", "save": "Save", "copied": "Answer copied", "saved": "Answer saved", "unknown": "This question is not currently in the verified answer database, so no guessed answer will be given."}, "fa": {"title": "دستیار دینی", "head": "دستیار طریق الحسین", "offline": "بدون اینترنت کار می‌کند", "welcome": "سلام علیکم 🌿<br>یک پرسش معتبر انتخاب کنید یا واژه‌ای جستجو نمایید تا پاسخ ویژه همان پرسش همراه با منبع نمایش داده شود.", "placeholder": "جستجو: حسین، عاشورا، وضو، نماز...", "search": "جستجو", "choose": "یک پرسش معتبر انتخاب کنید:", "no": "نتیجه‌ای پیدا نشد. واژه دیگری امتحان کنید.", "typing": "در حال آماده‌سازی پاسخ", "all": "همه", "cats": {"hussain": "امام حسین", "ashura": "عاشورا و کربلا", "arbaeen": "اربعین و زیارت", "ahlbayt": "اهل‌بیت", "quran": "قرآن و عقاید", "duas": "دعا", "ethics": "اخلاق و خدمت", "fiqh": "فقه و عبادات"}, "copy": "کپی", "share": "اشتراک", "save": "ذخیره", "copied": "پاسخ کپی شد", "saved": "پاسخ ذخیره شد", "unknown": "این پرسش در حال حاضر در پایگاه پاسخ‌های معتبر وجود ندارد؛ بنابراین پاسخ حدسی ارائه نمی‌شود."}};
+const FA={"qiblaTitle": "جهت قبله", "qiblaDesc": "قطب‌نمای هوشمند برای تعیین جهت قبله با موقعیت و حسگرهای دستگاه.", "qiblaBearingLabel": "جهت قبله", "deviceHeadingLabel": "جهت تلفن", "qiblaAccuracyLabel": "دقت تقریبی", "qiblaStatus": "دکمه تعیین موقعیت را بزنید و مجوزهای لازم را تأیید کنید.", "startQiblaBtn": "تعیین موقعیت و جهت قبله", "resetQiblaBtn": "تنظیم دوباره", "qiblaHint": "برای افزایش دقت، تلفن را به شکل عدد ۸ حرکت دهید و از فلزات دور نگه دارید.", "assistantTitle": "دستیار دینی", "assistantDesc": "گفت‌وگوی دینی با پاسخ‌های ذخیره‌شده و قابل استفاده بدون اینترنت.", "assistantHead": "دستیار طریق الحسین", "assistantOffline": "بدون اینترنت", "assistantSearchBtn": "جستجو", "assistantCloudTitle": "یک پرسش انتخاب کنید:", "noteTitle": "ارسال پیام", "noteDesc": "پیشنهاد، اصلاح یا پیام خود را از طریق واتساپ ارسال کنید.", "noteSendBtn": "ارسال از طریق واتساپ", "noteOfflineHint": "سایت بدون اینترنت کار می‌کند، اما ارسال واتساپ به اینترنت نیاز دارد.", "appExperienceTitle": "تجربه یک برنامه دینی کامل", "installMainBtn": "نصب برنامه"};
+const $=id=>document.getElementById(id);
+let activeCat='';
+let busy=false;
+
+function lang(){
+  const l=(document.documentElement.lang||'ar').toLowerCase();
+  return l.startsWith('en')?'en':l.startsWith('fa')?'fa':'ar';
+}
+function u(){return UI[lang()]||UI.ar}
+function itemText(item){return item[lang()]||item.ar}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+function fixPersianLeak(){
+  if(lang()!=='fa') return;
+  Object.entries(FA).forEach(([id,text])=>{
+    const el=$(id); if(el) el.textContent=text;
+  });
+  const pageTitles={
+    qiblaAppPage:'جهت قبله', noteAppPage:'ارسال پیام', assistantAppPage:'دستیار دینی',
+    aboutAppPage:'درباره این سایت'
+  };
+  Object.entries(pageTitles).forEach(([id,text])=>{
+    const h=document.querySelector('#'+id+' .tareeq-page-head h2');
+    if(h) h.textContent=text;
+  });
+  document.querySelectorAll('[data-page-back]').forEach(x=>x.textContent='بازگشت');
+}
+
+function rebuildStatic(){
+  const x=u();
+  const title=$('assistantTitle'); if(title) title.textContent=x.title;
+  const head=$('assistantHead'); if(head) head.textContent=x.head;
+  const off=$('assistantOffline'); if(off) off.textContent=x.offline;
+  const welcome=$('assistantWelcome'); if(welcome) welcome.innerHTML=x.welcome;
+  const search=$('assistantSearch'); if(search) search.placeholder=x.placeholder;
+  const btn=$('assistantSearchBtn'); if(btn) btn.textContent=x.search;
+  const cloudTitle=$('assistantCloudTitle'); if(cloudTitle) cloudTitle.textContent=x.choose;
+
+  const introName=document.querySelector('#assistantProIntro .assistant-pro-title strong');
+  const introSmall=document.querySelector('#assistantProIntro .assistant-pro-title small');
+  const safety=document.querySelector('#assistantProIntro .assistant-safety p');
+  if(introName) introName.textContent=x.head;
+  if(introSmall) introSmall.textContent=x.offline;
+  if(safety) safety.textContent=lang()==='fa'
+    ?'پاسخ‌ها از پیش بررسی و در فایل ذخیره شده‌اند. مسائل فقهی بر اساس فتاوای آیت‌الله سیستانی مشخص شده و پاسخ حدسی داده نمی‌شود.'
+    :lang()==='en'
+    ?'Answers are reviewed and stored in the file. Fiqh items are identified according to Sayyid al-Sistani’s rulings, and no guessed answer is given.'
+    :'الأجوبة مراجعة ومحفوظة داخل الملف. المسائل الفقهية مبيّنة وفق فتاوى السيد السيستاني، ولا يُعطى جواب تخميني.';
+}
+
+function installCleanInputs(){
+  const oldSearch=$('assistantSearch');
+  if(oldSearch && !oldSearch.dataset.v3){
+    const n=oldSearch.cloneNode(true); n.dataset.v3='1'; oldSearch.replaceWith(n);
+  }
+  const oldBtn=$('assistantSearchBtn');
+  if(oldBtn && !oldBtn.dataset.v3){
+    const n=oldBtn.cloneNode(true); n.dataset.v3='1'; oldBtn.replaceWith(n);
+  }
+}
+
+function renderCats(){
+  let box=$('assistantCategoryChips');
+  if(!box) return;
+  const x=u();
+  box.innerHTML='';
+  const all=document.createElement('button');
+  all.type='button'; all.textContent=x.all; all.classList.toggle('active',!activeCat);
+  all.onclick=()=>{activeCat='';renderCats();renderQuestions();};
+  box.appendChild(all);
+  Object.keys(x.cats).forEach(cat=>{
+    const b=document.createElement('button'); b.type='button'; b.textContent=x.cats[cat];
+    b.classList.toggle('active',activeCat===cat);
+    b.onclick=()=>{activeCat=cat;renderCats();renderQuestions();};
+    box.appendChild(b);
+  });
+}
+
+function results(){
+  const s=($('assistantSearch')?.value||'').trim().toLocaleLowerCase();
+  return DB.filter(it=>{
+    if(activeCat && it.cat!==activeCat) return false;
+    if(!s) return true;
+    const t=itemText(it);
+    return (t.q+' '+t.a+' '+t.s+' '+(u().cats[it.cat]||'')).toLocaleLowerCase().includes(s);
+  });
+}
+
+function renderQuestions(){
+  const old=$('assistantOptionsDock'); if(old) old.remove();
+  const tools=document.querySelector('.assistant-chat-tools');
+  if(!tools) return;
+  const dock=document.createElement('div'); dock.id='assistantOptionsDock'; dock.className='assistant-options-dock';
+  dock.innerHTML='<div class="assistant-options-head"><span class="assistant-teach-mark">✦</span><span>'+esc(u().choose)+'</span></div><div class="assistant-cloud in-chat three-visible" id="questionCloudInline"></div>';
+  tools.parentNode.insertBefore(dock,tools);
+  const cloud=$('questionCloudInline');
+  const data=results();
+  if(!data.length){cloud.innerHTML='<div class="empty">'+esc(u().no)+'</div>';return}
+  data.forEach(it=>{
+    const b=document.createElement('button'); b.type='button'; b.textContent=itemText(it).q;
+    b.onclick=()=>answer(it); cloud.appendChild(b);
+  });
+}
+
+function addMsg(html,type){
+  const box=$('chatMessages'); if(!box)return null;
+  const d=document.createElement('div'); d.className='msg '+type; d.innerHTML=html;
+  box.appendChild(d); box.scrollTop=box.scrollHeight; return d;
+}
+function keepLight(){
+  const box=$('chatMessages'); if(!box)return;
+  const msgs=[...box.querySelectorAll('.msg')].filter(x=>x.id!=='assistantWelcome');
+  while(msgs.length>4){msgs.shift().remove()}
+}
+function answer(it){
+  if(busy)return; busy=true; keepLight();
+  const t=itemText(it), x=u();
+  addMsg(esc(t.q),'user');
+  const typing=addMsg('<span class="typing-dots"><i></i><i></i><i></i></span> '+esc(x.typing),'bot typing');
+  setTimeout(()=>{
+    typing?.remove();
+    const body='<strong>'+esc(x.cats[it.cat]||'')+'</strong><br>'+esc(t.a)+
+      '<small class="assistant-source-note">'+esc(t.s)+'</small>'+
+      '<div class="assistant-answer-tools">'+
+      '<button type="button" data-v3-copy>'+esc(x.copy)+'</button>'+
+      '<button type="button" data-v3-share>'+esc(x.share)+'</button>'+
+      '<button type="button" data-v3-save>'+esc(x.save)+'</button></div>';
+    const msg=addMsg(body,'bot');
+    msg.querySelector('[data-v3-copy]').onclick=()=>navigator.clipboard?.writeText(t.a+'\n'+t.s).then(()=>window.toast&&window.toast(x.copied));
+    msg.querySelector('[data-v3-share]').onclick=()=>{
+      const text=t.q+'\n\n'+t.a+'\n'+t.s;
+      if(navigator.share) navigator.share({title:x.head,text}).catch(()=>{});
+      else navigator.clipboard?.writeText(text);
+    };
+    msg.querySelector('[data-v3-save]').onclick=()=>{
+      const key='tareeq_favorites_v1'; let list=[];
+      try{list=JSON.parse(localStorage.getItem(key))||[]}catch(e){}
+      if(!list.some(z=>z.id==='verified:'+it.id)){
+        list.unshift({id:'verified:'+it.id,title:t.q,text:t.a+' '+t.s,target:'#religious-assistant',type:'assistant',savedAt:Date.now()});
+        localStorage.setItem(key,JSON.stringify(list));
+      }
+      window.toast&&window.toast(x.saved);
+    };
+    if(window.tareeqHaptic)window.tareeqHaptic(35);
+    busy=false;
+  },450);
+}
+
+function bind(){
+  installCleanInputs();
+  rebuildStatic(); fixPersianLeak(); renderCats(); renderQuestions();
+  const s=$('assistantSearch'), b=$('assistantSearchBtn');
+  if(s) s.oninput=renderQuestions;
+  if(b) b.onclick=renderQuestions;
+}
+
+function init(){
+  bind();
+  setTimeout(bind,80);
+  setTimeout(bind,350);
+}
+document.addEventListener('DOMContentLoaded',init);
+window.addEventListener('load',init);
+
+const previous=window.setLang;
+if(typeof previous==='function'&&!previous.__assistantV3){
+  window.setLang=function(l){previous(l);setTimeout(init,80);setTimeout(init,350)};
+  window.setLang.__assistantV3=true;
+}
+new MutationObserver(()=>setTimeout(init,30)).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
 })();
 </script>
 </body></html>
