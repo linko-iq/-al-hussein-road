@@ -1584,6 +1584,76 @@ html[dir="ltr"] .back-icon{transform:rotate(180deg)}
     min-height:54px!important;padding:10px 14px!important
   }
 }
+</style><style id="tareeqAssistantCompactV7Style">
+/* v7: compact assistant questions — three visible at once */
+#assistantQuestionsHost{padding:8px 7px!important}
+#assistantQuestionGrid{gap:6px!important;padding:0 1px 2px!important}
+#assistantQuestionGrid button{
+  flex:0 0 calc((100vw - 34px)/3)!important;
+  min-width:calc((100vw - 34px)/3)!important;
+  max-width:calc((100vw - 34px)/3)!important;
+  min-height:48px!important;
+  max-height:64px!important;
+  padding:7px 7px!important;
+  border-radius:18px!important;
+  font-size:clamp(9px,2.7vw,12px)!important;
+  line-height:1.35!important;
+  white-space:normal!important;
+  overflow:hidden!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  text-overflow:ellipsis!important
+}
+#assistantAppPage #chatMessages{padding:20px 14px 105px!important}
+#assistantAppPage #assistantWelcome{
+  width:min(72%,560px)!important;
+  max-width:72%!important;
+  padding:15px 17px!important;
+  font-size:clamp(15px,3.8vw,19px)!important;
+  line-height:1.7!important
+}
+#assistantAppPage #chatMessages .msg{
+  max-width:min(74%,560px)!important;
+  padding:13px 15px!important;
+  margin:11px 0!important;
+  font-size:clamp(14px,3.6vw,18px)!important;
+  line-height:1.72!important;
+  border-radius:18px!important
+}
+#assistantAppPage #chatMessages .msg.user{max-width:min(64%,470px)!important}
+#assistantAppPage .assistant-source-note{
+  margin-top:8px!important;
+  padding-top:7px!important;
+  font-size:10.5px!important;
+  line-height:1.5!important
+}
+#assistantAppPage .assistant-answer-tools{margin-top:8px!important;padding-top:7px!important;gap:5px!important}
+#assistantAppPage .assistant-answer-tools button{
+  padding:6px 9px!important;
+  font-size:10.5px!important;
+  border-radius:9px!important
+}
+@media(min-width:700px){
+  #assistantQuestionGrid button{
+    flex-basis:calc((100vw - 48px)/3)!important;
+    min-width:calc((100vw - 48px)/3)!important;
+    max-width:calc((100vw - 48px)/3)!important;
+    font-size:13px!important
+  }
+}
+@media(max-width:340px){
+  #assistantQuestionGrid button{
+    min-height:46px!important;
+    font-size:8.5px!important;
+    padding:6px 5px!important
+  }
+  #assistantAppPage #chatMessages .msg,
+  #assistantAppPage #assistantWelcome{
+    max-width:80%!important;
+    width:auto!important
+  }
+}
 </style></head>
 <body data-theme="light">
 <div class="read-progress" id="readProgress"></div>
@@ -4024,5 +4094,54 @@ new MutationObserver(()=>setTimeout(init,30)).observe(document.documentElement,{
   window.addEventListener('load',arrange);
   setTimeout(arrange,200);
   setTimeout(arrange,1000);
+})();
+</script><script id="tareeqTranslationFinalGuardV7">
+(function(){
+  "use strict";
+  const T={"ar": {"assistant_title": "المساعد الديني", "back": "رجوع", "home": "الرئيسية", "worship": "العبادة", "assistant": "المساعد", "qibla": "القبلة", "more": "المزيد", "all": "الكل", "hussain": "الإمام الحسين", "ashura": "عاشوراء وكربلاء", "arbaeen": "الأربعين والزيارة", "ahlbayt": "أهل البيت", "quran": "القرآن والعقيدة", "duas": "الدعاء", "ethics": "الأخلاق والخدمة", "fiqh": "الفقه والعبادات", "choose": "اختر سؤالاً موثقاً:"}, "en": {"assistant_title": "Religious Assistant", "back": "Back", "home": "Home", "worship": "Worship", "assistant": "Assistant", "qibla": "Qibla", "more": "More", "all": "All", "hussain": "Imam Hussain", "ashura": "Ashura & Karbala", "arbaeen": "Arbaeen & Ziyarat", "ahlbayt": "Ahl al-Bayt", "quran": "Qur’an & Belief", "duas": "Supplication", "ethics": "Ethics & Service", "fiqh": "Fiqh & Worship", "choose": "Choose a verified question:"}, "fa": {"assistant_title": "دستیار دینی", "back": "بازگشت", "home": "خانه", "worship": "عبادت", "assistant": "دستیار", "qibla": "قبله", "more": "بیشتر", "all": "همه", "hussain": "امام حسین", "ashura": "عاشورا و کربلا", "arbaeen": "اربعین و زیارت", "ahlbayt": "اهل‌بیت", "quran": "قرآن و عقاید", "duas": "دعا", "ethics": "اخلاق و خدمت", "fiqh": "فقه و عبادات", "choose": "یک پرسش معتبر انتخاب کنید:"}};
+  let applying=false;
+  function lang(){
+    const l=(document.documentElement.lang||"ar").toLowerCase();
+    return l.startsWith("en")?"en":l.startsWith("fa")?"fa":"ar";
+  }
+  function setText(sel,text){
+    const el=document.querySelector(sel);
+    if(el && text) el.textContent=text;
+  }
+  function apply(){
+    if(applying) return;
+    applying=true;
+    const x=T[lang()]||T.ar;
+    try{
+      if(typeof window.applyTareeqProI18n==="function") window.applyTareeqProI18n();
+    }catch(e){}
+
+    const navKeys=["home","worship","assistant","qibla","more"];
+    document.querySelectorAll("#tareeqBottomNav > button").forEach((b,i)=>{
+      const label=b.querySelector("b");
+      if(label && x[navKeys[i]]) label.textContent=x[navKeys[i]];
+    });
+
+    setText("#assistantAppPage .tareeq-page-head h2",x.assistant_title);
+    document.querySelectorAll("#assistantAppPage [data-page-back],#assistantAppPage [data-pro-back] span")
+      .forEach(el=>el.textContent=x.back);
+    setText("#assistantQuestionsTitle",x.choose);
+
+    const cats=["all","hussain","ashura","arbaeen","ahlbayt","quran","duas","ethics","fiqh"];
+    document.querySelectorAll("#assistantCategoryChips button").forEach((b,i)=>{
+      if(x[cats[i]]) b.textContent=x[cats[i]];
+    });
+
+    document.documentElement.dir=lang()==="en"?"ltr":"rtl";
+    applying=false;
+  }
+
+  document.addEventListener("DOMContentLoaded",apply);
+  window.addEventListener("load",apply);
+  window.addEventListener("tareeq-language-updated",apply);
+  new MutationObserver(()=>setTimeout(apply,20))
+    .observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+  setTimeout(apply,250);
+  setTimeout(apply,1000);
 })();
 </script></body></html>
