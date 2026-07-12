@@ -1326,233 +1326,262 @@ html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 #assistantOptionsDock .assistant-cloud button{position:relative}
 #assistantOptionsDock .assistant-cloud button::after{content:"✓";display:inline-grid;place-items:center;width:16px;height:16px;margin-inline-start:6px;border-radius:50%;background:var(--accent2);color:#fff;font-size:10px}
 .assistant-source-note{display:block;margin-top:11px;padding:8px 10px;border-radius:11px;background:rgba(15,91,60,.09);color:var(--accent2);font-size:11px;line-height:1.65}
-</style><style id="tareeqAssistantSocialChatStyle">
-/* Assistant v5: horizontal verified questions + large social-style chat */
+</style><style id="tareeqAssistantReferenceStyle">
+/* Assistant v6 — layout inspired by the provided reference */
+#assistantAppPage{
+  background:var(--bg)!important;
+  padding:0!important;
+}
+#assistantAppPage .tareeq-page-head{
+  min-height:86px!important;
+  background:#202631!important;
+  border-bottom:2px solid var(--gold)!important;
+  color:#fff!important;
+  padding:14px 16px!important;
+  grid-template-columns:auto 1fr!important;
+}
+#assistantAppPage .tareeq-page-head h2{
+  color:#fff!important;
+  font-size:clamp(20px,5vw,29px)!important;
+  justify-self:end!important;
+}
+#assistantAppPage .tareeq-back-btn{
+  width:54px!important;height:54px!important;
+  border:0!important;border-radius:18px!important;
+  background:#39414f!important;color:#fff!important;
+  display:grid!important;place-items:center!important;
+  padding:0!important;font-size:0!important;
+}
+#assistantAppPage .tareeq-back-btn::before{
+  content:"×";
+  font-size:37px;
+  line-height:1;
+  font-weight:300;
+}
 #assistantAppPage .tareeq-page-content{
-  width:min(820px,100%)!important;
-  padding:12px 10px calc(118px + env(safe-area-inset-bottom,0px))!important;
+  width:100%!important;max-width:none!important;
+  margin:0!important;padding:0 0 calc(92px + env(safe-area-inset-bottom,0px))!important;
 }
 #assistantAppPage #religious-assistant{
-  display:block!important;
-  padding:0!important;
-  margin:0!important;
+  display:block!important;padding:0!important;margin:0!important;
 }
 #assistantAppPage #religious-assistant>.container{
-  width:100%!important;
-  max-width:none!important;
-  padding:0!important;
+  width:100%!important;max-width:none!important;padding:0!important;
 }
-#assistantAppPage #religious-assistant>.container>.section-title{
+#assistantAppPage #religious-assistant>.container>.section-title,
+#assistantAppPage .assistant-pro-intro,
+#assistantAppPage .assistant-category-chips,
+#assistantAppPage .chat-head,
+#assistantAppPage .assistant-chat-tools,
+#assistantAppPage .chat-tools,
+#assistantAppPage .assistant-input-row{
   display:none!important;
 }
 
-/* Remove the repeated inner assistant heading only inside the app page */
-#assistantAppPage #religious-assistant .chat-head{
-  display:none!important;
-}
-
-/* Intro card remains compact */
-#assistantAppPage #assistantProIntro{
-  margin:0 0 10px!important;
-}
-#assistantAppPage .assistant-pro-title{
-  padding:11px 12px!important;
-}
-#assistantAppPage .assistant-safety{
-  margin-top:8px!important;
-  padding:9px 10px!important;
-}
-
-/* Category chips */
-#assistantAppPage .assistant-category-chips{
+/* Conversation canvas */
+#assistantAppPage .chat-box{
   display:flex!important;
-  gap:7px!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  padding:9px 2px 5px!important;
-  scroll-snap-type:x proximity;
-  -webkit-overflow-scrolling:touch;
-}
-#assistantAppPage .assistant-category-chips button{
-  flex:0 0 auto!important;
-  scroll-snap-align:start;
-  white-space:nowrap!important;
-}
-
-/* Verified questions: horizontal carousel, like the original style */
-#assistantQuestionsHost{
-  display:block!important;
-  margin:10px 0 12px!important;
-  padding:12px 10px!important;
-  background:var(--card)!important;
-  border:1px solid var(--line)!important;
-  border-radius:22px!important;
-  box-shadow:var(--shadow)!important;
+  flex-direction:column!important;
+  height:calc(100dvh - 86px - 92px)!important;
+  min-height:560px!important;
+  max-height:none!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:var(--bg)!important;
   overflow:hidden!important;
 }
-#assistantQuestionsHost .assistant-options-head{
-  display:flex!important;
-  align-items:center!important;
-  gap:7px!important;
-  margin:0 3px 10px!important;
-  color:var(--accent)!important;
+#assistantAppPage #chatMessages{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  padding:28px 18px 120px!important;
+  background:
+    linear-gradient(rgba(255,255,255,.48),rgba(255,255,255,.48)),
+    var(--bg)!important;
+  scroll-behavior:smooth!important;
+}
+[data-theme="dark"] #assistantAppPage #chatMessages{
+  background:var(--bg)!important;
+}
+
+/* Welcome bubble */
+#assistantAppPage #assistantWelcome{
+  margin-inline-start:auto!important;
+  margin-inline-end:0!important;
+  width:min(84%,680px)!important;
+  max-width:84%!important;
+  background:var(--card)!important;
+  border:1.5px solid var(--gold)!important;
+  border-radius:24px 24px 8px 24px!important;
+  padding:22px 24px!important;
+  color:var(--text)!important;
+  font-size:clamp(17px,4.5vw,24px)!important;
+  line-height:1.8!important;
+  box-shadow:0 8px 22px rgba(60,40,18,.08)!important;
+}
+
+/* Message bubbles */
+#assistantAppPage #chatMessages .msg{
+  display:block!important;
+  width:fit-content!important;
+  max-width:min(82%,680px)!important;
+  margin:16px 0!important;
+  padding:18px 20px!important;
+  border-radius:24px!important;
+  font-size:clamp(16px,4vw,22px)!important;
+  line-height:1.85!important;
+  box-shadow:none!important;
+}
+#assistantAppPage #chatMessages .msg.user{
+  margin-inline-start:0!important;
+  margin-inline-end:auto!important;
+  background:linear-gradient(180deg,#ffc85c,#f3b33e)!important;
+  color:#152033!important;
+  border:1.5px solid #d99b23!important;
+  border-radius:22px 22px 22px 7px!important;
   font-weight:900!important;
+}
+#assistantAppPage #chatMessages .msg.bot{
+  margin-inline-start:auto!important;
+  margin-inline-end:0!important;
+  background:var(--card)!important;
+  color:var(--text)!important;
+  border:1.5px solid var(--gold)!important;
+  border-radius:22px 22px 7px 22px!important;
+}
+#assistantAppPage .assistant-source-note{
+  margin-top:12px!important;
+  padding-top:10px!important;
+  border-top:1px solid var(--line)!important;
+  background:transparent!important;
+  border-radius:0!important;
+  color:var(--accent2)!important;
+  font-size:12px!important;
+}
+#assistantAppPage .assistant-answer-tools{
+  margin-top:12px!important;
+  padding-top:10px!important;
+  display:flex!important;
+  gap:8px!important;
+  flex-wrap:wrap!important;
+  border-top:1px solid var(--line)!important;
+}
+#assistantAppPage .assistant-answer-tools button{
+  border:1px solid var(--line)!important;
+  background:var(--bg)!important;
+  color:var(--text)!important;
+  border-radius:12px!important;
+  padding:8px 12px!important;
+  font-weight:800!important;
+}
+
+/* Question carousel pinned to bottom */
+#assistantQuestionsHost{
+  position:fixed!important;
+  left:0!important;right:0!important;
+  bottom:calc(78px + env(safe-area-inset-bottom,0px))!important;
+  z-index:15700!important;
+  display:block!important;
+  margin:0!important;
+  padding:12px 10px!important;
+  background:#202631!important;
+  border-top:2px solid var(--gold)!important;
+  border-bottom:0!important;
+  border-inline:0!important;
+  border-radius:0!important;
+  box-shadow:0 -10px 30px rgba(0,0,0,.14)!important;
+}
+#assistantQuestionsHost .assistant-options-head{
+  display:none!important;
 }
 #assistantQuestionGrid{
   display:flex!important;
   flex-wrap:nowrap!important;
   gap:10px!important;
   width:100%!important;
-  max-height:none!important;
   overflow-x:auto!important;
   overflow-y:hidden!important;
-  padding:2px 2px 8px!important;
+  padding:0 2px 4px!important;
   scroll-snap-type:x mandatory!important;
   -webkit-overflow-scrolling:touch!important;
-  scrollbar-width:thin!important;
+  scrollbar-width:none!important;
 }
+#assistantQuestionGrid::-webkit-scrollbar{display:none!important}
 #assistantQuestionGrid button{
-  flex:0 0 min(78vw,330px)!important;
-  min-height:76px!important;
-  border:1px solid var(--line)!important;
-  background:var(--bg)!important;
-  color:var(--text)!important;
-  border-radius:18px!important;
-  padding:13px 14px!important;
-  text-align:start!important;
-  line-height:1.7!important;
+  flex:0 0 auto!important;
+  min-width:min(78vw,360px)!important;
+  max-width:min(78vw,360px)!important;
+  min-height:58px!important;
+  background:#202631!important;
+  color:#ffc65a!important;
+  border:1.5px solid #f0b33e!important;
+  border-radius:999px!important;
+  padding:12px 18px!important;
+  text-align:center!important;
+  line-height:1.45!important;
+  font-size:clamp(14px,3.7vw,19px)!important;
   font-weight:900!important;
-  font-size:15px!important;
   scroll-snap-align:center!important;
-  box-shadow:0 7px 18px rgba(60,40,18,.07)!important;
+  box-shadow:none!important;
 }
-#assistantQuestionGrid button:active{
-  transform:scale(.98)!important;
-  background:rgba(184,148,69,.13)!important;
+#assistantQuestionGrid button:active,
+#assistantQuestionGrid button.active-question{
+  background:#ffc65a!important;
+  color:#202631!important;
 }
 #assistantQuestionGrid .empty{
   flex:0 0 100%!important;
+  color:#fff!important;
   text-align:center!important;
-  padding:20px!important;
-  color:var(--muted)!important;
+  padding:14px!important;
 }
 
-/* Large social-media style chat area */
-#assistantAppPage .chat-box{
+/* Compact category strip directly below header */
+#assistantCategoryChips{
+  position:sticky!important;
+  top:0!important;
+  z-index:8!important;
   display:flex!important;
-  flex-direction:column!important;
-  min-height:68vh!important;
-  height:68vh!important;
-  max-height:760px!important;
-  overflow:hidden!important;
-  background:linear-gradient(180deg,var(--card),color-mix(in srgb,var(--bg) 86%,var(--card)))!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  padding:10px 12px!important;
+  background:var(--bg)!important;
+  border-bottom:1px solid var(--line)!important;
+  scrollbar-width:none!important;
+}
+#assistantCategoryChips::-webkit-scrollbar{display:none!important}
+#assistantCategoryChips button{
+  flex:0 0 auto!important;
   border:1px solid var(--line)!important;
-  border-radius:24px!important;
-  box-shadow:var(--shadow)!important;
-  margin:0!important;
-}
-#assistantAppPage #chatMessages{
-  flex:1 1 auto!important;
-  min-height:0!important;
-  max-height:none!important;
-  height:auto!important;
-  overflow-y:auto!important;
-  overflow-x:hidden!important;
-  padding:15px 12px 18px!important;
-  scroll-behavior:smooth!important;
-  background:
-    radial-gradient(circle at 20% 15%,rgba(184,148,69,.06),transparent 30%),
-    radial-gradient(circle at 80% 85%,rgba(139,30,30,.05),transparent 28%)!important;
-}
-#assistantAppPage #chatMessages .msg{
-  width:fit-content!important;
-  max-width:86%!important;
-  margin:8px 0!important;
-  padding:11px 13px!important;
-  border-radius:18px!important;
-  line-height:1.8!important;
-  font-size:15px!important;
-  box-shadow:0 4px 12px rgba(30,20,10,.07)!important;
-}
-#assistantAppPage #chatMessages .msg.user{
-  margin-inline-start:auto!important;
-  background:var(--accent)!important;
-  color:#fff!important;
-  border-bottom-inline-end-radius:6px!important;
-}
-#assistantAppPage #chatMessages .msg.bot{
-  margin-inline-end:auto!important;
   background:var(--card)!important;
   color:var(--text)!important;
-  border:1px solid var(--line)!important;
-  border-bottom-inline-start-radius:6px!important;
+  border-radius:999px!important;
+  padding:9px 14px!important;
+  font-weight:900!important;
 }
-#assistantAppPage #assistantWelcome{
-  max-width:92%!important;
-}
-
-/* Keep the composer fixed at the bottom of the chat card */
-#assistantAppPage .assistant-chat-tools,
-#assistantAppPage .chat-tools,
-#assistantAppPage .assistant-input-row{
-  flex:0 0 auto!important;
-  position:sticky!important;
-  bottom:0!important;
-  z-index:3!important;
-  background:color-mix(in srgb,var(--card) 96%,transparent)!important;
-  border-top:1px solid var(--line)!important;
-  padding:10px!important;
-  backdrop-filter:blur(12px)!important;
-  -webkit-backdrop-filter:blur(12px)!important;
-}
-#assistantAppPage .assistant-chat-tools input,
-#assistantAppPage .chat-tools input,
-#assistantAppPage .assistant-input-row input{
-  min-height:46px!important;
-  border-radius:16px!important;
-  font-size:15px!important;
-}
-#assistantAppPage .assistant-chat-tools button,
-#assistantAppPage .chat-tools button,
-#assistantAppPage .assistant-input-row button{
-  min-height:46px!important;
-  border-radius:15px!important;
+#assistantCategoryChips button.active{
+  background:var(--accent)!important;
+  color:#fff!important;
+  border-color:var(--accent)!important;
 }
 
-/* Source and action controls inside answers */
-#assistantAppPage .assistant-source-note{
-  margin-top:10px!important;
-}
-#assistantAppPage .assistant-answer-tools{
-  margin-top:10px!important;
-  gap:7px!important;
-}
-#assistantAppPage .assistant-answer-tools button{
-  padding:7px 10px!important;
-  border-radius:11px!important;
-}
-
-/* Small phones */
+/* Mobile refinements */
 @media(max-width:390px){
-  #assistantAppPage .tareeq-page-content{
-    padding-inline:7px!important;
-  }
-  #assistantQuestionGrid button{
-    flex-basis:82vw!important;
-    min-height:72px!important;
-    font-size:14px!important;
-  }
+  #assistantAppPage .tareeq-page-head{min-height:78px!important}
   #assistantAppPage .chat-box{
-    height:64vh!important;
-    min-height:64vh!important;
-    border-radius:20px!important;
+    height:calc(100dvh - 78px - 92px)!important;
+    min-height:520px!important;
   }
-  #assistantAppPage #chatMessages{
-    padding:12px 9px 16px!important;
-  }
-  #assistantAppPage #chatMessages .msg{
-    max-width:90%!important;
-    font-size:14px!important;
+  #assistantAppPage #chatMessages{padding:20px 12px 118px!important}
+  #assistantAppPage #chatMessages .msg{max-width:88%!important;padding:15px 16px!important}
+  #assistantQuestionsHost{padding:10px 7px!important}
+  #assistantQuestionGrid button{
+    min-width:80vw!important;max-width:80vw!important;
+    min-height:54px!important;padding:10px 14px!important
   }
 }
 </style></head>
@@ -3955,51 +3984,45 @@ if(typeof previous==='function'&&!previous.__assistantV3){
 new MutationObserver(()=>setTimeout(init,30)).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
 })();
 </script>
-<script id="assistantQuestionsRuntimeGuard">
+<script id="tareeqAssistantReferenceHelper">
 (function(){
-  function lang(){
-    const l=(document.documentElement.lang||'ar').toLowerCase();
-    return l.startsWith('en')?'en':l.startsWith('fa')?'fa':'ar';
-  }
-  const titles={
-    ar:'اختر سؤالاً موثقاً:',
-    en:'Choose a verified question:',
-    fa:'یک پرسش معتبر انتخاب کنید:'
-  };
-  function ensureVisible(){
+  function arrange(){
+    const page=document.getElementById('assistantAppPage');
+    const content=page?.querySelector('.tareeq-page-content');
+    const cats=document.getElementById('assistantCategoryChips');
     const host=document.getElementById('assistantQuestionsHost');
-    const intro=document.getElementById('assistantProIntro');
-    if(host&&intro&&host.previousElementSibling!==intro){
-      intro.insertAdjacentElement('afterend',host);
+    const chat=document.getElementById('chatMessages');
+    if(content&&cats&&cats.parentElement!==content){
+      content.insertBefore(cats,content.firstChild);
     }
-    const title=document.getElementById('assistantQuestionsTitle');
-    if(title) title.textContent=titles[lang()];
-    if(host) host.style.display='block';
+    if(host&&page&&host.parentElement!==page){
+      page.appendChild(host);
+    }
+    if(chat && !chat.dataset.referenceBound){
+      chat.dataset.referenceBound='1';
+      chat.addEventListener('DOMNodeInserted',()=>{chat.scrollTop=chat.scrollHeight});
+    }
   }
-  document.addEventListener('DOMContentLoaded',ensureVisible);
-  window.addEventListener('load',ensureVisible);
-  setTimeout(ensureVisible,250);
-  setTimeout(ensureVisible,1000);
-  new MutationObserver(ensureVisible).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
-})();
-</script><script id="tareeqAssistantSocialChatHelper">
-(function(){
-  function bindQuestionScroll(){
-    const grid=document.getElementById('assistantQuestionGrid');
-    const messages=document.getElementById('chatMessages');
-    if(!grid||!messages||grid.dataset.socialBound==='1') return;
-    grid.dataset.socialBound='1';
-    grid.addEventListener('click',function(e){
-      if(!e.target.closest('button')) return;
-      setTimeout(function(){
-        messages.scrollIntoView({behavior:'smooth',block:'center'});
-        messages.scrollTop=messages.scrollHeight;
-      },520);
-    });
-  }
-  document.addEventListener('DOMContentLoaded',bindQuestionScroll);
-  window.addEventListener('load',bindQuestionScroll);
-  setTimeout(bindQuestionScroll,300);
-  setTimeout(bindQuestionScroll,1200);
+
+  document.addEventListener('click',function(e){
+    const cat=e.target.closest('#assistantCategoryChips button');
+    if(cat){
+      document.querySelectorAll('#assistantCategoryChips button').forEach(b=>b.classList.remove('active'));
+      cat.classList.add('active');
+      setTimeout(arrange,30);
+    }
+    const q=e.target.closest('#assistantQuestionGrid button');
+    if(q){
+      document.querySelectorAll('#assistantQuestionGrid button').forEach(b=>b.classList.remove('active-question'));
+      q.classList.add('active-question');
+      const chat=document.getElementById('chatMessages');
+      setTimeout(()=>{if(chat){chat.scrollTop=chat.scrollHeight}},600);
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded',arrange);
+  window.addEventListener('load',arrange);
+  setTimeout(arrange,200);
+  setTimeout(arrange,1000);
 })();
 </script></body></html>
