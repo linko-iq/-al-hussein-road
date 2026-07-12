@@ -1735,6 +1735,89 @@ html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 #assistantQuestionGrid{
   display:flex;
 }
+</style><style id="tareeqLearningHubStyle">
+.learning-hub-content{padding-bottom:120px!important}
+.learning-hero{
+  display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+  background:linear-gradient(135deg,#1d222b,#2c3340);
+  color:#fff;border:1px solid var(--gold);border-radius:28px;padding:22px;box-shadow:var(--shadow)
+}
+.learning-hero small{color:#efc66b}.learning-hero h3{font-size:clamp(22px,6vw,34px);margin:6px 0}
+.learning-hero p{font-size:14px;color:#d7dbe2}
+.learning-streak{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;text-align:center;border:5px solid var(--gold);background:#161b22}
+.learning-streak strong{font-size:35px;color:#ffd36f;line-height:1}.learning-streak span{font-size:11px;color:#fff}
+.learning-main-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:16px}
+.learning-main-card{
+  border:1px solid var(--line);border-radius:24px;padding:18px;text-align:start;min-height:210px;
+  background:var(--card);color:var(--text);box-shadow:var(--shadow);cursor:pointer
+}
+.learning-main-card>span{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;background:#202631;color:#ffd36f;font-weight:900}
+.learning-main-card h3{margin:18px 0 8px;color:var(--accent);font-size:20px}
+.learning-main-card p{font-size:13px;color:var(--muted);line-height:1.7}.learning-main-card b{display:block;margin-top:14px;color:var(--accent2)}
+.learning-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.learning-summary div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:13px;text-align:center}
+.learning-summary small{display:block;color:var(--muted);font-size:11px}.learning-summary strong{font-size:24px;color:var(--accent)}
+.daily-lesson-shell,.quiz-setup,.quiz-question-card,.quiz-result,.path-viewer,.certificate-controls{
+  max-width:760px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px;box-shadow:var(--shadow)
+}
+.daily-badge{display:inline-block;background:#202631;color:#ffd36f;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:900}
+.daily-lesson-shell h3{font-size:clamp(23px,6vw,34px);color:var(--accent);margin:16px 0 10px}
+.daily-lesson-text{font-size:17px;line-height:2}
+.daily-source{margin-top:12px;padding:10px 12px;background:rgba(15,91,60,.08);border:1px solid rgba(15,91,60,.2);border-radius:13px;color:var(--accent2);font-size:12px;line-height:1.7}
+.daily-question-box,.daily-action-box,.path-check-box{margin-top:16px;border:1px solid var(--line);border-radius:20px;padding:15px;background:var(--bg)}
+.daily-options,.quiz-answer-options{display:grid;gap:8px;margin-top:12px}
+.daily-options button,.quiz-answer-options button{
+  border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:14px;padding:12px;text-align:start;font-weight:800
+}
+.daily-options button.correct,.quiz-answer-options button.correct{background:rgba(15,120,70,.15);border-color:#16834f}
+.daily-options button.wrong,.quiz-answer-options button.wrong{background:rgba(170,35,35,.13);border-color:#a52323}
+.daily-feedback,.quiz-explanation{margin-top:10px;font-size:13px;line-height:1.7;color:var(--muted)}
+.daily-action-box small{color:var(--gold);font-weight:900}.daily-action-box p{margin:7px 0 14px;font-size:17px}
+.learning-primary-btn,.learning-secondary-btn{
+  width:100%;border:0;border-radius:16px;padding:13px 16px;font-weight:900;font-family:inherit;cursor:pointer
+}
+.learning-primary-btn{background:var(--accent);color:#fff}.learning-secondary-btn{background:var(--bg);color:var(--text);border:1px solid var(--line);margin-top:9px}
+.quiz-choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:12px 0 18px}
+.quiz-choice-grid button,.quiz-levels button{
+  border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:15px;padding:11px;font-weight:800
+}
+.quiz-choice-grid button.active,.quiz-levels button.active{background:#202631;color:#ffd36f;border-color:var(--gold)}
+.quiz-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 18px}
+.quiz-game,.quiz-result{max-width:760px;margin:auto}.quiz-topline{display:flex;justify-content:space-between;margin-bottom:8px}
+.quiz-progress,.path-progress{height:10px;background:rgba(184,148,69,.16);border-radius:999px;overflow:hidden;margin-bottom:15px}
+.quiz-progress i,.path-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--gold));transition:.25s}
+.quiz-question-card h3{font-size:24px;line-height:1.6}
+.result-ring{width:150px;height:150px;border-radius:50%;border:10px solid var(--gold);display:grid;place-items:center;margin:0 auto 15px;background:#202631;color:#ffd36f}
+.result-ring strong{font-size:34px}.quiz-result{text-align:center}.result-actions{display:grid;gap:8px;margin-top:15px}
+.paths-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.path-card-item{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:var(--shadow)}
+.path-card-item h3{color:var(--accent);margin:9px 0}.path-card-item p{font-size:13px;color:var(--muted)}
+.path-card-item .path-mini-progress{height:8px;background:rgba(184,148,69,.15);border-radius:999px;overflow:hidden;margin:12px 0}
+.path-card-item .path-mini-progress i{display:block;height:100%;background:var(--gold)}
+.path-card-item button{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:13px;padding:10px;font-weight:900}
+.path-viewer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:16px 0}
+.path-progress-circle{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;border:5px solid var(--gold);background:#202631;color:#ffd36f}
+.path-lesson-list{display:flex;gap:8px;overflow-x:auto;padding:5px 0 12px}
+.path-lesson-list button{flex:0 0 auto;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:999px;padding:9px 13px;font-weight:800}
+.path-lesson-list button.done{background:var(--accent2);color:#fff}.path-lesson-list button.active{background:#202631;color:#ffd36f;border-color:var(--gold)}
+.path-lesson-card{border:1px solid var(--line);border-radius:20px;padding:17px;background:var(--bg)}
+.path-lesson-card h3{color:var(--accent);font-size:24px;margin:8px 0}.path-lesson-card p{line-height:2}
+.path-important{margin-top:13px;padding:12px;border-radius:14px;background:rgba(184,148,69,.12);border:1px solid rgba(184,148,69,.3)}
+.certificate-builder{padding-bottom:120px!important}
+.certificate-controls{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:15px}
+.certificate-controls label{display:grid;gap:6px;font-weight:800}.certificate-controls input,.certificate-controls select{width:100%;padding:11px;border-radius:13px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.certificate-preview-wrap{max-width:760px;margin:auto;background:#111;border-radius:20px;padding:10px;overflow:auto}
+#certificateCanvas{display:block;width:100%;height:auto;background:#fff;border-radius:12px}
+.certificate-privacy{text-align:center;font-size:12px;color:var(--muted);margin:12px 0}
+@media(max-width:700px){
+  .learning-main-grid{grid-template-columns:1fr}.learning-main-card{min-height:150px}
+  .learning-summary{grid-template-columns:repeat(2,1fr)}
+  .paths-list{grid-template-columns:1fr}.certificate-controls{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+  .learning-hero{grid-template-columns:1fr}.learning-streak{width:92px;height:92px}
+  .quiz-choice-grid{grid-template-columns:1fr}
+}
 </style></head>
 <body data-theme="light">
 <div class="read-progress" id="readProgress"></div>
@@ -3587,7 +3670,16 @@ setLang('ar');
 <h2><span class="pro-icon title-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 21V9l7-5 7 5v12h-5v-6h-4v6z"></path><path d="M9 8h6M12 4V2"></path></svg></span><span data-pro-i18n="page.worship"></span></h2>
 </div>
 <div class="tareeq-page-content">
-<div class="pro-feature-grid"><button class="pro-feature-card" data-pro-open="tasbeehAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="8" cy="6" r="2"></circle><circle cx="14" cy="5" r="2"></circle><circle cx="18" cy="9" r="2"></circle><circle cx="17" cy="15" r="2"></circle><circle cx="11" cy="18" r="2"></circle><circle cx="6" cy="14" r="2"></circle><path d="M11 20v2M9 22h4"></path></svg></span><strong data-pro-i18n="worship.tasbeeh.title"></strong><small data-pro-i18n="worship.tasbeeh.desc"></small></button><button class="pro-feature-card" data-pro-open="favoritesAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"></path></svg></span><strong data-pro-i18n="worship.favorites.title"></strong><small data-pro-i18n="worship.favorites.desc"></small></button><button class="pro-feature-card" data-pro-action="duas" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7 21v-7l-2-3a2 2 0 0 1 3-2l2 3V5a2 2 0 0 1 4 0v7l2-3a2 2 0 0 1 3 2l-2 3v7z"></path></svg></span><strong data-pro-i18n="worship.duas.title"></strong><small data-pro-i18n="worship.duas.desc"></small></button></div>
+<div class="pro-feature-grid"><button class="pro-feature-card learning-feature-card" data-pro-open="learningHubPage" type="button">
+<span class="feature-svg">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M4 5.5 12 3l8 2.5v11L12 21l-8-4.5z"></path>
+<path d="M8 8h8M8 12h8M8 16h5"></path>
+</svg>
+</span>
+<strong data-learn-i18n="hub.title">رحلة التعلّم</strong>
+<small data-learn-i18n="hub.desc">درس اليوم، الاختبارات، والمسارات التعليمية</small>
+</button><button class="pro-feature-card" data-pro-open="tasbeehAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="8" cy="6" r="2"></circle><circle cx="14" cy="5" r="2"></circle><circle cx="18" cy="9" r="2"></circle><circle cx="17" cy="15" r="2"></circle><circle cx="11" cy="18" r="2"></circle><circle cx="6" cy="14" r="2"></circle><path d="M11 20v2M9 22h4"></path></svg></span><strong data-pro-i18n="worship.tasbeeh.title"></strong><small data-pro-i18n="worship.tasbeeh.desc"></small></button><button class="pro-feature-card" data-pro-open="favoritesAppPage" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"></path></svg></span><strong data-pro-i18n="worship.favorites.title"></strong><small data-pro-i18n="worship.favorites.desc"></small></button><button class="pro-feature-card" data-pro-action="duas" type="button"><span class="feature-svg"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7 21v-7l-2-3a2 2 0 0 1 3-2l2 3V5a2 2 0 0 1 4 0v7l2-3a2 2 0 0 1 3 2l-2 3v7z"></path></svg></span><strong data-pro-i18n="worship.duas.title"></strong><small data-pro-i18n="worship.duas.desc"></small></button></div>
 </div>
 </section><section aria-hidden="true" class="tareeq-app-page pro-page" id="moreAppPage">
 <div class="tareeq-page-head">
@@ -4194,5 +4286,313 @@ setTimeout(function(){
   setTimeout(removeLegacy,300);
   setTimeout(removeLegacy,1200);
   new MutationObserver(removeLegacy).observe(document.body,{childList:true,subtree:true});
+})();
+</script><section aria-hidden="true" class="tareeq-app-page pro-page" id="learningHubPage">
+<div class="tareeq-page-head">
+<button class="tareeq-back-btn" data-learning-back="" type="button">← <span data-learn-i18n="common.back">رجوع</span></button>
+<h2 data-learn-i18n="hub.title">رحلة التعلّم</h2>
+</div>
+<div class="tareeq-page-content learning-hub-content">
+<div class="learning-hero">
+<div>
+<small data-learn-i18n="hub.kicker">تعلّم يومياً، اختبر نفسك، وشارك إنجازك</small>
+<h3 data-learn-i18n="hub.heading">رحلتك التعليمية مع طريق الحسين</h3>
+<p data-learn-i18n="hub.body">محتوى قصير وموثق يعمل بدون إنترنت، مع حفظ الإنجاز داخل جهازك فقط.</p>
+</div>
+<div class="learning-streak">
+<strong id="learningStreakCount">0</strong>
+<span data-learn-i18n="hub.streak">أيام متتالية</span>
+</div>
+</div>
+<div class="learning-main-grid">
+<button class="learning-main-card lesson-card" data-pro-open="dailyLessonPage" type="button">
+<span>01</span><h3 data-learn-i18n="daily.title">درس اليوم</h3>
+<p data-learn-i18n="daily.desc">معلومة، سؤال، وعمل يومي بسيط.</p>
+<b data-learn-i18n="common.open">ابدأ الآن</b>
+</button>
+<button class="learning-main-card quiz-card" data-pro-open="quizPage" type="button">
+<span>02</span><h3 data-learn-i18n="quiz.title">اختبر معلوماتك</h3>
+<p data-learn-i18n="quiz.desc">اختبارات بمستويات مع مراجعة الأخطاء.</p>
+<b data-learn-i18n="common.open">ابدأ الآن</b>
+</button>
+<button class="learning-main-card path-card" data-pro-open="learningPathsPage" type="button">
+<span>03</span><h3 data-learn-i18n="paths.title">المسارات التعليمية</h3>
+<p data-learn-i18n="paths.desc">دروس مرتبة خطوة بخطوة مع نسبة إنجاز.</p>
+<b data-learn-i18n="common.open">ابدأ الآن</b>
+</button>
+</div>
+<div class="learning-summary">
+<div><small data-learn-i18n="stats.lessons">دروس مكتملة</small><strong id="statLessons">0</strong></div>
+<div><small data-learn-i18n="stats.quizzes">اختبارات مكتملة</small><strong id="statQuizzes">0</strong></div>
+<div><small data-learn-i18n="stats.paths">مسارات مكتملة</small><strong id="statPaths">0</strong></div>
+<div><small data-learn-i18n="stats.best">أفضل نتيجة</small><strong id="statBest">0%</strong></div>
+</div>
+</div>
+</section><section aria-hidden="true" class="tareeq-app-page pro-page" id="dailyLessonPage">
+<div class="tareeq-page-head">
+<button class="tareeq-back-btn" data-learning-back="" type="button">← <span data-learn-i18n="common.back">رجوع</span></button>
+<h2 data-learn-i18n="daily.title">درس اليوم</h2>
+</div>
+<div class="tareeq-page-content">
+<article class="daily-lesson-shell">
+<div class="daily-badge" data-learn-i18n="daily.badge">درس اليوم</div>
+<h3 id="dailyLessonTitle"></h3>
+<p class="daily-lesson-text" id="dailyLessonText"></p>
+<div class="daily-source" id="dailyLessonSource"></div>
+<div class="daily-question-box">
+<strong id="dailyQuestion"></strong>
+<div class="daily-options" id="dailyOptions"></div>
+<div class="daily-feedback" id="dailyFeedback"></div>
+</div>
+<div class="daily-action-box">
+<small data-learn-i18n="daily.action">عمل اليوم</small>
+<p id="dailyAction"></p>
+<button class="learning-primary-btn" data-learn-i18n="daily.complete" id="dailyCompleteBtn" type="button">أنجزت عمل اليوم</button>
+</div>
+<button class="learning-secondary-btn" data-cert-type="daily" data-learn-i18n="certificate.create" hidden="" id="dailyCertificateBtn" type="button">أنشئ شهادة الإنجاز</button>
+</article>
+</div>
+</section><section aria-hidden="true" class="tareeq-app-page pro-page" id="quizPage">
+<div class="tareeq-page-head">
+<button class="tareeq-back-btn" data-learning-back="" type="button">← <span data-learn-i18n="common.back">رجوع</span></button>
+<h2 data-learn-i18n="quiz.title">اختبر معلوماتك</h2>
+</div>
+<div class="tareeq-page-content">
+<div class="quiz-setup" id="quizSetup">
+<h3 data-learn-i18n="quiz.choose">اختر نوع الاختبار</h3>
+<div class="quiz-choice-grid" id="quizCategories"></div>
+<h3 data-learn-i18n="quiz.level">اختر المستوى</h3>
+<div class="quiz-levels">
+<button class="active" data-learn-i18n="quiz.easy" data-quiz-level="easy" type="button">مبتدئ</button>
+<button data-learn-i18n="quiz.medium" data-quiz-level="medium" type="button">متوسط</button>
+<button data-learn-i18n="quiz.hard" data-quiz-level="hard" type="button">متقدم</button>
+</div>
+<button class="learning-primary-btn" data-learn-i18n="quiz.start" id="startQuizBtn" type="button">ابدأ الاختبار</button>
+</div>
+<div class="quiz-game" hidden="" id="quizGame">
+<div class="quiz-topline">
+<span id="quizProgressText"></span><strong id="quizScoreText"></strong>
+</div>
+<div class="quiz-progress"><i id="quizProgressBar"></i></div>
+<article class="quiz-question-card">
+<h3 id="quizQuestionText"></h3>
+<div class="quiz-answer-options" id="quizAnswerOptions"></div>
+<div class="quiz-explanation" id="quizExplanation"></div>
+<button class="learning-primary-btn" data-learn-i18n="quiz.next" hidden="" id="quizNextBtn" type="button">السؤال التالي</button>
+</article>
+</div>
+<div class="quiz-result" hidden="" id="quizResult">
+<div class="result-ring"><strong id="quizResultScore">0%</strong></div>
+<h3 id="quizResultTitle"></h3>
+<p id="quizResultMessage"></p>
+<div class="result-actions">
+<button class="learning-secondary-btn" data-learn-i18n="quiz.review" id="reviewMistakesBtn" type="button">راجع أخطائي</button>
+<button class="learning-secondary-btn" data-learn-i18n="quiz.restart" id="restartQuizBtn" type="button">اختبار جديد</button>
+<button class="learning-primary-btn" data-cert-type="quiz" data-learn-i18n="certificate.create" type="button">أنشئ شهادة الإنجاز</button>
+</div>
+</div>
+</div>
+</section><section aria-hidden="true" class="tareeq-app-page pro-page" id="learningPathsPage">
+<div class="tareeq-page-head">
+<button class="tareeq-back-btn" data-learning-back="" type="button">← <span data-learn-i18n="common.back">رجوع</span></button>
+<h2 data-learn-i18n="paths.title">المسارات التعليمية</h2>
+</div>
+<div class="tareeq-page-content">
+<div class="paths-list" id="pathsList"></div>
+<div class="path-viewer" hidden="" id="pathViewer">
+<button class="learning-secondary-btn" data-learn-i18n="paths.all" id="backToPathsBtn" type="button">كل المسارات</button>
+<div class="path-viewer-head">
+<div><small id="pathCategory"></small><h3 id="pathTitle"></h3></div>
+<div class="path-progress-circle"><strong id="pathPercent">0%</strong></div>
+</div>
+<div class="path-progress"><i id="pathProgressBar"></i></div>
+<div class="path-lesson-list" id="pathLessonList"></div>
+<article class="path-lesson-card" hidden="" id="pathLessonCard">
+<small id="pathLessonNumber"></small>
+<h3 id="pathLessonTitle"></h3>
+<p id="pathLessonBody"></p>
+<div class="path-important" id="pathLessonFact"></div>
+<div class="daily-source" id="pathLessonSource"></div>
+<div class="path-check-box">
+<strong id="pathCheckQuestion"></strong>
+<div class="daily-options" id="pathCheckOptions"></div>
+<div class="daily-feedback" id="pathCheckFeedback"></div>
+</div>
+<button class="learning-primary-btn" data-learn-i18n="paths.completeLesson" disabled="" id="completePathLessonBtn" type="button">إكمال الدرس</button>
+</article>
+<button class="learning-primary-btn" data-cert-type="path" data-learn-i18n="certificate.create" hidden="" id="pathCertificateBtn" type="button">أنشئ شهادة الإنجاز</button>
+</div>
+</div>
+</section><section aria-hidden="true" class="tareeq-app-page pro-page" id="certificatePage">
+<div class="tareeq-page-head">
+<button class="tareeq-back-btn" data-learning-back="" type="button">← <span data-learn-i18n="common.back">رجوع</span></button>
+<h2 data-learn-i18n="certificate.title">شهادة الإنجاز</h2>
+</div>
+<div class="tareeq-page-content certificate-builder">
+<div class="certificate-controls">
+<label><span data-learn-i18n="certificate.name">الاسم</span><input id="certificateNameInput" maxlength="40" placeholder="اكتب اسمك" type="text"/></label>
+<label class="certificate-upload">
+<span data-learn-i18n="certificate.photo">الصورة الشخصية</span>
+<input accept="image/*" id="certificatePhotoInput" type="file"/>
+</label>
+<label><span data-learn-i18n="certificate.template">القالب</span>
+<select id="certificateTemplateSelect">
+<option data-learn-i18n="certificate.blackGold" value="blackGold">ذهبي وأسود</option>
+<option data-learn-i18n="certificate.burgundy" value="burgundy">عنابي وذهبي</option>
+<option data-learn-i18n="certificate.light" value="light">أبيض هادئ</option>
+</select>
+</label>
+<label><span data-learn-i18n="certificate.format">المقاس</span>
+<select id="certificateFormatSelect">
+<option data-learn-i18n="certificate.square" value="square">بوست مربع</option>
+<option data-learn-i18n="certificate.story" value="story">ستوري</option>
+<option data-learn-i18n="certificate.landscape" value="landscape">شهادة أفقية</option>
+</select>
+</label>
+</div>
+<div class="certificate-preview-wrap">
+<canvas height="1080" id="certificateCanvas" width="1080"></canvas>
+</div>
+<p class="certificate-privacy" data-learn-i18n="certificate.privacy">صورتك واسمك يبقيان داخل جهازك ولا يتم رفعهما إلى أي جهة.</p>
+<button class="learning-primary-btn" data-learn-i18n="certificate.save" id="saveCertificateBtn" type="button">حفظ الشهادة في جهازي</button>
+</div>
+</section><script id="tareeqLearningHubLogic">
+(function(){
+"use strict";
+const DATA={"daily": [{"title": "الإصلاح يبدأ من النفس", "text": "من رسائل نهضة الإمام الحسين عليه السلام أن الإصلاح لا يكون بالشعارات وحدها، بل بالصدق وتحمل المسؤولية والابتعاد عن الظلم.", "source": "المصدر: وصية الإمام الحسين لمحمد بن الحنفية، كما نقلتها المصادر التاريخية.", "q": "أي سلوك ينسجم أكثر مع معنى الإصلاح؟", "options": ["لوم الآخرين فقط", "إصلاح النفس والقيام بالواجب", "ترك المسؤولية"], "answer": 1, "explain": "الإصلاح يبدأ بالإنسان نفسه ثم يمتد إلى أسرته ومجتمعه.", "action": "أصلح اليوم عادة صغيرة تؤذيك أو تؤذي غيرك."}, {"title": "العدل لا يتجزأ", "text": "يأمر القرآن بالعدل حتى عندما يكون الحكم على النفس أو القريب، لأن العدالة قيمة لا تتغير بحسب المصلحة.", "source": "المصدر: القرآن الكريم، النساء 135 والمائدة 8.", "q": "متى نلتزم بالعدل؟", "options": ["مع من نحب فقط", "عندما يفيدنا", "في كل الحالات"], "answer": 2, "explain": "العدل الحقيقي لا يتغير بسبب المحبة أو الكراهية.", "action": "كن منصفاً اليوم في خلاف أو حكم على شخص."}, {"title": "خدمة الناس عبادة", "text": "خدمة الزائرين والناس تكون عبادة عندما تقترن بالإخلاص والاحترام وعدم المنّ أو الأذى.", "source": "المصدر: الأخلاق الإسلامية العامة وآداب خدمة الزائرين.", "q": "ما الذي يفسد قيمة الخدمة؟", "options": ["الهدوء", "المنّ والإيذاء", "النظافة"], "answer": 1, "explain": "المنّ والإيذاء يجرحان كرامة الإنسان ويضعفان أثر العمل.", "action": "قدّم مساعدة بسيطة اليوم دون أن تخبر أحداً."}, {"title": "الصدق يبني الثقة", "text": "الصدق يحفظ الحقوق ويبني الثقة، بينما الكذب يفتح أبواباً جديدة للمشكلات والظلم.", "source": "المصدر: القرآن الكريم، التوبة 119، والأخلاق الإسلامية.", "q": "ما أثر الصدق؟", "options": ["يبني الثقة", "يزيد الخلاف دائماً", "يضيع الحقوق"], "answer": 0, "explain": "الصدق أساس العلاقات الآمنة وحفظ الحقوق.", "action": "التزم اليوم بالصدق حتى في التفاصيل الصغيرة."}, {"title": "الزيارة أخلاق قبل أن تكون طريقاً", "text": "من آداب الزيارة احترام الناس والطريق، المحافظة على الصلاة والنظافة، وتجنب مزاحمة الآخرين أو إيذائهم.", "source": "المصدر: آداب الزيارة والأخلاق الإسلامية العامة.", "q": "أي عمل من آداب الزيارة؟", "options": ["رمي النفايات", "إيذاء الآخرين", "احترام الطريق والنظافة"], "answer": 2, "explain": "الزيارة الحقيقية تظهر في الأخلاق والسلوك.", "action": "حافظ اليوم على نظافة مكان عام."}, {"title": "لا تيأس من رحمة الله", "text": "يفتح القرآن باب الرجوع إلى الله، ويطلب من الإنسان ألا ييأس، مع التوبة الصادقة وترك الخطأ وإصلاح الضرر.", "source": "المصدر: القرآن الكريم، الزمر 53-54.", "q": "ما جزء التوبة الصادقة؟", "options": ["تكرار الخطأ", "ترك الخطأ وإصلاح الضرر", "اليأس"], "answer": 1, "explain": "التوبة ليست كلاماً فقط، بل قرار وعمل وإصلاح.", "action": "اعتذر اليوم عن خطأ قديم أو أصلح أثره."}, {"title": "الصبر عمل وليس استسلاماً", "text": "الصبر هو الثبات على الحق والاستمرار في العمل الصحيح، وليس السكوت عن الظلم أو ترك الأسباب.", "source": "المصدر: القرآن الكريم، البقرة 153 وآل عمران 200.", "q": "ما معنى الصبر الصحيح؟", "options": ["ترك العمل", "الثبات مع العمل", "الاستسلام للظلم"], "answer": 1, "explain": "الصبر يجمع بين الثبات والسعي.", "action": "أكمل اليوم مهمة كنت تؤجلها."}], "quiz": [{"cat": "hussain", "level": "easy", "q": "من هو والد الإمام الحسين عليه السلام؟", "options": ["الإمام علي بن أبي طالب", "الإمام الحسن", "العباس بن علي"], "answer": 0, "explain": "والده الإمام علي بن أبي طالب، وأمه السيدة فاطمة الزهراء.", "source": "المصدر: كتب السيرة والأنساب الإسلامية."}, {"cat": "hussain", "level": "easy", "q": "ما أشهر كنية للإمام الحسين؟", "options": ["أبو الحسن", "أبو عبد الله", "أبو محمد"], "answer": 1, "explain": "من أشهر كناه أبو عبد الله.", "source": "المصدر: كتب السيرة والأنساب."}, {"cat": "ashura", "level": "easy", "q": "في أي يوم وقعت عاشوراء؟", "options": ["10 محرم", "20 صفر", "15 شعبان"], "answer": 0, "explain": "وقعت في العاشر من محرم سنة 61 هـ.", "source": "المصدر: المصادر التاريخية لواقعة كربلاء."}, {"cat": "ashura", "level": "medium", "q": "من الذي تاب وانضم إلى معسكر الإمام الحسين؟", "options": ["الحر بن يزيد الرياحي", "عبيد الله بن زياد", "عمر بن سعد"], "answer": 0, "explain": "الحر بن يزيد الرياحي تاب والتحق بمعسكر الإمام.", "source": "المصدر: المصادر التاريخية لواقعة كربلاء."}, {"cat": "arbaeen", "level": "easy", "q": "متى تكون زيارة الأربعين؟", "options": ["20 صفر", "10 محرم", "1 رمضان"], "answer": 0, "explain": "تكون في العشرين من صفر.", "source": "المصدر: كتب الزيارات والتقويم الديني."}, {"cat": "ethics", "level": "easy", "q": "أي تصرف يوافق آداب خدمة الزائرين؟", "options": ["المنّ على الناس", "حفظ كرامتهم", "إجبارهم على القبول"], "answer": 1, "explain": "الخدمة تكون باحترام وهدوء ومن دون منّ.", "source": "المصدر: الأخلاق الإسلامية العامة."}, {"cat": "quran", "level": "medium", "q": "ما الذي يطلبه القرآن في الحكم بين الناس؟", "options": ["العدل", "المجاملة دائماً", "تقديم القريب"], "answer": 0, "explain": "القرآن يأمر بالعدل ولو على النفس أو الأقربين.", "source": "المصدر: القرآن الكريم، النساء 135."}, {"cat": "fiqh", "level": "easy", "q": "هل يجب التلفظ بنية الوضوء؟", "options": ["نعم دائماً", "لا، يكفي قصد القربة", "فقط في السفر"], "answer": 1, "explain": "لا يشترط التلفظ بالنية؛ يكفي قصد القربة.", "source": "المصدر الفقهي: أحكام الوضوء في فتاوى السيد السيستاني."}, {"cat": "fiqh", "level": "medium", "q": "هل يبطل الصوم بالأكل نسياناً؟", "options": ["نعم", "لا", "يبطل بعد الظهر فقط"], "answer": 1, "explain": "الأكل أو الشرب نسياناً لا يبطل الصوم، ويتوقف عند التذكر.", "source": "المصدر الفقهي: أحكام الصوم في فتاوى السيد السيستاني."}, {"cat": "comprehensive", "level": "hard", "q": "ما الرابط الصحيح بين الدعاء والعمل؟", "options": ["الدعاء يغني عن العمل", "العمل يغني عن الدعاء", "الدعاء مع الأخذ بالأسباب"], "answer": 2, "explain": "التوكل الصحيح يجمع الدعاء مع السعي والأسباب.", "source": "المصدر: القرآن الكريم 53:39 ومبدأ التوكل."}], "paths": [{"id": "hussain", "title": "سيرة الإمام الحسين", "category": "السيرة الحسينية", "desc": "من نسب الإمام إلى رسائل نهضته.", "lessons": [{"title": "النسب والولادة", "body": "الإمام الحسين هو ابن الإمام علي والسيدة فاطمة الزهراء، وسبط رسول الله. المشهور في المصادر الإمامية أنه وُلد في المدينة في الثالث من شعبان سنة 4 هـ.", "fact": "معلومة مهمة: الإمام الحسن هو أخوه الأكبر.", "source": "المصدر: كتب السيرة والتراجم الإمامية.", "q": "من هي أم الإمام الحسين؟", "options": ["السيدة زينب", "السيدة فاطمة الزهراء", "السيدة خديجة"], "answer": 1}, {"title": "مكانته في الإسلام", "body": "عُرف الإمام الحسين بقربه من رسول الله ومكانته بين أهل البيت، وبالعلم والعبادة والكرم والشجاعة.", "fact": "القرب من النبي ليس نسباً فقط، بل سيرة وأخلاق ومسؤولية.", "source": "المصدر: كتب السيرة والحديث الإسلامي.", "q": "ما الذي يعبّر عن مكانة الإمام؟", "options": ["النسب وحده", "النسب مع السيرة والأخلاق", "القوة المادية"], "answer": 1}, {"title": "هدف النهضة", "body": "أعلن الإمام أن هدفه الإصلاح والأمر بالمعروف والنهي عن المنكر والسير بسيرة جده وأبيه، ورفض إعطاء الشرعية للظلم.", "fact": "الإصلاح يبدأ بالوعي والثبات على الحق.", "source": "المصدر: وصية الإمام الحسين لمحمد بن الحنفية.", "q": "ما الهدف المعلن للنهضة؟", "options": ["المكسب الشخصي", "الإصلاح", "الشهرة"], "answer": 1}, {"title": "دروس النهضة", "body": "تعلّمنا النهضة أن الكرامة والعدل لا يُحفظان بالخوف، وأن الإنسان مسؤول عن موقفه وأخلاقه حتى في أصعب الظروف.", "fact": "من أقوى الدروس: لا تبرر الظلم لمصلحة مؤقتة.", "source": "المصدر: سيرة الإمام الحسين وأصحابه.", "q": "أي قيمة من قيم النهضة؟", "options": ["اللامبالاة", "الكرامة والعدل", "التعصب"], "answer": 1}]}, {"id": "karbala", "title": "شخصيات كربلاء", "category": "واقعة الطف", "desc": "تعرف على شخصيات صنعت مواقف خالدة.", "lessons": [{"title": "مسلم بن عقيل", "body": "كان ابن عم الإمام الحسين ورسوله إلى أهل الكوفة لاستطلاع موقفهم، وقُتل قبل وصول الإمام إلى كربلاء.", "fact": "الثبات في الظروف الصعبة من أبرز دروس سيرته.", "source": "المصدر: المصادر التاريخية لأحداث الكوفة وكربلاء.", "q": "ما صلة مسلم بالإمام الحسين؟", "options": ["ابن عمه ورسوله", "أخوه", "والده"], "answer": 0}, {"title": "الحر الرياحي", "body": "كان ضمن القوة التي اعترضت طريق الإمام، ثم اختار التوبة والتحق بمعسكره وقاتل دفاعاً عنه.", "fact": "باب التوبة مفتوح ما دام الإنسان صادقاً في الرجوع.", "source": "المصدر: المصادر التاريخية لواقعة كربلاء.", "q": "ما أبرز موقف للحر؟", "options": ["رفض التوبة", "التحق بمعسكر الإمام", "غادر كربلاء"], "answer": 1}, {"title": "أبو الفضل العباس", "body": "هو العباس بن علي، أخو الإمام الحسين وحامل لوائه في كربلاء، وعُرف بالوفاء والشجاعة.", "fact": "الوفاء يظهر في حماية المسؤولية لا في الكلام فقط.", "source": "المصدر: كتب المقاتل والسيرة الحسينية.", "q": "ما دوره في كربلاء؟", "options": ["حامل لواء الإمام", "رسول الكوفة", "والي المدينة"], "answer": 0}, {"title": "السيدة زينب", "body": "حفظت رسالة كربلاء، ورعت العائلة في الأسر، وواجهت السلطات بخطب كشفت الظلم.", "fact": "الكلمة الواعية قد تحفظ قضية كاملة.", "source": "المصدر: المصادر التاريخية لخطب الكوفة والشام.", "q": "ماذا حفظت السيدة زينب؟", "options": ["رسالة كربلاء", "أموال القافلة", "جيشاً جديداً"], "answer": 0}]}, {"id": "arbaeen", "title": "الأربعين وآداب الزيارة", "category": "الزيارة والخدمة", "desc": "فهم الزيارة وتحويلها إلى أخلاق وسلوك.", "lessons": [{"title": "معنى الأربعين", "body": "زيارة الأربعين تكون في العشرين من صفر، وهي مناسبة لتجديد العهد بقيم الإيمان والعدل والإصلاح.", "fact": "قيمة الزيارة تظهر في أثرها على السلوك.", "source": "المصدر: كتب الزيارات والروايات المعتمدة.", "q": "متى تكون الأربعين؟", "options": ["20 صفر", "10 محرم", "3 شعبان"], "answer": 0}, {"title": "نية الزيارة", "body": "يقصد الزائر القربة إلى الله وتعظيم أوليائه والاقتداء بقيمهم، مع الإخلاص وحسن الخلق.", "fact": "المشي وسيلة، والغاية هي القرب من الله وتحسين السلوك.", "source": "المصدر: آداب الزيارة والأخلاق الإسلامية.", "q": "ما النية الصحيحة؟", "options": ["الشهرة", "القربة إلى الله", "التفاخر"], "answer": 1}, {"title": "أخلاق الطريق", "body": "من الآداب احترام الناس، عدم المزاحمة، حفظ النظافة، الصلاة في وقتها، ومساعدة المحتاج.", "fact": "لا تكتمل الزيارة مع إيذاء الآخرين.", "source": "المصدر: الآداب الإسلامية العامة.", "q": "أي سلوك صحيح؟", "options": ["رمي النفايات", "احترام الناس والطريق", "المزاحمة"], "answer": 1}, {"title": "خدمة الزائرين", "body": "الخدمة تكون باحترام وهدوء وسلامة الطعام وتقديم المحتاج وكبير السن، من دون منّ أو تصوير يؤذي الناس.", "fact": "الكرامة جزء من الخدمة.", "source": "المصدر: الأخلاق الإسلامية وقواعد حفظ النفس والكرامة.", "q": "ما الذي يحفظ قيمة الخدمة؟", "options": ["المنّ", "احترام الكرامة", "الفوضى"], "answer": 1}]}]};
+const I18N={"ar": {"hub.title": "رحلة التعلّم", "hub.desc": "درس اليوم، الاختبارات، والمسارات التعليمية", "hub.kicker": "تعلّم يومياً، اختبر نفسك، وشارك إنجازك", "hub.heading": "رحلتك التعليمية مع طريق الحسين", "hub.body": "محتوى قصير وموثق يعمل بدون إنترنت، مع حفظ الإنجاز داخل جهازك فقط.", "hub.streak": "أيام متتالية", "common.back": "رجوع", "common.open": "ابدأ الآن", "daily.title": "درس اليوم", "daily.desc": "معلومة، سؤال، وعمل يومي بسيط.", "daily.badge": "درس اليوم", "daily.action": "عمل اليوم", "daily.complete": "أنجزت عمل اليوم", "quiz.title": "اختبر معلوماتك", "quiz.desc": "اختبارات بمستويات مع مراجعة الأخطاء.", "quiz.choose": "اختر نوع الاختبار", "quiz.level": "اختر المستوى", "quiz.easy": "مبتدئ", "quiz.medium": "متوسط", "quiz.hard": "متقدم", "quiz.start": "ابدأ الاختبار", "quiz.next": "السؤال التالي", "quiz.review": "راجع أخطائي", "quiz.restart": "اختبار جديد", "paths.title": "المسارات التعليمية", "paths.desc": "دروس مرتبة خطوة بخطوة مع نسبة إنجاز.", "paths.all": "كل المسارات", "paths.completeLesson": "إكمال الدرس", "stats.lessons": "دروس مكتملة", "stats.quizzes": "اختبارات مكتملة", "stats.paths": "مسارات مكتملة", "stats.best": "أفضل نتيجة", "certificate.title": "شهادة الإنجاز", "certificate.create": "أنشئ شهادة الإنجاز", "certificate.name": "الاسم", "certificate.photo": "الصورة الشخصية", "certificate.template": "القالب", "certificate.format": "المقاس", "certificate.blackGold": "ذهبي وأسود", "certificate.burgundy": "عنابي وذهبي", "certificate.light": "أبيض هادئ", "certificate.square": "بوست مربع", "certificate.story": "ستوري", "certificate.landscape": "شهادة أفقية", "certificate.privacy": "صورتك واسمك يبقيان داخل جهازك ولا يتم رفعهما إلى أي جهة.", "certificate.save": "حفظ الشهادة في جهازي"}, "en": {"hub.title": "Learning Journey", "hub.desc": "Daily lesson, quizzes, and learning paths", "hub.kicker": "Learn daily, test yourself, and share your achievement", "hub.heading": "Your learning journey with Tareeq Al-Hussain", "hub.body": "Short, verified content that works offline and stores progress only on your device.", "hub.streak": "day streak", "common.back": "Back", "common.open": "Start now", "daily.title": "Daily Lesson", "daily.desc": "A fact, a question, and a simple daily action.", "daily.badge": "Daily Lesson", "daily.action": "Today’s action", "daily.complete": "I completed today’s action", "quiz.title": "Test Your Knowledge", "quiz.desc": "Level-based quizzes with mistake review.", "quiz.choose": "Choose a quiz category", "quiz.level": "Choose a level", "quiz.easy": "Beginner", "quiz.medium": "Intermediate", "quiz.hard": "Advanced", "quiz.start": "Start Quiz", "quiz.next": "Next Question", "quiz.review": "Review Mistakes", "quiz.restart": "New Quiz", "paths.title": "Learning Paths", "paths.desc": "Step-by-step lessons with progress tracking.", "paths.all": "All Paths", "paths.completeLesson": "Complete Lesson", "stats.lessons": "Lessons completed", "stats.quizzes": "Quizzes completed", "stats.paths": "Paths completed", "stats.best": "Best score", "certificate.title": "Achievement Certificate", "certificate.create": "Create Certificate", "certificate.name": "Name", "certificate.photo": "Profile photo", "certificate.template": "Template", "certificate.format": "Format", "certificate.blackGold": "Black & Gold", "certificate.burgundy": "Burgundy & Gold", "certificate.light": "Light", "certificate.square": "Square Post", "certificate.story": "Story", "certificate.landscape": "Landscape Certificate", "certificate.privacy": "Your name and photo stay on your device and are never uploaded.", "certificate.save": "Save Certificate"}, "fa": {"hub.title": "سفر یادگیری", "hub.desc": "درس روز، آزمون‌ها و مسیرهای آموزشی", "hub.kicker": "هر روز بیاموزید، خود را بیازمایید و دستاوردتان را به اشتراک بگذارید", "hub.heading": "سفر آموزشی شما با طریق الحسین", "hub.body": "محتوای کوتاه و معتبر که آفلاین کار می‌کند و پیشرفت را فقط در دستگاه شما ذخیره می‌کند.", "hub.streak": "روز پیاپی", "common.back": "بازگشت", "common.open": "شروع", "daily.title": "درس روز", "daily.desc": "یک نکته، یک پرسش و یک کار روزانه ساده.", "daily.badge": "درس روز", "daily.action": "کار امروز", "daily.complete": "کار امروز را انجام دادم", "quiz.title": "دانسته‌های خود را بیازمایید", "quiz.desc": "آزمون‌های سطح‌بندی‌شده با مرور خطاها.", "quiz.choose": "موضوع آزمون را انتخاب کنید", "quiz.level": "سطح را انتخاب کنید", "quiz.easy": "مبتدی", "quiz.medium": "متوسط", "quiz.hard": "پیشرفته", "quiz.start": "شروع آزمون", "quiz.next": "پرسش بعدی", "quiz.review": "مرور خطاها", "quiz.restart": "آزمون جدید", "paths.title": "مسیرهای آموزشی", "paths.desc": "درس‌های مرحله‌به‌مرحله با نمایش پیشرفت.", "paths.all": "همه مسیرها", "paths.completeLesson": "تکمیل درس", "stats.lessons": "درس‌های کامل‌شده", "stats.quizzes": "آزمون‌های کامل‌شده", "stats.paths": "مسیرهای کامل‌شده", "stats.best": "بهترین نتیجه", "certificate.title": "گواهی دستاورد", "certificate.create": "ساخت گواهی", "certificate.name": "نام", "certificate.photo": "عکس شخصی", "certificate.template": "قالب", "certificate.format": "اندازه", "certificate.blackGold": "مشکی و طلایی", "certificate.burgundy": "زرشکی و طلایی", "certificate.light": "روشن", "certificate.square": "پست مربعی", "certificate.story": "استوری", "certificate.landscape": "گواهی افقی", "certificate.privacy": "نام و عکس شما فقط در دستگاهتان باقی می‌ماند و جایی بارگذاری نمی‌شود.", "certificate.save": "ذخیره گواهی"}};
+const KEY="tareeq_learning_progress_v1";
+const $=id=>document.getElementById(id);
+let quizState={category:"comprehensive",level:"easy",items:[],index:0,score:0,mistakes:[],answered:false};
+let activePath=null,activeLesson=0,certContext={type:"daily",title:"",detail:""},certPhoto=null;
+
+function lang(){const l=(document.documentElement.lang||"ar").toLowerCase();return l.startsWith("en")?"en":l.startsWith("fa")?"fa":"ar"}
+function tr(k){return I18N[lang()]?.[k]||I18N.ar[k]||k}
+function read(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function write(v){try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}}
+function progress(){
+ const p=read();p.daily=p.daily||{doneDates:[],streak:0,lastDate:""};p.quizzes=p.quizzes||{completed:0,best:0};
+ p.paths=p.paths||{};p.stats=p.stats||{lessons:0,paths:0};return p
+}
+function today(){const d=new Date();return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`}
+function yesterday(){const d=new Date();d.setDate(d.getDate()-1);return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`}
+function openPage(id){document.querySelectorAll(".tareeq-app-page.show").forEach(p=>p.classList.remove("show"));const p=$(id);if(p){p.classList.add("show");p.scrollTop=0;document.body.style.overflow="hidden"}}
+function back(){document.querySelectorAll(".tareeq-app-page.show").forEach(p=>p.classList.remove("show"));document.body.style.overflow=""}
+function applyI18n(){
+ document.querySelectorAll("[data-learn-i18n]").forEach(el=>el.textContent=tr(el.dataset.learnI18n));
+ document.documentElement.dir=lang()==="en"?"ltr":"rtl";
+}
+function updateStats(){
+ const p=progress();$("learningStreakCount").textContent=p.daily.streak||0;$("statLessons").textContent=p.stats.lessons||0;
+ $("statQuizzes").textContent=p.quizzes.completed||0;$("statPaths").textContent=p.stats.paths||0;$("statBest").textContent=(p.quizzes.best||0)+"%";
+}
+function dailyIndex(){const d=new Date();return Math.floor(d.getTime()/86400000)%DATA.daily.length}
+function renderDaily(){
+ const x=DATA.daily[dailyIndex()];$("dailyLessonTitle").textContent=x.title;$("dailyLessonText").textContent=x.text;$("dailyLessonSource").textContent=x.source;
+ $("dailyQuestion").textContent=x.q;$("dailyAction").textContent=x.action;$("dailyFeedback").textContent="";$("dailyOptions").innerHTML="";
+ x.options.forEach((o,i)=>{const b=document.createElement("button");b.textContent=o;b.onclick=()=>{
+   [...$("dailyOptions").children].forEach((z,j)=>{z.disabled=true;if(j===x.answer)z.classList.add("correct");if(j===i&&i!==x.answer)z.classList.add("wrong")})
+   $("dailyFeedback").textContent=x.explain;
+ };$("dailyOptions").appendChild(b)});
+ const done=progress().daily.doneDates.includes(today());$("dailyCompleteBtn").disabled=done;$("dailyCertificateBtn").hidden=!done;
+}
+function completeDaily(){
+ const p=progress(),t=today();if(!p.daily.doneDates.includes(t)){p.daily.doneDates.push(t);p.stats.lessons++;p.daily.streak=p.daily.lastDate===yesterday()?p.daily.streak+1:1;p.daily.lastDate=t;write(p)}
+ $("dailyCompleteBtn").disabled=true;$("dailyCertificateBtn").hidden=false;updateStats();
+}
+const quizCats={hussain:"الإمام الحسين",ashura:"عاشوراء وكربلاء",arbaeen:"الأربعين",ethics:"الأخلاق",quran:"القرآن",fiqh:"الفقه",comprehensive:"اختبار شامل"};
+function renderQuizSetup(){
+ const box=$("quizCategories");box.innerHTML="";Object.entries(quizCats).forEach(([k,v],i)=>{const b=document.createElement("button");b.textContent=v;b.dataset.cat=k;b.classList.toggle("active",k===quizState.category);b.onclick=()=>{quizState.category=k;renderQuizSetup()};box.appendChild(b)});
+}
+function startQuiz(itemsOverride=null){
+ let pool=itemsOverride||DATA.quiz.filter(q=>(quizState.category==="comprehensive"||q.cat===quizState.category)&&(q.level===quizState.level||quizState.level==="hard"));
+ if(pool.length<5)pool=DATA.quiz.filter(q=>quizState.category==="comprehensive"||q.cat===quizState.category);
+ quizState.items=[...pool].sort(()=>Math.random()-.5).slice(0,Math.min(10,pool.length));quizState.index=0;quizState.score=0;quizState.mistakes=[];quizState.answered=false;
+ $("quizSetup").hidden=true;$("quizResult").hidden=true;$("quizGame").hidden=false;renderQuizQuestion();
+}
+function renderQuizQuestion(){
+ const q=quizState.items[quizState.index];if(!q)return finishQuiz();
+ $("quizProgressText").textContent=`${quizState.index+1} / ${quizState.items.length}`;$("quizScoreText").textContent=quizState.score;
+ $("quizProgressBar").style.width=((quizState.index)/quizState.items.length*100)+"%";$("quizQuestionText").textContent=q.q;$("quizExplanation").textContent="";$("quizNextBtn").hidden=true;
+ const box=$("quizAnswerOptions");box.innerHTML="";q.options.forEach((o,i)=>{const b=document.createElement("button");b.textContent=o;b.onclick=()=>answerQuiz(i);box.appendChild(b)});
+}
+function answerQuiz(i){
+ if(quizState.answered)return;quizState.answered=true;const q=quizState.items[quizState.index];[...$("quizAnswerOptions").children].forEach((b,j)=>{b.disabled=true;if(j===q.answer)b.classList.add("correct");if(j===i&&i!==q.answer)b.classList.add("wrong")});
+ if(i===q.answer)quizState.score++;else quizState.mistakes.push(q);$("quizExplanation").textContent=q.explain+" — "+q.source;$("quizNextBtn").hidden=false;
+}
+function nextQuiz(){quizState.index++;quizState.answered=false;if(quizState.index>=quizState.items.length)finishQuiz();else renderQuizQuestion()}
+function finishQuiz(){
+ $("quizGame").hidden=true;$("quizResult").hidden=false;const percent=Math.round(quizState.score/Math.max(1,quizState.items.length)*100);
+ $("quizResultScore").textContent=percent+"%";$("quizResultTitle").textContent=percent>=80?"أحسنت، مستوى ممتاز":percent>=60?"نتيجة جيدة":"استمر بالتعلم";
+ $("quizResultMessage").textContent=`${quizState.score} من ${quizState.items.length}`;
+ const p=progress();p.quizzes.completed++;p.quizzes.best=Math.max(p.quizzes.best,percent);write(p);updateStats();$("reviewMistakesBtn").hidden=!quizState.mistakes.length;
+ certContext={type:"quiz",title:"اختبار طريق الحسين",detail:`النتيجة: ${percent}%`};
+}
+function renderPaths(){
+ const p=progress(),box=$("pathsList");box.innerHTML="";DATA.paths.forEach(path=>{const done=(p.paths[path.id]?.done||[]).length,percent=Math.round(done/path.lessons.length*100);const a=document.createElement("article");a.className="path-card-item";
+ a.innerHTML=`<small>${path.category}</small><h3>${path.title}</h3><p>${path.desc}</p><div class="path-mini-progress"><i style="width:${percent}%"></i></div><button>${percent}% — فتح المسار</button>`;
+ a.querySelector("button").onclick=()=>openPath(path.id);box.appendChild(a)})
+}
+function openPath(id){
+ activePath=DATA.paths.find(x=>x.id===id);activeLesson=0;$("pathsList").hidden=true;$("pathViewer").hidden=false;renderPath();
+}
+function renderPath(){
+ const p=progress(),state=p.paths[activePath.id]||{done:[]},done=state.done.length,percent=Math.round(done/activePath.lessons.length*100);
+ $("pathCategory").textContent=activePath.category;$("pathTitle").textContent=activePath.title;$("pathPercent").textContent=percent+"%";$("pathProgressBar").style.width=percent+"%";
+ $("pathCertificateBtn").hidden=percent<100;const list=$("pathLessonList");list.innerHTML="";activePath.lessons.forEach((l,i)=>{const b=document.createElement("button");b.textContent=`${i+1}. ${l.title}`;b.classList.toggle("done",state.done.includes(i));b.classList.toggle("active",i===activeLesson);b.onclick=()=>{activeLesson=i;renderPathLesson()};list.appendChild(b)});
+ renderPathLesson();
+}
+function renderPathLesson(){
+ const l=activePath.lessons[activeLesson],p=progress(),done=(p.paths[activePath.id]?.done||[]).includes(activeLesson);$("pathLessonCard").hidden=false;
+ $("pathLessonNumber").textContent=`الدرس ${activeLesson+1} من ${activePath.lessons.length}`;$("pathLessonTitle").textContent=l.title;$("pathLessonBody").textContent=l.body;$("pathLessonFact").textContent=l.fact;$("pathLessonSource").textContent=l.source;
+ $("pathCheckQuestion").textContent=l.q;$("pathCheckFeedback").textContent="";$("completePathLessonBtn").disabled=!done;$("completePathLessonBtn").textContent=done?"مكتمل ✓":tr("paths.completeLesson");
+ const box=$("pathCheckOptions");box.innerHTML="";l.options.forEach((o,i)=>{const b=document.createElement("button");b.textContent=o;b.onclick=()=>{[...box.children].forEach((z,j)=>{z.disabled=true;if(j===l.answer)z.classList.add("correct");if(j===i&&i!==l.answer)z.classList.add("wrong")});$("pathCheckFeedback").textContent=i===l.answer?"إجابة صحيحة":"راجع الإجابة الصحيحة";$("completePathLessonBtn").disabled=i!==l.answer};box.appendChild(b)});
+}
+function completePathLesson(){
+ const p=progress();p.paths[activePath.id]=p.paths[activePath.id]||{done:[]};if(!p.paths[activePath.id].done.includes(activeLesson)){p.paths[activePath.id].done.push(activeLesson);p.stats.lessons++;if(p.paths[activePath.id].done.length===activePath.lessons.length)p.stats.paths++;write(p)}
+ if(activeLesson<activePath.lessons.length-1)activeLesson++;renderPath();updateStats();if(p.paths[activePath.id].done.length===activePath.lessons.length)certContext={type:"path",title:activePath.title,detail:"إكمال المسار بنسبة 100%"};
+}
+function openCertificate(type){
+ if(type==="daily"){const x=DATA.daily[dailyIndex()];certContext={type:"daily",title:"درس اليوم",detail:x.title}}
+ if(type==="path"&&activePath)certContext={type:"path",title:activePath.title,detail:"إكمال المسار بنسبة 100%"};
+ openPage("certificatePage");drawCertificate();
+}
+function canvasSize(){
+ const f=$("certificateFormatSelect").value,c=$("certificateCanvas");if(f==="story"){c.width=1080;c.height=1920}else if(f==="landscape"){c.width=1600;c.height=1000}else{c.width=1080;c.height=1080}
+}
+function drawCertificate(){
+ canvasSize();const c=$("certificateCanvas"),ctx=c.getContext("2d"),w=c.width,h=c.height,t=$("certificateTemplateSelect").value,name=$("certificateNameInput").value.trim()||"الاسم";
+ const palette=t==="light"?{bg:"#f7f1df",card:"#ffffff",gold:"#9b762e",text:"#2a2116"}:t==="burgundy"?{bg:"#4e0e18",card:"#701723",gold:"#e4bd66",text:"#ffffff"}:{bg:"#171a20",card:"#232832",gold:"#e2bb60",text:"#ffffff"};
+ ctx.fillStyle=palette.bg;ctx.fillRect(0,0,w,h);ctx.strokeStyle=palette.gold;ctx.lineWidth=Math.max(8,w*.008);ctx.strokeRect(w*.035,h*.035,w*.93,h*.93);
+ ctx.textAlign="center";ctx.fillStyle=palette.gold;ctx.font=`700 ${Math.round(w*.045)}px Tahoma`;ctx.fillText("طريق الحسين",w/2,h*.11);
+ ctx.font=`700 ${Math.round(w*.06)}px Tahoma`;ctx.fillText(certContext.type==="daily"?"شهادة شكر ومشاركة":"شهادة إنجاز تعليمية",w/2,h*.20);
+ const r=Math.min(w,h)*.115,cx=w/2,cy=h*.36;ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
+ if(certPhoto)ctx.drawImage(certPhoto,cx-r,cy-r,r*2,r*2);else{ctx.fillStyle=palette.card;ctx.fillRect(cx-r,cy-r,r*2,r*2);ctx.fillStyle=palette.gold;ctx.font=`${Math.round(r*.8)}px Tahoma`;ctx.fillText("✦",cx,cy+r*.28)}ctx.restore();ctx.strokeStyle=palette.gold;ctx.lineWidth=8;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
+ ctx.fillStyle=palette.text;ctx.font=`700 ${Math.round(w*.045)}px Tahoma`;ctx.fillText(name,w/2,h*.55);
+ ctx.font=`400 ${Math.round(w*.027)}px Tahoma`;ctx.fillText("تقديراً لمشاركته وإنجازه في",w/2,h*.62);
+ ctx.fillStyle=palette.gold;ctx.font=`700 ${Math.round(w*.04)}px Tahoma`;ctx.fillText(certContext.title,w/2,h*.69);
+ ctx.fillStyle=palette.text;ctx.font=`400 ${Math.round(w*.026)}px Tahoma`;ctx.fillText(certContext.detail,w/2,h*.75);
+ ctx.font=`400 ${Math.round(w*.019)}px Tahoma`;ctx.fillText(new Date().toLocaleDateString("ar-IQ"),w/2,h*.82);
+ ctx.fillStyle=palette.gold;ctx.font=`400 ${Math.round(w*.017)}px Tahoma`;ctx.fillText("شهادة تعليمية وتقديرية من مبادرة طريق الحسين وليست شهادة رسمية أو أكاديمية",w/2,h*.91);
+}
+function saveCertificate(){
+ drawCertificate();const c=$("certificateCanvas");c.toBlob(blob=>{const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="tareeq-alhussain-certificate.png";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)},"image/png",1);
+}
+document.addEventListener("click",e=>{
+ const open=e.target.closest("[data-pro-open]")?.dataset.proOpen;if(open&&["learningHubPage","dailyLessonPage","quizPage","learningPathsPage"].includes(open)){openPage(open);if(open==="dailyLessonPage")renderDaily();if(open==="quizPage")renderQuizSetup();if(open==="learningPathsPage")renderPaths()}
+ if(e.target.closest("[data-learning-back]"))back();
+ const cert=e.target.closest("[data-cert-type]")?.dataset.certType;if(cert)openCertificate(cert);
+});
+document.addEventListener("DOMContentLoaded",()=>{
+ applyI18n();updateStats();renderDaily();renderQuizSetup();renderPaths();
+ document.querySelectorAll("[data-quiz-level]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-quiz-level]").forEach(x=>x.classList.remove("active"));b.classList.add("active");quizState.level=b.dataset.quizLevel});
+ $("dailyCompleteBtn").onclick=completeDaily;$("startQuizBtn").onclick=()=>startQuiz();$("quizNextBtn").onclick=nextQuiz;$("restartQuizBtn").onclick=()=>{$("quizResult").hidden=true;$("quizSetup").hidden=false};
+ $("reviewMistakesBtn").onclick=()=>startQuiz(quizState.mistakes);$("backToPathsBtn").onclick=()=>{$("pathViewer").hidden=true;$("pathsList").hidden=false;renderPaths()};
+ $("completePathLessonBtn").onclick=completePathLesson;
+ $("certificateNameInput").oninput=drawCertificate;$("certificateTemplateSelect").onchange=drawCertificate;$("certificateFormatSelect").onchange=drawCertificate;
+ $("certificatePhotoInput").onchange=e=>{const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{certPhoto=new Image();certPhoto.onload=drawCertificate;certPhoto.src=r.result};r.readAsDataURL(f)};
+ $("saveCertificateBtn").onclick=saveCertificate;
+ new MutationObserver(()=>{applyI18n();drawCertificate()}).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+});
 })();
 </script></body></html>
