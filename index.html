@@ -4622,8 +4622,26 @@ function openCert(){
 }
 function backCert(){$("quizCertificatePage").classList.remove("show");$("quizCertificatePage").setAttribute("aria-hidden","true");$("quizLevelsPage").classList.add("show");document.body.style.overflow="hidden";updateGate()}
 function cover(ctx,img,x,y,w,h,zoom,ox,oy){
- const ir=img.width/img.height,rr=w/h;let sw,sh;if(ir>rr){sh=img.height/zoom;sw=sh*rr}else{sw=img.width/zoom;sh=sw/rr}
- const sx=(img.width-sw)/2+ox*(img.width-sw)/2,sy=(img.height-sh)/2+oy*(img.height-sh)/2;ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
+ zoom=Math.max(1,Number(zoom)||1);
+ ox=Math.max(-1,Math.min(1,Number(ox)||0));
+ oy=Math.max(-1,Math.min(1,Number(oy)||0));
+ const targetRatio=w/h;
+ const imageRatio=img.width/img.height;
+ let sw,sh;
+ if(imageRatio>targetRatio){
+   sh=img.height/zoom;
+   sw=sh*targetRatio;
+ }else{
+   sw=img.width/zoom;
+   sh=sw/targetRatio;
+ }
+ const maxX=Math.max(0,img.width-sw);
+ const maxY=Math.max(0,img.height-sh);
+ const sx=maxX/2+(ox*maxX/2);
+ const sy=maxY/2+(oy*maxY/2);
+ ctx.imageSmoothingEnabled=true;
+ ctx.imageSmoothingQuality="high";
+ ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
 }
 function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
 function wrapText(ctx,text,maxWidth){
@@ -4636,8 +4654,8 @@ function currentDateString(){const d=new Date();return `${d.getFullYear()}/${Str
 function certName(){return $("finalCertificateName").value.trim()||"اسم الشخص";}
 function certParagraph(name){return `تتقدم إدارة طريق الحسين بخالص الشكر والتقدير إلى (${name})، تقديراً لاجتهاده وحرصه على التعلّم، وإكماله جميع المستويات التعليمية بنجاح، سائلين الله له دوام التوفيق والقبول.`;}
 function drawPhoto(ctx){
- const cx=1297,cy=205,r=119;ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
- if(photoImage){cover(ctx,photoImage,cx-r,cy-r,r*2,r*2,Number($("finalPhotoZoom").value),Number($("finalPhotoX").value),Number($("finalPhotoY").value));}
+ const cx=1267,cy=211,r=126;ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
+ if(photoImage){const inset=4;cover(ctx,photoImage,cx-r+inset,cy-r+inset,(r-inset)*2,(r-inset)*2,Number($("finalPhotoZoom").value),Number($("finalPhotoX").value),Number($("finalPhotoY").value));}
  else {const g=ctx.createRadialGradient(cx,cy,25,cx,cy,r);g.addColorStop(0,"#232833");g.addColorStop(1,"#090b11");ctx.fillStyle=g;ctx.fillRect(cx-r,cy-r,r*2,r*2);ctx.fillStyle='rgba(230,191,104,.7)';ctx.font='700 54px Tahoma';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('صورتك',cx,cy-10);ctx.font='400 22px Tahoma';ctx.fillText('أضف صورة',cx,cy+34);}
  ctx.restore();
 }
