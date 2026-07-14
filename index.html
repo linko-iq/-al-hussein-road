@@ -4696,4 +4696,220 @@ document.addEventListener("DOMContentLoaded",()=>{
  document.addEventListener("click",e=>{if(e.target.closest("#quizReturnLevelsBtn")||e.target.closest("[data-pro-action='quiz-levels']"))setTimeout(updateGate,50)});
 });
 })();
-</script></body></html>
+</script>
+<style id="tareeqReleasePolishV1">
+:root{--motion-fast:.18s;--motion-normal:.32s}
+button,a,.btn,.quiz-lesson-card,.assistant-question-card,.pro-feature-card{
+  -webkit-tap-highlight-color:transparent;
+}
+button,.btn,.quiz-lesson-card button,.quiz-options button,.final-cert-open-btn{
+  transition:transform var(--motion-fast) ease,box-shadow var(--motion-normal) ease,
+  border-color var(--motion-fast) ease,background-color var(--motion-fast) ease,opacity var(--motion-fast) ease;
+}
+button:active,.btn:active,.quiz-lesson-card button:active,.quiz-options button:active{
+  transform:scale(.975);
+}
+.tareeq-app-page{
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .24s ease,transform .24s ease;
+}
+.tareeq-app-page.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.quiz-lesson-card{
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+}
+.quiz-lesson-card p{flex:1}
+.quiz-lesson-card button{margin-top:auto}
+.quiz-question-panel,.quiz-result-panel,.final-cert-controls,.final-cert-preview{
+  animation:releaseCardEnter .3s ease both;
+}
+@keyframes releaseCardEnter{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.site-toast-release{
+  position:fixed;left:50%;bottom:96px;z-index:99999;
+  transform:translate(-50%,18px);opacity:0;pointer-events:none;
+  max-width:min(92vw,520px);padding:12px 18px;border-radius:16px;
+  background:#171b22;color:#fff;border:1px solid var(--gold);
+  box-shadow:0 14px 40px rgba(0,0,0,.35);font-size:14px;font-weight:800;
+  text-align:center;transition:.25s ease
+}
+.site-toast-release.show{opacity:1;transform:translate(-50%,0)}
+html[dir="ltr"] .quiz-question-panel,
+html[dir="ltr"] .quiz-options button,
+html[dir="ltr"] .final-cert-controls{text-align:left}
+html[dir="rtl"] .quiz-question-panel,
+html[dir="rtl"] .quiz-options button,
+html[dir="rtl"] .final-cert-controls{text-align:right}
+@media(max-width:520px){
+  body{font-size:min(var(--font),18px)}
+  .tareeq-page-head h2{font-size:19px}
+  .quiz-levels-hero{padding:17px}
+  .quiz-question-panel,.quiz-result-panel{padding:16px}
+  .quiz-options button{padding:12px;font-size:14px}
+  .final-cert-controls{padding:14px}
+  #tareeqBottomNav b{font-size:9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+
+<div class="site-toast-release" id="siteToastRelease" role="status" aria-live="polite"></div>
+
+<script id="tareeqReleaseI18nV1">
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const COPY={
+ ar:{
+  quizNav:"الاختبارات",back:"رجوع",quizTitle:"اختبر معلوماتك",
+  kicker:"100 سؤال مرتب من السهل إلى المتقدم",levelsHeading:"عشرة مستويات تعليمية",
+  intro:"كل مستوى يحتوي على 10 أسئلة. أكمل المستوى لفتح المستوى التالي وحفظ تقدمك داخل جهازك.",
+  totalProgress:"التقدم الكلي",score:"النتيجة",next:"السؤال التالي",
+  resultTitle:"نتيجة المستوى",correct:"صحيح",wrong:"خطأ",
+  review:"مراجعة الأخطاء",retry:"إعادة المستوى",levels:"العودة إلى المستويات",
+  certGateSmall:"الشهادة النهائية",certGateTitle:"شهادة إكمال جميع المستويات",
+  certLocked:"غير مستعد للشهادة",certReady:"إنجاز الشهادة",
+  certProgress:(n)=>`أكملت ${n} من 10 مستويات. أكمل جميع المستويات أولاً.`,
+  certReadyText:"أكملت جميع المستويات العشرة وأصبحت مستعداً لإنشاء الشهادة.",
+  certPage:"الشهادة النهائية",name:"اسم الشخص",namePh:"اكتب الاسم الكامل",
+  photo:"الصورة الشخصية",zoom:"تكبير الصورة",moveX:"تحريك أفقي",moveY:"تحريك عمودي",
+  save:"حفظ في معرض الصور",share:"مشاركة الشهادة",
+  privacy:"الاسم والصورة يبقيان داخل جهازك ولا يتم رفعهما إلى الإنترنت.",
+  notReady:"غير مستعد للشهادة. أكمل جميع المستويات العشرة أولاً.",
+  enterName:"اكتب الاسم أولاً.",saved:"تم تجهيز الشهادة للحفظ.",
+  unsupported:"المشاركة المباشرة غير مدعومة. احفظ الصورة ثم شاركها من جهازك.",
+  qiblaNote:"تنبيه الدقة:",qiblaHelp:"لا تعتمد السهم إذا كانت البوصلة غير مستقرة. ابتعد عن المعادن، عاير الهاتف بحركة رقم 8، وتحقق من زاوية القبلة الرقمية.",
+  level:(n)=>`المستوى ${["الأول","الثاني","الثالث","الرابع","الخامس","السادس","السابع","الثامن","التاسع","العاشر"][n-1]||n}`,
+  start:"ابدأ المستوى",locked:"🔒 مغلق",best:"أفضل نتيجة"
+ },
+ en:{
+  quizNav:"Quizzes",back:"Back",quizTitle:"Test Your Knowledge",
+  kicker:"100 questions arranged from easy to advanced",levelsHeading:"Ten Learning Levels",
+  intro:"Each level contains 10 questions. Complete it to unlock the next level and save progress on your device.",
+  totalProgress:"Total progress",score:"Score",next:"Next question",
+  resultTitle:"Level Result",correct:"Correct",wrong:"Wrong",
+  review:"Review mistakes",retry:"Retry level",levels:"Back to levels",
+  certGateSmall:"Final certificate",certGateTitle:"Certificate for completing all levels",
+  certLocked:"Not ready for certificate",certReady:"Create certificate",
+  certProgress:(n)=>`You completed ${n} of 10 levels. Complete all levels first.`,
+  certReadyText:"You completed all ten levels and can now create your certificate.",
+  certPage:"Final Certificate",name:"Full name",namePh:"Enter your full name",
+  photo:"Profile photo",zoom:"Photo zoom",moveX:"Move horizontally",moveY:"Move vertically",
+  save:"Save to Photos",share:"Share certificate",
+  privacy:"Your name and photo stay on your device and are never uploaded.",
+  notReady:"You are not ready for the certificate. Complete all ten levels first.",
+  enterName:"Enter your name first.",saved:"The certificate is ready to save.",
+  unsupported:"Direct sharing is not supported. Save the image, then share it from your device.",
+  qiblaNote:"Accuracy notice:",qiblaHelp:"Do not rely on the arrow while the compass is unstable. Move away from metal, calibrate the phone in a figure-eight motion, and verify the numeric Qibla angle.",
+  level:(n)=>`Level ${n}`,start:"Start level",locked:"🔒 Locked",best:"Best score"
+ },
+ fa:{
+  quizNav:"آزمون‌ها",back:"بازگشت",quizTitle:"دانسته‌های خود را بیازمایید",
+  kicker:"۱۰۰ پرسش از آسان تا پیشرفته",levelsHeading:"ده سطح آموزشی",
+  intro:"هر سطح ۱۰ پرسش دارد. برای باز شدن سطح بعدی، سطح فعلی را کامل کنید؛ پیشرفت در دستگاه شما ذخیره می‌شود.",
+  totalProgress:"پیشرفت کلی",score:"امتیاز",next:"پرسش بعدی",
+  resultTitle:"نتیجه سطح",correct:"درست",wrong:"نادرست",
+  review:"مرور خطاها",retry:"تکرار سطح",levels:"بازگشت به سطح‌ها",
+  certGateSmall:"گواهی نهایی",certGateTitle:"گواهی تکمیل همه سطح‌ها",
+  certLocked:"هنوز آماده گواهی نیستید",certReady:"ساخت گواهی",
+  certProgress:(n)=>`${n} سطح از ۱۰ سطح را کامل کرده‌اید. ابتدا همه سطح‌ها را کامل کنید.`,
+  certReadyText:"همه ده سطح را کامل کرده‌اید و اکنون می‌توانید گواهی را بسازید.",
+  certPage:"گواهی نهایی",name:"نام و نام خانوادگی",namePh:"نام کامل خود را بنویسید",
+  photo:"عکس شخصی",zoom:"بزرگ‌نمایی عکس",moveX:"حرکت افقی",moveY:"حرکت عمودی",
+  save:"ذخیره در تصاویر",share:"اشتراک‌گذاری گواهی",
+  privacy:"نام و عکس شما فقط در دستگاهتان می‌ماند و در اینترنت بارگذاری نمی‌شود.",
+  notReady:"هنوز آماده گواهی نیستید. ابتدا همه ده سطح را کامل کنید.",
+  enterName:"ابتدا نام خود را وارد کنید.",saved:"گواهی برای ذخیره آماده شد.",
+  unsupported:"اشتراک‌گذاری مستقیم پشتیبانی نمی‌شود. تصویر را ذخیره و سپس از دستگاهتان ارسال کنید.",
+  qiblaNote:"هشدار دقت:",qiblaHelp:"اگر قطب‌نما ثابت نیست به پیکان اعتماد نکنید. از فلزات دور شوید، گوشی را به شکل عدد ۸ حرکت دهید و زاویه عددی قبله را بررسی کنید.",
+  level:(n)=>`سطح ${n}`,start:"شروع سطح",locked:"🔒 بسته",best:"بهترین نتیجه"
+ }
+};
+function lang(){const l=(document.documentElement.lang||"ar").toLowerCase();return l.startsWith("en")?"en":l.startsWith("fa")?"fa":"ar"}
+function c(){return COPY[lang()]||COPY.ar}
+function txt(el,value){if(el&&value!==undefined)el.textContent=value}
+function toast(message){const el=$("siteToastRelease");if(!el)return;el.textContent=message;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),2400)}
+function apply(){
+ const x=c();
+ document.documentElement.dir=lang()==="en"?"ltr":"rtl";
+ txt(document.querySelector('[data-pro-action="quiz-levels"] b'),x.quizNav);
+ document.querySelectorAll("[data-quiz-back] span,[data-final-cert-back] span").forEach(el=>txt(el,x.back));
+ txt(document.querySelector("#quizLevelsPage .tareeq-page-head h2"),x.quizTitle);
+ txt(document.querySelector("#quizLevelsPage [data-quiz-ui='kicker']"),x.kicker);
+ txt(document.querySelector("#quizLevelsPage [data-quiz-ui='heading']"),x.levelsHeading);
+ txt(document.querySelector("#quizLevelsPage [data-quiz-ui='intro']"),x.intro);
+ txt(document.querySelector("#quizLevelsPage [data-quiz-ui='progress']"),x.totalProgress);
+ txt(document.querySelector("#quizGamePage [data-quiz-ui='score']"),x.score);
+ txt($("quizNextQuestionBtn"),x.next);
+ txt(document.querySelector("#quizResultPage .tareeq-page-head h2"),x.resultTitle);
+ txt(document.querySelector("#quizResultPage [data-quiz-ui='correct']"),x.correct);
+ txt(document.querySelector("#quizResultPage [data-quiz-ui='wrong']"),x.wrong);
+ txt($("quizReviewBtn"),x.review);txt($("quizRetryBtn"),x.retry);txt($("quizReturnLevelsBtn"),x.levels);
+
+ const gate=$("finalCertificateGate");
+ if(gate){
+  txt(gate.querySelector("small"),x.certGateSmall);
+  txt(gate.querySelector("h3"),x.certGateTitle);
+  const state=(()=>{try{return JSON.parse(localStorage.getItem("tareeq_quiz_levels_v2"))||{}}catch(e){return {}}})();
+  const done=Object.keys(state.completed||{}).filter(k=>Number(state.completed[k]?.percent)>=60).length;
+  const ready=done>=10;
+  txt($("finalCertificateStatusText"),ready?x.certReadyText:x.certProgress(done));
+  txt($("openFinalCertificateBtn"),ready?x.certReady:x.certLocked);
+ }
+ txt(document.querySelector("#quizCertificatePage .tareeq-page-head h2"),x.certPage);
+ const labels=document.querySelectorAll("#quizCertificatePage .final-cert-controls > label > span");
+ if(labels[0])txt(labels[0],x.name);if(labels[1])txt(labels[1],x.photo);
+ const toolLabels=document.querySelectorAll("#quizCertificatePage .final-cert-photo-tools label span");
+ if(toolLabels[0])txt(toolLabels[0],x.zoom);if(toolLabels[1])txt(toolLabels[1],x.moveX);if(toolLabels[2])txt(toolLabels[2],x.moveY);
+ if($("finalCertificateName"))$("finalCertificateName").placeholder=x.namePh;
+ txt($("saveFinalCertificateBtn"),x.save);txt($("shareFinalCertificateBtn"),x.share);
+ txt(document.querySelector("#quizCertificatePage .quiz-privacy"),x.privacy);
+ const qb=$("qiblaVerificationBox");
+ if(qb){txt(qb.querySelector("strong"),x.qiblaNote);txt($("qiblaVerificationText"),x.qiblaHelp)}
+
+ document.querySelectorAll("#quizLessonsGrid .quiz-lesson-card").forEach((card,i)=>{
+   txt(card.querySelector("h3"),x.level(i+1));
+   const b=card.querySelector("button");
+   if(b){
+     if(b.disabled) txt(b,x.locked);
+     else if(!/\d+%/.test(b.textContent)) txt(b,x.start);
+     else{
+       const m=b.textContent.match(/(\d+)%/);
+       if(m)txt(b,`${x.best}: ${m[1]}%`);
+     }
+   }
+ });
+}
+let scheduled=false;
+function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;apply()})}
+document.addEventListener("DOMContentLoaded",()=>{
+ apply();
+ new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+ ["quizLevelsPage","quizResultPage","quizCertificatePage"].forEach(id=>{
+   const el=$(id);if(el)new MutationObserver(schedule).observe(el,{childList:true,subtree:true,characterData:true});
+ });
+ const oldAlert=window.alert;
+ window.alert=function(message){
+   const x=c();
+   const map={
+    "غير مستعد للشهادة. أكمل جميع المستويات العشرة أولاً.":x.notReady,
+    "اكتب الاسم أولاً.":x.enterName,
+    "المشاركة المباشرة غير مدعومة. احفظ الصورة ثم شاركها من جهازك.":x.unsupported
+   };
+   const translated=map[message]||message;
+   toast(translated);
+ };
+});
+window.tareeqReleaseToast=toast;
+})();
+</script>
+
+</body></html>
