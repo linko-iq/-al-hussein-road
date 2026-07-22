@@ -1812,6 +1812,61 @@ html[dir="ltr"] .back-icon{transform:rotate(180deg)}
 @keyframes lessonGlowPulse{0%,100%{opacity:.55;box-shadow:0 0 0 rgba(255,215,120,0)}50%{opacity:1;box-shadow:0 0 26px rgba(255,215,120,.18)}}
 @keyframes sacredFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.04)}}
 </style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="طريق الحسين">
+<meta name="mobile-web-app-capable" content="yes">
+
+<style id="tareeqAndroidCompatibilityV2">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-x:hidden;width:100%}
+img,svg,canvas,video{max-width:100%}
+section,.section,.container,.card,.pro-card,.content-card{min-width:0}
+p,li,.answer,.narration,.source-box,.source-card{overflow-wrap:anywhere;word-break:normal}
+
+@media (max-width:760px){
+  :root{--font:17px}
+  body{font-size:17px;line-height:1.78}
+  .container{padding-left:12px;padding-right:12px}
+  section{padding-left:0;padding-right:0}
+  h1{font-size:clamp(25px,7vw,34px);line-height:1.35}
+  h2{font-size:clamp(22px,6vw,30px);line-height:1.4}
+  h3{font-size:clamp(18px,5vw,24px);line-height:1.5}
+  .card,.pro-card,.content-card,.source-box,.narration-box{padding:14px!important}
+  .grid,.cards-grid,.two-columns,.visit-grid,.virtues-grid{gap:12px!important}
+}
+@media (max-width:540px){
+  :root{--font:16px}
+  body{font-size:16px;line-height:1.72}
+  .container{padding-left:10px;padding-right:10px}
+  .header-inner{min-height:64px}
+  .brand{font-size:20px}
+  .btn{padding:9px 11px;border-radius:12px}
+  .section-title,.section h2{margin-bottom:14px}
+  .card,.pro-card,.content-card,.source-box,.narration-box{padding:12px!important;border-radius:14px!important}
+  .two-columns,.visit-grid,.virtues-grid,[class*="two-col"],[class*="twoCol"]{
+    grid-template-columns:1fr!important;
+    columns:1!important;
+  }
+  .grid>*,.cards-grid>*,.two-columns>*,.visit-grid>*,.virtues-grid>*{
+    min-width:0!important;
+    width:100%!important;
+  }
+  p,li{font-size:15px;line-height:1.9}
+}
+@media (max-width:390px){
+  body{font-size:15px}
+  .container{padding-left:8px;padding-right:8px}
+  .card,.pro-card,.content-card,.source-box,.narration-box{padding:10px!important}
+  p,li{font-size:14px}
+}
+</style>
+
 </head>
 <body data-theme="light">
 <div class="read-progress" id="readProgress"></div>
